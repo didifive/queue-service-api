@@ -28,8 +28,8 @@ public class CompanyService {
         if (!Objects.isNull(extantCompany))
             return createMessageResponse("Company already extant with ID ", extantCompany.getId());
 
-        if (Objects.isNull(newCompany.getDeactived()))
-            newCompany.setDeactived(false);
+        if (!newCompany.isDeactivated())
+            newCompany.setDeactivated(false);
 
         Company savedCompany = companyRepository.save(newCompany);
 
