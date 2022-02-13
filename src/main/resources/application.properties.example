@@ -1,0 +1,11 @@
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.datasource.url=jdbc:postgresql://<host_url>:<port>/<db>?user=<user>&password=<pass>
+spring.datasource.platform=postgres
+
+spring.jpa.database=POSTGRESQL
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.format_sql=true
+
+hibernate.dialect=org.hibernate.dialect.PostgreSQL94Dialect
+
+spring.mvc.pathmatch.matching-strategy=ant-path-matcher
