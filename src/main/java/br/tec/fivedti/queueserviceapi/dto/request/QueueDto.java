@@ -1,13 +1,16 @@
-package br.tec.fivedti.queueserviceapi.dto;
+package br.tec.fivedti.queueserviceapi.dto.request;
 
-import br.tec.fivedti.queueserviceapi.entities.Company;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -15,17 +18,20 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class QueueDto implements Serializable {
 
-    private long id;
+    private UUID id;
 
-    @NotNull(message = "The queue name is required!")
+    @NotEmpty(message = "The queue name is required!")
+    @Size(min = 2, max = 60)
     private String name;
 
-    @NotNull(message = "The queue abbreviation is required!")
+    @NotEmpty(message = "The queue abbreviation is required!")
+    @Size(min = 1, max = 5)
     private String abbreviation;
 
     @NotNull(message = "The queue lastNumber is required!")
     private int lastNumber;
 
-    @NotNull(message = "The queue company is required!")
+    private boolean deactivated;
+
     private CompanyDto company;
 }

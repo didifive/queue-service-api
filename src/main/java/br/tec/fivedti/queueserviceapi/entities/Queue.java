@@ -1,9 +1,11 @@
 package br.tec.fivedti.queueserviceapi.entities;
 
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.UUID;
 
 @Builder
 @Entity
@@ -11,13 +13,22 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "queue", schema = "public")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Table(name = "queue"
+        , schema = "public"
+        , uniqueConstraints=@UniqueConstraint(columnNames={"abbreviation"})
+        , indexes = @Index(name = "abbreviationIndex", columnList = "abbreviation")
+)
 public class Queue {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    @Column(name = "id", updatable = false, nullable = false)
+    private UUID id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -28,7 +39,12 @@ public class Queue {
     @Column(name = "lastNumber", nullable = false)
     private int lastNumber;
 
-    @OneToOne
+    @Column(name= "deactivated")
+    private boolean deactivated;
+
+    @Basic(fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Company company;
 
     @Override
@@ -37,6 +53,7 @@ public class Queue {
                 + ", name=" + name
                 + ", abbreviation=" + name
                 + ", lastNumber=" + lastNumber
+                + ", deactivated=" + deactivated
                 + ", company=" + company
                 + "]";
     }
