@@ -12,8 +12,12 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "company", schema = "public")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Table(name = "company"
+        , schema = "public"
+        , uniqueConstraints=@UniqueConstraint(columnNames={"cnpj"})
+        , indexes = @Index(name = "idxCnpj", columnList = "cnpj")
+)
 public class Company {
 
     @Id
@@ -26,11 +30,15 @@ public class Company {
     @Column(name = "cnpj", nullable = false)
     private String cnpj;
 
+    @Column(name= "deactivated")
+    private boolean deactivated;
+
     @Override
     public String toString() {
         return "Company [id=" + id
                 + ", name=" + name
                 + ", cnpj=" + cnpj
+                + ", deactivated=" + deactivated
                 + "]";
     }
 

@@ -1,6 +1,6 @@
 package br.tec.fivedti.queueserviceapi.dto.mapper;
 
-import br.tec.fivedti.queueserviceapi.dto.CompanyDto;
+import br.tec.fivedti.queueserviceapi.dto.request.CompanyDto;
 import br.tec.fivedti.queueserviceapi.entities.Company;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
@@ -11,5 +11,5 @@ public interface CompanyMapper {
 
     Company toModel(CompanyDto companyDto);
 
-    CompanyDto toDTO(Company beer);
+    CompanyDto toDTO(Company company);
 }

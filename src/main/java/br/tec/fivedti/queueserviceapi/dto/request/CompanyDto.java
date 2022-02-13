@@ -1,4 +1,4 @@
-package br.tec.fivedti.queueserviceapi.dto;
+package br.tec.fivedti.queueserviceapi.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CNPJ;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 @Data
@@ -16,10 +16,12 @@ import java.io.Serializable;
 public class CompanyDto implements Serializable {
     private long id;
 
-    @NotNull(message = "The company name is required!")
+    @NotEmpty(message = "The company name is required!")
     private String name;
 
-    @NotNull(message = "The company CNPJ is required!")
+    @NotEmpty(message = "The company CNPJ is required!")
     @CNPJ(message = "Please insert a valid CNPJ!")
     private String cnpj;
+
+    private boolean deactivated;
 }
