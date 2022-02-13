@@ -7,4 +7,5 @@ import lombok.Data;
 @Builder
 public class MessageResponseDto {
     private String message;
+    private Object payload;
 }

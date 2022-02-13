@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,14 +27,14 @@ public class CompanyService {
         Company extantCompany = companyRepository.findByCnpj(newCompany.getCnpj());
 
         if (!Objects.isNull(extantCompany))
-            return createMessageResponse("Company already extant with ID ", extantCompany.getId());
+            return createMessageResponse("Company already extant.", extantCompany);
 
         if (!newCompany.isDeactivated())
             newCompany.setDeactivated(false);
 
         Company savedCompany = companyRepository.save(newCompany);
 
-        return createMessageResponse("Company successfully created with ID ", savedCompany.getId());
+        return createMessageResponse("Company successfully created.", savedCompany);
     }
 
     public List<CompanyDto> listAllCompanies() {
@@ -43,33 +44,36 @@ public class CompanyService {
                 .collect(Collectors.toList());
     }
 
-    public CompanyDto findById(Long id) throws CompanyNotFoundException {
+    public CompanyDto findById(UUID id) throws CompanyNotFoundException {
         Company company = companyRepository.findById(id)
                 .orElseThrow(() -> new CompanyNotFoundException(id));
         return companyMapper.toDTO(company);
     }
 
 
-    public MessageResponseDto update(Long id, CompanyDto companyDto) throws CompanyNotFoundException {
+    public MessageResponseDto update(UUID id, CompanyDto companyDto) throws CompanyNotFoundException {
         companyRepository.findById(id)
                 .orElseThrow(() -> new CompanyNotFoundException(id));
 
         Company updatedCompany = companyMapper.toModel(companyDto);
         Company savedCompany = companyRepository.save(updatedCompany);
 
-        return createMessageResponse("Company successfully updated with ID ", savedCompany.getId());
+        return createMessageResponse("Company successfully updated.", savedCompany);
     }
 
-    public void delete(Long id) throws CompanyNotFoundException {
-        companyRepository.findById(id)
+    public MessageResponseDto delete(UUID id) throws CompanyNotFoundException {
+        Company deletedCompany = companyRepository.findById(id)
                 .orElseThrow(() -> new CompanyNotFoundException(id));
 
-        companyRepository.deleteById(id);
+        companyRepository.delete(deletedCompany);
+
+        return createMessageResponse("Company successfully deleted.", deletedCompany);
     }
 
-    private MessageResponseDto createMessageResponse(String s, Long id2) {
+    private MessageResponseDto createMessageResponse(String s, Object o) {
         return MessageResponseDto.builder()
-                .message(s + id2)
+                .message(s)
+                .payload(o)
                 .build();
     }
 }

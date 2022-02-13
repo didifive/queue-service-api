@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/company")
@@ -34,21 +35,21 @@ public class CompanyController implements CompanyControllerDocs {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public CompanyDto findById(@PathVariable Long id) throws CompanyNotFoundException {
+    public CompanyDto findById(@PathVariable UUID id) throws CompanyNotFoundException {
         return companyService.findById(id);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public MessageResponseDto update(@PathVariable Long id
+    public MessageResponseDto update(@PathVariable UUID id
             , @RequestBody @Valid CompanyDto companyDto
     ) throws CompanyNotFoundException {
         return companyService.update(id, companyDto);
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Long id) throws CompanyNotFoundException {
-        companyService.delete(id);
+    @ResponseStatus(HttpStatus.OK)
+    public MessageResponseDto delete(@PathVariable UUID id) throws CompanyNotFoundException {
+        return companyService.delete(id);
     }
 }

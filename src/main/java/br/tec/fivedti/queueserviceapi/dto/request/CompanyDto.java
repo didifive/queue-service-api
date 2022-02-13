@@ -8,13 +8,14 @@ import org.hibernate.validator.constraints.br.CNPJ;
 
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.util.UUID;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class CompanyDto implements Serializable {
-    private long id;
+    private UUID id;
 
     @NotEmpty(message = "The company name is required!")
     private String name;

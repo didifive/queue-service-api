@@ -2,9 +2,12 @@ package br.tec.fivedti.queueserviceapi.entities;
 
 
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 @Builder
 @Entity
@@ -16,13 +19,18 @@ import java.util.Objects;
 @Table(name = "company"
         , schema = "public"
         , uniqueConstraints=@UniqueConstraint(columnNames={"cnpj"})
-        , indexes = @Index(name = "idxCnpj", columnList = "cnpj")
+        , indexes = @Index(name = "cnpjIndex", columnList = "cnpj")
 )
 public class Company {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    @Column(name = "id", updatable = false, nullable = false)
+    private UUID id;
 
     @Column(name = "name", nullable = false)
     private String name;

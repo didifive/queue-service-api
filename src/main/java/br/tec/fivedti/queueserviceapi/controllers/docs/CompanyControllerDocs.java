@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 import java.util.List;
+import java.util.UUID;
 
 @Api("Manages companies")
 public interface CompanyControllerDocs {
@@ -31,19 +32,19 @@ public interface CompanyControllerDocs {
             @ApiResponse(code = 200, message = "Success company found in the system."),
             @ApiResponse(code = 404, message = "Company with given ID not found.")
     })
-    CompanyDto findById(Long id) throws CompanyNotFoundException;
+    CompanyDto findById(UUID id) throws CompanyNotFoundException;
 
     @ApiOperation(value = "Update company by ID registered in the system.")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success company update in the system."),
             @ApiResponse(code = 404, message = "Company with given ID not found.")
     })
-    MessageResponseDto update(Long id, CompanyDto companyDto) throws CompanyNotFoundException;
+    MessageResponseDto update(UUID id, CompanyDto companyDto) throws CompanyNotFoundException;
 
     @ApiOperation(value = "Delete a company found by a given valid Id")
     @ApiResponses(value = {
-            @ApiResponse(code = 204, message = "Success company deleted in the system"),
+            @ApiResponse(code = 200, message = "Success company deleted in the system"),
             @ApiResponse(code = 404, message = "Company with given ID not found.")
     })
-    void delete(Long id) throws CompanyNotFoundException;
+    MessageResponseDto delete(UUID id) throws CompanyNotFoundException;
 }
