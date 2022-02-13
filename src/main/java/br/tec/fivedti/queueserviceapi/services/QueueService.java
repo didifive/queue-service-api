@@ -36,9 +36,7 @@ public class QueueService {
                     + " already extant"
                     , extantQueue);
 
-        Company company = companyRepository.findById(newQueue.getCompany().getId())
-                .orElseThrow(() -> new CompanyNotFoundException(newQueue.getCompany().getId()));
-
+        Company company = findCompany(newQueue.getCompany().getId());
         newQueue.setCompany(company);
 
         if (!newQueue.isDeactivated())
@@ -69,9 +67,7 @@ public class QueueService {
 
         Queue updatedQueue = queueMapper.toModel(queueDto);
 
-        Company company = companyRepository.findById(updatedQueue.getCompany().getId())
-                .orElseThrow(() -> new CompanyNotFoundException(updatedQueue.getCompany().getId()));
-
+        Company company = findCompany(updatedQueue.getCompany().getId());
         updatedQueue.setCompany(company);
 
         Queue savedQueue = queueRepository.save(updatedQueue);
@@ -93,6 +89,11 @@ public class QueueService {
                 .message(s)
                 .payload(o)
                 .build();
+    }
+
+    private Company findCompany(UUID id) throws CompanyNotFoundException{
+        return companyRepository.findById(id)
+                .orElseThrow(() -> new CompanyNotFoundException(id));
     }
 }
 
