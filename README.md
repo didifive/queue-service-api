@@ -50,11 +50,6 @@ Swagger do projeto no [Heroku]: [https://queue-service-api-didi.herokuapp.com/sw
 
 ---
 
-Link do projeto disponível online no [Heroku]: [https://meetingroom-backend.herokuapp.com](https://meetingroom-backend.herokuapp.com/api/v1/rooms)  
-*Observação: Quando o projeto fica sem receber requisições por um tempo, automaticamente o Heroku coloca ele em modo dormir (sleepy), portanto caso ocorra erro de timeout, basta tentar novamente que deve estar ativo.*
-
----
-
 Links Interessantes:
 
 * [Java 17 - Documentation]
@@ -67,7 +62,6 @@ Links Interessantes:
 * [Jakarta Validation]
 * [Lombok]
 * [Maven]
-
 
 [Heroku]: https://www.heroku.com/
 [Jakarta Validation]: https://beanvalidation.org/
