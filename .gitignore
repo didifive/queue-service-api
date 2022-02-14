@@ -34,3 +34,4 @@ build/
 
 ### ENV FILE ###
 .env
+src/main/resources/QueueService.db
