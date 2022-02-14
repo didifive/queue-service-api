@@ -1,0 +1,402 @@
+{
+	"info": {
+		"_postman_id": "7b4bb0ad-f790-4f8c-a1c5-aab4823b451c",
+		"name": "Queue Service API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Company",
+			"item": [
+				{
+					"name": "POST Company",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"Teste5\",\r\n        \"cnpj\": \"00.000.000/0000-00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/company",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"company"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Companies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/company",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"company"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Company by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/company/064cea58-b025-42d4-a6ac-9f650d3eae7d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"company",
+								"064cea58-b025-42d4-a6ac-9f650d3eae7d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Company by ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"f64c6ee3-5a8a-44bf-94a8-a62d8988a3d8\",\r\n    \"name\": \"Teste\",\r\n    \"cnpj\": \"00.000.000/0000-00\",\r\n    \"deactived\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/company/f64c6ee3-5a8a-44bf-94a8-a62d8988a3d8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"company",
+								"f64c6ee3-5a8a-44bf-94a8-a62d8988a3d8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Company by",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/company/fb8240d3-8832-455b-8772-f59f013104c5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"company",
+								"fb8240d3-8832-455b-8772-f59f013104c5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Queue",
+			"item": [
+				{
+					"name": "POST Queue",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"abbreviation\": \"H\",\r\n  \"lastNumber\": 0,\r\n  \"name\": \"FilaTeste\",\r\n  \"company\": {\r\n        \"id\": \"09784145-8a34-4d28-86cc-8bc2a50de5d6\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/queue",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"queue"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Queues",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/queue",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"queue"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Queue by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/queue/69e8e155-3b24-43d7-9455-0071aaf4f3d6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"queue",
+								"69e8e155-3b24-43d7-9455-0071aaf4f3d6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Queue by ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"03ea55e8-eb31-423e-83e3-8a870a0fcba2\",\r\n    \"name\": \"FilaTeste\",\r\n    \"abbreviation\": \"H\",\r\n    \"lastNumber\": 0,\r\n    \"deactivated\": false,\r\n    \"company\": {\r\n        \"id\": \"c202d856-b3e1-4db0-8eba-c1ad718378c6\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/queue/03ea55e8-eb31-423e-83e3-8a870a0fcba2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"queue",
+								"03ea55e8-eb31-423e-83e3-8a870a0fcba2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Queue by",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/queue/03ea55e8-eb31-423e-83e3-8a870a0fcba2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"queue",
+								"03ea55e8-eb31-423e-83e3-8a870a0fcba2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Number",
+			"item": [
+				{
+					"name": "POST Number",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"queue\": {\r\n        \"id\": \"f411ef52-34a8-4a38-a0bf-4b944fde175a\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/number",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"number"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Numbers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/number",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"number"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Number by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/number/d052a15f-2262-46ad-b252-1a6365a487ba",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"number",
+								"d052a15f-2262-46ad-b252-1a6365a487ba"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Queue by ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"9fcd168a-42e9-4b90-90ea-366c9c4557ef\",\r\n    \"number\": 8,\r\n    \"createTimestamp\": \"2022-02-14T00:07:33.986+00:00\",\r\n    \"attendedTimestamp\": \"2022-02-14T00:10:33.986+00:00\",\r\n    \"deactivated\": false,\r\n    \"queue\": {\r\n        \"id\": \"f411ef52-34a8-4a38-a0bf-4b944fde175a\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/number/9fcd168a-42e9-4b90-90ea-366c9c4557ef",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"number",
+								"9fcd168a-42e9-4b90-90ea-366c9c4557ef"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Number by",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/number/d052a15f-2262-46ad-b252-1a6365a487ba",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"number",
+								"d052a15f-2262-46ad-b252-1a6365a487ba"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
