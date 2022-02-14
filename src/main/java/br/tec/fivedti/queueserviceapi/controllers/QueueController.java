@@ -3,6 +3,7 @@ package br.tec.fivedti.queueserviceapi.controllers;
 import br.tec.fivedti.queueserviceapi.controllers.docs.QueueControllerDocs;
 import br.tec.fivedti.queueserviceapi.dto.request.QueueDto;
 import br.tec.fivedti.queueserviceapi.dto.response.MessageResponseDto;
+import br.tec.fivedti.queueserviceapi.excepitions.CompanyDeactivatedException;
 import br.tec.fivedti.queueserviceapi.excepitions.CompanyNotFoundException;
 import br.tec.fivedti.queueserviceapi.excepitions.QueueNotFoundException;
 import br.tec.fivedti.queueserviceapi.services.QueueService;
@@ -24,7 +25,7 @@ public class QueueController implements QueueControllerDocs {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MessageResponseDto createQueue(@RequestBody @Valid QueueDto queueDto) throws CompanyNotFoundException {
+    public MessageResponseDto createQueue(@RequestBody @Valid QueueDto queueDto) throws CompanyNotFoundException, CompanyDeactivatedException {
         return queueService.createQueue(queueDto);
     }
 

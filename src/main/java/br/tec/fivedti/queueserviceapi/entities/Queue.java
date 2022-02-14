@@ -42,9 +42,8 @@ public class Queue {
     @Column(name= "deactivated")
     private boolean deactivated;
 
-    @Basic(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     private Company company;
 
     @Override

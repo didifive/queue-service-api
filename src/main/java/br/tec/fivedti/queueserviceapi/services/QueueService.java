@@ -5,6 +5,7 @@ import br.tec.fivedti.queueserviceapi.dto.request.QueueDto;
 import br.tec.fivedti.queueserviceapi.dto.response.MessageResponseDto;
 import br.tec.fivedti.queueserviceapi.entities.Company;
 import br.tec.fivedti.queueserviceapi.entities.Queue;
+import br.tec.fivedti.queueserviceapi.excepitions.CompanyDeactivatedException;
 import br.tec.fivedti.queueserviceapi.excepitions.CompanyNotFoundException;
 import br.tec.fivedti.queueserviceapi.excepitions.QueueNotFoundException;
 import br.tec.fivedti.queueserviceapi.repositories.CompanyRepository;
@@ -26,7 +27,7 @@ public class QueueService {
     private final CompanyRepository companyRepository;
     private final QueueMapper queueMapper;
 
-    public MessageResponseDto createQueue(QueueDto queueDto) throws CompanyNotFoundException {
+    public MessageResponseDto createQueue(QueueDto queueDto) throws CompanyNotFoundException, CompanyDeactivatedException {
         Queue newQueue = queueMapper.toModel(queueDto);
         Queue extantQueue = queueRepository.findByAbbreviation(newQueue.getAbbreviation());
 
@@ -38,6 +39,9 @@ public class QueueService {
 
         Company company = findCompany(newQueue.getCompany().getId());
         newQueue.setCompany(company);
+
+        if (company.isDeactivated())
+            throw new CompanyDeactivatedException(company.getId());
 
         if (!newQueue.isDeactivated())
             newQueue.setDeactivated(false);

@@ -2,6 +2,7 @@ package br.tec.fivedti.queueserviceapi.controllers.docs;
 
 import br.tec.fivedti.queueserviceapi.dto.request.QueueDto;
 import br.tec.fivedti.queueserviceapi.dto.response.MessageResponseDto;
+import br.tec.fivedti.queueserviceapi.excepitions.CompanyDeactivatedException;
 import br.tec.fivedti.queueserviceapi.excepitions.CompanyNotFoundException;
 import br.tec.fivedti.queueserviceapi.excepitions.QueueNotFoundException;
 import io.swagger.annotations.Api;
@@ -20,7 +21,7 @@ public interface QueueControllerDocs {
             @ApiResponse(code = 201, message = "Success queue creation."),
             @ApiResponse(code = 400, message = "Missing required fields or wrong field range value.")
     })
-    MessageResponseDto createQueue(QueueDto queueDto) throws CompanyNotFoundException;
+    MessageResponseDto createQueue(QueueDto queueDto) throws CompanyNotFoundException, CompanyDeactivatedException;
 
     @ApiOperation(value = "Returns a list of all queues registered in the system.")
     @ApiResponses(value = {

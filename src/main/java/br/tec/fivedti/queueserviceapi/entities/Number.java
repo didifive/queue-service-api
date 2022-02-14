@@ -1,11 +1,15 @@
 package br.tec.fivedti.queueserviceapi.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
+import java.util.UUID;
 
 @Builder
 @Entity
@@ -14,10 +18,16 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "number", schema = "public")
-public class Number {
+
+public class Number implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    @Column(name = "id", updatable = false, nullable = false)
+    private UUID id;
 
     @Column(name = "number", nullable = false)
     private int number;
@@ -29,7 +39,11 @@ public class Number {
     @Column(name = "attendedTimestamp")
     private Timestamp attendedTimestamp;
 
-    @ManyToOne
+    @Column(name= "deactivated", nullable = false)
+    private boolean deactivated;
+
+    @JoinColumn(name = "queue_id", nullable = false)
+    @ManyToOne(optional = false)
     private Queue queue;
 
     @Override
@@ -38,6 +52,7 @@ public class Number {
                 + ", number=" + number
                 + ", createTimestamp=" + createTimestamp
                 + ", attendedTimestamp=" + attendedTimestamp
+                + ", deactivated=" + deactivated
                 + ", queue=" + queue
                 + "]";
     }
