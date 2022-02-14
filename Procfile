@@ -1,0 +1,1 @@
+web: java -jar -Dspring.profiles.active=heroku target/queue-service-api-0.0.1-SNAPSHOT.jar
