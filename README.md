@@ -1,15 +1,3 @@
-# Queue Service API
-
-## Controller for queues - Controle de senhas e filas
-
-Este projeto foi desenvolvido para controle de senhas para atendimento com filas personalizadas, podendo cadastrar filas como "Prioritário" e "Convencional" ou então "Atendimento X" e "Atendimento Y", ficando a critério da necessidade.
-
-O projeto consiste em primeiramente cadastrar empresa(s), após isso cadastrar uma ou mais filas ligadas à(s) empresa(s) e assim gerar e atualizar o atendimento das senhas para cada fila. Para conhecer os endpoints basta ir na seção "Endpoints criados na API".
-Também já foi configurado para permitir que os dados sejam persistidos em SQLite para uso local ou PostgreSQL para uso na nuvem, aqui utilizei o [Heroku] para disponibilizar o projeto online e o [ElephantSQL] como base na nuvem.
-
-Qualquer dúvida, sugestão ou crítica é só entrar em contato (https://github.com/didifive).  
-#EnjoyThis #MakeITHappen
-
 <p align="center">
  <img alt="Repository language count" src="https://img.shields.io/github/languages/count/didifive/queue-service-api">
     <a href="https://www.linkedin.com/in/luis-carlos-zancanela/">
@@ -27,10 +15,22 @@ Qualquer dúvida, sugestão ou crítica é só entrar em contato (https://github
  </a>
 </p>
 
+# Queue Service API
+
+## Controller for queues - Controle de senhas e filas
+
+Este projeto foi desenvolvido para controle de senhas para atendimento com filas personalizadas, podendo cadastrar filas como "Prioritário" e "Convencional" ou então "Atendimento X" e "Atendimento Y", ficando a critério da necessidade.
+
+O projeto consiste em primeiramente cadastrar empresa(s), após isso cadastrar uma ou mais filas ligadas à(s) empresa(s) e assim posteriormente gerar as senhas e atualizar o atendimento. Para conhecer os endpoints basta ir na seção "Endpoints da API".
+
+Também já foi configurado para permitir que os dados sejam persistidos em SQLite para uso local ou PostgreSQL para uso na nuvem, utilizei o [Heroku] para disponibilizar o projeto online e o [ElephantSQL] como PostgreSQL na nuvem.
+
+Qualquer dúvida, sugestão ou crítica é só entrar em contato (https://github.com/didifive).  
+#EnjoyThis #MakeITHappen
 
 ---
 
-#### Endpoints criados na API
+#### Endpoints da API
 
 * Empresa: `/api/v1/company`
 * Fila: `/api/v1/queue`
