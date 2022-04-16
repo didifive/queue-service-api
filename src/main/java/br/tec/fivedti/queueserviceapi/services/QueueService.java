@@ -4,7 +4,7 @@ import br.tec.fivedti.queueserviceapi.dto.mapper.QueueMapper;
 import br.tec.fivedti.queueserviceapi.dto.request.QueueDto;
 import br.tec.fivedti.queueserviceapi.dto.response.MessageResponseDto;
 import br.tec.fivedti.queueserviceapi.entities.Company;
-import br.tec.fivedti.queueserviceapi.entities.Queue;
+import br.tec.fivedti.queueserviceapi.entities.QueueRow;
 import br.tec.fivedti.queueserviceapi.excepitions.CompanyDeactivatedException;
 import br.tec.fivedti.queueserviceapi.excepitions.CompanyNotFoundException;
 import br.tec.fivedti.queueserviceapi.excepitions.QueueNotFoundException;
@@ -28,8 +28,8 @@ public class QueueService {
     private final QueueMapper queueMapper;
 
     public MessageResponseDto createQueue(QueueDto queueDto) throws CompanyNotFoundException, CompanyDeactivatedException {
-        Queue newQueue = queueMapper.toModel(queueDto);
-        Queue extantQueue = queueRepository.findByAbbreviation(newQueue.getAbbreviation());
+        QueueRow newQueue = queueMapper.toModel(queueDto);
+        QueueRow extantQueue = queueRepository.findByAbbreviation(newQueue.getAbbreviation());
 
         if (!Objects.isNull(extantQueue))
             return createMessageResponse("Queue with abbreviation "
@@ -46,20 +46,20 @@ public class QueueService {
         if (!newQueue.isDeactivated())
             newQueue.setDeactivated(false);
 
-        Queue savedQueue = queueRepository.save(newQueue);
+        QueueRow savedQueue = queueRepository.save(newQueue);
 
         return createMessageResponse("Queue successfully created.", savedQueue);
     }
 
     public List<QueueDto> listAllQueues() {
-        List<Queue> queues = queueRepository.findAll();
+        List<QueueRow> queues = queueRepository.findAll();
         return queues.stream()
                 .map(queueMapper::toDTO)
                 .collect(Collectors.toList());
     }
 
     public QueueDto findById(UUID id) throws QueueNotFoundException {
-        Queue queue = queueRepository.findById(id)
+        QueueRow queue = queueRepository.findById(id)
                 .orElseThrow(() -> new QueueNotFoundException(id));
         return queueMapper.toDTO(queue);
     }
@@ -69,18 +69,18 @@ public class QueueService {
         queueRepository.findById(id)
                 .orElseThrow(() -> new QueueNotFoundException(id));
 
-        Queue updatedQueue = queueMapper.toModel(queueDto);
+        QueueRow updatedQueue = queueMapper.toModel(queueDto);
 
         Company company = findCompany(updatedQueue.getCompany().getId());
         updatedQueue.setCompany(company);
 
-        Queue savedQueue = queueRepository.save(updatedQueue);
+        QueueRow savedQueue = queueRepository.save(updatedQueue);
 
         return createMessageResponse("Queue successfully updated.", savedQueue);
     }
 
     public MessageResponseDto delete(UUID id) throws QueueNotFoundException {
-        Queue deletedQueue = queueRepository.findById(id)
+        QueueRow deletedQueue = queueRepository.findById(id)
                 .orElseThrow(() -> new QueueNotFoundException(id));
 
         queueRepository.delete(deletedQueue);

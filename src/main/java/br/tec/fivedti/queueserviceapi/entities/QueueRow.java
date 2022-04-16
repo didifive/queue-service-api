@@ -19,7 +19,7 @@ import java.util.UUID;
         , uniqueConstraints=@UniqueConstraint(columnNames={"abbreviation"})
         , indexes = @Index(name = "abbreviationIndex", columnList = "abbreviation")
 )
-public class Queue {
+public class QueueRow {
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -61,7 +61,7 @@ public class Queue {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Queue queue = (Queue) o;
+        QueueRow queue = (QueueRow) o;
         return id == queue.id && lastNumber == queue.lastNumber && name.equals(queue.name) && abbreviation.equals(queue.abbreviation) && company.equals(queue.company);
     }
 

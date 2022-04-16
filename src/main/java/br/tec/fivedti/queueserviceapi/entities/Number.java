@@ -1,6 +1,5 @@
 package br.tec.fivedti.queueserviceapi.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
@@ -44,7 +43,7 @@ public class Number implements Serializable {
 
     @JoinColumn(name = "queue_id", nullable = false)
     @ManyToOne(optional = false)
-    private Queue queue;
+    private QueueRow queueRow;
 
     @Override
     public String toString() {
@@ -53,7 +52,7 @@ public class Number implements Serializable {
                 + ", createTimestamp=" + createTimestamp
                 + ", attendedTimestamp=" + attendedTimestamp
                 + ", deactivated=" + deactivated
-                + ", queue=" + queue
+                + ", queueRow=" + queueRow
                 + "]";
     }
 
@@ -62,11 +61,11 @@ public class Number implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Number number1 = (Number) o;
-        return id == number1.id && number == number1.number && createTimestamp.equals(number1.createTimestamp) && attendedTimestamp.equals(number1.attendedTimestamp) && queue.equals(number1.queue);
+        return id == number1.id && number == number1.number && createTimestamp.equals(number1.createTimestamp) && attendedTimestamp.equals(number1.attendedTimestamp) && queueRow.equals(number1.queueRow);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, number, createTimestamp, attendedTimestamp, queue);
+        return Objects.hash(id, number, createTimestamp, attendedTimestamp, queueRow);
     }
 }

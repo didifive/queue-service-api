@@ -4,7 +4,7 @@ import br.tec.fivedti.queueserviceapi.dto.mapper.NumberMapper;
 import br.tec.fivedti.queueserviceapi.dto.request.NumberDto;
 import br.tec.fivedti.queueserviceapi.dto.response.MessageResponseDto;
 import br.tec.fivedti.queueserviceapi.entities.Number;
-import br.tec.fivedti.queueserviceapi.entities.Queue;
+import br.tec.fivedti.queueserviceapi.entities.QueueRow;
 import br.tec.fivedti.queueserviceapi.excepitions.*;
 import br.tec.fivedti.queueserviceapi.repositories.NumberRepository;
 import br.tec.fivedti.queueserviceapi.repositories.QueueRepository;
@@ -27,8 +27,8 @@ public class NumberService {
     public MessageResponseDto createNumber(NumberDto numberDto) throws QueueNotFoundException, QueueDeactivatedException {
         Number newNumber = numberMapper.toModel(numberDto);
 
-        Queue queue = findQueue(newNumber.getQueue().getId());
-        newNumber.setQueue(queue);
+        QueueRow queue = findQueue(newNumber.getQueueRow().getId());
+        newNumber.setQueueRow(queue);
 
         if (queue.isDeactivated())
             throw new QueueDeactivatedException(queue.getId());
@@ -66,8 +66,8 @@ public class NumberService {
 
         Number updatedNumber = numberMapper.toModel(numberDto);
 
-        Queue queue = findQueue(updatedNumber.getQueue().getId());
-        updatedNumber.setQueue(queue);
+        QueueRow queue = findQueue(updatedNumber.getQueueRow().getId());
+        updatedNumber.setQueueRow(queue);
 
         Number savedNumber = numberRepository.save(updatedNumber);
 
@@ -90,7 +90,7 @@ public class NumberService {
                 .build();
     }
 
-    private Queue findQueue(UUID id) throws QueueNotFoundException{
+    private QueueRow findQueue(UUID id) throws QueueNotFoundException{
         return queueRepository.findById(id)
                 .orElseThrow(() -> new QueueNotFoundException(id));
     }
