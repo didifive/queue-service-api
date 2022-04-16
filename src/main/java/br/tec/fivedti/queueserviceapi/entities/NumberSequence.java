@@ -18,7 +18,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Table(name = "number", schema = "public")
 
-public class Number implements Serializable {
+public class NumberSequence implements Serializable {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
@@ -43,7 +43,7 @@ public class Number implements Serializable {
 
     @JoinColumn(name = "queue_id", nullable = false)
     @ManyToOne(optional = false)
-    private QueueRow queueRow;
+    private QueueRow queue;
 
     @Override
     public String toString() {
@@ -52,7 +52,7 @@ public class Number implements Serializable {
                 + ", createTimestamp=" + createTimestamp
                 + ", attendedTimestamp=" + attendedTimestamp
                 + ", deactivated=" + deactivated
-                + ", queueRow=" + queueRow
+                + ", queue=" + queue
                 + "]";
     }
 
@@ -60,12 +60,12 @@ public class Number implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Number number1 = (Number) o;
-        return id == number1.id && number == number1.number && createTimestamp.equals(number1.createTimestamp) && attendedTimestamp.equals(number1.attendedTimestamp) && queueRow.equals(number1.queueRow);
+        NumberSequence number1 = (NumberSequence) o;
+        return id == number1.id && number == number1.number && createTimestamp.equals(number1.createTimestamp) && attendedTimestamp.equals(number1.attendedTimestamp) && queue.equals(number1.queue);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, number, createTimestamp, attendedTimestamp, queueRow);
+        return Objects.hash(id, number, createTimestamp, attendedTimestamp, queue);
     }
 }
