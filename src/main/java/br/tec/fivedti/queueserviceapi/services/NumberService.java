@@ -86,7 +86,7 @@ public class NumberService {
     private MessageResponseDto createMessageResponse(String s, Object o) {
         return MessageResponseDto.builder()
                 .message(s)
-                .payload(o)
+                .data(o)
                 .build();
     }
 
