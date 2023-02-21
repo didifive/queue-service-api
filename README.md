@@ -15,36 +15,54 @@
  </a>
 </p>
 
-# Queue Service API
+# Queue Service API - Filas
 
-## Controller for queues - Controle de senhas e filas
+## Controle de senhas para atendimento
 
-Este projeto foi desenvolvido para controle de senhas para atendimento com filas personalizadas, podendo cadastrar filas como "Prioritário" e "Convencional" ou então "Atendimento X" e "Atendimento Y", ficando a critério da necessidade.
+Este projeto foi desenvolvido para controle de senhas para atendimento com filas personalizadas, podendo cadastrar filas com Tipos de Prioridades Específicos (Prioritário, Normal, etc), ficando a critério da necessidade.
 
-O projeto consiste em primeiramente cadastrar empresa(s), após isso cadastrar uma ou mais filas ligadas à(s) empresa(s) e assim posteriormente gerar as senhas e atualizar o atendimento. Para conhecer os endpoints basta ir na seção "Endpoints da API".
+## Escopo
 
-Também já foi configurado para permitir que os dados sejam persistidos em SQLite para uso local ou PostgreSQL para uso na nuvem, utilizei o [Heroku] para disponibilizar o projeto online e o [ElephantSQL] como PostgreSQL na nuvem.
+Este projeto deve atender os seguintes requisitos:
+
+- Ter cadastro de empresa;
+- Para os usuários, ter os perfis de Administrador, Atendente e Usuário;
+- Ter cadastro de filas com nome e sigla, exemplo: nome "Caixa" e sigla "CX";
+- As filas devem permitir prioridades personalizadas (Normal, Prioritário, Idoso 80+ etc);
+- As senhas devem seguir sequencia numérica com o prefixo sendo a sigla da fila, exemplo: "CX001";
+- Senhas devem possuir um sufixo conforme abreviação do Tipo de Atendimento, exemplo: "CX001N", onde o "N" é abreviatura para Tipo de Atendimento Normal;
+- As senhas devem possuir data e hora de geração e de finalização, se foi atendida, deve possuir quem foi o atendente;
+- O Administrador tem acesso total ao sistema, podendo inclusive alterar ou desativar outros usuários;
+- O Atendente apenas chama e finaliza as senhas que ele chamou marcando como atendida ou não atendida;
+- O Atendente pode ver apenas senhas das filas em que foi autorizado;
+- O Usuário pode fazer a configuração do sistema, como criar filas, zerar número da fila, vincular (ou desvincular) atendente de uma fila e editar dados da empresa que o Usuário faz parte;
+- Deve possuir um terminal para emissão de senhas, este deve ser logado por um alguém com perfil de Usuário para disponibilizar as filas para emissão de senhas da empresa em que está vinculado;
+- Gerar saída para emissão de senha em equipamento de impressão térmica.
+
+Este projeto é para fins de estudo e para ser usado, ou adaptado, para qualquer negócio, ver [MIT License](https://mit-license.org/).
+
+## Visuais
+Logotipo:  
+![Filas Logo](docs/logotipo.png?raw=true "Filas Logo")  
+UML - Diagrama de Classes:  
+![UML - Diagrama de Classes](docs/uml-diagram.drawio.png?raw=true "UML - Diagrama de Classes")
 
 Qualquer dúvida, sugestão ou crítica é só entrar em contato (https://github.com/didifive).  
 #EnjoyThis #MakeITHappen
 
 ---
 
-#### Endpoints da API
+## Endpoints da API
 
-* Empresa: `/api/v1/company`
+* Empresa: `/api/v1/empresa`
 * Fila: `/api/v1/queue`
 * Número (Senha): `/api/v1/number`
 
 Para testar localmente os Endpoints, foi adicionado ao projeto uma coleção do Postman que já possuí modelos e testes de requisições HTTP. O arquivo está na pasta [postman](https://github.com/didifive/queue-service-api/tree/master/postman)
 
-Swagger do projeto carregado localmente: `http://localhost:8080/swagger-ui.html`
-
-Swagger do projeto no [Heroku]: [https://queue-service-api-didi.herokuapp.com/swagger-ui.html](https://queue-service-api-didi.herokuapp.com/swagger-ui.html)
-
 ---
 
-#### Frontend em React para este projeto
+## Frontend em React para este projeto
 
 *Em desenvolvimento.*
 
@@ -58,12 +76,10 @@ Links Interessantes:
 * [spring]
 * [spring initializr]
 * [SQLite Database with Spring Boot]
-* [Heroku]
 * [Jakarta Validation]
 * [Lombok]
 * [Maven]
 
-[Heroku]: https://www.heroku.com/
 [Jakarta Validation]: https://beanvalidation.org/
 [Lombok]: https://projectlombok.org/
 [Java 17 - Documentation]: https://docs.oracle.com/en/java/javase/17/
