@@ -55,10 +55,10 @@ Qualquer dúvida, sugestão ou crítica é só entrar em contato (https://github
 ## Endpoints da API
 
 * Empresa: `/api/v1/empresa`
-* Fila: `/api/v1/queue`
-* Número (Senha): `/api/v1/number`
+* Fila: `/api/v1/fila`
+* Senha: `/api/v1/senha`
 
-Para testar localmente os Endpoints, foi adicionado ao projeto uma coleção do Postman que já possuí modelos e testes de requisições HTTP. O arquivo está na pasta [postman](https://github.com/didifive/queue-service-api/tree/master/postman)
+~~Para testar localmente os Endpoints, foi adicionado ao projeto uma coleção do Postman que já possuí modelos e testes de requisições HTTP. O arquivo está na pasta [postman](https://github.com/didifive/queue-service-api/tree/master/postman)~~
 
 ---
 

@@ -1,4 +1,4 @@
-package br.tec.fivedti.queueserviceapi;
+package br.tec.didiproject.queueserviceapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
