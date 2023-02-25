@@ -53,7 +53,7 @@ public class Senha implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "atendenteId")
-    private atendente;
+    private Atendente atendente;
 
     @Override
     public String toString() {
