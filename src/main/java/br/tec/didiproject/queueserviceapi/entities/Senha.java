@@ -20,7 +20,7 @@ import java.util.UUID;
 @Table(name = "senha"
         , schema = "public"
 )
-public class Senha implements Serializable {
+public class Senha {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
