@@ -4,6 +4,7 @@ package br.tec.didiproject.queueserviceapi.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -18,7 +19,7 @@ import java.util.UUID;
 @Table(name = "perfil"
         , schema = "public"
 )
-public class Perfil {
+public class Perfil implements GrantedAuthority {
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -47,5 +48,10 @@ public class Perfil {
     @Override
     public int hashCode() {
         return Objects.hash(id, nome);
+    }
+
+    @Override
+    public String getAuthority() {
+        return nome;
     }
 }
