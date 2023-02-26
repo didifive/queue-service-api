@@ -8,23 +8,23 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.time.Instant;
 
-import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiAnnotations.SCHEMA_API_ERROR_ERROR_DESCRIPTION;
-import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiAnnotations.SCHEMA_API_ERROR_ERROR_EXAMPLE;
-import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiAnnotations.SCHEMA_API_ERROR_ERROR_TITLE;
-import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiAnnotations.SCHEMA_API_ERROR_MESSAGE_DESCRIPTION;
-import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiAnnotations.SCHEMA_API_ERROR_MESSAGE_EXAMPLE;
-import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiAnnotations.SCHEMA_API_ERROR_MESSAGE_TITLE;
-import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiAnnotations.SCHEMA_API_ERROR_PATH_DESCRIPTION;
-import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiAnnotations.SCHEMA_API_ERROR_PATH_EXAMPLE;
-import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiAnnotations.SCHEMA_API_ERROR_PATH_TITLE;
-import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiAnnotations.SCHEMA_API_ERROR_STATUS_DESCRIPTION;
-import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiAnnotations.SCHEMA_API_ERROR_STATUS_EXAMPLE;
-import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiAnnotations.SCHEMA_API_ERROR_STATUS_TITLE;
-import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiAnnotations.SCHEMA_API_ERROR_TIMESTAMP_DESCRIPTION;
-import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiAnnotations.SCHEMA_API_ERROR_TIMESTAMP_EXAMPLE;
-import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiAnnotations.SCHEMA_API_ERROR_TIMESTAMP_TITLE;
-import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiAnnotations.SCHEMA_TYPE_INTEGER;
-import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiAnnotations.SCHEMA_TYPE_STRING;
+import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.SCHEMA_API_ERROR_ERROR_DESCRIPTION;
+import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.SCHEMA_API_ERROR_ERROR_EXAMPLE;
+import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.SCHEMA_API_ERROR_ERROR_TITLE;
+import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.SCHEMA_API_ERROR_MESSAGE_DESCRIPTION;
+import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.SCHEMA_API_ERROR_MESSAGE_EXAMPLE;
+import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.SCHEMA_API_ERROR_MESSAGE_TITLE;
+import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.SCHEMA_API_ERROR_PATH_DESCRIPTION;
+import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.SCHEMA_API_ERROR_PATH_EXAMPLE;
+import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.SCHEMA_API_ERROR_PATH_TITLE;
+import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.SCHEMA_API_ERROR_STATUS_DESCRIPTION;
+import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.SCHEMA_API_ERROR_STATUS_EXAMPLE;
+import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.SCHEMA_API_ERROR_STATUS_TITLE;
+import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.SCHEMA_API_ERROR_TIMESTAMP_DESCRIPTION;
+import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.SCHEMA_API_ERROR_TIMESTAMP_EXAMPLE;
+import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.SCHEMA_API_ERROR_TIMESTAMP_TITLE;
+import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SCHEMA_TYPE_INTEGER;
+import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SCHEMA_TYPE_STRING;
 
 @Getter
 @Setter

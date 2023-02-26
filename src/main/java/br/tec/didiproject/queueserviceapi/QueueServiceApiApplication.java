@@ -6,14 +6,16 @@ import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiAnnotations.SECURITY_SCHEME_BEARER_AUTH;
-import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiAnnotations.SECURITY_SCHEME_DESCRIPTION;
+import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.SECURITY_SCHEME;
+import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.SECURITY_SCHEME_BEARER_FORMAT;
+import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.SECURITY_SCHEME_DESCRIPTION;
+import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.SECURITY_SCHEME_NAME;
 
 @SpringBootApplication
-@SecurityScheme(name = SECURITY_SCHEME_BEARER_AUTH
+@SecurityScheme(name = SECURITY_SCHEME_NAME
 		, description = SECURITY_SCHEME_DESCRIPTION
-		, scheme = "bearer"
-		, bearerFormat = "JWT"
+		, scheme = SECURITY_SCHEME
+		, bearerFormat = SECURITY_SCHEME_BEARER_FORMAT
 		, type = SecuritySchemeType.HTTP
 		, in = SecuritySchemeIn.HEADER)
 public class QueueServiceApiApplication {

@@ -1,20 +1,21 @@
 package br.tec.didiproject.queueserviceapi.enums.constants;
 
-public class OpenApiAnnotations {
+import br.tec.didiproject.queueserviceapi.exceptions.BaseErrorMessage;
+import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.ArrayUtils;
 
-    /**
-     * Constants for @Schema annotation types
-     */
-    public static final String SCHEMA_TYPE_ARRAY = "array";
-    public static final String SCHEMA_TYPE_INTEGER = "integer";
-    public static final String SCHEMA_TYPE_NUMBER = "number";
-    public static final String SCHEMA_TYPE_STRING = "string";
+import java.text.MessageFormat;
+import java.util.ResourceBundle;
 
+@RequiredArgsConstructor
+public class OpenApiSchemes {
     /**
      * Constants for @SecurityScheme annotation in QueueServiceApiApplication
      */
-    public static final String SECURITY_SCHEME_BEARER_AUTH = "bearerAuth";
+    public static final String SECURITY_SCHEME_NAME = "bearerAuth";
     public static final String SECURITY_SCHEME_DESCRIPTION = "JWT Authorization header using the Bearer scheme";
+    public static final String SECURITY_SCHEME = "bearer";
+    public static final String SECURITY_SCHEME_BEARER_FORMAT = "JWT";
 
     /**
      * Constants for @Schema annotation in ApiErrorDTO
@@ -33,6 +34,6 @@ public class OpenApiAnnotations {
     public static final String SCHEMA_API_ERROR_MESSAGE_EXAMPLE = "Pessoa com id 10 não foi encontrada";
     public static final String SCHEMA_API_ERROR_PATH_TITLE = "Path";
     public static final String SCHEMA_API_ERROR_PATH_DESCRIPTION = "Caminho da soliticação";
-    public static final String SCHEMA_API_ERROR_PATH_EXAMPLE = "/api/v1/people/10";
+    public static final String SCHEMA_API_ERROR_PATH_EXAMPLE = "/api/v1/senha/123e4567-e89b-12d3-a456-426655440000";
 
 }
