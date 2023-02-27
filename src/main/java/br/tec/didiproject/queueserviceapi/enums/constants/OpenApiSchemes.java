@@ -1,13 +1,8 @@
 package br.tec.didiproject.queueserviceapi.enums.constants;
 
-import br.tec.didiproject.queueserviceapi.exceptions.BaseErrorMessage;
-import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.ArrayUtils;
+import static br.tec.didiproject.queueserviceapi.enums.constants.v1.MappingRoutesV1.PATH_AUTH;
+import static br.tec.didiproject.queueserviceapi.enums.constants.v1.MappingRoutesV1.PATH_ROOT;
 
-import java.text.MessageFormat;
-import java.util.ResourceBundle;
-
-@RequiredArgsConstructor
 public class OpenApiSchemes {
     /**
      * Constants for @SecurityScheme annotation in QueueServiceApiApplication
@@ -34,6 +29,31 @@ public class OpenApiSchemes {
     public static final String SCHEMA_API_ERROR_MESSAGE_EXAMPLE = "Pessoa com id 10 não foi encontrada";
     public static final String SCHEMA_API_ERROR_PATH_TITLE = "Path";
     public static final String SCHEMA_API_ERROR_PATH_DESCRIPTION = "Caminho da soliticação";
-    public static final String SCHEMA_API_ERROR_PATH_EXAMPLE = "/api/v1/senha/123e4567-e89b-12d3-a456-426655440000";
+    public static final String SCHEMA_API_ERROR_PATH_EXAMPLE = PATH_ROOT + PATH_AUTH;
+
+    /**
+     * Constants for @Schema annotation in Auth and Token DTOs
+     */
+    public static final String SCHEMA_AUTH_USERNAME_TITLE = "Nome de usuário";
+    public static final String SCHEMA_AUTH_USERNAME_DESCRIPTION = "Nome de usuário para autenticação";
+    public static final String SCHEMA_AUTH_USERNAME_EXAMPLE = "username@email.com";
+    public static final String SCHEMA_AUTH_PASSWORD_TITLE = "Senha";
+    public static final String SCHEMA_AUTH_PASSWORD_DESCRIPTION = "Senha para autenticação";
+    public static final String SCHEMA_AUTH_PASSWORD_EXAMPLE = "abcd1234";
+    public static final String SCHEMA_AUTH_TOKEN_TITLE = "JWT Token";
+    public static final String SCHEMA_AUTH_TOKEN_DESCRIPTION = "JWT Token to authorize in endpoints with Bearer format";
+    public static final String SCHEMA_AUTH_TOKEN_EXAMPLE = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI"
+            + "6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
+
+    public static final String SCHEMA_AUTH_REFRESH_TOKEN_TITLE = "Refresh Token";
+    public static final String SCHEMA_AUTH_REFRESH_TOKEN_DESCRIPTION = "Refresh Token";
+    public static final String SCHEMA_AUTH_REFRESH_TOKEN_EXAMPLE = "123e4567-e89b-12d3-a456-426655440000";
+    public static final String SCHEMA_AUTH_USER_ID_TITLE = "Id do usuário";
+    public static final String SCHEMA_AUTH_USER_ID_DESCRIPTION = "Id de usuário autenticado";
+    public static final String SCHEMA_AUTH_USER_ID_EXAMPLE = SCHEMA_AUTH_REFRESH_TOKEN_EXAMPLE;
+
+    private OpenApiSchemes() {
+        throw new IllegalAccessError("Utility Class");
+    }
 
 }

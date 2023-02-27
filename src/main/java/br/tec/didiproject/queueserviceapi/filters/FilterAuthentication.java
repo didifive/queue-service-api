@@ -36,7 +36,7 @@ public class FilterAuthentication extends OncePerRequestFilter {
         }
 
         if (authService.verificaToken(token)) {
-            UUID usuarioId = authService.retornarIdUser(token);
+            UUID usuarioId = authService.retornarUsuarioId(token);
             Usuario usuario = usuarioService.findById(usuarioId);
             SecurityContextHolder.getContext()
                     .setAuthentication(new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities()));

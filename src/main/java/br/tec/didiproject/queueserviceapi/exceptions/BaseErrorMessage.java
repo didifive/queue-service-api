@@ -12,6 +12,9 @@ public class BaseErrorMessage {
     public static final BaseErrorMessage GENERIC_NOT_FOUND = new BaseErrorMessage("generic.notFound");
     public static final BaseErrorMessage GENERIC_BAD_REQUEST = new BaseErrorMessage("generic.badRequest");
     public static final BaseErrorMessage GENERIC_DATA_INTEGRITY_VIOLATION = new BaseErrorMessage("generic.dataIntegrityViolation");
+    public static final BaseErrorMessage GENERIC_FORBIDDEN = new BaseErrorMessage("generic.forbidden");
+    public static final BaseErrorMessage REFRESH_TOKEN_NOT_FOUND = new BaseErrorMessage("refreshToken.notFound");
+    public static final BaseErrorMessage REFRESH_TOKEN_EXPIRED = new BaseErrorMessage("refreshToken.expired");
     public static final BaseErrorMessage ROLE_NOT_FOUND = new BaseErrorMessage("role.notFound");
     public static final BaseErrorMessage ROLE_NOT_FOUND_BY_NAME = new BaseErrorMessage("role.notFound.byName");
     public static final BaseErrorMessage ROLE_ALREADY_EXISTS = new BaseErrorMessage("role.alreadyExists");

@@ -1,4 +1,4 @@
-package br.tec.didiproject.queueserviceapi.dtos.request.auth;
+package br.tec.didiproject.queueserviceapi.dtos.request;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;

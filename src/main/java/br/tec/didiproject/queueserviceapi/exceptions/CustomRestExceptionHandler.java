@@ -67,4 +67,17 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
 
     }
 
+    @ExceptionHandler( { TokenRefreshException.class } )
+    public ResponseEntity<ApiErrorDTO> handleTokenRefreshException(TokenRefreshException e, HttpServletRequest request){
+
+        ApiErrorDTO err = new ApiErrorDTO();
+        err.setTimestamp(Instant.now());
+        err.setStatus(HttpStatus.FORBIDDEN.value());
+        err.setError(GENERIC_FORBIDDEN.getMessage());
+        err.setMessage(e.getMessage());
+        err.setPath(request.getRequestURI());
+        return ResponseEntity.status(err.getStatus()).body(err);
+
+    }
+
 }
