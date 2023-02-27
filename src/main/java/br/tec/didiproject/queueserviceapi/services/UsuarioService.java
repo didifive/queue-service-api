@@ -32,21 +32,21 @@ public class UsuarioService implements UserDetailsService {
     /**
      * CRUD: Read
      * Find user by username
+     *
      * @param nomeUsuario String with a username
-     * @return UserDetails
      */
     @Override
     public UserDetails loadUserByUsername(String nomeUsuario) throws UsernameNotFoundException {
         return usuarioRepository.findByNomeUsuarioIgnoreCase(nomeUsuario).orElseThrow(
-                ()-> new UsernameNotFoundException(USER_NOT_FOUND_BY_USERNAME
+                ()-> new UsernameNotFoundException(USER_BY_USERNAME_NOT_FOUND
                         .params(nomeUsuario).getMessage()));
     }
 
     /**
      * CRUD: Read
      * Find user by id
+     *
      * @param usuarioId UUID with the user id
-     * @return Usuario
      */
     public Usuario findById(UUID usuarioId) {
         return usuarioRepository.findById(usuarioId).orElseThrow(
@@ -56,9 +56,21 @@ public class UsuarioService implements UserDetailsService {
 
     /**
      * CRUD: Read
+     * Find user by attendant
+     *
+     * @param atendenteId UUID with the attendant id
+     */
+    public Usuario findByAttendantId(UUID atendenteId) {
+        return usuarioRepository.findByAtendenteId(atendenteId).orElseThrow(
+                () -> new EntityNotFoundException(USER_BY_ATTENDANT_NOT_FOUND
+                        .params(atendenteId.toString()).getMessage()));
+    }
+
+    /**
+     * CRUD: Read
      * Find users and list with pageable content
+     *
      * @param pageable Pageable object with page options
-     * @return Page<Usuario>
      */
     public Page<Usuario> findAll(Pageable pageable) {
         return usuarioRepository.findAll(pageable);
@@ -69,8 +81,8 @@ public class UsuarioService implements UserDetailsService {
     /**
      * CRUD: Create
      * Create a new user with validation to prevent username repeat
+     *
      * @param novoUsuario Usuario object with the new user data
-     * @return Usuario
      */
     public Usuario create(Usuario novoUsuario) {
         this.validarNomeUsuario(novoUsuario.getNomeUsuario());
@@ -83,9 +95,9 @@ public class UsuarioService implements UserDetailsService {
     /**
      * CRUD: Update
      * Update username with validation of the new username to prevent username repeat
+     *
      * @param usuarioId UUID with the id of the existing user
      * @param novoNomeUsuario String with a new username to update a existing username user
-     * @return Usuario
      */
     public Usuario atualizarNomeUsuario(UUID usuarioId, String novoNomeUsuario) {
         Usuario usuarioExistente = this.findById(usuarioId);
@@ -101,10 +113,10 @@ public class UsuarioService implements UserDetailsService {
     /**
      * CRUD: Update
      * Update user password
+     *
      * @param usuarioId UUID with the id of the existing user
      * @param senhaAtual String with current password
      * @param novaSenha String with a new password
-     * @return Usuario
      */
     public Usuario atualizarSenha(UUID usuarioId, String senhaAtual, String novaSenha) {
 
@@ -122,9 +134,9 @@ public class UsuarioService implements UserDetailsService {
     /**
      * CRUD: Update
      * Add a Role to User
+     *
      * @param usuarioId UUID with the user Id
      * @param novoPerfilId UUID with the new role Id
-     * @return Usuario
      */
     public Usuario adicionarPerfil(UUID usuarioId, UUID novoPerfilId) {
         Usuario usuario = this.findById(usuarioId);
@@ -141,9 +153,9 @@ public class UsuarioService implements UserDetailsService {
     /**
      * CRUD: Update
      * Remove a Role to User
+     *
      * @param usuarioId UUID with the user Id
      * @param perfilId UUID with the role Id to be removed
-     * @return Usuario
      */
     public Usuario removerPerfil(UUID usuarioId, UUID perfilId) {
         Usuario usuario = this.findById(usuarioId);
@@ -160,8 +172,8 @@ public class UsuarioService implements UserDetailsService {
     /**
      * This method check if a new username already exists in the database
      * and throws a DataIntegrityViolationException if existing
+     *
      * @param nomeUsuario String with a new username to check
-     * @return void
      */
     private void validarNomeUsuario(String nomeUsuario) {
         if (usuarioRepository.findByNomeUsuarioIgnoreCase(nomeUsuario).isPresent())

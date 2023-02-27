@@ -30,6 +30,9 @@ public class Atendente {
     @Column(name = "nome", nullable = false)
     private String nome;
 
+    @Column(name = "email", nullable = false, unique = true)
+    private String email;
+
     @ManyToMany
     @JoinTable(
             name = "atendenteDepartamentos"

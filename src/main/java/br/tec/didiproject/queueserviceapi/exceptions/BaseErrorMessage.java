@@ -19,13 +19,16 @@ public class BaseErrorMessage {
     public static final BaseErrorMessage ROLE_NOT_FOUND_BY_NAME = new BaseErrorMessage("role.notFound.byName");
     public static final BaseErrorMessage ROLE_ALREADY_EXISTS = new BaseErrorMessage("role.alreadyExists");
     public static final BaseErrorMessage USER_NOT_FOUND = new BaseErrorMessage("user.notFound");
-    public static final BaseErrorMessage USER_NOT_FOUND_BY_USERNAME = new BaseErrorMessage("user.notFound.byUsername");
+    public static final BaseErrorMessage USER_BY_USERNAME_NOT_FOUND = new BaseErrorMessage("user.notFound.byUsername");
+    public static final BaseErrorMessage USER_BY_ATTENDANT_NOT_FOUND = new BaseErrorMessage("user.notFound.byAttendant");
     public static final BaseErrorMessage USER_ALREADY_EXISTS = new BaseErrorMessage("user.alreadyExists");
     public static final BaseErrorMessage USER_WRONG_PASSWORD = new BaseErrorMessage("user.wrongPassword");
     public static final BaseErrorMessage COMPANY_NOT_FOUND = new BaseErrorMessage("company.notFound");
     public static final BaseErrorMessage COMPANY_WITH_ASSOCIATED_DEPARTMENT = new BaseErrorMessage("company.withAssociatedDepartment");
     public static final BaseErrorMessage DEPARTMENT_NOT_FOUND = new BaseErrorMessage("department.notFound");
     public static final BaseErrorMessage DEPARTMENT_WITH_ASSOCIATED_ATTENDANT = new BaseErrorMessage("department.withAssociatedAttendant");
+    public static final BaseErrorMessage ATTENDANT_NOT_FOUND = new BaseErrorMessage("attendant.notFound");
+    public static final BaseErrorMessage ATTENDANT_WITH_ASSOCIATED_SERVICE = new BaseErrorMessage("attendant.withAssociatedService");
 
     private static final String ERROR_MESSAGES_RESOURCE = "errorMessages";
     private final String key;

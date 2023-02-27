@@ -14,6 +14,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, UUID>, JpaSpec
 
     Optional<Usuario> findByNomeUsuarioIgnoreCase(String nomeUsuario);
 
+    Optional<Usuario> findByAtendenteId(UUID atendenteId);
+
     Page<Usuario> findAll(Pageable pageable);
 
 }

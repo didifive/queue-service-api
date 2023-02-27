@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public interface SenhaRepository extends JpaRepository<Senha, UUID>, JpaSpecificationExecutor<Senha> {
 
-    Page<Senha> findByAtendente(Atendente atendente, Pageable pageable);
+    Page<Senha> findByAtendenteId(UUID atendenteId, Pageable pageable);
 
     Page<Senha> findByAtendidaEmIsNull(Pageable pageable);
 
