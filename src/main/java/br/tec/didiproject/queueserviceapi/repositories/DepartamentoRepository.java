@@ -7,11 +7,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 public interface DepartamentoRepository extends JpaRepository<Departamento, UUID> {
 
-    Page<Departamento> findAllByEmpresaId(UUID empresaId, Pageable pageable);
+    Set<Departamento> findAllByEmpresaId(UUID empresaId);
 
     Page<Departamento> findAll(Pageable pageable);
 

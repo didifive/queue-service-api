@@ -22,15 +22,10 @@ public class BaseErrorMessage {
     public static final BaseErrorMessage USER_NOT_FOUND_BY_USERNAME = new BaseErrorMessage("user.notFound.byUsername");
     public static final BaseErrorMessage USER_ALREADY_EXISTS = new BaseErrorMessage("user.alreadyExists");
     public static final BaseErrorMessage USER_WRONG_PASSWORD = new BaseErrorMessage("user.wrongPassword");
-    public static final BaseErrorMessage GENERIC_METHOD_NOT_ALLOW = new BaseErrorMessage("generic.methodNotAllow");
-    public static final BaseErrorMessage PLAYER_NOT_FOUND = new BaseErrorMessage("player.notFound");
-    public static final BaseErrorMessage EMAIL_ALREADY_USED = new BaseErrorMessage("player.emailAlreadyUsed");
-    public static final BaseErrorMessage ROUND_NOT_FOUND = new BaseErrorMessage("round.NotFound");
-    public static final BaseErrorMessage PLAYER_IN_ROUND = new BaseErrorMessage("round.PlayerInRound");
-    public static final BaseErrorMessage ROUND_STARTED = new BaseErrorMessage("round.RoundStarted");
-    public static final BaseErrorMessage CARDS_LIMIT_REACHED = new BaseErrorMessage("round.CardsLimitReached");
-    public static final BaseErrorMessage ROUND_COMPLETED = new BaseErrorMessage("round.RoundCompleted");
-    public static final BaseErrorMessage ROUND_HAS_NO_DRAWN_NUMBER = new BaseErrorMessage("round.RoundHasNoDrawnNumber");
+    public static final BaseErrorMessage COMPANY_NOT_FOUND = new BaseErrorMessage("company.notFound");
+    public static final BaseErrorMessage COMPANY_WITH_ASSOCIATED_DEPARTMENT = new BaseErrorMessage("company.withAssociatedDepartment");
+    public static final BaseErrorMessage DEPARTMENT_NOT_FOUND = new BaseErrorMessage("department.notFound");
+    public static final BaseErrorMessage DEPARTMENT_WITH_ASSOCIATED_ATTENDANT = new BaseErrorMessage("department.withAssociatedAttendant");
 
     private static final String ERROR_MESSAGES_RESOURCE = "errorMessages";
     private final String key;
