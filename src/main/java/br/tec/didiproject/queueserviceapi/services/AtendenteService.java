@@ -100,15 +100,14 @@ public class AtendenteService {
         Atendente atendente = this.findById(atendenteId);
 
         Pageable pageRequest = PageRequest.of(0, 10);
-        Page<Senha> senhas = senhaRepository.findByAtendenteId(atendenteId, pageRequest);
+        Page<Senha> senhas = senhaRepository.findAllByAtendenteId(atendenteId, pageRequest);
         if (senhas.getTotalElements() > 0)
             throw new DataIntegrityViolationException(
                     ATTENDANT_WITH_ASSOCIATED_SERVICE
                             .params(
                                     atendenteId.toString()
                                     , senhas.stream()
-                                            .map(Senha::getId)
-                                            .map(UUID::toString)
+                                            .map(s -> s.getId().toString())
                                             .collect(Collectors.joining(", ")))
                             .getMessage());
 

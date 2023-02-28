@@ -36,8 +36,8 @@ public class Fila {
     private String sigla;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "empresaId", nullable = false)
-    private Empresa empresa;
+    @JoinColumn(name = "departamentoId", nullable = false)
+    private Departamento departamento;
 
     @ManyToMany
     @JoinTable(
@@ -53,7 +53,7 @@ public class Fila {
                 "id=" + id +
                 ", nome='" + nome +
                 ", sigla='" + sigla +
-                ", empresa=" + empresa +
+                ", departamento=" + departamento +
                 ", tiposAtendimento=" + tiposAtendimento +
                 '}';
     }

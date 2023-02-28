@@ -3,13 +3,16 @@ package br.tec.didiproject.queueserviceapi.services;
 import br.tec.didiproject.queueserviceapi.entities.Atendente;
 import br.tec.didiproject.queueserviceapi.entities.Departamento;
 import br.tec.didiproject.queueserviceapi.entities.Empresa;
+import br.tec.didiproject.queueserviceapi.entities.Fila;
 import br.tec.didiproject.queueserviceapi.exceptions.DataIntegrityViolationException;
 import br.tec.didiproject.queueserviceapi.exceptions.EntityNotFoundException;
 import br.tec.didiproject.queueserviceapi.repositories.AtendenteRepository;
 import br.tec.didiproject.queueserviceapi.repositories.DepartamentoRepository;
 import br.tec.didiproject.queueserviceapi.repositories.EmpresaRepository;
+import br.tec.didiproject.queueserviceapi.repositories.FilaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +28,7 @@ public class DepartamentoService {
 
     private final DepartamentoRepository departamentoRepository;
     private final AtendenteRepository atendenteRepository;
+    private final FilaRepository filaRepository;
 
     /**
      * CRUD: Read
@@ -83,15 +87,27 @@ public class DepartamentoService {
     public void deletarDepartamento(UUID departamentoId) {
         Departamento departamento = this.findById(departamentoId);
 
-        Set<Atendente> atendentes = atendenteRepository.findAllByDepartamentosIdContains(departamento.getId());
-        if (!atendentes.isEmpty())
+        Pageable pageRequest = PageRequest.of(0, 10);
+
+        Page<Atendente> atendentes = atendenteRepository.findAllByDepartamentosIdContains(departamento.getId(), pageRequest);
+        if (atendentes.getTotalElements() > 0)
             throw new DataIntegrityViolationException(
                     DEPARTMENT_WITH_ASSOCIATED_ATTENDANT
                             .params(
                                     departamentoId.toString()
                                     , atendentes.stream()
-                                            .map(Atendente::getId)
-                                            .map(UUID::toString)
+                                            .map(a -> a.getId().toString())
+                                            .collect(Collectors.joining(", ")))
+                            .getMessage());
+
+        Page<Fila> filas = filaRepository.findAllByDepartamentoId(departamento.getId(), pageRequest);
+        if (filas.getTotalElements() > 0)
+            throw new DataIntegrityViolationException(
+                    DEPARTMENT_WITH_ASSOCIATED_QUEUE
+                            .params(
+                                    departamentoId.toString()
+                                    , filas.stream()
+                                            .map(f -> f.getId().toString())
                                             .collect(Collectors.joining(", ")))
                             .getMessage());
 

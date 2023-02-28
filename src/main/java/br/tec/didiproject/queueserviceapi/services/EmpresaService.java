@@ -89,8 +89,7 @@ public class EmpresaService {
                             .params(
                                     empresaId.toString()
                                     , departamentos.stream()
-                                            .map(Departamento::getId)
-                                            .map(UUID::toString)
+                                            .map(d -> d.getId().toString())
                                             .collect(Collectors.joining(", ")))
                             .getMessage());
 

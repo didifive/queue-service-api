@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public interface AtendenteRepository extends JpaRepository<Atendente, UUID> {
 
-    Set<Atendente> findAllByDepartamentosIdContains(UUID departamentoId);
+    Page<Atendente> findAllByDepartamentosIdContains(UUID departamentoId, Pageable pageable);
 
     Page<Atendente> findAll(Pageable pageable);
 
