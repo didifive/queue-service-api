@@ -37,7 +37,7 @@ public class UsuarioService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String nomeUsuario) throws UsernameNotFoundException {
         return usuarioRepository.findByNomeUsuarioIgnoreCase(nomeUsuario).orElseThrow(
-                ()-> new UsernameNotFoundException(USER_BY_USERNAME_NOT_FOUND
+                () -> new UsernameNotFoundException(USER_BY_USERNAME_NOT_FOUND
                         .params(nomeUsuario).getMessage()));
     }
 
@@ -76,7 +76,6 @@ public class UsuarioService implements UserDetailsService {
     }
 
 
-
     /**
      * CRUD: Create
      * Create a new user with validation to prevent username repeat
@@ -88,6 +87,8 @@ public class UsuarioService implements UserDetailsService {
 
         novoUsuario.setSenha(bCryptPasswordEncoder.encode(novoUsuario.getSenha()));
 
+        novoUsuario.setAtivo(Boolean.TRUE);
+
         return usuarioRepository.save(novoUsuario);
     }
 
@@ -95,33 +96,33 @@ public class UsuarioService implements UserDetailsService {
      * CRUD: Update
      * Update username with validation of the new username to prevent username repeat
      *
-     * @param usuarioId UUID with the id of the existing user
+     * @param usuarioId       UUID with the id of the existing user
      * @param novoNomeUsuario String with a new username to update a existing username user
      */
     public Usuario atualizarNomeUsuario(UUID usuarioId, String novoNomeUsuario) {
         Usuario usuarioExistente = this.findById(usuarioId);
 
-        if(!novoNomeUsuario.equals(usuarioExistente.getNomeUsuario()))
+        if (!novoNomeUsuario.equals(usuarioExistente.getNomeUsuario()))
             validarNomeUsuario(novoNomeUsuario);
 
         usuarioExistente.setNomeUsuario(novoNomeUsuario);
 
-        return  usuarioRepository.save(usuarioExistente);
+        return usuarioRepository.save(usuarioExistente);
     }
 
     /**
      * CRUD: Update
      * Update user password
      *
-     * @param usuarioId UUID with the id of the existing user
+     * @param usuarioId  UUID with the id of the existing user
      * @param senhaAtual String with current password
-     * @param novaSenha String with a new password
+     * @param novaSenha  String with a new password
      */
     public Usuario atualizarSenha(UUID usuarioId, String senhaAtual, String novaSenha) {
 
         Usuario usuarioExistente = this.findById(usuarioId);
 
-        if(!bCryptPasswordEncoder.matches(senhaAtual, usuarioExistente.getSenha()))
+        if (!bCryptPasswordEncoder.matches(senhaAtual, usuarioExistente.getSenha()))
             throw new DataIntegrityViolationException(USER_WRONG_PASSWORD
                     .params(usuarioExistente.getId().toString()).getMessage());
 
@@ -134,7 +135,7 @@ public class UsuarioService implements UserDetailsService {
      * CRUD: Update
      * Add a Role to User
      *
-     * @param usuarioId UUID with the user Id
+     * @param usuarioId  UUID with the user Id
      * @param nomePerfil String with the new role name
      */
     public Usuario adicionarPerfil(UUID usuarioId, String nomePerfil) {
@@ -157,7 +158,7 @@ public class UsuarioService implements UserDetailsService {
      * CRUD: Update
      * Remove a Role to User
      *
-     * @param usuarioId UUID with the user Id
+     * @param usuarioId  UUID with the user Id
      * @param nomePerfil String with the role name
      */
     public Usuario removerPerfil(UUID usuarioId, String nomePerfil) {
@@ -176,6 +177,30 @@ public class UsuarioService implements UserDetailsService {
 
         usuario.setPerfis(perfis);
 
+        return usuarioRepository.save(usuario);
+    }
+
+    /**
+     * CRUD: Update
+     * Active User
+     *
+     * @param usuarioId UUID with the user Id
+     */
+    public Usuario ativarUsuario(UUID usuarioId) {
+        Usuario usuario = this.findById(usuarioId);
+        usuario.setAtivo(Boolean.TRUE);
+        return usuarioRepository.save(usuario);
+    }
+
+    /**
+     * CRUD: Update
+     * Disable User
+     *
+     * @param usuarioId UUID with the user Id
+     */
+    public Usuario desativarUsuario(UUID usuarioId) {
+        Usuario usuario = this.findById(usuarioId);
+        usuario.setAtivo(Boolean.FALSE);
         return usuarioRepository.save(usuario);
     }
 

@@ -1,16 +1,15 @@
 package br.tec.didiproject.queueserviceapi.entities;
 
 
+import br.tec.didiproject.queueserviceapi.enums.Perfil;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Builder
 @Entity
@@ -37,23 +36,21 @@ public class Usuario implements UserDetails {
     private String senha;
 
     @ManyToMany
-    @JoinTable(
-            name = "usuariosPerfis"
-            , joinColumns = {@JoinColumn(name = "usuarioId")}
-            , inverseJoinColumns = {@JoinColumn(name = "perfilId")}
-    )
+    @Enumerated(EnumType.STRING)
     private Set<Perfil> perfis = new HashSet<>();
 
     @OneToOne
     @JoinColumn(name = "atendenteId")
     private Atendente atendente;
 
+    @Column(name = "ativo", nullable = false)
+    private Boolean ativo;
+
     @Override
     public String toString() {
         return "Usuario{" +
                 "id=" + id +
                 ", nomeUsuario='" + nomeUsuario + '\'' +
-                ", senha='" + senha + '\'' +
                 ", perfis=" + perfis +
                 ", atendente=" + atendente +
                 '}';
@@ -61,7 +58,7 @@ public class Usuario implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return perfis;
+            return perfis;
     }
 
     @Override
@@ -76,21 +73,21 @@ public class Usuario implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return ativo;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return ativo;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return ativo;
     }
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return ativo;
     }
 }
