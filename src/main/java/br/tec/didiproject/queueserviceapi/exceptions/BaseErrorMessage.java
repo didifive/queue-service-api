@@ -15,9 +15,7 @@ public class BaseErrorMessage {
     public static final BaseErrorMessage GENERIC_FORBIDDEN = new BaseErrorMessage("generic.forbidden");
     public static final BaseErrorMessage REFRESH_TOKEN_NOT_FOUND = new BaseErrorMessage("refreshToken.notFound");
     public static final BaseErrorMessage REFRESH_TOKEN_EXPIRED = new BaseErrorMessage("refreshToken.expired");
-    public static final BaseErrorMessage ROLE_NOT_FOUND = new BaseErrorMessage("role.notFound");
     public static final BaseErrorMessage ROLE_NOT_FOUND_BY_NAME = new BaseErrorMessage("role.notFound.byName");
-    public static final BaseErrorMessage ROLE_ALREADY_EXISTS = new BaseErrorMessage("role.alreadyExists");
     public static final BaseErrorMessage USER_NOT_FOUND = new BaseErrorMessage("user.notFound");
     public static final BaseErrorMessage USER_BY_USERNAME_NOT_FOUND = new BaseErrorMessage("user.notFound.byUsername");
     public static final BaseErrorMessage USER_BY_ATTENDANT_NOT_FOUND = new BaseErrorMessage("user.notFound.byAttendant");

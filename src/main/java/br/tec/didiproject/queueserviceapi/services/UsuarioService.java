@@ -1,7 +1,7 @@
 package br.tec.didiproject.queueserviceapi.services;
 
-import br.tec.didiproject.queueserviceapi.entities.Perfil;
 import br.tec.didiproject.queueserviceapi.entities.Usuario;
+import br.tec.didiproject.queueserviceapi.enums.Perfil;
 import br.tec.didiproject.queueserviceapi.exceptions.DataIntegrityViolationException;
 import br.tec.didiproject.queueserviceapi.exceptions.EntityNotFoundException;
 import br.tec.didiproject.queueserviceapi.repositories.UsuarioRepository;
@@ -25,7 +25,6 @@ import static br.tec.didiproject.queueserviceapi.exceptions.BaseErrorMessage.*;
 public class UsuarioService implements UserDetailsService {
 
     private final UsuarioRepository usuarioRepository;
-    private final PerfilService perfilService;
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
@@ -136,14 +135,18 @@ public class UsuarioService implements UserDetailsService {
      * Add a Role to User
      *
      * @param usuarioId UUID with the user Id
-     * @param novoPerfilId UUID with the new role Id
+     * @param nomePerfil String with the new role name
      */
-    public Usuario adicionarPerfil(UUID usuarioId, UUID novoPerfilId) {
+    public Usuario adicionarPerfil(UUID usuarioId, String nomePerfil) {
         Usuario usuario = this.findById(usuarioId);
-        Perfil novoPerfil = perfilService.findById(novoPerfilId);
-
         Set<Perfil> perfis = new HashSet<>(usuario.getPerfis());
-        perfis.add(novoPerfil);
+
+        try {
+            perfis.add(Perfil.valueOf(nomePerfil));
+        } catch (IllegalArgumentException e) {
+            throw new EntityNotFoundException(
+                    ROLE_NOT_FOUND_BY_NAME.params(nomePerfil).getMessage());
+        }
 
         usuario.setPerfis(perfis);
 
@@ -155,11 +158,18 @@ public class UsuarioService implements UserDetailsService {
      * Remove a Role to User
      *
      * @param usuarioId UUID with the user Id
-     * @param perfilId UUID with the role Id to be removed
+     * @param nomePerfil String with the role name
      */
-    public Usuario removerPerfil(UUID usuarioId, UUID perfilId) {
+    public Usuario removerPerfil(UUID usuarioId, String nomePerfil) {
         Usuario usuario = this.findById(usuarioId);
-        Perfil perfil = perfilService.findById(perfilId);
+
+        Perfil perfil;
+        try {
+            perfil = Perfil.valueOf(nomePerfil);
+        } catch (IllegalArgumentException e) {
+            throw new EntityNotFoundException(
+                    ROLE_NOT_FOUND_BY_NAME.params(nomePerfil).getMessage());
+        }
 
         Set<Perfil> perfis = new HashSet<>(usuario.getPerfis());
         perfis.remove(perfil);
