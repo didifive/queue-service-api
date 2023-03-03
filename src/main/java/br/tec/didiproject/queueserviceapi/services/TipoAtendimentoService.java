@@ -1,6 +1,8 @@
 package br.tec.didiproject.queueserviceapi.services;
 
-import br.tec.didiproject.queueserviceapi.entities.*;
+import br.tec.didiproject.queueserviceapi.entities.Fila;
+import br.tec.didiproject.queueserviceapi.entities.Senha;
+import br.tec.didiproject.queueserviceapi.entities.TipoAtendimento;
 import br.tec.didiproject.queueserviceapi.exceptions.DataIntegrityViolationException;
 import br.tec.didiproject.queueserviceapi.exceptions.EntityNotFoundException;
 import br.tec.didiproject.queueserviceapi.repositories.FilaRepository;
@@ -12,7 +14,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -62,7 +63,7 @@ public class TipoAtendimentoService {
      * CRUD: Update
      * Update attendance type data
      *
-     * @param tipoAtendimentoId UUID with the id of the existing attendance type
+     * @param tipoAtendimentoId   UUID with the id of the existing attendance type
      * @param novoTipoAtendimento TipoAtendimento object with a new attendance type data
      */
     public TipoAtendimento atualizarTipoAtendimento(UUID tipoAtendimentoId, TipoAtendimento novoTipoAtendimento) {

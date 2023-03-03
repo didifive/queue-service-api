@@ -18,7 +18,7 @@ import java.util.UUID;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name = "fila"
         , schema = "public"
-        , uniqueConstraints=@UniqueConstraint(columnNames={"sigla"})
+        , uniqueConstraints = @UniqueConstraint(columnNames = {"sigla"})
         , indexes = @Index(name = "siglaIndex", columnList = "sigla")
 )
 public class Fila {

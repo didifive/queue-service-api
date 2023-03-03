@@ -14,6 +14,8 @@ public interface SenhaRepository extends JpaRepository<Senha, UUID>, JpaSpecific
 
     Page<Senha> findAllByTipoAtendimentoId(UUID tipoAtendimentoId, Pageable pageable);
 
+    Page<Senha> findAllByFilaId(UUID filaId, Pageable pageable);
+
     Page<Senha> findAllByAtendidaEmIsNull(Pageable pageable);
 
     Page<Senha> findAllByFinalizadaEmIsNull(Pageable pageable);

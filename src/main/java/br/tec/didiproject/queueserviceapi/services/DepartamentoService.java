@@ -2,13 +2,11 @@ package br.tec.didiproject.queueserviceapi.services;
 
 import br.tec.didiproject.queueserviceapi.entities.Atendente;
 import br.tec.didiproject.queueserviceapi.entities.Departamento;
-import br.tec.didiproject.queueserviceapi.entities.Empresa;
 import br.tec.didiproject.queueserviceapi.entities.Fila;
 import br.tec.didiproject.queueserviceapi.exceptions.DataIntegrityViolationException;
 import br.tec.didiproject.queueserviceapi.exceptions.EntityNotFoundException;
 import br.tec.didiproject.queueserviceapi.repositories.AtendenteRepository;
 import br.tec.didiproject.queueserviceapi.repositories.DepartamentoRepository;
-import br.tec.didiproject.queueserviceapi.repositories.EmpresaRepository;
 import br.tec.didiproject.queueserviceapi.repositories.FilaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -16,7 +14,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -66,7 +63,7 @@ public class DepartamentoService {
      * CRUD: Update
      * Update department data
      *
-     * @param departamentoId UUID with the id of the existing department
+     * @param departamentoId   UUID with the id of the existing department
      * @param novoDepartamento Departamento object with a new department data
      */
     public Departamento atualizarDepartamento(UUID departamentoId, Departamento novoDepartamento) {
@@ -82,7 +79,6 @@ public class DepartamentoService {
      * Delete the department
      *
      * @param departamentoId UUID with the id of the existing department
-
      */
     public void deletarDepartamento(UUID departamentoId) {
         Departamento departamento = this.findById(departamentoId);
