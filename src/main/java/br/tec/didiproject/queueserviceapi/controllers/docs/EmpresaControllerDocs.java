@@ -3,7 +3,6 @@ package br.tec.didiproject.queueserviceapi.controllers.docs;
 import br.tec.didiproject.queueserviceapi.dtos.ApiErrorDTO;
 import br.tec.didiproject.queueserviceapi.dtos.request.RequisicaoEmpresaDTO;
 import br.tec.didiproject.queueserviceapi.dtos.response.RespostaEmpresaDTO;
-import br.tec.didiproject.queueserviceapi.utils.valid_uuid.ValidUUID;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -18,9 +17,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-
-import java.util.UUID;
 
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.*;
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SCHEMA_TYPE_INTEGER;

@@ -5,12 +5,9 @@ import br.tec.didiproject.queueserviceapi.dtos.mapper.EmpresaMapper;
 import br.tec.didiproject.queueserviceapi.dtos.request.RequisicaoEmpresaDTO;
 import br.tec.didiproject.queueserviceapi.dtos.response.RespostaEmpresaDTO;
 import br.tec.didiproject.queueserviceapi.entities.Empresa;
-import br.tec.didiproject.queueserviceapi.exceptions.BadRequestBodyException;
 import br.tec.didiproject.queueserviceapi.services.EmpresaService;
-import br.tec.didiproject.queueserviceapi.utils.valid_uuid.ValidUUID;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -25,7 +22,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
+
+import static br.tec.didiproject.queueserviceapi.utils.BindingError.checkBindingResultError;
+import static br.tec.didiproject.queueserviceapi.utils.UUIDValidator.validateUUIDPattern;
 
 @RestController
 @RequestMapping("/api/v1/empresa")
@@ -35,22 +34,13 @@ public class EmpresaController implements EmpresaControllerDocs {
     private final EmpresaService empresaService;
     private final EmpresaMapper empresaMapper;
 
-    private static void checkBindingResult(BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            throw new BadRequestBodyException(
-                    bindingResult.getFieldErrors().stream()
-                            .map(DefaultMessageSourceResolvable::getDefaultMessage)
-                            .collect(Collectors.joining("||")));
-        }
-    }
-
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<RespostaEmpresaDTO> novaEmpresa(
             @RequestBody @Valid RequisicaoEmpresaDTO requisicaoEmpresaDTO
             , BindingResult bindingResult) {
 
-        checkBindingResult(bindingResult);
+        checkBindingResultError(bindingResult);
 
         Empresa novaEmpresa = empresaService.create(empresaMapper.toEntity(requisicaoEmpresaDTO));
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
@@ -73,7 +63,8 @@ public class EmpresaController implements EmpresaControllerDocs {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<RespostaEmpresaDTO> findById(@PathVariable @ValidUUID String id) {
+    public ResponseEntity<RespostaEmpresaDTO> findById(@PathVariable String id) {
+        validateUUIDPattern(id);
         return ResponseEntity.ok()
                 .body(empresaMapper.toResponseDTO(empresaService.findById(UUID.fromString(id))));
     }
@@ -81,11 +72,12 @@ public class EmpresaController implements EmpresaControllerDocs {
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<RespostaEmpresaDTO> atualizaEmpresa(
-            @PathVariable @ValidUUID String id
+            @PathVariable String id
             , @RequestBody @Valid RequisicaoEmpresaDTO requisicaoEmpresaDTO
             , BindingResult bindingResult) {
 
-        checkBindingResult(bindingResult);
+        validateUUIDPattern(id);
+        checkBindingResultError(bindingResult);
 
         return ResponseEntity.ok()
                 .body(empresaMapper.toResponseDTO(empresaService.atualizarEmpresa(
@@ -93,10 +85,11 @@ public class EmpresaController implements EmpresaControllerDocs {
                         , empresaMapper.toEntity(requisicaoEmpresaDTO))));
     }
 
-    @Override
-    public ResponseEntity<Void> deletarEmpresa(@PathVariable @ValidUUID String id) {
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<Void> deletarEmpresa(@PathVariable String id) {
+        validateUUIDPattern(id);
         empresaService.deletarEmpresa(UUID.fromString(id));
-
         return ResponseEntity.noContent().build();
     }
 
