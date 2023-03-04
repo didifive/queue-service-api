@@ -24,6 +24,7 @@ public class RespostaEmpresaDTO implements Serializable {
             , title = SCHEMA_EMPRESA_ID_TITLE
             , description = SCHEMA_EMPRESA_ID_DESCRIPTION
             , example = SCHEMA_EMPRESA_ID_EXAMPLE
+            , minLength = 36
             , maxLength = 36)
     @JsonProperty("id")
     String id;
