@@ -3,8 +3,6 @@ package br.tec.didiproject.queueserviceapi.services;
 import br.tec.didiproject.queueserviceapi.entities.Fila;
 import br.tec.didiproject.queueserviceapi.entities.Senha;
 import br.tec.didiproject.queueserviceapi.entities.TipoAtendimento;
-import br.tec.didiproject.queueserviceapi.entities.Usuario;
-import br.tec.didiproject.queueserviceapi.enums.Perfil;
 import br.tec.didiproject.queueserviceapi.exceptions.DataIntegrityViolationException;
 import br.tec.didiproject.queueserviceapi.exceptions.EntityNotFoundException;
 import br.tec.didiproject.queueserviceapi.repositories.FilaRepository;
@@ -20,8 +18,8 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import static br.tec.didiproject.queueserviceapi.exceptions.BaseErrorMessage.*;
-import static br.tec.didiproject.queueserviceapi.exceptions.BaseErrorMessage.ROLE_NOT_FOUND_BY_NAME;
+import static br.tec.didiproject.queueserviceapi.exceptions.BaseErrorMessage.QUEUE_NOT_FOUND;
+import static br.tec.didiproject.queueserviceapi.exceptions.BaseErrorMessage.QUEUE_WITH_ASSOCIATED_SERVICE;
 
 @RequiredArgsConstructor
 @Service
@@ -82,7 +80,7 @@ public class FilaService {
      * CRUD: Update
      * Add a Attendance Type to Queue
      *
-     * @param filaId UUID with the queue Id
+     * @param filaId            UUID with the queue Id
      * @param tipoAtendimentoId UUID with the attendance type Id
      */
     public Fila adicionarTipoAtendimento(UUID filaId, UUID tipoAtendimentoId) {
@@ -99,7 +97,7 @@ public class FilaService {
      * CRUD: Update
      * Remove a Attendance Type to Queue
      *
-     * @param filaId UUID with the queue Id
+     * @param filaId            UUID with the queue Id
      * @param tipoAtendimentoId UUID with the attendance type Id
      */
     public Fila removerTipoAtendimento(UUID filaId, UUID tipoAtendimentoId) {

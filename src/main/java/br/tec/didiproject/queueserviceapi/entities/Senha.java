@@ -43,8 +43,15 @@ public class Senha {
     @Column(name = "geradaEm", nullable = false)
     private Timestamp geradaEm;
 
+    @CreationTimestamp
+    @Column(name = "chamadaEm")
+    private Timestamp chamadaEm;
+
     @Column(name = "finalizadaEm")
     private Timestamp finalizadaEm;
+
+    @Column(name = "motivoFinalizada")
+    private String motivoFinalizada;
 
     @Column(name = "atendidaEm")
     private Timestamp atendidaEm;
@@ -53,17 +60,23 @@ public class Senha {
     @JoinColumn(name = "atendenteId")
     private Atendente atendente;
 
-    @Override
-    public String toString() {
-        return "Senha{" +
-                "id=" + id +
-                ", numero=" + numero +
-                ", fila=" + fila +
-                ", tipoAtendimento=" + tipoAtendimento +
-                ", geradaEm=" + geradaEm +
-                ", finalizadaEm=" + finalizadaEm +
-                ", atendidaEm=" + atendidaEm +
-                ", atendente='" + atendente + '\'' +
-                '}';
+    public boolean foiChamada() {
+        if (this.getChamadaEm() != null)
+            return Boolean.TRUE;
+        return Boolean.FALSE;
     }
+
+    public boolean foiAtendida() {
+        if (this.getAtendidaEm() != null || this.getAtendente() != null)
+            return Boolean.TRUE;
+        return Boolean.FALSE;
+    }
+
+    public boolean foiFinalizada() {
+        if (this.getFinalizadaEm() != null || !this.getMotivoFinalizada().isBlank())
+            return Boolean.TRUE;
+        return Boolean.FALSE;
+    }
+
+
 }

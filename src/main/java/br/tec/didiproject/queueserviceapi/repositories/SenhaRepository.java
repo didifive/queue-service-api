@@ -6,6 +6,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
+import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 public interface SenhaRepository extends JpaRepository<Senha, UUID>, JpaSpecificationExecutor<Senha> {
@@ -16,10 +18,24 @@ public interface SenhaRepository extends JpaRepository<Senha, UUID>, JpaSpecific
 
     Page<Senha> findAllByFilaId(UUID filaId, Pageable pageable);
 
-    Page<Senha> findAllByAtendidaEmIsNull(Pageable pageable);
-
     Page<Senha> findAllByFinalizadaEmIsNull(Pageable pageable);
 
+    Page<Senha> findAllByFilaIdAndTipoAtendimentoIdAndChamadaEmIsNullOrderByGeradaEmAsc(
+            UUID filaId
+            , UUID tipoAtendimentoId
+            , Pageable pageable
+    );
+
+    Page<Senha> findAllByFilaIdAndTipoAtendimentoIdAndFinalizadaEmIsNullAndChamadaEmIsNotNullOrderByGeradaEmDesc(
+            UUID filaId
+            , UUID tipoAtendimentoId
+            , Pageable pageable
+    );
+
     Page<Senha> findAll(Pageable pageable);
+
+    Optional<Senha> findFirstByFilaIdAndTipoAtendimentoIdOrderByNumeroDesc(
+            UUID filaId, UUID tipoAtendimentoId
+    );
 
 }
