@@ -17,8 +17,6 @@ import java.util.UUID;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name = "tipoAtendimento"
         , schema = "public"
-        , uniqueConstraints = @UniqueConstraint(columnNames = {"sigla"})
-        , indexes = @Index(name = "siglaIndex", columnList = "sigla")
 )
 public class TipoAtendimento implements Comparable {
 
@@ -31,7 +29,7 @@ public class TipoAtendimento implements Comparable {
     @Column(name = "nome", nullable = false)
     private String nome;
 
-    @Column(name = "sigla", nullable = false)
+    @Column(name = "sigla", unique = true, nullable = false)
     private String sigla;
 
     @Column(name = "prioridade", nullable = false)

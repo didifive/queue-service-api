@@ -27,15 +27,15 @@ import java.util.UUID;
 import static br.tec.didiproject.queueserviceapi.exceptions.BaseErrorMessage.REFRESH_TOKEN_EXPIRED;
 import static br.tec.didiproject.queueserviceapi.exceptions.BaseErrorMessage.REFRESH_TOKEN_NOT_FOUND;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class AuthService {
 
     private final AuthenticationManager authManager;
     private final RefreshTokenRepository refreshTokenRepository;
     private final UsuarioService usuarioService;
     @Value("${queue-service-api.jwt.refresh-expiration}")
-    private final String refreshExpiration;
+    private String refreshExpiration;
     @Value("${queue-service-api.jwt.secret}")
     private String secret;
     @Value("${queue-service-api.jwt.expiration}")

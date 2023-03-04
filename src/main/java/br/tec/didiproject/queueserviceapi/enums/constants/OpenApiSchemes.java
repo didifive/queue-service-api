@@ -13,6 +13,15 @@ public class OpenApiSchemes {
     public static final String SECURITY_SCHEME_BEARER_FORMAT = "JWT";
 
     /**
+     * Constants for @Tag annotation by HTTP method in MeuAmigauApiApplication
+     */
+    public static final String TAG_POST = "Método HTTP POST";
+    public static final String TAG_GET = "Método HTTP GET";
+    public static final String TAG_PUT = "Método HTTP PUT";
+    public static final String TAG_PATCH = "Método HTTP PATCH";
+    public static final String TAG_DELETE = "Método HTTP DELETE";
+
+    /**
      * Constants for @Schema annotation in ApiErrorDTO
      */
     public static final String SCHEMA_API_ERROR_TIMESTAMP_TITLE = "Timestamp";
@@ -51,6 +60,23 @@ public class OpenApiSchemes {
     public static final String SCHEMA_AUTH_USER_ID_TITLE = "Id do usuário";
     public static final String SCHEMA_AUTH_USER_ID_DESCRIPTION = "Id de usuário autenticado";
     public static final String SCHEMA_AUTH_USER_ID_EXAMPLE = SCHEMA_AUTH_REFRESH_TOKEN_EXAMPLE;
+
+    /**
+     * Constants for @Schema annotation in RequisicaoEmpresaDTO and RespostaEmpresaDTO
+     */
+    public static final String SCHEMA_EMPRESA = " da empresa";
+    public static final String SCHEMA_EMPRESA_ID_TITLE = "Id";
+    public static final String SCHEMA_EMPRESA_ID_EXAMPLE = SCHEMA_AUTH_REFRESH_TOKEN_EXAMPLE;
+    public static final String SCHEMA_EMPRESA_ID_DESCRIPTION = SCHEMA_EMPRESA_ID_TITLE + SCHEMA_EMPRESA;
+    public static final String SCHEMA_EMPRESA_NOME_TITLE = "Nome";
+    public static final String SCHEMA_EMPRESA_NOME_DESCRIPTION = SCHEMA_EMPRESA_NOME_TITLE + SCHEMA_EMPRESA;
+    public static final String SCHEMA_EMPRESA_NOME_EXAMPLE = "Empresa LTDA";
+    public static final String SCHEMA_EMPRESA_CPF_CNPJ_TITLE = "CPF/CNPJ";
+    public static final String SCHEMA_EMPRESA_CPF_CNPJ_DESCRIPTION = SCHEMA_EMPRESA_CPF_CNPJ_TITLE + SCHEMA_EMPRESA;
+    public static final String SCHEMA_EMPRESA_CPF_CNPJ_EXAMPLE = "12.345.678/0001-98";
+    public static final String SCHEMA_EMPRESA_ENDERECO_TITLE = "CPF/CNPJ";
+    public static final String SCHEMA_EMPRESA_ENDERECO_DESCRIPTION = SCHEMA_EMPRESA_ENDERECO_TITLE + SCHEMA_EMPRESA;
+    public static final String SCHEMA_EMPRESA_ENDERECO_EXAMPLE = "Avenida Primeiro de Janeiro, n 1000, São Paulo-SP";
 
     private OpenApiSchemes() {
         throw new IllegalAccessError("Utility Class");
