@@ -3,6 +3,8 @@ package br.tec.didiproject.queueserviceapi.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -37,9 +39,11 @@ public class Fila {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "departamentoId", nullable = false)
+    @LazyCollection(LazyCollectionOption.TRUE)
     private Departamento departamento;
 
     @ManyToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(
             name = "filasTiposAtendimento"
             , joinColumns = {@JoinColumn(name = "filaId")}

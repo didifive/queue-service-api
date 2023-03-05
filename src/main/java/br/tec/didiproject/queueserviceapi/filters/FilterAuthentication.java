@@ -32,7 +32,7 @@ public class FilterAuthentication extends OncePerRequestFilter {
         String header = request.getHeader("Authorization");
         String token = null;
         if (header != null && header.startsWith("Bearer ")) {
-            token = header.substring(7, header.length());
+            token = header.substring(7);
         }
 
         if (authService.verificaToken(token)) {

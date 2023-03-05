@@ -18,16 +18,14 @@ public class AuthDTO {
             ,title = SCHEMA_AUTH_USERNAME_TITLE
             , description = SCHEMA_AUTH_USERNAME_DESCRIPTION
             , example = SCHEMA_AUTH_USERNAME_EXAMPLE
-            , maxLength = 100
-            , required = true)
+            , maxLength = 100)
     private String username;
 
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_AUTH_PASSWORD_TITLE
             , description = SCHEMA_AUTH_PASSWORD_DESCRIPTION
             , example = SCHEMA_AUTH_PASSWORD_EXAMPLE
-            , maxLength = 70
-            , required = true)
+            , maxLength = 70)
     private String password;
 
 }

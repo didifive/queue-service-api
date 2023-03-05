@@ -18,7 +18,7 @@ import java.util.UUID;
 @Table(name = "tipoAtendimento"
         , schema = "public"
 )
-public class TipoAtendimento implements Comparable {
+public class TipoAtendimento implements Comparable<TipoAtendimento> {
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -50,16 +50,16 @@ public class TipoAtendimento implements Comparable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TipoAtendimento that = (TipoAtendimento) o;
-        return Objects.equals(id, that.id) && Objects.equals(nome, that.nome) && Objects.equals(sigla, that.sigla);
+        return Objects.equals(id, that.id) && Objects.equals(nome, that.nome) && Objects.equals(sigla, that.sigla) && Objects.equals(prioridade, that.prioridade);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, sigla);
+        return Objects.hash(id, nome, sigla, prioridade);
     }
 
     @Override
-    public int compareTo(Object o) {
-        return this.getPrioridade().compareTo(((TipoAtendimento) o).getPrioridade());
+    public int compareTo(TipoAtendimento o) {
+        return this.getPrioridade().compareTo(o.getPrioridade());
     }
 }

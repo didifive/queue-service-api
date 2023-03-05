@@ -69,12 +69,11 @@ public interface EmpresaControllerDocs {
             @PageableDefault(size = 10, sort = "name", direction = Sort.Direction.ASC) Pageable pageable
     );
 
-
     @Tag(name=TAG_GET)
     @Operation(summary = EMPRESA_CONTROLLER_FIND_BY_ID_OPERATION_SUMMARY
             , description = EMPRESA_CONTROLLER_FIND_BY_ID_OPERATION_DESCRIPTION)
     @Parameter(in = ParameterIn.PATH
-            , schema = @Schema(type = SCHEMA_TYPE_INTEGER)
+            , schema = @Schema(type = SCHEMA_TYPE_STRING)
             , name = "id"
             , description = EMPRESA_CONTROLLER_FIND_BY_ID_PARAMETER_ID_DESCRIPTION
             , example = EMPRESA_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE)
@@ -88,12 +87,11 @@ public interface EmpresaControllerDocs {
             , content = @Content(schema = @Schema(implementation = ApiErrorDTO.class)))
     ResponseEntity<RespostaEmpresaDTO> findById(String id);
 
-
     @Tag(name=TAG_PUT)
     @Operation(summary = EMPRESA_CONTROLLER_UPDATE_OPERATION_SUMMARY
             , description = EMPRESA_CONTROLLER_UPDATE_OPERATION_DESCRIPTION)
     @Parameter(in = ParameterIn.PATH
-            , schema = @Schema(type = SCHEMA_TYPE_INTEGER)
+            , schema = @Schema(type = SCHEMA_TYPE_STRING)
             , name = "id"
             , description = EMPRESA_CONTROLLER_UPDATE_PARAMETER_ID_DESCRIPTION
             , example = EMPRESA_CONTROLLER_UPDATE_PARAMETER_ID_EXAMPLE)
@@ -115,12 +113,11 @@ public interface EmpresaControllerDocs {
             , RequisicaoEmpresaDTO requisicaoEmpresaDTO
             , BindingResult bindingResult);
 
-
     @Tag(name=TAG_DELETE)
     @Operation(summary = EMPRESA_CONTROLLER_DELETE_BY_ID_OPERATION_SUMMARY
             , description = EMPRESA_CONTROLLER_DELETE_BY_ID_OPERATION_DESCRIPTION)
     @Parameter(in = ParameterIn.PATH
-            , schema = @Schema(type = SCHEMA_TYPE_INTEGER)
+            , schema = @Schema(type = SCHEMA_TYPE_STRING)
             , name = "id"
             , description = EMPRESA_CONTROLLER_DELETE_BY_ID_PARAMETER_ID_DESCRIPTION
             , example = EMPRESA_CONTROLLER_DELETE_BY_ID_PARAMETER_ID_EXAMPLE)

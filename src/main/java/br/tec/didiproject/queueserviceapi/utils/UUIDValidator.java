@@ -14,4 +14,8 @@ public class UUIDValidator {
                     UUID_BAD_REQUEST.params(uuidString).getMessage()
             );
     }
+
+    private UUIDValidator() {
+        throw new IllegalAccessError("Utility Class");
+    }
 }

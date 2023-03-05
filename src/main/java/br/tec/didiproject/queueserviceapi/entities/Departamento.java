@@ -4,6 +4,8 @@ package br.tec.didiproject.queueserviceapi.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import java.util.UUID;
 
@@ -29,6 +31,7 @@ public class Departamento {
     private String nome;
 
     @ManyToOne
+    @LazyCollection(LazyCollectionOption.TRUE)
     @JoinColumn(name = "empresaId")
     private Empresa empresa;
 

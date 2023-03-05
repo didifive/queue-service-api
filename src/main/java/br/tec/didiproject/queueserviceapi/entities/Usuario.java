@@ -5,6 +5,8 @@ import br.tec.didiproject.queueserviceapi.enums.Perfil;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -37,11 +39,13 @@ public class Usuario implements UserDetails {
     @Column(name = "senha", nullable = false)
     private String senha;
 
-    @ManyToMany
+    @ElementCollection
+    @LazyCollection(LazyCollectionOption.FALSE)
     @Enumerated(EnumType.STRING)
     private Set<Perfil> perfis = new HashSet<>();
 
     @OneToOne
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name = "atendenteId")
     private Atendente atendente;
 
@@ -80,16 +84,16 @@ public class Usuario implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return ativo;
+        return isAccountNonExpired();
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return ativo;
+        return isAccountNonExpired();
     }
 
     @Override
     public boolean isEnabled() {
-        return ativo;
+        return isAccountNonExpired();
     }
 }

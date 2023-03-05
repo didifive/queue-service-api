@@ -19,7 +19,7 @@ import static br.tec.didiproject.queueserviceapi.exceptions.BaseErrorMessage.*;
 @Service
 public class SenhaService {
 
-    public static final String motivoSenhaAtendida = "Senha atendida por [%s] com Id [%s].";
+    public static final String MOTIVO_SENHA_ATENDIDA = "Senha atendida por [%s] com Id [%s].";
     private final SenhaRepository senhaRepository;
     private final FilaService filaService;
     private final TipoAtendimentoService tipoAtendimentoService;
@@ -136,7 +136,7 @@ public class SenhaService {
     public Senha chamaSenha(UUID senhaId, boolean rechamada) {
         Senha senha = this.findById(senhaId);
 
-        if (senha.foiChamada() && rechamada == Boolean.FALSE){
+        if (senha.foiChamada() && !rechamada){
             throw new DataIntegrityViolationException(
                     SERVICE_NUMBER_ALREADY_CALLED
                             .params(senhaId.toString()).getMessage()
@@ -190,7 +190,7 @@ public class SenhaService {
         }
 
         senha = finalizaSenha(senha.getId()
-                , String.format(motivoSenhaAtendida,atendente.getNome(),atendente.getId().toString()));
+                , String.format(MOTIVO_SENHA_ATENDIDA,atendente.getNome(),atendente.getId().toString()));
 
         senha.setAtendidaEm(senha.getFinalizadaEm());
         senha.setAtendente(atendente);

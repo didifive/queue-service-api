@@ -46,7 +46,7 @@ public class AuthService {
     public TokenResponseDTO autenticar(AuthDTO authDto) throws AuthenticationException {
         Authentication authenticate = authManager
                 .authenticate(new UsernamePasswordAuthenticationToken(authDto.getUsername(), authDto.getPassword()));
-        return gerarToken(authenticate);
+        return this.gerarToken(authenticate);
     }
 
     private Algorithm criarAlgoritimo() {
@@ -56,16 +56,16 @@ public class AuthService {
     private TokenResponseDTO gerarToken(Authentication authenticate) {
         Usuario principal = (Usuario) authenticate.getPrincipal();
         Date hoje = new Date();
-        Date dataExpiracao = expirationDate(hoje);
+        Date dataExpiracao = this.expirationDate(hoje);
 
         String token = JWT.create().withIssuer(issuer).withExpiresAt(dataExpiracao).withSubject(principal.getId().toString())
                 .sign(this.criarAlgoritimo());
 
         Optional<RefreshToken> existingRefreshToken = refreshTokenRepository.findByUsuario(principal);
         if (existingRefreshToken.isPresent())
-            deleteRefreshTokenByUserId(principal);
+            this.deleteRefreshTokenByUserId(principal.getId());
 
-        RefreshToken refreshToken = gerarRefreshToken(principal);
+        RefreshToken refreshToken = this.gerarRefreshToken(principal);
 
         return new TokenResponseDTO(token
                 , refreshToken.getId().toString()
@@ -76,21 +76,21 @@ public class AuthService {
     public RefreshTokenResponseDTO gerarToken(UUID usuarioId, UUID refreshTokenId) {
         Usuario usuario = usuarioService.findById(usuarioId);
         Date hoje = new Date();
-        Date dataExpiracao = expirationDate(hoje);
+        Date dataExpiracao = this.expirationDate(hoje);
 
         String newToken = JWT.create().withIssuer(issuer).withExpiresAt(dataExpiracao).withSubject(usuario.getId().toString())
                 .sign(this.criarAlgoritimo());
 
-        RefreshToken refreshToken = findRefreshToken(refreshTokenId);
-        verificarExpiracaoRefreshToken(refreshToken);
-        deleteRefreshTokenByUserId(usuario);
+        RefreshToken refreshToken = this.findRefreshToken(refreshTokenId);
+        this.verificarExpiracaoRefreshToken(refreshToken);
+        this.deleteRefreshTokenByUserId(usuario.getId());
 
-        RefreshToken newRefreshToken = gerarRefreshToken(usuario);
+        RefreshToken newRefreshToken = this.gerarRefreshToken(usuario);
 
         return new RefreshTokenResponseDTO(newToken, newRefreshToken.getId().toString());
     }
 
-    protected Date expirationDate(Date hoje) {
+    private Date expirationDate(Date hoje) {
         return new Date(hoje.getTime() + Long.parseLong(expiration));
     }
 
@@ -113,13 +113,13 @@ public class AuthService {
 
     }
 
-    public RefreshToken findRefreshToken(UUID refreshTokenId) {
+    private RefreshToken findRefreshToken(UUID refreshTokenId) {
         return refreshTokenRepository.findById(refreshTokenId).orElseThrow(
                 () -> new EntityNotFoundException(
                         REFRESH_TOKEN_NOT_FOUND.params(refreshTokenId.toString()).getMessage()));
     }
 
-    public RefreshToken gerarRefreshToken(Usuario usuario) {
+    private RefreshToken gerarRefreshToken(Usuario usuario) {
         RefreshToken refreshToken = new RefreshToken();
 
         refreshToken.setUsuario(usuario);
@@ -130,7 +130,7 @@ public class AuthService {
         return refreshToken;
     }
 
-    public void verificarExpiracaoRefreshToken(RefreshToken refreshToken) {
+    private void verificarExpiracaoRefreshToken(RefreshToken refreshToken) {
         if (refreshToken.getExpiryDate().compareTo(new Date()) < 0) {
             refreshTokenRepository.delete(refreshToken);
             throw new TokenRefreshException(REFRESH_TOKEN_EXPIRED.getMessage());
@@ -138,7 +138,8 @@ public class AuthService {
     }
 
     @Transactional
-    public void deleteRefreshTokenByUserId(Usuario usuario) {
+    public void deleteRefreshTokenByUserId(UUID usuarioId) {
+        Usuario usuario = usuarioService.findById(usuarioId);
         refreshTokenRepository.deleteByUsuario(usuario);
     }
 

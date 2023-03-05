@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import java.sql.Timestamp;
 import java.util.UUID;
@@ -33,10 +35,12 @@ public class Senha {
 
     @JoinColumn(name = "filaId", nullable = false)
     @ManyToOne(optional = false)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private Fila fila;
 
     @JoinColumn(name = "tipoAtendimentoId", nullable = false)
     @ManyToOne(optional = false)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private TipoAtendimento tipoAtendimento;
 
     @CreationTimestamp
@@ -58,6 +62,7 @@ public class Senha {
 
     @ManyToOne
     @JoinColumn(name = "atendenteId")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private Atendente atendente;
 
     public boolean foiChamada() {

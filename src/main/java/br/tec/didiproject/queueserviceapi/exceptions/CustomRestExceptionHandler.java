@@ -17,7 +17,6 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler( { QueueServiceApiException.class } )
     public ResponseEntity<ApiErrorDTO> handleQueueServiceApiException(QueueServiceApiException e, HttpServletRequest request){
-
         ApiErrorDTO err = new ApiErrorDTO();
         err.setTimestamp(Instant.now());
         err.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
@@ -25,12 +24,10 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
         err.setMessage(e.getMessage());
         err.setPath(request.getRequestURI());
         return ResponseEntity.status(err.getStatus()).body(err);
-
     }
 
     @ExceptionHandler( { EntityNotFoundException.class } )
     public ResponseEntity<ApiErrorDTO> handleEntityNotFoundException(EntityNotFoundException e, HttpServletRequest request){
-
         ApiErrorDTO err = new ApiErrorDTO();
         err.setTimestamp(Instant.now());
         err.setStatus(HttpStatus.NOT_FOUND.value());
@@ -38,12 +35,10 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
         err.setMessage(e.getMessage());
         err.setPath(request.getRequestURI());
         return ResponseEntity.status(err.getStatus()).body(err);
-
     }
 
     @ExceptionHandler( { DataIntegrityViolationException.class } )
     public ResponseEntity<ApiErrorDTO> handleDataIntegrityViolationException(DataIntegrityViolationException e, HttpServletRequest request){
-
         ApiErrorDTO err = new ApiErrorDTO();
         err.setTimestamp(Instant.now());
         err.setStatus(HttpStatus.CONFLICT.value());
@@ -51,12 +46,10 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
         err.setMessage(e.getMessage());
         err.setPath(request.getRequestURI());
         return ResponseEntity.status(err.getStatus()).body(err);
-
     }
 
     @ExceptionHandler( { BadRequestBodyException.class } )
     public ResponseEntity<ApiErrorDTO> handleBadRequestBodyException(BadRequestBodyException e, HttpServletRequest request){
-
         ApiErrorDTO err = new ApiErrorDTO();
         err.setTimestamp(Instant.now());
         err.setStatus(HttpStatus.BAD_REQUEST.value());
@@ -64,12 +57,10 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
         err.setMessage(e.getMessage());
         err.setPath(request.getRequestURI());
         return ResponseEntity.status(err.getStatus()).body(err);
-
     }
 
     @ExceptionHandler( { TokenRefreshException.class } )
     public ResponseEntity<ApiErrorDTO> handleTokenRefreshException(TokenRefreshException e, HttpServletRequest request){
-
         ApiErrorDTO err = new ApiErrorDTO();
         err.setTimestamp(Instant.now());
         err.setStatus(HttpStatus.FORBIDDEN.value());
@@ -77,7 +68,17 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
         err.setMessage(e.getMessage());
         err.setPath(request.getRequestURI());
         return ResponseEntity.status(err.getStatus()).body(err);
+    }
 
+    @ExceptionHandler( { InvalidCredetialsException.class } )
+    public ResponseEntity<ApiErrorDTO> handleInvalidCredetialsException(InvalidCredetialsException e, HttpServletRequest request){
+        ApiErrorDTO err = new ApiErrorDTO();
+        err.setTimestamp(Instant.now());
+        err.setStatus(HttpStatus.UNAUTHORIZED.value());
+        err.setError(GENERIC_FORBIDDEN.getMessage());
+        err.setMessage(e.getMessage());
+        err.setPath(request.getRequestURI());
+        return ResponseEntity.status(err.getStatus()).body(err);
     }
 
 }

@@ -16,4 +16,9 @@ public class BindingError {
                             .collect(Collectors.joining("||")));
         }
     }
+
+    private BindingError() {
+        throw new IllegalAccessError("Utility Class");
+    }
+
 }

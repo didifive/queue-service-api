@@ -10,8 +10,24 @@ public final class ControllerAnnotationsV1 {
     public static final String AUTH_CONTROLER_AUTHENTICATE_OPERATION_DESCRIPTION = "Operação para gerar token de acesso";
     public static final String AUTH_CONTROLER_AUTHENTICATE_200_DESCRIPTION = "Token criado com sucesso";
     public static final String AUTH_CONTROLER_AUTHENTICATE_401_DESCRIPTION = "Usuário ou senha inválido(s)";
+    public static final String AUTH_CONTROLER_REFRESH_TOKEN_OPERATION_SUMMARY = "Atualizar Token de acesso";
+    public static final String AUTH_CONTROLER_REFRESH_TOKEN_OPERATION_DESCRIPTION = "Operação para atualizar token de acesso";
+    public static final String AUTH_CONTROLER_REFRESH_TOKEN_PARAMETER_USUARIO_ID_DESCRIPTION = "Id do usuário";
+    public static final String AUTH_CONTROLER_REFRESH_TOKEN_PARAMETER_USUARIO_ID_EXAMPLE = "123e4567-e89b-12d3-a456-426655440000";
+    public static final String AUTH_CONTROLER_REFRESH_TOKEN_PARAMETER_REFRESH_TOKEN_DESCRIPTION = "Refresh token";
+    public static final String AUTH_CONTROLER_REFRESH_TOKEN_PARAMETER_REFRESH_TOKEN_EXAMPLE = AUTH_CONTROLER_REFRESH_TOKEN_PARAMETER_USUARIO_ID_EXAMPLE;
+    public static final String AUTH_CONTROLER_REFRESH_TOKEN_200_DESCRIPTION = AUTH_CONTROLER_AUTHENTICATE_200_DESCRIPTION;
+    public static final String AUTH_CONTROLER_REFRESH_TOKEN_403_DESCRIPTION = "Não foi possível concluir, operação proibida";
+    public static final String AUTH_CONTROLER_REFRESH_TOKEN_404_DESCRIPTION = "Usuário ou refresh token não foi localizado";
+    public static final String AUTH_CONTROLER_INVALIDA_REFRESH_TOKEN_OPERATION_SUMMARY = "Invalida refresh token do usuário";
+    public static final String AUTH_CONTROLER_INVALIDA_REFRESH_TOKEN_OPERATION_DESCRIPTION = "Operação para invalidar refresh token do usuário";
+    public static final String AUTH_CONTROLER_INVALIDA_REFRESH_TOKEN_PARAMETER_USUARIO_ID_DESCRIPTION = AUTH_CONTROLER_REFRESH_TOKEN_PARAMETER_USUARIO_ID_DESCRIPTION;
+    public static final String AUTH_CONTROLER_INVALIDA_REFRESH_TOKEN_PARAMETER_USUARIO_ID_EXAMPLE = AUTH_CONTROLER_REFRESH_TOKEN_PARAMETER_USUARIO_ID_EXAMPLE;
+    public static final String AUTH_CONTROLER_INVALIDA_REFRESH_TOKEN_204_DESCRIPTION = "Token invalidado com sucesso";
+    public static final String AUTH_CONTROLER_INVALIDA_REFRESH_TOKEN_403_DESCRIPTION = AUTH_CONTROLER_REFRESH_TOKEN_403_DESCRIPTION;
+    public static final String AUTH_CONTROLER_INVALIDA_REFRESH_TOKEN_404_DESCRIPTION = "Usuário não foi localizado";
 
-    public static final String EMPRESA_CONTROLER_TAG = "2. Empresa";
+    public static final String EMPRESA_CONTROLER_TAG = "3. Empresa";
     public static final String EMPRESA_CONTROLLER_400_DESCRIPTION = "Campo requerido vazio ou inválido, verificar mensagem de retorno";
     public static final String EMPRESA_CONTROLLER_403_DESCRIPTION = "Acesso Negado. Não está autorizado";
     public static final String EMPRESA_CONTROLLER_404_DESCRIPTION = "Empresa não foi encontrada";
