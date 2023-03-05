@@ -8,7 +8,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping
 public class MainController {
-
     @GetMapping
     public ModelAndView redirectToSwagger() {
         return new ModelAndView("redirect:/swagger-ui.html");

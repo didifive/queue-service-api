@@ -28,6 +28,7 @@ import static br.tec.didiproject.queueserviceapi.exceptions.BaseErrorMessage.REF
 import static br.tec.didiproject.queueserviceapi.exceptions.BaseErrorMessage.REFRESH_TOKEN_NOT_FOUND;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class AuthService {
 
@@ -137,7 +138,6 @@ public class AuthService {
         }
     }
 
-    @Transactional
     public void deleteRefreshTokenByUserId(UUID usuarioId) {
         Usuario usuario = usuarioService.findById(usuarioId);
         refreshTokenRepository.deleteByUsuario(usuario);

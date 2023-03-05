@@ -46,6 +46,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/").permitAll()
                         .requestMatchers(AUTH_WHITELIST).permitAll()
                         .requestMatchers(HttpMethod.POST, PATH_AUTH).permitAll()
+                        .requestMatchers(HttpMethod.POST, PATH_AUTH+"/refresh/*/*").permitAll()
                         .anyRequest().authenticated()
                 )
                 .csrf(csrf -> csrf.disable())
