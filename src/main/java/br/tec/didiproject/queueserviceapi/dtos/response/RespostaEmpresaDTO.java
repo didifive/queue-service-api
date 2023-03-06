@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 
 import java.io.Serializable;
 
@@ -12,6 +13,7 @@ import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SCHEMA_TYPE_STRING;
 import static com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+@Data
 @Builder
 @AllArgsConstructor
 public class RespostaEmpresaDTO implements Serializable {

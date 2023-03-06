@@ -1,0 +1,236 @@
+{
+	"info": {
+		"_postman_id": "7b4bb0ad-f790-4f8c-a1c5-aab4823b451c",
+		"name": "Queue Service API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16508898"
+	},
+	"item": [
+		{
+			"name": "Localhost",
+			"item": [
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "Authentication",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"joao@email.com\",\r\n    \"password\": \"joao@email.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}{{auth}}",
+									"host": [
+										"{{localhost}}{{auth}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "RefreshToken",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{auth}}/refresh/0c8e8e4d-dd8f-4075-a7f2-172816a94891/15d84c29-0bd1-4a27-a009-62f3722878d9",
+									"host": [
+										"{{localhost}}{{auth}}"
+									],
+									"path": [
+										"refresh",
+										"0c8e8e4d-dd8f-4075-a7f2-172816a94891",
+										"15d84c29-0bd1-4a27-a009-62f3722878d9"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "InvalidateRefreshToken",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{auth}}/invalidate-refresh/0c8e8e4d-dd8f-4075-a7f2-172816a94891",
+									"host": [
+										"{{localhost}}{{auth}}"
+									],
+									"path": [
+										"invalidate-refresh",
+										"0c8e8e4d-dd8f-4075-a7f2-172816a94891"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Empresa",
+					"item": [
+						{
+							"name": "Cadastrar Empresa",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Super Atendimento Novo\",\r\n    \"cpfCnpj\": \"98.765.432/0001-32\",\r\n    \"endereco\": \"Rua Quinze de Novembro, 555, Jd Botânico, São Paulo-SP\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}{{empresa}}",
+									"host": [
+										"{{localhost}}{{empresa}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar Empresas",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwYzhlOGU0ZC1kZDhmLTQwNzUtYTdmMi0xNzI4MTZhOTQ4OTEiLCJpc3MiOiJRdWV1ZVNlcnZpY2VBUEkiLCJleHAiOjE2Nzg4NTA5MTV9.FCfwNgtEUzQcvovfuzYFlgetuMb_gU8DAXu4mkcCgdE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{empresa}}",
+									"host": [
+										"{{localhost}}{{empresa}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obter Empresa",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "Atualizar Empresa",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Super Atendimento Atual\",\r\n    \"endereco\": \"Rua Quinze de Novembro, 555, Jd Botânico, São Paulo-SP\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}{{empresa}}/e989f363-31fc-49b0-9a91-6765d5d91df4",
+									"host": [
+										"{{localhost}}{{empresa}}"
+									],
+									"path": [
+										"e989f363-31fc-49b0-9a91-6765d5d91df4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Apagar Empresa",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{empresa}}/e989f363-31fc-49b0-9a91-6765d5d91df4",
+									"host": [
+										"{{localhost}}{{empresa}}"
+									],
+									"path": [
+										"e989f363-31fc-49b0-9a91-6765d5d91df4"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwYzhlOGU0ZC1kZDhmLTQwNzUtYTdmMi0xNzI4MTZhOTQ4OTEiLCJpc3MiOiJRdWV1ZVNlcnZpY2VBUEkiLCJleHAiOjE2Nzg5MjMxNTR9.Y_1QpWHbrgDPlEZUo22clNCK76wSxDNmXkG63hJD4W4",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "localhost",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "auth",
+			"value": "/api/v1/auth",
+			"type": "string"
+		},
+		{
+			"key": "empresa",
+			"value": "/api/v1/empresa",
+			"type": "string"
+		}
+	]
+}

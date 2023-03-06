@@ -9,12 +9,10 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface FilaRepository extends JpaRepository<Fila, UUID> {
-    Optional<Fila> findBySigla(String sigla);
 
     Page<Fila> findAllByTiposAtendimentoIdContains(UUID tipoAtendimentoId, Pageable pageable);
 
     Page<Fila> findAllByDepartamentoId(UUID departamentoId, Pageable pageRequest);
-    
 
     Page<Fila> findAll(Pageable pageable);
 }

@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,8 +21,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import static br.tec.didiproject.queueserviceapi.enums.constants.v1.MappingRoutesV1.PATH_AUTH;
 
 @EnableWebSecurity
-@Configuration
 @EnableMethodSecurity
+@Configuration
 public class SecurityConfig {
 
     private static final String[] AUTH_WHITELIST = {
@@ -39,20 +40,27 @@ public class SecurityConfig {
     }
 
     @Bean
+    WebSecurityCustomizer webSecurityCustomizer() {
+        return web -> web.ignoring().requestMatchers("");
+    }
+
+    @Bean
     SecurityFilterChain filterChain(HttpSecurity http
             , AuthService authService
             , UsuarioService usuarioService) throws Exception {
-        http.authorizeHttpRequests(auth -> auth
+        http.cors()
+                .and()
+                .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.GET, "/").permitAll()
                         .requestMatchers(AUTH_WHITELIST).permitAll()
                         .requestMatchers(HttpMethod.POST, PATH_AUTH).permitAll()
-                        .requestMatchers(HttpMethod.POST, PATH_AUTH+"/refresh/*/*").permitAll()
+                        .requestMatchers(HttpMethod.POST, PATH_AUTH + "/refresh/*/*").permitAll()
                         .anyRequest().authenticated()
                 )
-                .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(new FilterAuthentication(authService, usuarioService),
-                        UsernamePasswordAuthenticationFilter.class);
+                        UsernamePasswordAuthenticationFilter.class)
+                .csrf().disable();
         return http.build();
     }
 

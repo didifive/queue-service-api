@@ -10,8 +10,6 @@ import java.util.UUID;
 
 public interface EmpresaRepository extends JpaRepository<Empresa, UUID> {
 
-    Optional<Empresa> findByCpfCnpj(String cpfCnpj);
-
     Page<Empresa> findAll(Pageable pageable);
 
 }

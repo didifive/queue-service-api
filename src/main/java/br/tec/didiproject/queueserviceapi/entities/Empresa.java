@@ -38,9 +38,9 @@ public class Empresa {
     public String toString() {
         return "Empresa{" +
                 "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", cpfCnpj='" + cpfCnpj + '\'' +
-                ", endereco='" + endereco + '\'' +
+                ", nome='" + nome +
+                ", cpfCnpj='" + cpfCnpj +
+                ", endereco='" + endereco +
                 '}';
     }
 }

@@ -6,14 +6,18 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.*;
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SCHEMA_TYPE_STRING;
 
+@Data
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class RequisicaoEmpresaDTO implements Serializable {
 
     @Schema(type = SCHEMA_TYPE_STRING
