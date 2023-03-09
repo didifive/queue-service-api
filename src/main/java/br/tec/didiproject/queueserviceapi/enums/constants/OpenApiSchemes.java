@@ -78,6 +78,20 @@ public class OpenApiSchemes {
     public static final String SCHEMA_EMPRESA_ENDERECO_DESCRIPTION = SCHEMA_EMPRESA_ENDERECO_TITLE + SCHEMA_EMPRESA;
     public static final String SCHEMA_EMPRESA_ENDERECO_EXAMPLE = "Avenida Primeiro de Janeiro, n 1000, São Paulo-SP";
 
+    /**
+     * Constants for @Schema annotation in RequisicaoDepartamentoDTO and RespostaDepartamentoDTO
+     */
+    public static final String SCHEMA_DEPARTAMENTO = " do departamento";
+    public static final String SCHEMA_DEPARTAMENTO_ID_TITLE = "Id";
+    public static final String SCHEMA_DEPARTAMENTO_ID_EXAMPLE = SCHEMA_AUTH_REFRESH_TOKEN_EXAMPLE;
+    public static final String SCHEMA_DEPARTAMENTO_ID_DESCRIPTION = SCHEMA_DEPARTAMENTO_ID_TITLE + SCHEMA_DEPARTAMENTO;
+    public static final String SCHEMA_DEPARTAMENTO_NOME_TITLE = "Nome";
+    public static final String SCHEMA_DEPARTAMENTO_NOME_DESCRIPTION = SCHEMA_DEPARTAMENTO_NOME_TITLE + SCHEMA_DEPARTAMENTO;
+    public static final String SCHEMA_DEPARTAMENTO_NOME_EXAMPLE = "Caixa";
+    public static final String SCHEMA_DEPARTAMENTO_EMPRESA_ID_TITLE = SCHEMA_EMPRESA_ID_TITLE;
+    public static final String SCHEMA_DEPARTAMENTO_EMPRESA_ID_DESCRIPTION = SCHEMA_EMPRESA_ID_DESCRIPTION;
+    public static final String SCHEMA_DEPARTAMENTO_EMPRESA_ID_EXAMPLE = SCHEMA_AUTH_REFRESH_TOKEN_EXAMPLE;
+
     private OpenApiSchemes() {
         throw new IllegalAccessError("Utility Class");
     }

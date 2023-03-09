@@ -182,6 +182,118 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Departamento",
+					"item": [
+						{
+							"name": "Cadastrar Departamento",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Caixa\",\r\n    \"empresaId\": \"e989f363-31fc-49b0-9a91-6765d5d91df4\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}{{departamento}}",
+									"host": [
+										"{{localhost}}{{departamento}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar Departamentos",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwYzhlOGU0ZC1kZDhmLTQwNzUtYTdmMi0xNzI4MTZhOTQ4OTEiLCJpc3MiOiJRdWV1ZVNlcnZpY2VBUEkiLCJleHAiOjE2Nzg4NTA5MTV9.FCfwNgtEUzQcvovfuzYFlgetuMb_gU8DAXu4mkcCgdE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{departamento}}",
+									"host": [
+										"{{localhost}}{{departamento}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obter Departamento",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{departamento}}/a92041d3-91bf-4ea5-8109-124b5c6a2e4c",
+									"host": [
+										"{{localhost}}{{departamento}}"
+									],
+									"path": [
+										"a92041d3-91bf-4ea5-8109-124b5c6a2e4c"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Atualizar Departamento",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Caixa Atualizado\",\r\n    \"empresaId\": \"e989f363-31fc-49b0-9a91-6765d5d91df4\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}{{departamento}}/a92041d3-91bf-4ea5-8109-124b5c6a2e4c",
+									"host": [
+										"{{localhost}}{{departamento}}"
+									],
+									"path": [
+										"a92041d3-91bf-4ea5-8109-124b5c6a2e4c"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Apagar Departamento",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{empresa}}/e989f363-31fc-49b0-9a91-6765d5d91df4",
+									"host": [
+										"{{localhost}}{{empresa}}"
+									],
+									"path": [
+										"e989f363-31fc-49b0-9a91-6765d5d91df4"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}
@@ -230,6 +342,11 @@
 		{
 			"key": "empresa",
 			"value": "/api/v1/empresa",
+			"type": "string"
+		},
+		{
+			"key": "departamento",
+			"value": "/api/v1/departamento",
 			"type": "string"
 		}
 	]

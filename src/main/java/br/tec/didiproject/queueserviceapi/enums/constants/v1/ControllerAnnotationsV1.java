@@ -63,6 +63,42 @@ public final class ControllerAnnotationsV1 {
     public static final String EMPRESA_CONTROLLER_DELETE_BY_ID_PARAMETER_ID_EXAMPLE = EMPRESA_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE;
     public static final String EMPRESA_CONTROLLER_DELETE_BY_ID_204_DESCRIPTION = "Empresa excluída com sucesso";
 
+    public static final String DEPARTAMENTO_CONTROLER_TAG = "4. Departamento";
+    public static final String DEPARTAMENTO_CONTROLLER_400_DESCRIPTION = "Campo requerido vazio ou inválido, verificar mensagem de retorno";
+    public static final String DEPARTAMENTO_CONTROLLER_403_DESCRIPTION = "Acesso Negado. Não está autorizado";
+    public static final String DEPARTAMENTO_CONTROLLER_404_DESCRIPTION = "Departamento não foi encontrado";
+    public static final String DEPARTAMENTO_CONTROLLER_409_DESCRIPTION = "Ocorreu erro com integridade de dado";
+    public static final String DEPARTAMENTO_CONTROLLER_CREATE_OPERATION_SUMMARY = "Cadastrar departamento";
+    public static final String DEPARTAMENTO_CONTROLLER_CREATE_OPERATION_DESCRIPTION = "Operação para cadastrar novo departamento";
+    public static final String DEPARTAMENTO_CONTROLLER_CREATE_201_DESCRIPTION = "Novo departamento cadastrado com sucesso";
+    public static final String DEPARTAMENTO_CONTROLLER_FIND_ALL_OPERATION_SUMMARY = "Listar Departamentos";
+    public static final String DEPARTAMENTO_CONTROLLER_FIND_ALL_OPERATION_DESCRIPTION = "Listar todas os Departamentos cadastradas";
+    public static final String DEPARTAMENTO_CONTROLLER_FIND_ALL_PARAMETER_SIZE_DESCRIPTION = "Quantidade de objetos por página";
+    public static final String DEPARTAMENTO_CONTROLLER_FIND_ALL_PARAMETER_SIZE_EXAMPLE = "10";
+    public static final String DEPARTAMENTO_CONTROLLER_FIND_ALL_PARAMETER_PAGE = "O número da página que quer retornar";
+    public static final String DEPARTAMENTO_CONTROLLER_FIND_ALL_PARAMETER_PAGE_SIZE = "0";
+    public static final String DEPARTAMENTO_CONTROLLER_FIND_ALL_PARAMETER_SORT_DESCRIPTION = "Nome do campo que deseja ordenar. "
+            + "Seguido da direção de ordenação desejada ',asc|desc' (ascendente/descendente). "
+            + "A direção de ordenação padrão é ascendent. "
+            + "Aceita ordenação múltipla. ";
+    public static final String DEPARTAMENTO_CONTROLLER_FIND_ALL_PARAMETER_SORT_EXAMPLE = "id,desc";
+    public static final String DEPARTAMENTO_CONTROLLER_FIND_ALL_200_DESCRIPTION = "Retorna lista paginada de departamentos cadastrados";
+    public static final String DEPARTAMENTO_CONTROLLER_FIND_BY_ID_OPERATION_SUMMARY = "Detalhar Departamento";
+    public static final String DEPARTAMENTO_CONTROLLER_FIND_BY_ID_OPERATION_DESCRIPTION = "Detalhar departamento conforme id informado";
+    public static final String DEPARTAMENTO_CONTROLLER_FIND_BY_ID_PARAMETER_ID_DESCRIPTION = "Id do departamento";
+    public static final String DEPARTAMENTO_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE = "123e4567-e89b-12d3-a456-426655440000";
+    public static final String DEPARTAMENTO_CONTROLLER_FIND_BY_ID_200_DESCRIPTION = "Retorna detalhe do departamento buscado";
+    public static final String DEPARTAMENTO_CONTROLLER_UPDATE_OPERATION_SUMMARY = "Atualizar Departamento";
+    public static final String DEPARTAMENTO_CONTROLLER_UPDATE_OPERATION_DESCRIPTION = "Realizar atualização do departamento";
+    public static final String DEPARTAMENTO_CONTROLLER_UPDATE_PARAMETER_ID_DESCRIPTION = DEPARTAMENTO_CONTROLLER_FIND_BY_ID_PARAMETER_ID_DESCRIPTION;
+    public static final String DEPARTAMENTO_CONTROLLER_UPDATE_PARAMETER_ID_EXAMPLE = DEPARTAMENTO_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE;
+    public static final String DEPARTAMENTO_CONTROLLER_UPDATE_200_DESCRIPTION = "Departamento atualizado com sucesso";
+    public static final String DEPARTAMENTO_CONTROLLER_DELETE_BY_ID_OPERATION_SUMMARY = "Excluir Departamento";
+    public static final String DEPARTAMENTO_CONTROLLER_DELETE_BY_ID_OPERATION_DESCRIPTION = "Realizar exclusão do departamento";
+    public static final String DEPARTAMENTO_CONTROLLER_DELETE_BY_ID_PARAMETER_ID_DESCRIPTION = DEPARTAMENTO_CONTROLLER_FIND_BY_ID_PARAMETER_ID_DESCRIPTION;
+    public static final String DEPARTAMENTO_CONTROLLER_DELETE_BY_ID_PARAMETER_ID_EXAMPLE = DEPARTAMENTO_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE;
+    public static final String DEPARTAMENTO_CONTROLLER_DELETE_BY_ID_204_DESCRIPTION = "Departamento excluído com sucesso";
+
 
     private ControllerAnnotationsV1() {
         throw new IllegalAccessError("Utility Class");

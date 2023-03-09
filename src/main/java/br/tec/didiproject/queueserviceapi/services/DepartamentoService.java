@@ -2,6 +2,7 @@ package br.tec.didiproject.queueserviceapi.services;
 
 import br.tec.didiproject.queueserviceapi.entities.Atendente;
 import br.tec.didiproject.queueserviceapi.entities.Departamento;
+import br.tec.didiproject.queueserviceapi.entities.Empresa;
 import br.tec.didiproject.queueserviceapi.entities.Fila;
 import br.tec.didiproject.queueserviceapi.exceptions.DataIntegrityViolationException;
 import br.tec.didiproject.queueserviceapi.exceptions.EntityNotFoundException;
@@ -26,6 +27,7 @@ public class DepartamentoService {
     private final DepartamentoRepository departamentoRepository;
     private final AtendenteRepository atendenteRepository;
     private final FilaRepository filaRepository;
+    private final EmpresaService empresaService;
 
     /**
      * CRUD: Read
@@ -56,6 +58,7 @@ public class DepartamentoService {
      * @param novoDepartamento Departamento object with the new company data
      */
     public Departamento create(Departamento novoDepartamento) {
+        novoDepartamento.setEmpresa(empresaService.findById(novoDepartamento.getEmpresa().getId()));
         return departamentoRepository.save(novoDepartamento);
     }
 
@@ -67,9 +70,8 @@ public class DepartamentoService {
      * @param novoDepartamento Departamento object with a new department data
      */
     public Departamento atualizarDepartamento(UUID departamentoId, Departamento novoDepartamento) {
-        Departamento departamentoExistente = this.findById(departamentoId);
-
-        novoDepartamento.setId(departamentoExistente.getId());
+        novoDepartamento.setId(this.findById(departamentoId).getId());
+        novoDepartamento.setEmpresa(empresaService.findById(novoDepartamento.getEmpresa().getId()));
 
         return departamentoRepository.save(novoDepartamento);
     }
@@ -85,7 +87,7 @@ public class DepartamentoService {
 
         Pageable pageRequest = PageRequest.of(0, 10);
 
-        Page<Atendente> atendentes = atendenteRepository.findAllByDepartamentosIdContains(departamento.getId(), pageRequest);
+        Page<Atendente> atendentes = atendenteRepository.findAllByDepartamentosContains(departamento, pageRequest);
         if (atendentes.getTotalElements() > 0)
             throw new DataIntegrityViolationException(
                     DEPARTMENT_WITH_ASSOCIATED_ATTENDANT
