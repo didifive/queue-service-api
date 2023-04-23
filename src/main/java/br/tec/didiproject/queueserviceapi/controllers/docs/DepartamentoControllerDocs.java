@@ -1,9 +1,8 @@
 package br.tec.didiproject.queueserviceapi.controllers.docs;
 
-import br.tec.didiproject.queueserviceapi.dtos.ApiErrorDTO;
 import br.tec.didiproject.queueserviceapi.dtos.request.RequisicaoDepartamentoDTO;
 import br.tec.didiproject.queueserviceapi.dtos.response.RespostaDepartamentoDTO;
-import br.tec.didiproject.queueserviceapi.utils.annotations.PageParams;
+import br.tec.didiproject.queueserviceapi.utils.annotations.swagger.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -30,12 +29,8 @@ public interface DepartamentoControllerDocs {
             , description = DEPARTAMENTO_CONTROLLER_CREATE_OPERATION_DESCRIPTION)
     @ApiResponse(responseCode = "201"
             , description = DEPARTAMENTO_CONTROLLER_CREATE_201_DESCRIPTION)
-    @ApiResponse(responseCode = "400"
-            , description = DEPARTAMENTO_CONTROLLER_400_DESCRIPTION
-            , content = @Content(schema = @Schema(implementation = ApiErrorDTO.class)))
-    @ApiResponse(responseCode = "403"
-            , description = DEPARTAMENTO_CONTROLLER_403_DESCRIPTION
-            , content = @Content(schema = @Schema(hidden = true)))
+    @ApiResponse400
+    @ApiResponse403
     ResponseEntity<RespostaDepartamentoDTO> novoDepartamento(
             RequisicaoDepartamentoDTO requisicaoDepartamentoDTO
             , BindingResult bindingResult);
@@ -46,9 +41,7 @@ public interface DepartamentoControllerDocs {
     @PageParams
     @ApiResponse(responseCode = "200"
             , description = DEPARTAMENTO_CONTROLLER_FIND_ALL_200_DESCRIPTION)
-    @ApiResponse(responseCode = "403"
-            , description = DEPARTAMENTO_CONTROLLER_403_DESCRIPTION
-            , content = @Content(schema = @Schema(hidden = true)))
+    @ApiResponse403
     ResponseEntity<Page<RespostaDepartamentoDTO>> listarDepartamentos(
             Pageable pageable
     );
@@ -63,12 +56,8 @@ public interface DepartamentoControllerDocs {
             , example = DEPARTAMENTO_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE)
     @ApiResponse(responseCode = "200"
             , description = DEPARTAMENTO_CONTROLLER_FIND_BY_ID_200_DESCRIPTION)
-    @ApiResponse(responseCode = "403"
-            , description = DEPARTAMENTO_CONTROLLER_403_DESCRIPTION
-            , content = @Content(schema = @Schema(hidden = true)))
-    @ApiResponse(responseCode = "404"
-            , description = DEPARTAMENTO_CONTROLLER_404_DESCRIPTION
-            , content = @Content(schema = @Schema(implementation = ApiErrorDTO.class)))
+    @ApiResponse403
+    @ApiResponse404
     ResponseEntity<RespostaDepartamentoDTO> findById(String id);
 
     @Tag(name=TAG_PUT)
@@ -81,18 +70,10 @@ public interface DepartamentoControllerDocs {
             , example = DEPARTAMENTO_CONTROLLER_UPDATE_PARAMETER_ID_EXAMPLE)
     @ApiResponse(responseCode = "200"
             , description = DEPARTAMENTO_CONTROLLER_UPDATE_200_DESCRIPTION)
-    @ApiResponse(responseCode = "400"
-            , description = DEPARTAMENTO_CONTROLLER_400_DESCRIPTION
-            , content = @Content(schema = @Schema(implementation = ApiErrorDTO.class)))
-    @ApiResponse(responseCode = "403"
-            , description = DEPARTAMENTO_CONTROLLER_403_DESCRIPTION
-            , content = @Content(schema = @Schema(hidden = true)))
-    @ApiResponse(responseCode = "404"
-            , description = DEPARTAMENTO_CONTROLLER_404_DESCRIPTION
-            , content = @Content(schema = @Schema(implementation = ApiErrorDTO.class)))
-    @ApiResponse(responseCode = "409"
-            , description = DEPARTAMENTO_CONTROLLER_409_DESCRIPTION
-            , content = @Content(schema = @Schema(implementation = ApiErrorDTO.class)))
+    @ApiResponse400
+    @ApiResponse403
+    @ApiResponse404
+    @ApiResponse409
     ResponseEntity<RespostaDepartamentoDTO> atualizaDepartamento(String id
             , RequisicaoDepartamentoDTO requisicaoDepartamentoDTO
             , BindingResult bindingResult);
@@ -108,14 +89,8 @@ public interface DepartamentoControllerDocs {
     @ApiResponse(responseCode = "204"
             , description = DEPARTAMENTO_CONTROLLER_DELETE_BY_ID_204_DESCRIPTION
             , content = @Content(schema = @Schema(hidden = true)))
-    @ApiResponse(responseCode = "403"
-            , description = DEPARTAMENTO_CONTROLLER_403_DESCRIPTION
-            , content = @Content(schema = @Schema(hidden = true)))
-    @ApiResponse(responseCode = "404"
-            , description = DEPARTAMENTO_CONTROLLER_404_DESCRIPTION
-            , content = @Content(schema = @Schema(implementation = ApiErrorDTO.class)))
-    @ApiResponse(responseCode = "409"
-            , description = DEPARTAMENTO_CONTROLLER_409_DESCRIPTION
-            , content = @Content(schema = @Schema(implementation = ApiErrorDTO.class)))
+    @ApiResponse403
+    @ApiResponse404
+    @ApiResponse409
     ResponseEntity<Void> deletarDepartamento(String id);
 }

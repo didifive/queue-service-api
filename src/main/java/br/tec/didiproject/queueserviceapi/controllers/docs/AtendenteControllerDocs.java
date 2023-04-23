@@ -1,9 +1,8 @@
 package br.tec.didiproject.queueserviceapi.controllers.docs;
 
-import br.tec.didiproject.queueserviceapi.dtos.ApiErrorDTO;
-import br.tec.didiproject.queueserviceapi.dtos.request.RequisicaoDepartamentoDTO;
-import br.tec.didiproject.queueserviceapi.dtos.response.RespostaDepartamentoDTO;
-import br.tec.didiproject.queueserviceapi.utils.annotations.PageParams;
+import br.tec.didiproject.queueserviceapi.dtos.request.RequisicaoAtendenteDTO;
+import br.tec.didiproject.queueserviceapi.dtos.response.RespostaAtendenteDTO;
+import br.tec.didiproject.queueserviceapi.utils.annotations.swagger.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -22,100 +21,76 @@ import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SC
 import static br.tec.didiproject.queueserviceapi.enums.constants.v1.ControllerAnnotationsV1.*;
 
 @SecurityRequirement(name = SECURITY_SCHEME_NAME)
-@Tag(name = DEPARTAMENTO_CONTROLER_TAG)
+@Tag(name = ATENDENTE_CONTROLER_TAG)
 public interface AtendenteControllerDocs {
 
-    @Tag(name=TAG_POST)
-    @Operation(summary = DEPARTAMENTO_CONTROLLER_CREATE_OPERATION_SUMMARY
-            , description = DEPARTAMENTO_CONTROLLER_CREATE_OPERATION_DESCRIPTION)
+    @Tag(name = TAG_POST)
+    @Operation(summary = ATENDENTE_CONTROLLER_CREATE_OPERATION_SUMMARY
+            , description = ATENDENTE_CONTROLLER_CREATE_OPERATION_DESCRIPTION)
     @ApiResponse(responseCode = "201"
-            , description = DEPARTAMENTO_CONTROLLER_CREATE_201_DESCRIPTION)
-    @ApiResponse(responseCode = "400"
-            , description = DEPARTAMENTO_CONTROLLER_400_DESCRIPTION
-            , content = @Content(schema = @Schema(implementation = ApiErrorDTO.class)))
-    @ApiResponse(responseCode = "403"
-            , description = DEPARTAMENTO_CONTROLLER_403_DESCRIPTION
-            , content = @Content(schema = @Schema(hidden = true)))
-    ResponseEntity<RespostaDepartamentoDTO> novoDepartamento(
-            RequisicaoDepartamentoDTO requisicaoDepartamentoDTO
+            , description = ATENDENTE_CONTROLLER_CREATE_201_DESCRIPTION)
+    @ApiResponse400
+    @ApiResponse403
+    ResponseEntity<RespostaAtendenteDTO> novoAtendente(
+            RequisicaoAtendenteDTO requisicaoAtendenteDTO
             , BindingResult bindingResult);
 
-    @Tag(name=TAG_GET)
-    @Operation(summary = DEPARTAMENTO_CONTROLLER_FIND_ALL_OPERATION_SUMMARY
-            , description = DEPARTAMENTO_CONTROLLER_FIND_ALL_OPERATION_DESCRIPTION)
+    @Tag(name = TAG_GET)
+    @Operation(summary = ATENDENTE_CONTROLLER_FIND_ALL_OPERATION_SUMMARY
+            , description = ATENDENTE_CONTROLLER_FIND_ALL_OPERATION_DESCRIPTION)
     @PageParams
     @ApiResponse(responseCode = "200"
-            , description = DEPARTAMENTO_CONTROLLER_FIND_ALL_200_DESCRIPTION)
-    @ApiResponse(responseCode = "403"
-            , description = DEPARTAMENTO_CONTROLLER_403_DESCRIPTION
-            , content = @Content(schema = @Schema(hidden = true)))
-    ResponseEntity<Page<RespostaDepartamentoDTO>> listarDepartamentos(
+            , description = ATENDENTE_CONTROLLER_FIND_ALL_200_DESCRIPTION)
+    @ApiResponse403
+    ResponseEntity<Page<RespostaAtendenteDTO>> listarAtendentes(
             Pageable pageable
     );
 
-    @Tag(name=TAG_GET)
-    @Operation(summary = DEPARTAMENTO_CONTROLLER_FIND_BY_ID_OPERATION_SUMMARY
-            , description = DEPARTAMENTO_CONTROLLER_FIND_BY_ID_OPERATION_DESCRIPTION)
+    @Tag(name = TAG_GET)
+    @Operation(summary = ATENDENTE_CONTROLLER_FIND_BY_ID_OPERATION_SUMMARY
+            , description = ATENDENTE_CONTROLLER_FIND_BY_ID_OPERATION_DESCRIPTION)
     @Parameter(in = ParameterIn.PATH
             , schema = @Schema(type = SCHEMA_TYPE_STRING)
             , name = "id"
-            , description = DEPARTAMENTO_CONTROLLER_FIND_BY_ID_PARAMETER_ID_DESCRIPTION
-            , example = DEPARTAMENTO_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE)
+            , description = ATENDENTE_CONTROLLER_FIND_BY_ID_PARAMETER_ID_DESCRIPTION
+            , example = ATENDENTE_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE)
     @ApiResponse(responseCode = "200"
-            , description = DEPARTAMENTO_CONTROLLER_FIND_BY_ID_200_DESCRIPTION)
-    @ApiResponse(responseCode = "403"
-            , description = DEPARTAMENTO_CONTROLLER_403_DESCRIPTION
-            , content = @Content(schema = @Schema(hidden = true)))
-    @ApiResponse(responseCode = "404"
-            , description = DEPARTAMENTO_CONTROLLER_404_DESCRIPTION
-            , content = @Content(schema = @Schema(implementation = ApiErrorDTO.class)))
-    ResponseEntity<RespostaDepartamentoDTO> findById(String id);
+            , description = ATENDENTE_CONTROLLER_FIND_BY_ID_200_DESCRIPTION)
+    @ApiResponse403
+    @ApiResponse404
+    ResponseEntity<RespostaAtendenteDTO> findById(String id);
 
-    @Tag(name=TAG_PUT)
-    @Operation(summary = DEPARTAMENTO_CONTROLLER_UPDATE_OPERATION_SUMMARY
-            , description = DEPARTAMENTO_CONTROLLER_UPDATE_OPERATION_DESCRIPTION)
+    @Tag(name = TAG_PUT)
+    @Operation(summary = ATENDENTE_CONTROLLER_UPDATE_OPERATION_SUMMARY
+            , description = ATENDENTE_CONTROLLER_UPDATE_OPERATION_DESCRIPTION)
     @Parameter(in = ParameterIn.PATH
             , schema = @Schema(type = SCHEMA_TYPE_STRING)
             , name = "id"
-            , description = DEPARTAMENTO_CONTROLLER_UPDATE_PARAMETER_ID_DESCRIPTION
-            , example = DEPARTAMENTO_CONTROLLER_UPDATE_PARAMETER_ID_EXAMPLE)
+            , description = ATENDENTE_CONTROLLER_UPDATE_PARAMETER_ID_DESCRIPTION
+            , example = ATENDENTE_CONTROLLER_UPDATE_PARAMETER_ID_EXAMPLE)
     @ApiResponse(responseCode = "200"
-            , description = DEPARTAMENTO_CONTROLLER_UPDATE_200_DESCRIPTION)
-    @ApiResponse(responseCode = "400"
-            , description = DEPARTAMENTO_CONTROLLER_400_DESCRIPTION
-            , content = @Content(schema = @Schema(implementation = ApiErrorDTO.class)))
-    @ApiResponse(responseCode = "403"
-            , description = DEPARTAMENTO_CONTROLLER_403_DESCRIPTION
-            , content = @Content(schema = @Schema(hidden = true)))
-    @ApiResponse(responseCode = "404"
-            , description = DEPARTAMENTO_CONTROLLER_404_DESCRIPTION
-            , content = @Content(schema = @Schema(implementation = ApiErrorDTO.class)))
-    @ApiResponse(responseCode = "409"
-            , description = DEPARTAMENTO_CONTROLLER_409_DESCRIPTION
-            , content = @Content(schema = @Schema(implementation = ApiErrorDTO.class)))
-    ResponseEntity<RespostaDepartamentoDTO> atualizaDepartamento(String id
-            , RequisicaoDepartamentoDTO requisicaoDepartamentoDTO
+            , description = ATENDENTE_CONTROLLER_UPDATE_200_DESCRIPTION)
+    @ApiResponse400
+    @ApiResponse403
+    @ApiResponse404
+    @ApiResponse409
+    ResponseEntity<RespostaAtendenteDTO> atualizaAtendente(String id
+            , RequisicaoAtendenteDTO requisicaoAtendenteDTO
             , BindingResult bindingResult);
 
-    @Tag(name=TAG_DELETE)
-    @Operation(summary = DEPARTAMENTO_CONTROLLER_DELETE_BY_ID_OPERATION_SUMMARY
-            , description = DEPARTAMENTO_CONTROLLER_DELETE_BY_ID_OPERATION_DESCRIPTION)
+    @Tag(name = TAG_DELETE)
+    @Operation(summary = ATENDENTE_CONTROLLER_DELETE_BY_ID_OPERATION_SUMMARY
+            , description = ATENDENTE_CONTROLLER_DELETE_BY_ID_OPERATION_DESCRIPTION)
     @Parameter(in = ParameterIn.PATH
             , schema = @Schema(type = SCHEMA_TYPE_STRING)
             , name = "id"
-            , description = DEPARTAMENTO_CONTROLLER_DELETE_BY_ID_PARAMETER_ID_DESCRIPTION
-            , example = DEPARTAMENTO_CONTROLLER_DELETE_BY_ID_PARAMETER_ID_EXAMPLE)
+            , description = ATENDENTE_CONTROLLER_DELETE_BY_ID_PARAMETER_ID_DESCRIPTION
+            , example = ATENDENTE_CONTROLLER_DELETE_BY_ID_PARAMETER_ID_EXAMPLE)
     @ApiResponse(responseCode = "204"
-            , description = DEPARTAMENTO_CONTROLLER_DELETE_BY_ID_204_DESCRIPTION
+            , description = ATENDENTE_CONTROLLER_DELETE_BY_ID_204_DESCRIPTION
             , content = @Content(schema = @Schema(hidden = true)))
-    @ApiResponse(responseCode = "403"
-            , description = DEPARTAMENTO_CONTROLLER_403_DESCRIPTION
-            , content = @Content(schema = @Schema(hidden = true)))
-    @ApiResponse(responseCode = "404"
-            , description = DEPARTAMENTO_CONTROLLER_404_DESCRIPTION
-            , content = @Content(schema = @Schema(implementation = ApiErrorDTO.class)))
-    @ApiResponse(responseCode = "409"
-            , description = DEPARTAMENTO_CONTROLLER_409_DESCRIPTION
-            , content = @Content(schema = @Schema(implementation = ApiErrorDTO.class)))
-    ResponseEntity<Void> deletarDepartamento(String id);
+    @ApiResponse403
+    @ApiResponse404
+    @ApiResponse409
+    ResponseEntity<Void> deletarAtendente(String id);
 }

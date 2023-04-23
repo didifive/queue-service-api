@@ -12,6 +12,11 @@ public final class ControllerAnnotationsV1 {
             + "Aceita ordenação múltipla. ";
     public static final String CONTROLLER_FIND_ALL_PARAMETER_SORT_EXAMPLE = "id,desc";
 
+    public static final String CONTROLLER_400_DESCRIPTION = "Campo requerido vazio ou inválido, verificar mensagem de retorno";
+    public static final String CONTROLLER_403_DESCRIPTION = "Acesso Negado. Não está autorizado";
+    public static final String CONTROLLER_404_DESCRIPTION = "Entidade não foi encontrada";
+    public static final String CONTROLLER_409_DESCRIPTION = "Ocorreu erro com integridade de dado";
+
     /**
      * Constants for AuthControllerDocs
      */
@@ -38,10 +43,6 @@ public final class ControllerAnnotationsV1 {
     public static final String AUTH_CONTROLER_INVALIDA_REFRESH_TOKEN_404_DESCRIPTION = "Usuário não foi localizado";
 
     public static final String EMPRESA_CONTROLER_TAG = "3. Empresa";
-    public static final String EMPRESA_CONTROLLER_400_DESCRIPTION = "Campo requerido vazio ou inválido, verificar mensagem de retorno";
-    public static final String EMPRESA_CONTROLLER_403_DESCRIPTION = "Acesso Negado. Não está autorizado";
-    public static final String EMPRESA_CONTROLLER_404_DESCRIPTION = "Empresa não foi encontrada";
-    public static final String EMPRESA_CONTROLLER_409_DESCRIPTION = "Ocorreu erro com integridade de dado";
     public static final String EMPRESA_CONTROLLER_CREATE_OPERATION_SUMMARY = "Cadastrar empresa";
     public static final String EMPRESA_CONTROLLER_CREATE_OPERATION_DESCRIPTION = "Operação para cadastrar nova empresa";
     public static final String EMPRESA_CONTROLLER_CREATE_201_DESCRIPTION = "Nova empresa cadastrada com sucesso";
@@ -65,20 +66,16 @@ public final class ControllerAnnotationsV1 {
     public static final String EMPRESA_CONTROLLER_DELETE_BY_ID_204_DESCRIPTION = "Empresa excluída com sucesso";
 
     public static final String DEPARTAMENTO_CONTROLER_TAG = "4. Departamento";
-    public static final String DEPARTAMENTO_CONTROLLER_400_DESCRIPTION = "Campo requerido vazio ou inválido, verificar mensagem de retorno";
-    public static final String DEPARTAMENTO_CONTROLLER_403_DESCRIPTION = "Acesso Negado. Não está autorizado";
-    public static final String DEPARTAMENTO_CONTROLLER_404_DESCRIPTION = "Departamento não foi encontrado";
-    public static final String DEPARTAMENTO_CONTROLLER_409_DESCRIPTION = "Ocorreu erro com integridade de dado";
     public static final String DEPARTAMENTO_CONTROLLER_CREATE_OPERATION_SUMMARY = "Cadastrar departamento";
     public static final String DEPARTAMENTO_CONTROLLER_CREATE_OPERATION_DESCRIPTION = "Operação para cadastrar novo departamento";
     public static final String DEPARTAMENTO_CONTROLLER_CREATE_201_DESCRIPTION = "Novo departamento cadastrado com sucesso";
     public static final String DEPARTAMENTO_CONTROLLER_FIND_ALL_OPERATION_SUMMARY = "Listar Departamentos";
-    public static final String DEPARTAMENTO_CONTROLLER_FIND_ALL_OPERATION_DESCRIPTION = "Listar todas os Departamentos cadastradas";
+    public static final String DEPARTAMENTO_CONTROLLER_FIND_ALL_OPERATION_DESCRIPTION = "Listar todos os Departamentos cadastrados";
     public static final String DEPARTAMENTO_CONTROLLER_FIND_ALL_200_DESCRIPTION = "Retorna lista paginada de departamentos cadastrados";
     public static final String DEPARTAMENTO_CONTROLLER_FIND_BY_ID_OPERATION_SUMMARY = "Detalhar Departamento";
     public static final String DEPARTAMENTO_CONTROLLER_FIND_BY_ID_OPERATION_DESCRIPTION = "Detalhar departamento conforme id informado";
     public static final String DEPARTAMENTO_CONTROLLER_FIND_BY_ID_PARAMETER_ID_DESCRIPTION = "Id do departamento";
-    public static final String DEPARTAMENTO_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE = "123e4567-e89b-12d3-a456-426655440000";
+    public static final String DEPARTAMENTO_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE = EMPRESA_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE;
     public static final String DEPARTAMENTO_CONTROLLER_FIND_BY_ID_200_DESCRIPTION = "Retorna detalhe do departamento buscado";
     public static final String DEPARTAMENTO_CONTROLLER_UPDATE_OPERATION_SUMMARY = "Atualizar Departamento";
     public static final String DEPARTAMENTO_CONTROLLER_UPDATE_OPERATION_DESCRIPTION = "Realizar atualização do departamento";
@@ -90,6 +87,29 @@ public final class ControllerAnnotationsV1 {
     public static final String DEPARTAMENTO_CONTROLLER_DELETE_BY_ID_PARAMETER_ID_DESCRIPTION = DEPARTAMENTO_CONTROLLER_FIND_BY_ID_PARAMETER_ID_DESCRIPTION;
     public static final String DEPARTAMENTO_CONTROLLER_DELETE_BY_ID_PARAMETER_ID_EXAMPLE = DEPARTAMENTO_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE;
     public static final String DEPARTAMENTO_CONTROLLER_DELETE_BY_ID_204_DESCRIPTION = "Departamento excluído com sucesso";
+
+    public static final String ATENDENTE_CONTROLER_TAG = "5. Atendente";
+    public static final String ATENDENTE_CONTROLLER_CREATE_OPERATION_SUMMARY = "Cadastrar atendente";
+    public static final String ATENDENTE_CONTROLLER_CREATE_OPERATION_DESCRIPTION = "Operação para cadastrar novo atendente";
+    public static final String ATENDENTE_CONTROLLER_CREATE_201_DESCRIPTION = "Novo atendente cadastrado com sucesso";
+    public static final String ATENDENTE_CONTROLLER_FIND_ALL_OPERATION_SUMMARY = "Listar Atendentes";
+    public static final String ATENDENTE_CONTROLLER_FIND_ALL_OPERATION_DESCRIPTION = "Listar todos os Atendentes cadastrados";
+    public static final String ATENDENTE_CONTROLLER_FIND_ALL_200_DESCRIPTION = "Retorna lista paginada de atendentes cadastrados";
+    public static final String ATENDENTE_CONTROLLER_FIND_BY_ID_OPERATION_SUMMARY = "Detalhar Atendente";
+    public static final String ATENDENTE_CONTROLLER_FIND_BY_ID_OPERATION_DESCRIPTION = "Detalhar atendente conforme id informado";
+    public static final String ATENDENTE_CONTROLLER_FIND_BY_ID_PARAMETER_ID_DESCRIPTION = "Id do atendente";
+    public static final String ATENDENTE_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE = EMPRESA_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE;
+    public static final String ATENDENTE_CONTROLLER_FIND_BY_ID_200_DESCRIPTION = "Retorna detalhe do atendente buscado";
+    public static final String ATENDENTE_CONTROLLER_UPDATE_OPERATION_SUMMARY = "Atualizar Atendente";
+    public static final String ATENDENTE_CONTROLLER_UPDATE_OPERATION_DESCRIPTION = "Realizar atualização do atendente";
+    public static final String ATENDENTE_CONTROLLER_UPDATE_PARAMETER_ID_DESCRIPTION = ATENDENTE_CONTROLLER_FIND_BY_ID_PARAMETER_ID_DESCRIPTION;
+    public static final String ATENDENTE_CONTROLLER_UPDATE_PARAMETER_ID_EXAMPLE = ATENDENTE_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE;
+    public static final String ATENDENTE_CONTROLLER_UPDATE_200_DESCRIPTION = "Atendente atualizado com sucesso";
+    public static final String ATENDENTE_CONTROLLER_DELETE_BY_ID_OPERATION_SUMMARY = "Excluir Atendente";
+    public static final String ATENDENTE_CONTROLLER_DELETE_BY_ID_OPERATION_DESCRIPTION = "Realizar exclusão do atendente";
+    public static final String ATENDENTE_CONTROLLER_DELETE_BY_ID_PARAMETER_ID_DESCRIPTION = ATENDENTE_CONTROLLER_FIND_BY_ID_PARAMETER_ID_DESCRIPTION;
+    public static final String ATENDENTE_CONTROLLER_DELETE_BY_ID_PARAMETER_ID_EXAMPLE = ATENDENTE_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE;
+    public static final String ATENDENTE_CONTROLLER_DELETE_BY_ID_204_DESCRIPTION = "Atendente excluído com sucesso";
 
 
     private ControllerAnnotationsV1() {

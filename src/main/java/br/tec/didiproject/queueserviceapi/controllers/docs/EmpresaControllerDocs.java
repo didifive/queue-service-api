@@ -1,10 +1,8 @@
 package br.tec.didiproject.queueserviceapi.controllers.docs;
 
-import br.tec.didiproject.queueserviceapi.dtos.ApiErrorDTO;
 import br.tec.didiproject.queueserviceapi.dtos.request.RequisicaoEmpresaDTO;
 import br.tec.didiproject.queueserviceapi.dtos.response.RespostaEmpresaDTO;
-import br.tec.didiproject.queueserviceapi.utils.annotations.PageParams;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import br.tec.didiproject.queueserviceapi.utils.annotations.swagger.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -31,12 +29,8 @@ public interface EmpresaControllerDocs {
             , description = EMPRESA_CONTROLLER_CREATE_OPERATION_DESCRIPTION)
     @ApiResponse(responseCode = "201"
             , description = EMPRESA_CONTROLLER_CREATE_201_DESCRIPTION)
-    @ApiResponse(responseCode = "400"
-            , description = EMPRESA_CONTROLLER_400_DESCRIPTION
-            , content = @Content(schema = @Schema(implementation = ApiErrorDTO.class)))
-    @ApiResponse(responseCode = "403"
-            , description = EMPRESA_CONTROLLER_403_DESCRIPTION
-            , content = @Content(schema = @Schema(hidden = true)))
+    @ApiResponse400
+    @ApiResponse403
     ResponseEntity<RespostaEmpresaDTO> novaEmpresa(
             RequisicaoEmpresaDTO requisicaoEmpresaDTO
             , BindingResult bindingResult);
@@ -47,9 +41,7 @@ public interface EmpresaControllerDocs {
     @PageParams
     @ApiResponse(responseCode = "200"
             , description = EMPRESA_CONTROLLER_FIND_ALL_200_DESCRIPTION)
-    @ApiResponse(responseCode = "403"
-            , description = EMPRESA_CONTROLLER_403_DESCRIPTION
-            , content = @Content(schema = @Schema(hidden = true)))
+    @ApiResponse403
     ResponseEntity<Page<RespostaEmpresaDTO>> listarEmpresas(
             Pageable pageable
     );
@@ -64,12 +56,8 @@ public interface EmpresaControllerDocs {
             , example = EMPRESA_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE)
     @ApiResponse(responseCode = "200"
             , description = EMPRESA_CONTROLLER_FIND_BY_ID_200_DESCRIPTION)
-    @ApiResponse(responseCode = "403"
-            , description = EMPRESA_CONTROLLER_403_DESCRIPTION
-            , content = @Content(schema = @Schema(hidden = true)))
-    @ApiResponse(responseCode = "404"
-            , description = EMPRESA_CONTROLLER_404_DESCRIPTION
-            , content = @Content(schema = @Schema(implementation = ApiErrorDTO.class)))
+    @ApiResponse403
+    @ApiResponse404
     ResponseEntity<RespostaEmpresaDTO> findById(String id);
 
     @Tag(name=TAG_PUT)
@@ -82,18 +70,10 @@ public interface EmpresaControllerDocs {
             , example = EMPRESA_CONTROLLER_UPDATE_PARAMETER_ID_EXAMPLE)
     @ApiResponse(responseCode = "200"
             , description = EMPRESA_CONTROLLER_UPDATE_200_DESCRIPTION)
-    @ApiResponse(responseCode = "400"
-            , description = EMPRESA_CONTROLLER_400_DESCRIPTION
-            , content = @Content(schema = @Schema(implementation = ApiErrorDTO.class)))
-    @ApiResponse(responseCode = "403"
-            , description = EMPRESA_CONTROLLER_403_DESCRIPTION
-            , content = @Content(schema = @Schema(hidden = true)))
-    @ApiResponse(responseCode = "404"
-            , description = EMPRESA_CONTROLLER_404_DESCRIPTION
-            , content = @Content(schema = @Schema(implementation = ApiErrorDTO.class)))
-    @ApiResponse(responseCode = "409"
-            , description = EMPRESA_CONTROLLER_409_DESCRIPTION
-            , content = @Content(schema = @Schema(implementation = ApiErrorDTO.class)))
+    @ApiResponse400
+    @ApiResponse403
+    @ApiResponse404
+    @ApiResponse409
     ResponseEntity<RespostaEmpresaDTO> atualizaEmpresa(String id
             , RequisicaoEmpresaDTO requisicaoEmpresaDTO
             , BindingResult bindingResult);
@@ -109,14 +89,8 @@ public interface EmpresaControllerDocs {
     @ApiResponse(responseCode = "204"
             , description = EMPRESA_CONTROLLER_DELETE_BY_ID_204_DESCRIPTION
             , content = @Content(schema = @Schema(hidden = true)))
-    @ApiResponse(responseCode = "403"
-            , description = EMPRESA_CONTROLLER_403_DESCRIPTION
-            , content = @Content(schema = @Schema(hidden = true)))
-    @ApiResponse(responseCode = "404"
-            , description = EMPRESA_CONTROLLER_404_DESCRIPTION
-            , content = @Content(schema = @Schema(implementation = ApiErrorDTO.class)))
-    @ApiResponse(responseCode = "409"
-            , description = EMPRESA_CONTROLLER_409_DESCRIPTION
-            , content = @Content(schema = @Schema(implementation = ApiErrorDTO.class)))
+    @ApiResponse403
+    @ApiResponse404
+    @ApiResponse409
     ResponseEntity<Void> deletarEmpresa(String id);
 }
