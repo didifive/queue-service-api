@@ -18,7 +18,7 @@
 		<java.version>17</java.version>
 		<lombok.version>1.18.26</lombok.version>
 		<org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
-		<org.springdoc.version>1.6.14</org.springdoc.version>
+		<org.springdoc.version>2.1.0</org.springdoc.version>
 		<org.jacoco.version>0.8.8</org.jacoco.version>
 		<com.auth0.version>4.3.0</com.auth0.version>
 		<maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
@@ -37,7 +37,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -61,18 +60,22 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-ui</artifactId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
 			<version>${org.springdoc.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-security</artifactId>
-			<version>${org.springdoc.version}</version>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>${com.auth0.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jacoco</groupId>
@@ -80,18 +83,9 @@
 			<version>${org.jacoco.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.auth0</groupId>
-			<artifactId>java-jwt</artifactId>
-			<version>${com.auth0.version}</version>
 		</dependency>
 	</dependencies>
 

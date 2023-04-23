@@ -23,7 +23,7 @@ import static br.tec.didiproject.queueserviceapi.enums.constants.v1.ControllerAn
 
 @SecurityRequirement(name = SECURITY_SCHEME_NAME)
 @Tag(name = DEPARTAMENTO_CONTROLER_TAG)
-public interface DepartamentoControllerDocs {
+public interface AtendenteControllerDocs {
 
     @Tag(name=TAG_POST)
     @Operation(summary = DEPARTAMENTO_CONTROLLER_CREATE_OPERATION_SUMMARY

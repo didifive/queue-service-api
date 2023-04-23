@@ -19,9 +19,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import static br.tec.didiproject.queueserviceapi.enums.constants.v1.MappingRoutesV1.PATH_AUTH;
 
+@Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-@Configuration
 public class SecurityConfig {
 
     private static final String[] AUTH_WHITELIST = {
@@ -42,19 +42,18 @@ public class SecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http
             , AuthService authService
             , UsuarioService usuarioService) throws Exception {
-        http.cors()
-                .and()
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.GET, "/").permitAll()
+        http.authorizeHttpRequests(auth -> auth
+                        .requestMatchers(HttpMethod.GET,"/").permitAll()
+                        .requestMatchers(HttpMethod.GET,AUTH_WHITELIST).permitAll()
                         .requestMatchers(HttpMethod.POST, PATH_AUTH).permitAll()
                         .requestMatchers(HttpMethod.POST, PATH_AUTH + "/refresh/*/*").permitAll()
-                        .requestMatchers(AUTH_WHITELIST).permitAll()
                         .anyRequest().authenticated()
                 )
+                .csrf().disable()
+                .cors().and()
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(new FilterAuthentication(authService, usuarioService),
-                        UsernamePasswordAuthenticationFilter.class)
-                .csrf().disable();
+                        UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 

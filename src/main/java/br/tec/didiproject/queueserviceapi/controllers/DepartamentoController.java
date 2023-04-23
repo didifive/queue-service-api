@@ -44,10 +44,10 @@ public class DepartamentoController implements DepartamentoControllerDocs {
 
         checkBindingResultError(bindingResult);
 
-        Departamento novaDepartamento = departamentoService.create(departamentoMapper.toEntity(requisicaoDepartamentoDTO));
+        Departamento novoDepartamento = departamentoService.create(departamentoMapper.toEntity(requisicaoDepartamentoDTO));
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(novaDepartamento.getId().toString()).toUri();
-        return ResponseEntity.created(uri).body(departamentoMapper.toResponseDTO(novaDepartamento));
+                .buildAndExpand(novoDepartamento.getId().toString()).toUri();
+        return ResponseEntity.created(uri).body(departamentoMapper.toResponseDTO(novoDepartamento));
     }
 
     @GetMapping

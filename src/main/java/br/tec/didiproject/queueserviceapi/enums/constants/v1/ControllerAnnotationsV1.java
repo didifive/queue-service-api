@@ -2,6 +2,16 @@ package br.tec.didiproject.queueserviceapi.enums.constants.v1;
 
 public final class ControllerAnnotationsV1 {
 
+    public static final String CONTROLLER_FIND_ALL_PARAMETER_SIZE_DESCRIPTION = "Quantidade de objetos por página";
+    public static final String CONTROLLER_FIND_ALL_PARAMETER_SIZE_EXAMPLE = "10";
+    public static final String CONTROLLER_FIND_ALL_PARAMETER_PAGE = "O número da página que quer retornar";
+    public static final String CONTROLLER_FIND_ALL_PARAMETER_PAGE_SIZE = "0";
+    public static final String CONTROLLER_FIND_ALL_PARAMETER_SORT_DESCRIPTION = "Nome do campo que deseja ordenar. "
+            + "Seguido da direção de ordenação desejada \',asc|desc\' (ascendente/descendente). "
+            + "A direção de ordenação padrão é ascendent. "
+            + "Aceita ordenação múltipla. ";
+    public static final String CONTROLLER_FIND_ALL_PARAMETER_SORT_EXAMPLE = "id,desc";
+
     /**
      * Constants for AuthControllerDocs
      */
@@ -37,15 +47,6 @@ public final class ControllerAnnotationsV1 {
     public static final String EMPRESA_CONTROLLER_CREATE_201_DESCRIPTION = "Nova empresa cadastrada com sucesso";
     public static final String EMPRESA_CONTROLLER_FIND_ALL_OPERATION_SUMMARY = "Listar Empresas";
     public static final String EMPRESA_CONTROLLER_FIND_ALL_OPERATION_DESCRIPTION = "Listar todas as Empresas cadastradas";
-    public static final String EMPRESA_CONTROLLER_FIND_ALL_PARAMETER_SIZE_DESCRIPTION = "Quantidade de objetos por página";
-    public static final String EMPRESA_CONTROLLER_FIND_ALL_PARAMETER_SIZE_EXAMPLE = "10";
-    public static final String EMPRESA_CONTROLLER_FIND_ALL_PARAMETER_PAGE = "O número da página que quer retornar";
-    public static final String EMPRESA_CONTROLLER_FIND_ALL_PARAMETER_PAGE_SIZE = "0";
-    public static final String EMPRESA_CONTROLLER_FIND_ALL_PARAMETER_SORT_DESCRIPTION = "Nome do campo que deseja ordenar. "
-            + "Seguido da direção de ordenação desejada \',asc|desc\' (ascendente/descendente). "
-            + "A direção de ordenação padrão é ascendent. "
-            + "Aceita ordenação múltipla. ";
-    public static final String EMPRESA_CONTROLLER_FIND_ALL_PARAMETER_SORT_EXAMPLE = "id,desc";
     public static final String EMPRESA_CONTROLLER_FIND_ALL_200_DESCRIPTION = "Retorna lista paginada de empresas cadastradas";
     public static final String EMPRESA_CONTROLLER_FIND_BY_ID_OPERATION_SUMMARY = "Detalhar Empresa";
     public static final String EMPRESA_CONTROLLER_FIND_BY_ID_OPERATION_DESCRIPTION = "Detalhar empresa conforme id informado";
@@ -73,15 +74,6 @@ public final class ControllerAnnotationsV1 {
     public static final String DEPARTAMENTO_CONTROLLER_CREATE_201_DESCRIPTION = "Novo departamento cadastrado com sucesso";
     public static final String DEPARTAMENTO_CONTROLLER_FIND_ALL_OPERATION_SUMMARY = "Listar Departamentos";
     public static final String DEPARTAMENTO_CONTROLLER_FIND_ALL_OPERATION_DESCRIPTION = "Listar todas os Departamentos cadastradas";
-    public static final String DEPARTAMENTO_CONTROLLER_FIND_ALL_PARAMETER_SIZE_DESCRIPTION = "Quantidade de objetos por página";
-    public static final String DEPARTAMENTO_CONTROLLER_FIND_ALL_PARAMETER_SIZE_EXAMPLE = "10";
-    public static final String DEPARTAMENTO_CONTROLLER_FIND_ALL_PARAMETER_PAGE = "O número da página que quer retornar";
-    public static final String DEPARTAMENTO_CONTROLLER_FIND_ALL_PARAMETER_PAGE_SIZE = "0";
-    public static final String DEPARTAMENTO_CONTROLLER_FIND_ALL_PARAMETER_SORT_DESCRIPTION = "Nome do campo que deseja ordenar. "
-            + "Seguido da direção de ordenação desejada ',asc|desc' (ascendente/descendente). "
-            + "A direção de ordenação padrão é ascendent. "
-            + "Aceita ordenação múltipla. ";
-    public static final String DEPARTAMENTO_CONTROLLER_FIND_ALL_PARAMETER_SORT_EXAMPLE = "id,desc";
     public static final String DEPARTAMENTO_CONTROLLER_FIND_ALL_200_DESCRIPTION = "Retorna lista paginada de departamentos cadastrados";
     public static final String DEPARTAMENTO_CONTROLLER_FIND_BY_ID_OPERATION_SUMMARY = "Detalhar Departamento";
     public static final String DEPARTAMENTO_CONTROLLER_FIND_BY_ID_OPERATION_DESCRIPTION = "Detalhar departamento conforme id informado";
