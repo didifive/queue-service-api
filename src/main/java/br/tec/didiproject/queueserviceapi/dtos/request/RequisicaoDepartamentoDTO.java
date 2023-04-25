@@ -37,6 +37,7 @@ public class RequisicaoDepartamentoDTO implements Serializable {
             , title = SCHEMA_DEPARTAMENTO_EMPRESA_ID_TITLE
             , description = SCHEMA_DEPARTAMENTO_EMPRESA_ID_DESCRIPTION
             , example = SCHEMA_DEPARTAMENTO_EMPRESA_ID_EXAMPLE)
+    @NotBlank
     @UUID
     String empresaId;
 }

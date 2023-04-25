@@ -1,15 +1,17 @@
 package br.tec.didiproject.queueserviceapi.dtos.mapper;
 
+import br.tec.didiproject.queueserviceapi.dtos.request.RequisicaoAtendenteDTO;
 import br.tec.didiproject.queueserviceapi.dtos.request.RequisicaoDepartamentoDTO;
+import br.tec.didiproject.queueserviceapi.dtos.response.RespostaAtendenteDTO;
 import br.tec.didiproject.queueserviceapi.dtos.response.RespostaDepartamentoDTO;
+import br.tec.didiproject.queueserviceapi.entities.Atendente;
 import br.tec.didiproject.queueserviceapi.entities.Departamento;
+import br.tec.didiproject.queueserviceapi.entities.Usuario;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Mapper(componentModel = "spring")
 public interface AtendenteMapper {
@@ -18,30 +20,31 @@ public interface AtendenteMapper {
     @Mapping(source = "departamentosId"
             , target = "departamentos"
             , qualifiedByName = "idsToDepartamentos")
-    Departamento toEntity(RequisicaoDepartamentoDTO requisicaoDepartamentoDTO);
+    Atendente toEntity(RequisicaoAtendenteDTO requisicaoDepartamentoDTO);
 
-    @Mapping(target = "id", expression = "java(departamento.getId().toString())")
+    @Mapping(target = "id", expression = "java(atendente.getId().toString())")
+    @Mapping(source = "atendente.departamentos"
+            , target = "departamentosId"
+            , qualifiedByName = "departamentosToIds")
+    @Mapping(target = "usuarioId", expression = "java(usuario.getId().toString())")
+    RespostaAtendenteDTO toResponseDTO(Atendente atendente, Usuario usuario);
+
+    @Mapping(target = "id", expression = "java(atendente.getId().toString())")
     @Mapping(source = "departamentos"
             , target = "departamentosId"
             , qualifiedByName = "departamentosToIds")
-    RespostaDepartamentoDTO toResponseDTO(Departamento departamento);
-
-    @Mapping(target = "id", expression = "java(departamento.getId().toString())")
-    @Mapping(source = "departamentos"
-            , target = "departamentosId"
-            , qualifiedByName = "departamentosToIds")
-    List<RespostaDepartamentoDTO> toResponseDTOList(List<Departamento> departamentos);
+    List<RespostaAtendenteDTO> toResponseDTOList(List<Atendente> atendentes);
 
     @Named("idsToDepartamentos")
-    public static List<Departamento> idsToDepartamentos(List<String> departamentosId) {
-        List<Departamento> departamentos = new ArrayList<>();
+    public static Set<Departamento> idsToDepartamentos(List<String> departamentosId) {
+        Set<Departamento> departamentos = new HashSet<>();
         for (String idDepartamento : departamentosId)
             departamentos.add(new Departamento(UUID.fromString(idDepartamento),null,null));
         return departamentos;
     }
 
     @Named("departamentosToIds")
-    public static List<String> departamentosToIds(List<Departamento> departamentos) {
+    public static List<String> departamentosToIds(Set<Departamento> departamentos) {
         List<String> departamentosString = new ArrayList<>();
         for (Departamento departamento : departamentos)
             departamentosString.add(departamento.getId().toString());

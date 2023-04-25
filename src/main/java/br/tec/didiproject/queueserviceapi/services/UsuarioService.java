@@ -205,6 +205,18 @@ public class UsuarioService implements UserDetailsService {
     }
 
     /**
+     * CRUD: Update
+     * Detach Atendente
+     *
+     * @param usuarioId UUID with the user Id
+     */
+    public Usuario desligarAtendente(UUID usuarioId) {
+        Usuario usuario = this.findById(usuarioId);
+        usuario.setAtendente(null);
+        return usuarioRepository.save(usuario);
+    }
+
+    /**
      * This method check if a new username already exists in the database
      * and throws a DataIntegrityViolationException if existing
      *

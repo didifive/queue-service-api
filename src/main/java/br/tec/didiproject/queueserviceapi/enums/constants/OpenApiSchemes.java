@@ -82,15 +82,35 @@ public class OpenApiSchemes {
      * Constants for @Schema annotation in RequisicaoDepartamentoDTO and RespostaDepartamentoDTO
      */
     public static final String SCHEMA_DEPARTAMENTO = " do departamento";
-    public static final String SCHEMA_DEPARTAMENTO_ID_TITLE = "Id";
+    public static final String SCHEMA_DEPARTAMENTO_ID_TITLE = SCHEMA_EMPRESA_ID_TITLE;
     public static final String SCHEMA_DEPARTAMENTO_ID_EXAMPLE = SCHEMA_AUTH_REFRESH_TOKEN_EXAMPLE;
     public static final String SCHEMA_DEPARTAMENTO_ID_DESCRIPTION = SCHEMA_DEPARTAMENTO_ID_TITLE + SCHEMA_DEPARTAMENTO;
-    public static final String SCHEMA_DEPARTAMENTO_NOME_TITLE = "Nome";
+    public static final String SCHEMA_DEPARTAMENTO_NOME_TITLE = SCHEMA_EMPRESA_NOME_TITLE;
     public static final String SCHEMA_DEPARTAMENTO_NOME_DESCRIPTION = SCHEMA_DEPARTAMENTO_NOME_TITLE + SCHEMA_DEPARTAMENTO;
     public static final String SCHEMA_DEPARTAMENTO_NOME_EXAMPLE = "Caixa";
     public static final String SCHEMA_DEPARTAMENTO_EMPRESA_ID_TITLE = SCHEMA_EMPRESA_ID_TITLE;
     public static final String SCHEMA_DEPARTAMENTO_EMPRESA_ID_DESCRIPTION = SCHEMA_EMPRESA_ID_DESCRIPTION;
     public static final String SCHEMA_DEPARTAMENTO_EMPRESA_ID_EXAMPLE = SCHEMA_AUTH_REFRESH_TOKEN_EXAMPLE;
+
+    /**
+     * Constants for @Schema annotation in RequisicaoAtendenteDTO and RespostaAtendenteDTO
+     */
+    public static final String SCHEMA_ATENDENTE = " do atendente";
+    public static final String SCHEMA_ATENDENTE_ID_TITLE = SCHEMA_EMPRESA_ID_TITLE;
+    public static final String SCHEMA_ATENDENTE_ID_EXAMPLE = SCHEMA_AUTH_REFRESH_TOKEN_EXAMPLE;
+    public static final String SCHEMA_ATENDENTE_ID_DESCRIPTION = SCHEMA_ATENDENTE_ID_TITLE + SCHEMA_ATENDENTE;
+    public static final String SCHEMA_ATENDENTE_NOME_TITLE = SCHEMA_EMPRESA_NOME_TITLE;
+    public static final String SCHEMA_ATENDENTE_NOME_DESCRIPTION = SCHEMA_ATENDENTE_NOME_TITLE + SCHEMA_ATENDENTE;
+    public static final String SCHEMA_ATENDENTE_NOME_EXAMPLE = "José da Silva";
+    public static final String SCHEMA_ATENDENTE_EMAIL_TITLE = "E-mail";
+    public static final String SCHEMA_ATENDENTE_EMAIL_DESCRIPTION = SCHEMA_ATENDENTE_EMAIL_TITLE + SCHEMA_ATENDENTE;
+    public static final String SCHEMA_ATENDENTE_EMAIL_EXAMPLE = "José da Silva";
+    public static final String SCHEMA_ATENDENTE_LISTA_DEPARTAMENTO_ID_TITLE = "Lista de Ids";
+    public static final String SCHEMA_ATENDENTE_LISTA_DEPARTAMENTO_ID_DESCRIPTION = "Lista de Ids de departamentos vinculados ao atendente";
+    public static final String SCHEMA_ATENDENTE_LISTA_DEPARTAMENTO_ID_EXAMPLE = "["+SCHEMA_AUTH_REFRESH_TOKEN_EXAMPLE+"]";
+    public static final String SCHEMA_ATENDENTE_USUARIO_ID_TITLE = SCHEMA_EMPRESA_ID_TITLE;
+    public static final String SCHEMA_ATENDENTE_USUARIO_ID_DESCRIPTION = SCHEMA_ATENDENTE_USUARIO_ID_TITLE + "do usuário vinculado";
+    public static final String SCHEMA_ATENDENTE_USUARIO_ID_EXAMPLE = SCHEMA_AUTH_REFRESH_TOKEN_EXAMPLE;
 
     private OpenApiSchemes() {
         throw new IllegalAccessError("Utility Class");

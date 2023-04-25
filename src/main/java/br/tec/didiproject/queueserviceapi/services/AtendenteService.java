@@ -8,13 +8,18 @@ import br.tec.didiproject.queueserviceapi.exceptions.EntityNotFoundException;
 import br.tec.didiproject.queueserviceapi.repositories.AtendenteRepository;
 import br.tec.didiproject.queueserviceapi.repositories.SenhaRepository;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.UUID;
+import java.util.random.RandomGenerator;
 import java.util.stream.Collectors;
 
 import static br.tec.didiproject.queueserviceapi.exceptions.BaseErrorMessage.ATTENDANT_NOT_FOUND;
@@ -67,9 +72,28 @@ public class AtendenteService {
                 .atendente(novoAtendente)
                 .perfis(new HashSet<>())
                 .build();
-        usuarioService.create(novoUsuario);
+        this.criarUsuario(novoUsuario);
 
         return novoAtendente;
+    }
+
+    private void criarUsuario(Usuario novoUsuario) {
+        try {
+            usuarioService.create(novoUsuario);
+        } catch (DataIntegrityViolationException e) {
+            String[] nomeUsuarioSplit = novoUsuario.getNomeUsuario().split("@");
+            String ultimoCaractereNomeUsuario = nomeUsuarioSplit[0].substring(nomeUsuarioSplit[0].length() - 1);
+            if (NumberUtils.isDigits(ultimoCaractereNomeUsuario))
+                nomeUsuarioSplit[0] = nomeUsuarioSplit[0].substring(0,nomeUsuarioSplit[0].length() - 1)
+                                    + (Integer.parseInt(ultimoCaractereNomeUsuario) + 1);
+            else
+                nomeUsuarioSplit[0] = nomeUsuarioSplit[0].substring(0,nomeUsuarioSplit[0].length() - 1)
+                                    + "1";
+            String novoNomeUsuario = String.join("@", nomeUsuarioSplit);
+            novoUsuario.setNomeUsuario(novoNomeUsuario);
+            novoUsuario.setSenha(novoNomeUsuario);
+            this.criarUsuario(novoUsuario);
+        }
     }
 
     /**
@@ -110,6 +134,10 @@ public class AtendenteService {
                                             .map(s -> s.getId().toString())
                                             .collect(Collectors.joining(", ")))
                             .getMessage());
+
+        Usuario usuarioVinculado = usuarioService.findByAttendantId(atendente.getId());
+        usuarioService.desligarAtendente(usuarioVinculado.getId());
+        usuarioService.desativarUsuario(usuarioVinculado.getId());
 
         atendenteRepository.delete(atendente);
     }
