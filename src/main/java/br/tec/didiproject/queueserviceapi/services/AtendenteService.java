@@ -5,9 +5,12 @@ import br.tec.didiproject.queueserviceapi.entities.Senha;
 import br.tec.didiproject.queueserviceapi.entities.Usuario;
 import br.tec.didiproject.queueserviceapi.exceptions.DataIntegrityViolationException;
 import br.tec.didiproject.queueserviceapi.exceptions.EntityNotFoundException;
+import br.tec.didiproject.queueserviceapi.exceptions.QueueServiceApiException;
 import br.tec.didiproject.queueserviceapi.repositories.AtendenteRepository;
 import br.tec.didiproject.queueserviceapi.repositories.SenhaRepository;
+import jakarta.validation.ConstraintViolationException;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,10 +23,11 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.UUID;
 import java.util.random.RandomGenerator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import static br.tec.didiproject.queueserviceapi.exceptions.BaseErrorMessage.ATTENDANT_NOT_FOUND;
-import static br.tec.didiproject.queueserviceapi.exceptions.BaseErrorMessage.ATTENDANT_WITH_ASSOCIATED_SERVICE;
+import static br.tec.didiproject.queueserviceapi.exceptions.BaseErrorMessage.*;
 
 @RequiredArgsConstructor
 @Service
@@ -63,7 +67,20 @@ public class AtendenteService {
      */
     public Atendente create(Atendente novoAtendente) {
 
-        novoAtendente = atendenteRepository.save(novoAtendente);
+        try {
+            novoAtendente = atendenteRepository.save(novoAtendente);
+        } catch (org.springframework.dao.DataIntegrityViolationException e) {
+            Pattern pattern = Pattern.compile(novoAtendente.getEmail());
+            Matcher matcher = pattern.matcher(e.getCause().getCause().getMessage());
+            if (matcher.find())
+                throw new DataIntegrityViolationException(
+                        ATTENDANT_WITH_DUPLICATE_EMAIL
+                                .params(novoAtendente.getEmail())
+                                .getMessage());
+            throw new QueueServiceApiException(GENERIC_EXCEPTION.getMessage());
+        } catch (Exception e) {
+            throw new QueueServiceApiException(GENERIC_EXCEPTION.getMessage());
+        }
 
         Usuario novoUsuario = Usuario
                 .builder()
@@ -83,12 +100,12 @@ public class AtendenteService {
         } catch (DataIntegrityViolationException e) {
             String[] nomeUsuarioSplit = novoUsuario.getNomeUsuario().split("@");
             String ultimoCaractereNomeUsuario = nomeUsuarioSplit[0].substring(nomeUsuarioSplit[0].length() - 1);
-            if (NumberUtils.isDigits(ultimoCaractereNomeUsuario))
+            if (NumberUtils.isDigits(ultimoCaractereNomeUsuario)
+                    && Integer.parseInt(ultimoCaractereNomeUsuario) != 9)
                 nomeUsuarioSplit[0] = nomeUsuarioSplit[0].substring(0,nomeUsuarioSplit[0].length() - 1)
                                     + (Integer.parseInt(ultimoCaractereNomeUsuario) + 1);
             else
-                nomeUsuarioSplit[0] = nomeUsuarioSplit[0].substring(0,nomeUsuarioSplit[0].length() - 1)
-                                    + "1";
+                nomeUsuarioSplit[0] = nomeUsuarioSplit[0] + "1";
             String novoNomeUsuario = String.join("@", nomeUsuarioSplit);
             novoUsuario.setNomeUsuario(novoNomeUsuario);
             novoUsuario.setSenha(novoNomeUsuario);

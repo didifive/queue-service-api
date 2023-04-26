@@ -30,6 +30,7 @@ public class BaseErrorMessage {
     public static final BaseErrorMessage DEPARTMENT_WITH_ASSOCIATED_QUEUE = new BaseErrorMessage("department.withAssociatedQueue");
     public static final BaseErrorMessage ATTENDANT_NOT_FOUND = new BaseErrorMessage("attendant.notFound");
     public static final BaseErrorMessage ATTENDANT_WITH_ASSOCIATED_SERVICE = new BaseErrorMessage("attendant.withAssociatedService");
+    public static final BaseErrorMessage ATTENDANT_WITH_DUPLICATE_EMAIL = new BaseErrorMessage("attendant.withDuplicateEmail");
     public static final BaseErrorMessage ATTENDANCE_TYPE_NOT_FOUND = new BaseErrorMessage("attendanceType.notFound");
     public static final BaseErrorMessage ATTENDANCE_TYPE_WITH_ASSOCIATED_QUEUE = new BaseErrorMessage("attendanceType.withAssociatedQueue");
     public static final BaseErrorMessage ATTENDANCE_TYPE_WITH_ASSOCIATED_SERVICE = new BaseErrorMessage("attendanceType.withAssociatedService");
