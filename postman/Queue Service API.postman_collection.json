@@ -221,16 +221,6 @@
 						{
 							"name": "Listar Departamentos",
 							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwYzhlOGU0ZC1kZDhmLTQwNzUtYTdmMi0xNzI4MTZhOTQ4OTEiLCJpc3MiOiJRdWV1ZVNlcnZpY2VBUEkiLCJleHAiOjE2Nzg4NTA5MTV9.FCfwNgtEUzQcvovfuzYFlgetuMb_gU8DAXu4mkcCgdE",
-											"type": "string"
-										}
-									]
-								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -303,6 +293,108 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Atendente",
+					"item": [
+						{
+							"name": "Cadastrar Atendente",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Maria da Silva\",\r\n    \"email\": \"mariasilva@email.com\",\r\n    \"departamentosId\": [\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}{{atendente}}",
+									"host": [
+										"{{localhost}}{{atendente}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar Atendentes",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{atendente}}",
+									"host": [
+										"{{localhost}}{{atendente}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obter Atendente",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{atendente}}/b9f31473-f05b-40c1-9123-b7e40981cf55",
+									"host": [
+										"{{localhost}}{{atendente}}"
+									],
+									"path": [
+										"b9f31473-f05b-40c1-9123-b7e40981cf55"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Atualizar Atendente",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Maria Souza\",\r\n    \"email\": \"mariasouza@email.com\",\r\n    \"departamentosId\": [\r\n        \"d23d9743-0783-4154-bd84-544c73c3e062\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}{{atendente}}/37bf402d-f42f-4cad-aa51-2e31697b861a",
+									"host": [
+										"{{localhost}}{{atendente}}"
+									],
+									"path": [
+										"37bf402d-f42f-4cad-aa51-2e31697b861a"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Apagar Atendente",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{atendente}}/37bf402d-f42f-4cad-aa51-2e31697b861a",
+									"host": [
+										"{{localhost}}{{atendente}}"
+									],
+									"path": [
+										"37bf402d-f42f-4cad-aa51-2e31697b861a"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}
@@ -312,7 +404,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwYzhlOGU0ZC1kZDhmLTQwNzUtYTdmMi0xNzI4MTZhOTQ4OTEiLCJpc3MiOiJRdWV1ZVNlcnZpY2VBUEkiLCJleHAiOjE2Nzg5MjMxNTR9.Y_1QpWHbrgDPlEZUo22clNCK76wSxDNmXkG63hJD4W4",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwYzhlOGU0ZC1kZDhmLTQwNzUtYTdmMi0xNzI4MTZhOTQ4OTEiLCJpc3MiOiJRdWV1ZVNlcnZpY2VBUEkiLCJleHAiOjE2ODMyNTA1NDl9.2iD8nK5NW_Gajjv2o_RPvPGB3pLBE4u87Ema5j4NRbo",
 				"type": "string"
 			}
 		]
@@ -356,6 +448,11 @@
 		{
 			"key": "departamento",
 			"value": "/api/v1/departamento",
+			"type": "string"
+		},
+		{
+			"key": "atendente",
+			"value": "/api/v1/atendente",
 			"type": "string"
 		}
 	]
