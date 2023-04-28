@@ -112,6 +112,29 @@ public class OpenApiSchemes {
     public static final String SCHEMA_ATENDENTE_USUARIO_ID_DESCRIPTION = SCHEMA_ATENDENTE_USUARIO_ID_TITLE + "do usuário vinculado";
     public static final String SCHEMA_ATENDENTE_USUARIO_ID_EXAMPLE = SCHEMA_AUTH_REFRESH_TOKEN_EXAMPLE;
 
+    /**
+     * Constants for @Schema annotation in RequisicaoAtendenteDTO and RespostaAtendenteDTO
+     */
+    public static final String SCHEMA_USUARIO = " do usuário";
+    public static final String SCHEMA_USUARIO_ID_TITLE = SCHEMA_EMPRESA_ID_TITLE;
+    public static final String SCHEMA_USUARIO_ID_EXAMPLE = SCHEMA_AUTH_REFRESH_TOKEN_EXAMPLE;
+    public static final String SCHEMA_USUARIO_ID_DESCRIPTION = SCHEMA_USUARIO_ID_TITLE + SCHEMA_USUARIO;
+    public static final String SCHEMA_USUARIO_NOME_TITLE = "Nome de Usuário";
+    public static final String SCHEMA_USUARIO_NOME_DESCRIPTION = SCHEMA_USUARIO_NOME_TITLE + SCHEMA_USUARIO;
+    public static final String SCHEMA_USUARIO_NOME_EXAMPLE = "jose@email.com";
+    public static final String SCHEMA_USUARIO_SENHA_TITLE = "Senha";
+    public static final String SCHEMA_USUARIO_SENHA_DESCRIPTION = SCHEMA_ATENDENTE_EMAIL_TITLE + SCHEMA_USUARIO;
+    public static final String SCHEMA_USUARIO_SENHA_EXAMPLE = "S3nhaJ0seS1lv@";
+    public static final String SCHEMA_USUARIO_PERFIL_TITLE = "Perfil";
+    public static final String SCHEMA_USUARIO_PERFIL_DESCRIPTION = SCHEMA_USUARIO_PERFIL_TITLE + SCHEMA_USUARIO;
+    public static final String SCHEMA_USUARIO_PERFIL_EXAMPLE = "USUARIO";
+    public static final String SCHEMA_USUARIO_ATENDENTE_ID_TITLE = SCHEMA_EMPRESA_ID_TITLE;
+    public static final String SCHEMA_USUARIO_ATENDENTE_ID_DESCRIPTION = SCHEMA_USUARIO_ATENDENTE_ID_TITLE + "do atendente vinculado";
+    public static final String SCHEMA_USUARIO_ATENDENTE_ID_EXAMPLE = SCHEMA_AUTH_REFRESH_TOKEN_EXAMPLE;
+    public static final String SCHEMA_USUARIO_ATIVO_TITLE = "Status";
+    public static final String SCHEMA_USUARIO_ATIVO_DESCRIPTION = SCHEMA_USUARIO_ATIVO_TITLE + SCHEMA_USUARIO;
+    public static final String SCHEMA_USUARIO_ATIVO_EXAMPLE = "true";
+
     private OpenApiSchemes() {
         throw new IllegalAccessError("Utility Class");
     }

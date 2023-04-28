@@ -2,6 +2,7 @@ package br.tec.didiproject.queueserviceapi.services;
 
 import br.tec.didiproject.queueserviceapi.entities.Usuario;
 import br.tec.didiproject.queueserviceapi.enums.Perfil;
+import br.tec.didiproject.queueserviceapi.exceptions.BadRequestBodyException;
 import br.tec.didiproject.queueserviceapi.exceptions.DataIntegrityViolationException;
 import br.tec.didiproject.queueserviceapi.exceptions.EntityNotFoundException;
 import br.tec.didiproject.queueserviceapi.repositories.UsuarioRepository;
@@ -15,8 +16,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static br.tec.didiproject.queueserviceapi.exceptions.BaseErrorMessage.*;
 
@@ -25,6 +29,7 @@ import static br.tec.didiproject.queueserviceapi.exceptions.BaseErrorMessage.*;
 public class UsuarioService implements UserDetailsService {
 
     private final UsuarioRepository usuarioRepository;
+    private final AtendenteService atendenteService;
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
@@ -85,11 +90,28 @@ public class UsuarioService implements UserDetailsService {
     public Usuario create(Usuario novoUsuario) {
         this.validarNomeUsuario(novoUsuario.getNomeUsuario());
 
-        novoUsuario.setSenha(bCryptPasswordEncoder.encode(novoUsuario.getSenha()));
+        if (Objects.nonNull(novoUsuario.getAtendente().getId())) {
+            atendenteService.findById(novoUsuario.getAtendente().getId());
+        }
+
+        novoUsuario.setSenha(this.validarCriptografarSenha(novoUsuario.getPassword()));
 
         novoUsuario.setAtivo(Boolean.TRUE);
 
         return usuarioRepository.save(novoUsuario);
+    }
+
+    private String validarCriptografarSenha(String senha) {
+        String regex = "^(?=.*[0-9])"
+                + "(?=.*[a-z])(?=.*[A-Z])"
+                + "(?=.*[@#$%^&+=])"
+                + "(?=\\S+$).{6,60}$";
+        Pattern p = Pattern.compile(regex);
+        Matcher m = p.matcher(senha);
+        if (!m.matches())
+            throw new BadRequestBodyException(USER_INVALID_PASSWORD.getMessage());
+
+        return bCryptPasswordEncoder.encode(senha);
     }
 
     /**
@@ -126,7 +148,7 @@ public class UsuarioService implements UserDetailsService {
             throw new DataIntegrityViolationException(USER_WRONG_PASSWORD
                     .params(usuarioExistente.getId().toString()).getMessage());
 
-        usuarioExistente.setSenha(bCryptPasswordEncoder.encode(novaSenha));
+        usuarioExistente.setSenha(this.validarCriptografarSenha(novaSenha));
 
         return usuarioRepository.save(usuarioExistente);
     }

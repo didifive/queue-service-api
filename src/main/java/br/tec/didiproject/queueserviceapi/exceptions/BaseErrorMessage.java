@@ -23,6 +23,7 @@ public class BaseErrorMessage {
     public static final BaseErrorMessage USER_BY_ATTENDANT_NOT_FOUND = new BaseErrorMessage("user.notFound.byAttendant");
     public static final BaseErrorMessage USER_ALREADY_EXISTS = new BaseErrorMessage("user.alreadyExists");
     public static final BaseErrorMessage USER_WRONG_PASSWORD = new BaseErrorMessage("user.wrongPassword");
+    public static final BaseErrorMessage USER_INVALID_PASSWORD = new BaseErrorMessage("user.invalidPassword");
     public static final BaseErrorMessage COMPANY_NOT_FOUND = new BaseErrorMessage("company.notFound");
     public static final BaseErrorMessage COMPANY_WITH_ASSOCIATED_DEPARTMENT = new BaseErrorMessage("company.withAssociatedDepartment");
     public static final BaseErrorMessage DEPARTMENT_NOT_FOUND = new BaseErrorMessage("department.notFound");

@@ -45,11 +45,12 @@ public class RequisicaoAtendenteDTO implements Serializable {
     @JsonProperty("email")
     String email;
     @ArraySchema(schema =
-    @Schema(implementation = String.class
+    @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_ATENDENTE_LISTA_DEPARTAMENTO_ID_TITLE
             , description = SCHEMA_ATENDENTE_LISTA_DEPARTAMENTO_ID_DESCRIPTION
             , example = SCHEMA_ATENDENTE_LISTA_DEPARTAMENTO_ID_EXAMPLE)
             , uniqueItems = true)
     @JsonProperty("departamentosId")
-    List<@UUID String> departamentosId;
+    @UUID
+    List<String> departamentosId;
 }

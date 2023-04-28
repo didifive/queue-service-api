@@ -10,10 +10,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Builder
 @Entity
@@ -79,12 +76,12 @@ public class Usuario implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return ativo;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return isAccountNonExpired();
+        return ativo && Objects.nonNull(atendente);
     }
 
     @Override
@@ -94,6 +91,6 @@ public class Usuario implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return isAccountNonExpired();
+        return isAccountNonLocked();
     }
 }
