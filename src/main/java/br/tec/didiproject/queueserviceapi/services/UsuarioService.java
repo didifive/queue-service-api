@@ -91,7 +91,7 @@ public class UsuarioService implements UserDetailsService {
     public Usuario create(Usuario novoUsuario) {
         this.validarNomeUsuario(novoUsuario.getNomeUsuario());
 
-        if (Objects.nonNull(novoUsuario.getAtendente().getId())) {
+        if (Objects.nonNull(novoUsuario.getAtendente())) {
             atendenteRepository.findById(novoUsuario.getAtendente().getId());
         }
 
@@ -141,7 +141,7 @@ public class UsuarioService implements UserDetailsService {
      * @param senhaAtual String with current password
      * @param novaSenha  String with a new password
      */
-    public Usuario atualizarSenha(UUID usuarioId, String senhaAtual, String novaSenha) {
+    public void atualizarSenha(UUID usuarioId, String senhaAtual, String novaSenha) {
 
         Usuario usuarioExistente = this.findById(usuarioId);
 
@@ -151,7 +151,7 @@ public class UsuarioService implements UserDetailsService {
 
         usuarioExistente.setSenha(this.validarCriptografarSenha(novaSenha));
 
-        return usuarioRepository.save(usuarioExistente);
+        usuarioRepository.save(usuarioExistente);
     }
 
     /**

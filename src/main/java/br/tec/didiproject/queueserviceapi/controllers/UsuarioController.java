@@ -89,18 +89,18 @@ public class UsuarioController implements UsuarioControllerDocs {
     }
 
     @PatchMapping("/{id}/atualizar-senha")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<RespostaUsuarioDTO> atualizarSenha(
             @PathVariable String id
             , @RequestBody RequisicaoUsuarioAtualizarSenhaDTO requisicaoUsuarioAtualizarSenhaDTO) {
 
         validateUUIDPattern(id);
 
-        return ResponseEntity.ok()
-                .body(usuarioMapper.toResponseDTO(usuarioService.atualizarSenha(
-                        UUID.fromString(id)
-                        , requisicaoUsuarioAtualizarSenhaDTO.getSenhaAtual()
-                        , requisicaoUsuarioAtualizarSenhaDTO.getNovaSenha())));
+        usuarioService.atualizarSenha(UUID.fromString(id)
+                , requisicaoUsuarioAtualizarSenhaDTO.getSenhaAtual()
+                , requisicaoUsuarioAtualizarSenhaDTO.getNovaSenha());
+
+        return ResponseEntity.noContent().build();
     }
 
     @PatchMapping("/{id}/adicionar-perfil")

@@ -23,7 +23,7 @@ Este projeto foi desenvolvido para controle de senhas para atendimento com filas
 
 ## Escopo
 
-Este projeto deve atender os seguintes requisitos:
+O sistema, considerando back e front-end deve atender os seguintes requisitos:
 
 - Ter cadastro de empresa;
 - Para os usuários, ter os perfis de Administrador, Atendente e Usuário;
@@ -39,32 +39,78 @@ Este projeto deve atender os seguintes requisitos:
 - Deve possuir um terminal para emissão de senhas, este deve ser logado por um alguém com perfil de Usuário para disponibilizar as filas para emissão de senhas da empresa em que está vinculado;
 - Gerar saída para emissão de senha em equipamento de impressão térmica.
 
-Este projeto é para fins de estudo e para ser usado, ou adaptado, para qualquer negócio, ver [MIT License](https://mit-license.org/).
+## Queue Service API - Back-End
 
-## Visuais
-Logotipo:  
-![Filas Logo](docs/logotipo.png?raw=true "Filas Logo")  
-UML - Diagrama de Classes:  
-![UML - Diagrama de Classes](docs/uml-diagram.drawio.png?raw=true "UML - Diagrama de Classes")
+Este projeto aborda somente a API em Back-End.  
+Foi criado para fins de estudos, prática e testes. Aproveite para fazer melhorias ou personalização.  
+Apesar de este projeto ser público e não ter finalidade comercial, ainda assim foi pensado para resolver problema real, portanto é possível utilizar esta base para um projeto comercial.  
+Licença: [MIT License](https://mit-license.org/).
 
-Qualquer dúvida, sugestão ou crítica é só entrar em contato (https://github.com/didifive).  
-#EnjoyThis #MakeITHappen
+### Configuração do Projeto
+
+Para carregar a aplicação corretamente é necessário configurar as variáveis de ambientes no servidor ou informar na execução:
+- `DATABASE_URL`: URL da base de dados, este valor é utilizado em `spring.datasource.url` no `application.properties`, exemplo de valor para esta variável: jdbc:postgresql://host.db.elephantsql.com:5432/database?user=usuario&password=senha
+- `TOKEN_API_SECRET`: Token de segredo para o JWT, este valor é utilizado em `queue-service-api.jwt.secret` no `application.properties`, exemplo de valor da variável: 46070d4bf934fb0d4b06d9e2c46e346944e322444900a435d7d9a95e6d7435f5
+
+A URL para o banco de dados normalmente é fornecida pelo serviço de banco de dados, caso a instalação seja local, deve-se confirmar os parâmetros.  
+Sobre o token para segredo do JWT, este pode ser gerado em sites que geram tokens ou algum token particular criado.
+
+Abaixo, seguem maneiras de executar o projeto com terminal ou com IDE:
+
+#### Executar com terminal
+Após configurar banco de dados e o segredo, basta se atentar em possuir o JDK do Java na versão 17 (vide versão na seção Tecnologias) e executar o comando:
+Bash ou PowerShell:
+```bash
+./mvnw clean package spring-boot:repackage
+java -jar target/queue-service-api-0.1.1-SNAPSHOT.jar
+```
+_OBS: para CMD, no primeiro comando, basta remover o "./" antes do mvnw_
+
+#### Executar com IDE
+A execução com a IDE é mais simples, primeiro deve carregar o projeto na IDE, verificar o JDK configurado, aguardar indexar e carregar as dependências do Maven, depois confirmar se as variáveis de ambiente existem no servidor, se não existirem, basta configurar as variáveis citadas acima na sua IDE, então é só fazer a execução.
+## Tecnologias
+
+- Java 17
+- Springboot v.3.0.2
+- Spring Security
+- Lombok v.1.18.26
+- Springdoc v.2.1.0 (OpenApi - Swagger)
+- Mapstruct v.1.5.3.Final
+- Java JWT v.4.3.0
+- PostgreSQL - utilizando [ElephantSQL]
+- Jacoco 0.8.8
+
+IDE Utilizada: [IntelliJ] v.2022.3.2 (Community Edition)
 
 ---
 
 ## Endpoints da API
 
-* Empresa: `/api/v1/empresa`
-* Fila: `/api/v1/fila`
-* Senha: `/api/v1/senha`
+Para documentação dos Endpoints, basta acessar o Swagger que fica disponível em http://localhost:8080/swagger-ui.html quando o projeto é executado.
 
-~~Para testar localmente os Endpoints, foi adicionado ao projeto uma coleção do Postman que já possuí modelos e testes de requisições HTTP. O arquivo está na pasta [postman](https://github.com/didifive/queue-service-api/tree/master/postman)~~
+Para testar localmente os Endpoints, existe coleção do [Postman] que já possuí requisições HTTP configuradas. O arquivo [Queue Service API.postman_collection.json](https://github.com/didifive/queue-service-api/blob/master/postman/Queue%20Service%20API.postman_collection.json) está na pasta [postman](https://github.com/didifive/queue-service-api/tree/master/postman)
 
 ---
 
-## Frontend em React para este projeto
+## Visuais
+Logotipo:  
+![Filas Logo](docs/logotipo.png?raw=true "Filas Logo")  
+UML - Diagrama de Classes:  
+![UML - Diagrama de Classes](docs/uml-diagram.drawio.png?raw=true "UML - Diagrama de Classes")  
+OpenAPI - Swagger:  
+![Screenshot da tela de OpenAPI - Swagger](docs/swagger.png?raw=true "Screenshot da tela de OpenAPI - Swagger")
 
-*Em desenvolvimento.*
+---
+
+## ~~Frontend em React para este projeto~~
+
+~~Em desenvolvimento.~~
+
+---
+
+Qualquer dúvida, sugestão ou crítica é só entrar em contato ou abrir uma Issue (https://github.com/didifive).  
+Feito com muita dedicação.
+#EnjoyThis #MakeITHappen
 
 ---
 
@@ -91,3 +137,4 @@ Links Interessantes:
 [ElephantSQL]: https://www.elephantsql.com/
 [didifive/queue-service-api]: https://github.com/didifive/queue-service-api
 [SQLite Database with Spring Boot]: https://fullstackdeveloper.guru/2020/05/01/how-to-integrate-sqlite-database-with-spring-boot/#:~:text=SQLite%20is%20the%20most%20used%20database%20engine%20in,you%20don%E2%80%99t%20have%20to%20do%20for%20other%20databases.
+[Postman]: https://www.postman.com/

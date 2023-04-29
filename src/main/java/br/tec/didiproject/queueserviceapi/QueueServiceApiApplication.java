@@ -20,7 +20,7 @@ import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.
 		, bearerFormat = SECURITY_SCHEME_BEARER_FORMAT
 		, type = SecuritySchemeType.HTTP
 		, in = SecuritySchemeIn.HEADER)
-@OpenAPIDefinition(servers = {@Server(url = "/", description = "Default Server URL")})
+@OpenAPIDefinition(servers = {@Server(url = "http://localhost:8080", description = "Localhost")})
 public class QueueServiceApiApplication {
 
 	public static void main(String[] args) {
