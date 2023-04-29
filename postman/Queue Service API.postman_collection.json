@@ -395,6 +395,209 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Usuário",
+					"item": [
+						{
+							"name": "Cadastrar Usuário",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nomeUsuario\": \"Usuario Teste\",\r\n    \"senha\": \"Usuario1234@\",\r\n    \"perfis\": [\r\n        \"USUARIO\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}{{usuario}}",
+									"host": [
+										"{{localhost}}{{usuario}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar Usuários",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{usuario}}",
+									"host": [
+										"{{localhost}}{{usuario}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obter Usuario",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{usuario}}/0c8e8e4d-dd8f-4075-a7f2-172816a94891",
+									"host": [
+										"{{localhost}}{{usuario}}"
+									],
+									"path": [
+										"0c8e8e4d-dd8f-4075-a7f2-172816a94891"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Novo Nome Usuário",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nomeUsuario\": \"novo-usuario@email.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}{{usuario}}/a919047b-cdd9-48f7-bafc-d28377e72bd1/novo-nome-usuario",
+									"host": [
+										"{{localhost}}{{usuario}}"
+									],
+									"path": [
+										"a919047b-cdd9-48f7-bafc-d28377e72bd1",
+										"novo-nome-usuario"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Atualizar Senha",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"senhaAtual\": \"Usuario1234@\",\r\n    \"novaSenha\": \"Pw5@QueueService\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}{{usuario}}/a919047b-cdd9-48f7-bafc-d28377e72bd1/atualizar-senha",
+									"host": [
+										"{{localhost}}{{usuario}}"
+									],
+									"path": [
+										"a919047b-cdd9-48f7-bafc-d28377e72bd1",
+										"atualizar-senha"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Adicionar Perfil",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"perfil\": \"ADMIN\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}{{usuario}}/a919047b-cdd9-48f7-bafc-d28377e72bd1/adicionar-perfil",
+									"host": [
+										"{{localhost}}{{usuario}}"
+									],
+									"path": [
+										"a919047b-cdd9-48f7-bafc-d28377e72bd1",
+										"adicionar-perfil"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remover Perfil",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"perfil\": \"ADMIN\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}{{usuario}}/a919047b-cdd9-48f7-bafc-d28377e72bd1/remover-perfil",
+									"host": [
+										"{{localhost}}{{usuario}}"
+									],
+									"path": [
+										"a919047b-cdd9-48f7-bafc-d28377e72bd1",
+										"remover-perfil"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Desativar Usuário",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{usuario}}/a919047b-cdd9-48f7-bafc-d28377e72bd1/desativar",
+									"host": [
+										"{{localhost}}{{usuario}}"
+									],
+									"path": [
+										"a919047b-cdd9-48f7-bafc-d28377e72bd1",
+										"desativar"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ativar Usuário",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{usuario}}/a919047b-cdd9-48f7-bafc-d28377e72bd1/desativar",
+									"host": [
+										"{{localhost}}{{usuario}}"
+									],
+									"path": [
+										"a919047b-cdd9-48f7-bafc-d28377e72bd1",
+										"desativar"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}
@@ -453,6 +656,11 @@
 		{
 			"key": "atendente",
 			"value": "/api/v1/atendente",
+			"type": "string"
+		},
+		{
+			"key": "usuario",
+			"value": "/api/v1/usuario",
 			"type": "string"
 		}
 	]
