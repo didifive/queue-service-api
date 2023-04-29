@@ -98,7 +98,7 @@ public class UsuarioService implements UserDetailsService {
 
         novoUsuario.setAtivo(Boolean.TRUE);
 
-        return usuarioRepository.save(novoUsuario)atuali;
+        return usuarioRepository.save(novoUsuario);
     }
 
     private String validarCriptografarSenha(String senha) {
