@@ -1,5 +1,6 @@
 package br.tec.didiproject.queueserviceapi.dtos.response;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -43,17 +44,20 @@ public class RespostaAtendenteDTO implements Serializable {
     @JsonProperty("email")
     String email;
     @ArraySchema(schema =
-        @Schema(implementation = String.class
-                , title = SCHEMA_ATENDENTE_LISTA_DEPARTAMENTO_ID_TITLE
-                , description = SCHEMA_ATENDENTE_LISTA_DEPARTAMENTO_ID_DESCRIPTION
-                , example = SCHEMA_ATENDENTE_LISTA_DEPARTAMENTO_ID_EXAMPLE)
-        , uniqueItems = true)
+    @Schema(implementation = String.class
+            , title = SCHEMA_ATENDENTE_LISTA_DEPARTAMENTO_ID_TITLE
+            , description = SCHEMA_ATENDENTE_LISTA_DEPARTAMENTO_ID_DESCRIPTION
+            , example = SCHEMA_ATENDENTE_LISTA_DEPARTAMENTO_ID_EXAMPLE)
+            , uniqueItems = true)
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("departamentosId")
     List<String> departamentosId;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_ATENDENTE_USUARIO_ID_TITLE
             , description = SCHEMA_ATENDENTE_USUARIO_ID_DESCRIPTION
-            , example = SCHEMA_ATENDENTE_USUARIO_ID_EXAMPLE)
+            , example = SCHEMA_ATENDENTE_USUARIO_ID_EXAMPLE
+            , nullable = true)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("usuarioId")
     String usuarioId;
 }

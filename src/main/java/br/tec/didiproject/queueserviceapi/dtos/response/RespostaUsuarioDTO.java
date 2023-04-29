@@ -44,12 +44,15 @@ public class RespostaUsuarioDTO implements Serializable {
             , description = SCHEMA_USUARIO_PERFIL_DESCRIPTION
             , example = SCHEMA_USUARIO_PERFIL_EXAMPLE)
             , uniqueItems = true)
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("perfis")
     List<Perfil> perfis;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_USUARIO_ATENDENTE_ID_TITLE
             , description = SCHEMA_USUARIO_ATENDENTE_ID_DESCRIPTION
-            , example = SCHEMA_USUARIO_ATENDENTE_ID_EXAMPLE)
+            , example = SCHEMA_USUARIO_ATENDENTE_ID_EXAMPLE
+            , nullable = true)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @UUID
     @JsonProperty("atendenteId")
     String atendenteId;
@@ -58,7 +61,6 @@ public class RespostaUsuarioDTO implements Serializable {
             , description = SCHEMA_USUARIO_ATIVO_DESCRIPTION
             , example = SCHEMA_USUARIO_ATIVO_EXAMPLE
             , defaultValue = "true")
-    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("ativo")
     Boolean ativo;
 }
