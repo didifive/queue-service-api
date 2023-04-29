@@ -85,7 +85,7 @@ public class AtendenteService {
         Usuario novoUsuario = Usuario
                 .builder()
                 .nomeUsuario(novoAtendente.getEmail())
-                .senha(novoAtendente.getEmail())
+                .senha("Pw5@QueueService")
                 .atendente(novoAtendente)
                 .perfis(new HashSet<>())
                 .build();

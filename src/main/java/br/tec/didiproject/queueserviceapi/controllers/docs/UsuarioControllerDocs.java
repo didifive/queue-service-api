@@ -1,6 +1,9 @@
 package br.tec.didiproject.queueserviceapi.controllers.docs;
 
+import br.tec.didiproject.queueserviceapi.dtos.request.RequisicaoUsuarioAtualizarSenhaDTO;
 import br.tec.didiproject.queueserviceapi.dtos.request.RequisicaoUsuarioDTO;
+import br.tec.didiproject.queueserviceapi.dtos.request.RequisicaoUsuarioNovoNomeUsuarioDTO;
+import br.tec.didiproject.queueserviceapi.dtos.request.RequisicaoUsuarioPerfilDTO;
 import br.tec.didiproject.queueserviceapi.dtos.response.RespostaUsuarioDTO;
 import br.tec.didiproject.queueserviceapi.utils.annotations.swagger.*;
 import io.swagger.v3.oas.annotations.Operation;
@@ -68,11 +71,6 @@ public interface UsuarioControllerDocs {
             , name = "id"
             , description = USUARIO_CONTROLLER_NOVO_NOME_USUARIO_PARAMETER_ID_DESCRIPTION
             , example = USUARIO_CONTROLLER_NOVO_NOME_USUARIO_PARAMETER_ID_EXAMPLE)
-    @Parameter(in = ParameterIn.PATH
-            , schema = @Schema(type = SCHEMA_TYPE_STRING)
-            , name = "novoNomeUsuario"
-            , description = USUARIO_CONTROLLER_NOVO_NOME_USUARIO_PARAMETER_NOVO_NOME_USUARIO_DESCRIPTION
-            , example = USUARIO_CONTROLLER_NOVO_NOME_USUARIO_PARAMETER_NOVO_NOME_USUARIO_EXAMPLE)
     @ApiResponse(responseCode = "200"
             , description = USUARIO_CONTROLLER_NOVO_NOME_USUARIO_200_DESCRIPTION)
     @ApiResponse400
@@ -80,5 +78,87 @@ public interface UsuarioControllerDocs {
     @ApiResponse404
     @ApiResponse409
     ResponseEntity<RespostaUsuarioDTO> novoNomeUsuario(String id
-            , String novoNomeUsuario);
+            , RequisicaoUsuarioNovoNomeUsuarioDTO requisicaoUsuarioNovoNomeUsuarioDTO);
+
+    @Tag(name = TAG_PATCH)
+    @Operation(summary = USUARIO_CONTROLLER_ATUALIZAR_SENHA_OPERATION_SUMMARY
+            , description = USUARIO_CONTROLLER_ATUALIZAR_SENHA_OPERATION_DESCRIPTION)
+    @Parameter(in = ParameterIn.PATH
+            , schema = @Schema(type = SCHEMA_TYPE_STRING)
+            , name = "id"
+            , description = USUARIO_CONTROLLER_ATUALIZAR_SENHA_PARAMETER_ID_DESCRIPTION
+            , example = USUARIO_CONTROLLER_ATUALIZAR_SENHA_PARAMETER_ID_EXAMPLE)
+    @ApiResponse(responseCode = "204"
+            , description = USUARIO_CONTROLLER_ATUALIZAR_SENHA_204_DESCRIPTION
+            , content = @Content(schema = @Schema(hidden = true)))
+    @ApiResponse400
+    @ApiResponse403
+    @ApiResponse404
+    @ApiResponse409
+    ResponseEntity<RespostaUsuarioDTO> atualizarSenha(String id
+            , RequisicaoUsuarioAtualizarSenhaDTO requisicaoUsuarioAtualizarSenhaDTO);
+
+    @Tag(name = TAG_PATCH)
+    @Operation(summary = USUARIO_CONTROLLER_ADICIONAR_PERFIL_OPERATION_SUMMARY
+            , description = USUARIO_CONTROLLER_ADICIONAR_PERFIL_OPERATION_DESCRIPTION)
+    @Parameter(in = ParameterIn.PATH
+            , schema = @Schema(type = SCHEMA_TYPE_STRING)
+            , name = "id"
+            , description = USUARIO_CONTROLLER_ADICIONAR_PERFIL_PARAMETER_ID_DESCRIPTION
+            , example = USUARIO_CONTROLLER_ADICIONAR_PERFIL_PARAMETER_ID_EXAMPLE)
+    @ApiResponse(responseCode = "200"
+            , description = USUARIO_CONTROLLER_ADICIONAR_PERFIL_200_DESCRIPTION)
+    @ApiResponse400
+    @ApiResponse403
+    @ApiResponse404
+    @ApiResponse409
+    ResponseEntity<RespostaUsuarioDTO> adicionarPerfil(String id
+            , RequisicaoUsuarioPerfilDTO requisicaoUsuarioPerfilDTO);
+
+    @Tag(name = TAG_PATCH)
+    @Operation(summary = USUARIO_CONTROLLER_REMOVER_PERFIL_OPERATION_SUMMARY
+            , description = USUARIO_CONTROLLER_REMOVER_PERFIL_OPERATION_DESCRIPTION)
+    @Parameter(in = ParameterIn.PATH
+            , schema = @Schema(type = SCHEMA_TYPE_STRING)
+            , name = "id"
+            , description = USUARIO_CONTROLLER_REMOVER_PERFIL_PARAMETER_ID_DESCRIPTION
+            , example = USUARIO_CONTROLLER_REMOVER_PERFIL_PARAMETER_ID_EXAMPLE)
+    @ApiResponse(responseCode = "200"
+            , description = USUARIO_CONTROLLER_REMOVER_PERFIL_200_DESCRIPTION)
+    @ApiResponse400
+    @ApiResponse403
+    @ApiResponse404
+    @ApiResponse409
+    ResponseEntity<RespostaUsuarioDTO> removerPerfil(String id
+            , RequisicaoUsuarioPerfilDTO requisicaoUsuarioPerfilDTO);
+
+    @Tag(name = TAG_PATCH)
+    @Operation(summary = USUARIO_CONTROLLER_ATIVAR_USUARIO_OPERATION_SUMMARY
+            , description = USUARIO_CONTROLLER_ATIVAR_USUARIO_OPERATION_DESCRIPTION)
+    @Parameter(in = ParameterIn.PATH
+            , schema = @Schema(type = SCHEMA_TYPE_STRING)
+            , name = "id"
+            , description = USUARIO_CONTROLLER_ATIVAR_USUARIO_PARAMETER_ID_DESCRIPTION
+            , example = USUARIO_CONTROLLER_ATIVAR_USUARIO_PARAMETER_ID_EXAMPLE)
+    @ApiResponse(responseCode = "200"
+            , description = USUARIO_CONTROLLER_ATIVAR_USUARIO_200_DESCRIPTION)
+    @ApiResponse400
+    @ApiResponse403
+    @ApiResponse404
+    ResponseEntity<RespostaUsuarioDTO> ativarUsuario(String id);
+
+    @Tag(name = TAG_PATCH)
+    @Operation(summary = USUARIO_CONTROLLER_DESATIVAR_USUARIO_OPERATION_SUMMARY
+            , description = USUARIO_CONTROLLER_DESATIVAR_USUARIO_OPERATION_DESCRIPTION)
+    @Parameter(in = ParameterIn.PATH
+            , schema = @Schema(type = SCHEMA_TYPE_STRING)
+            , name = "id"
+            , description = USUARIO_CONTROLLER_DESATIVAR_USUARIO_PARAMETER_ID_DESCRIPTION
+            , example = USUARIO_CONTROLLER_DESATIVAR_USUARIO_PARAMETER_ID_EXAMPLE)
+    @ApiResponse(responseCode = "200"
+            , description = USUARIO_CONTROLLER_DESATIVAR_USUARIO_200_DESCRIPTION)
+    @ApiResponse400
+    @ApiResponse403
+    @ApiResponse404
+    ResponseEntity<RespostaUsuarioDTO> desativarUsuario(String id);
 }

@@ -2,9 +2,11 @@ package br.tec.didiproject.queueserviceapi.controllers;
 
 import br.tec.didiproject.queueserviceapi.controllers.docs.UsuarioControllerDocs;
 import br.tec.didiproject.queueserviceapi.dtos.mapper.UsuarioMapper;
+import br.tec.didiproject.queueserviceapi.dtos.request.RequisicaoUsuarioAtualizarSenhaDTO;
 import br.tec.didiproject.queueserviceapi.dtos.request.RequisicaoUsuarioDTO;
+import br.tec.didiproject.queueserviceapi.dtos.request.RequisicaoUsuarioNovoNomeUsuarioDTO;
+import br.tec.didiproject.queueserviceapi.dtos.request.RequisicaoUsuarioPerfilDTO;
 import br.tec.didiproject.queueserviceapi.dtos.response.RespostaUsuarioDTO;
-import br.tec.didiproject.queueserviceapi.entities.Usuario;
 import br.tec.didiproject.queueserviceapi.entities.Usuario;
 import br.tec.didiproject.queueserviceapi.services.UsuarioService;
 import jakarta.validation.Valid;
@@ -72,26 +74,84 @@ public class UsuarioController implements UsuarioControllerDocs {
                 .body(usuarioMapper.toResponseDTO(usuarioService.findById(UUID.fromString(id))));
     }
 
-    @PatchMapping("/{id}/novo-nome-usuario/{novoNomeUsuario}")
+    @PatchMapping("/{id}/novo-nome-usuario")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<RespostaUsuarioDTO> novoNomeUsuario(
             @PathVariable String id
-            , @PathVariable String novoNomeUsuario) {
+            , @RequestBody RequisicaoUsuarioNovoNomeUsuarioDTO requisicaoUsuarioNovoNomeUsuarioDTO) {
 
         validateUUIDPattern(id);
 
         return ResponseEntity.ok()
                 .body(usuarioMapper.toResponseDTO(usuarioService.atualizarNomeUsuario(
-                                UUID.fromString(id)
-                                , novoNomeUsuario)));
+                        UUID.fromString(id)
+                        , requisicaoUsuarioNovoNomeUsuarioDTO.getNomeUsuario())));
     }
 
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<Void> deletarUsuario(@PathVariable String id) {
+    @PatchMapping("/{id}/atualizar-senha")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<RespostaUsuarioDTO> atualizarSenha(
+            @PathVariable String id
+            , @RequestBody RequisicaoUsuarioAtualizarSenhaDTO requisicaoUsuarioAtualizarSenhaDTO) {
+
         validateUUIDPattern(id);
-        atendenteService.deletarUsuario(UUID.fromString(id));
-        return ResponseEntity.noContent().build();
+
+        return ResponseEntity.ok()
+                .body(usuarioMapper.toResponseDTO(usuarioService.atualizarSenha(
+                        UUID.fromString(id)
+                        , requisicaoUsuarioAtualizarSenhaDTO.getSenhaAtual()
+                        , requisicaoUsuarioAtualizarSenhaDTO.getNovaSenha())));
     }
 
+    @PatchMapping("/{id}/adicionar-perfil")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<RespostaUsuarioDTO> adicionarPerfil(
+            @PathVariable String id
+            , @RequestBody RequisicaoUsuarioPerfilDTO requisicaoUsuarioPerfilDTO) {
+
+        validateUUIDPattern(id);
+
+        return ResponseEntity.ok()
+                .body(usuarioMapper.toResponseDTO(usuarioService.adicionarPerfil(
+                        UUID.fromString(id)
+                        , requisicaoUsuarioPerfilDTO.getPerfil().name())));
+    }
+
+    @PatchMapping("/{id}/remover-perfil")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<RespostaUsuarioDTO> removerPerfil(
+            @PathVariable String id
+            , @RequestBody RequisicaoUsuarioPerfilDTO requisicaoUsuarioPerfilDTO) {
+
+        validateUUIDPattern(id);
+
+        return ResponseEntity.ok()
+                .body(usuarioMapper.toResponseDTO(usuarioService.removerPerfil(
+                        UUID.fromString(id)
+                        , requisicaoUsuarioPerfilDTO.getPerfil().name())));
+    }
+
+    @PatchMapping("/{id}/ativar")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<RespostaUsuarioDTO> ativarUsuario(
+            @PathVariable String id) {
+
+        validateUUIDPattern(id);
+
+        return ResponseEntity.ok()
+                .body(usuarioMapper.toResponseDTO(usuarioService.ativarUsuario(
+                        UUID.fromString(id))));
+    }
+
+    @PatchMapping("/{id}/desativar")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<RespostaUsuarioDTO> desativarUsuario(
+            @PathVariable String id) {
+
+        validateUUIDPattern(id);
+
+        return ResponseEntity.ok()
+                .body(usuarioMapper.toResponseDTO(usuarioService.desativarUsuario(
+                        UUID.fromString(id))));
+    }
 }

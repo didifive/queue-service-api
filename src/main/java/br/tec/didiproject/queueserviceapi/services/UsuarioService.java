@@ -98,13 +98,13 @@ public class UsuarioService implements UserDetailsService {
 
         novoUsuario.setAtivo(Boolean.TRUE);
 
-        return usuarioRepository.save(novoUsuario);
+        return usuarioRepository.save(novoUsuario)atuali;
     }
 
     private String validarCriptografarSenha(String senha) {
         String regex = "^(?=.*[0-9])"
                 + "(?=.*[a-z])(?=.*[A-Z])"
-                + "(?=.*[@#$%^&+=])"
+                + "(?=.*[!@#$%^&*+=])"
                 + "(?=\\S+$).{6,60}$";
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(senha);
