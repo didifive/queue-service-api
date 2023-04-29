@@ -26,12 +26,12 @@ import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
-import static br.tec.didiproject.queueserviceapi.enums.constants.v1.MappingRoutesV1.PATH_ATENDENTE;
+import static br.tec.didiproject.queueserviceapi.enums.constants.v1.MappingRoutesV1.PATH_USUARIO;
 import static br.tec.didiproject.queueserviceapi.utils.BindingError.checkBindingResultError;
 import static br.tec.didiproject.queueserviceapi.utils.UUIDValidator.validateUUIDPattern;
 
 @RestController
-@RequestMapping(PATH_ATENDENTE)
+@RequestMapping(PATH_USUARIO)
 @RequiredArgsConstructor
 public class UsuarioController implements UsuarioControllerDocs {
 
@@ -56,7 +56,7 @@ public class UsuarioController implements UsuarioControllerDocs {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Page<RespostaUsuarioDTO>> listarUsuarios(
-            @PageableDefault(size = 10, sort = "nome", direction = Sort.Direction.ASC) Pageable pageable
+            @PageableDefault(size = 10, sort = "nomeUsuario", direction = Sort.Direction.ASC) Pageable pageable
     ) {
         Page<Usuario> pageUsuarios = usuarioService.findAll(pageable);
 

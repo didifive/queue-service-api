@@ -1,12 +1,10 @@
 package br.tec.didiproject.queueserviceapi.dtos.response;
 
 import br.tec.didiproject.queueserviceapi.enums.Perfil;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -60,6 +58,7 @@ public class RespostaUsuarioDTO implements Serializable {
             , description = SCHEMA_USUARIO_ATIVO_DESCRIPTION
             , example = SCHEMA_USUARIO_ATIVO_EXAMPLE
             , defaultValue = "true")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("ativo")
     Boolean ativo;
 }

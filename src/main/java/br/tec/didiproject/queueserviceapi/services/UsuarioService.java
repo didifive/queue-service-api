@@ -5,6 +5,7 @@ import br.tec.didiproject.queueserviceapi.enums.Perfil;
 import br.tec.didiproject.queueserviceapi.exceptions.BadRequestBodyException;
 import br.tec.didiproject.queueserviceapi.exceptions.DataIntegrityViolationException;
 import br.tec.didiproject.queueserviceapi.exceptions.EntityNotFoundException;
+import br.tec.didiproject.queueserviceapi.repositories.AtendenteRepository;
 import br.tec.didiproject.queueserviceapi.repositories.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -29,7 +30,7 @@ import static br.tec.didiproject.queueserviceapi.exceptions.BaseErrorMessage.*;
 public class UsuarioService implements UserDetailsService {
 
     private final UsuarioRepository usuarioRepository;
-    private final AtendenteService atendenteService;
+    private final AtendenteRepository atendenteRepository;
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
@@ -91,7 +92,7 @@ public class UsuarioService implements UserDetailsService {
         this.validarNomeUsuario(novoUsuario.getNomeUsuario());
 
         if (Objects.nonNull(novoUsuario.getAtendente().getId())) {
-            atendenteService.findById(novoUsuario.getAtendente().getId());
+            atendenteRepository.findById(novoUsuario.getAtendente().getId());
         }
 
         novoUsuario.setSenha(this.validarCriptografarSenha(novoUsuario.getPassword()));
