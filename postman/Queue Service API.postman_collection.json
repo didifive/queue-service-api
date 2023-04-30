@@ -585,13 +585,115 @@
 								"method": "PATCH",
 								"header": [],
 								"url": {
-									"raw": "{{localhost}}{{usuario}}/a919047b-cdd9-48f7-bafc-d28377e72bd1/desativar",
+									"raw": "{{localhost}}{{usuario}}/a919047b-cdd9-48f7-bafc-d28377e72bd1/ativar",
 									"host": [
 										"{{localhost}}{{usuario}}"
 									],
 									"path": [
 										"a919047b-cdd9-48f7-bafc-d28377e72bd1",
-										"desativar"
+										"ativar"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Tipo de Atendimento",
+					"item": [
+						{
+							"name": "Cadastrar Tipo de Atendimento",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Prioritário 80+\",\r\n    \"sigla\": \"PI\",\r\n    \"prioridade\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}{{tipo-atendimento}}",
+									"host": [
+										"{{localhost}}{{tipo-atendimento}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar Tipos de Atendimento",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{tipo-atendimento}}",
+									"host": [
+										"{{localhost}}{{tipo-atendimento}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obter Tipo de Atendimento",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{tipo-atendimento}}/e2620622-c56a-4b34-a724-ef891fa8a4eb",
+									"host": [
+										"{{localhost}}{{tipo-atendimento}}"
+									],
+									"path": [
+										"e2620622-c56a-4b34-a724-ef891fa8a4eb"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Atualizar Tipo de Atendimento",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Prioritário Idoso 80+\",\r\n    \"sigla\": \"PI\",\r\n    \"prioridade\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}{{tipo-atendimento}}/4cd44f84-b045-4d95-b3ac-ce8104a10c7f",
+									"host": [
+										"{{localhost}}{{tipo-atendimento}}"
+									],
+									"path": [
+										"4cd44f84-b045-4d95-b3ac-ce8104a10c7f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Apagar Tipo de Atendimento",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{tipo-atendimento}}/4cd44f84-b045-4d95-b3ac-ce8104a10c7f",
+									"host": [
+										"{{localhost}}{{tipo-atendimento}}"
+									],
+									"path": [
+										"4cd44f84-b045-4d95-b3ac-ce8104a10c7f"
 									]
 								}
 							},
@@ -661,6 +763,21 @@
 		{
 			"key": "usuario",
 			"value": "/api/v1/usuario",
+			"type": "string"
+		},
+		{
+			"key": "tipo-atendimento",
+			"value": "/api/v1/tipo-atendimento",
+			"type": "string"
+		},
+		{
+			"key": "fila",
+			"value": "/api/v1/fila",
+			"type": "string"
+		},
+		{
+			"key": "senha",
+			"value": "/api/v1/senha",
 			"type": "string"
 		}
 	]

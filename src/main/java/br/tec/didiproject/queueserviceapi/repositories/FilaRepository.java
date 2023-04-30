@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public interface FilaRepository extends JpaRepository<Fila, UUID> {
 
-    Page<Fila> findAllByTiposAtendimentoIdContains(UUID tipoAtendimentoId, Pageable pageable);
+    Page<Fila> findAllByTiposAtendimentoId(UUID tipoAtendimentoId, Pageable pageable);
 
     Page<Fila> findAllByDepartamentoId(UUID departamentoId, Pageable pageRequest);
 

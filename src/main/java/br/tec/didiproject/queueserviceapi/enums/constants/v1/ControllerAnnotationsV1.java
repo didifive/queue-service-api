@@ -154,6 +154,29 @@ public final class ControllerAnnotationsV1 {
     public static final String USUARIO_CONTROLLER_DESATIVAR_USUARIO_PARAMETER_ID_EXAMPLE = USUARIO_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE;
     public static final String USUARIO_CONTROLLER_DESATIVAR_USUARIO_200_DESCRIPTION = "Retorna detalhe do usuário desativado";
 
+    public static final String TIPO_ATENDIMENTO_CONTROLER_TAG = "6. Tipo Atendimento";
+    public static final String TIPO_ATENDIMENTO_CONTROLLER_CREATE_OPERATION_SUMMARY = "Cadastrar tipo de atendimento";
+    public static final String TIPO_ATENDIMENTO_CONTROLLER_CREATE_OPERATION_DESCRIPTION = "Operação para cadastrar novo tipo de atendimento";
+    public static final String TIPO_ATENDIMENTO_CONTROLLER_CREATE_201_DESCRIPTION = "Novo tipo de atendimento cadastrado com sucesso";
+    public static final String TIPO_ATENDIMENTO_CONTROLLER_FIND_ALL_OPERATION_SUMMARY = "Listar Tipos de Atendimento";
+    public static final String TIPO_ATENDIMENTO_CONTROLLER_FIND_ALL_OPERATION_DESCRIPTION = "Listar todos os Tipos de Atendimento cadastrados";
+    public static final String TIPO_ATENDIMENTO_CONTROLLER_FIND_ALL_200_DESCRIPTION = "Retorna lista paginada de tipos de atendimentos cadastrados";
+    public static final String TIPO_ATENDIMENTO_CONTROLLER_FIND_BY_ID_OPERATION_SUMMARY = "Detalhar Tipo de Atendimento";
+    public static final String TIPO_ATENDIMENTO_CONTROLLER_FIND_BY_ID_OPERATION_DESCRIPTION = "Detalhar tipo de atendimento conforme id informado";
+    public static final String TIPO_ATENDIMENTO_CONTROLLER_FIND_BY_ID_PARAMETER_ID_DESCRIPTION = "Id do tipo de atendimento";
+    public static final String TIPO_ATENDIMENTO_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE = EMPRESA_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE;
+    public static final String TIPO_ATENDIMENTO_CONTROLLER_FIND_BY_ID_200_DESCRIPTION = "Retorna detalhe do tipo de atendimento buscado";
+    public static final String TIPO_ATENDIMENTO_CONTROLLER_UPDATE_OPERATION_SUMMARY = "Atualizar Tipo de Atendimento";
+    public static final String TIPO_ATENDIMENTO_CONTROLLER_UPDATE_OPERATION_DESCRIPTION = "Realizar atualização do tipo de atendimento";
+    public static final String TIPO_ATENDIMENTO_CONTROLLER_UPDATE_PARAMETER_ID_DESCRIPTION = TIPO_ATENDIMENTO_CONTROLLER_FIND_BY_ID_PARAMETER_ID_DESCRIPTION;
+    public static final String TIPO_ATENDIMENTO_CONTROLLER_UPDATE_PARAMETER_ID_EXAMPLE = TIPO_ATENDIMENTO_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE;
+    public static final String TIPO_ATENDIMENTO_CONTROLLER_UPDATE_200_DESCRIPTION = "Tipo de atendimento atualizado com sucesso";
+    public static final String TIPO_ATENDIMENTO_CONTROLLER_DELETE_BY_ID_OPERATION_SUMMARY = "Excluir Tipo de Atendimento";
+    public static final String TIPO_ATENDIMENTO_CONTROLLER_DELETE_BY_ID_OPERATION_DESCRIPTION = "Realizar exclusão do tipo de atendimento";
+    public static final String TIPO_ATENDIMENTO_CONTROLLER_DELETE_BY_ID_PARAMETER_ID_DESCRIPTION = TIPO_ATENDIMENTO_CONTROLLER_FIND_BY_ID_PARAMETER_ID_DESCRIPTION;
+    public static final String TIPO_ATENDIMENTO_CONTROLLER_DELETE_BY_ID_PARAMETER_ID_EXAMPLE = TIPO_ATENDIMENTO_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE;
+    public static final String TIPO_ATENDIMENTO_CONTROLLER_DELETE_BY_ID_204_DESCRIPTION = "Tipo de atendimento excluído com sucesso";
+
 
     private ControllerAnnotationsV1() {
         throw new IllegalAccessError("Utility Class");

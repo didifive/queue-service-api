@@ -70,7 +70,7 @@ public class AtendenteService {
         try {
             novoAtendente = atendenteRepository.save(novoAtendente);
         } catch (org.springframework.dao.DataIntegrityViolationException e) {
-            Pattern pattern = Pattern.compile(novoAtendente.getEmail());
+            Pattern pattern = Pattern.compile(novoAtendente.getEmail(), Pattern.CASE_INSENSITIVE);
             Matcher matcher = pattern.matcher(e.getCause().getCause().getMessage());
             if (matcher.find())
                 throw new DataIntegrityViolationException(

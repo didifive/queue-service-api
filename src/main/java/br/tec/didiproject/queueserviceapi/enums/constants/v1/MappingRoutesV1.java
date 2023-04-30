@@ -9,6 +9,7 @@ public final class MappingRoutesV1 {
     public static final String PATH_DEPARTAMENTO = PATH_ROOT+"/departamento";
     public static final String PATH_ATENDENTE = PATH_ROOT+"/atendente";
     public static final String PATH_USUARIO = PATH_ROOT+"/usuario";
+    public static final String PATH_TIPO_ATENDIMENTO = PATH_ROOT+"/tipo-atendimento";
 
     private MappingRoutesV1() {
         throw new IllegalAccessError("Utility Class");

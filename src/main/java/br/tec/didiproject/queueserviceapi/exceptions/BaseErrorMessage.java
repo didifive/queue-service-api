@@ -35,6 +35,7 @@ public class BaseErrorMessage {
     public static final BaseErrorMessage ATTENDANCE_TYPE_NOT_FOUND = new BaseErrorMessage("attendanceType.notFound");
     public static final BaseErrorMessage ATTENDANCE_TYPE_WITH_ASSOCIATED_QUEUE = new BaseErrorMessage("attendanceType.withAssociatedQueue");
     public static final BaseErrorMessage ATTENDANCE_TYPE_WITH_ASSOCIATED_SERVICE = new BaseErrorMessage("attendanceType.withAssociatedService");
+    public static final BaseErrorMessage ATTENDANCE_TYPE_WITH_DUPLICATE_ABBREVIATION = new BaseErrorMessage("attendanceType.withDuplicateAbbreviation");
     public static final BaseErrorMessage QUEUE_NOT_FOUND = new BaseErrorMessage("queue.notFound");
     public static final BaseErrorMessage QUEUE_WITH_ASSOCIATED_SERVICE = new BaseErrorMessage("queue.withAssociatedService");
     public static final BaseErrorMessage SERVICE_NUMBER_NOT_FOUND = new BaseErrorMessage("serviceNumber.notFound");

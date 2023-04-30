@@ -5,6 +5,7 @@ import br.tec.didiproject.queueserviceapi.entities.Senha;
 import br.tec.didiproject.queueserviceapi.entities.TipoAtendimento;
 import br.tec.didiproject.queueserviceapi.exceptions.DataIntegrityViolationException;
 import br.tec.didiproject.queueserviceapi.exceptions.EntityNotFoundException;
+import br.tec.didiproject.queueserviceapi.exceptions.QueueServiceApiException;
 import br.tec.didiproject.queueserviceapi.repositories.FilaRepository;
 import br.tec.didiproject.queueserviceapi.repositories.SenhaRepository;
 import br.tec.didiproject.queueserviceapi.repositories.TipoAtendimentoRepository;
@@ -15,6 +16,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static br.tec.didiproject.queueserviceapi.exceptions.BaseErrorMessage.*;
@@ -56,7 +59,22 @@ public class TipoAtendimentoService {
      * @param tipoAtendimento TipoAtendimento object with the new attendance type  data
      */
     public TipoAtendimento create(TipoAtendimento tipoAtendimento) {
-        return tipoAtendimentoRepository.save(tipoAtendimento);
+        try {
+            tipoAtendimento = tipoAtendimentoRepository.save(tipoAtendimento);
+        } catch (org.springframework.dao.DataIntegrityViolationException e) {
+            Pattern pattern = Pattern.compile(tipoAtendimento.getSigla(), Pattern.CASE_INSENSITIVE);
+            Matcher matcher = pattern.matcher(e.getCause().getCause().getMessage());
+            if (matcher.find())
+                throw new DataIntegrityViolationException(
+                        ATTENDANCE_TYPE_WITH_DUPLICATE_ABBREVIATION
+                                .params(tipoAtendimento.getSigla())
+                                .getMessage());
+            throw new QueueServiceApiException(GENERIC_EXCEPTION.getMessage());
+        } catch (Exception e) {
+            throw new QueueServiceApiException(GENERIC_EXCEPTION.getMessage());
+        }
+
+        return tipoAtendimento;
     }
 
     /**
@@ -85,7 +103,7 @@ public class TipoAtendimentoService {
 
         Pageable pageRequest = PageRequest.of(0, 10);
 
-        Page<Fila> filas = filaRepository.findAllByTiposAtendimentoIdContains(tipoAtendimentoId, pageRequest);
+        Page<Fila> filas = filaRepository.findAllByTiposAtendimentoId(tipoAtendimentoId, pageRequest);
         if (filas.getTotalElements() > 0)
             throw new DataIntegrityViolationException(
                     ATTENDANCE_TYPE_WITH_ASSOCIATED_QUEUE

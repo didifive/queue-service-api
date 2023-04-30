@@ -1,4 +1,4 @@
-package br.tec.didiproject.queueserviceapi.utils.populate;
+package br.tec.didiproject.queueserviceapi.utils.db.populate;
 
 import br.tec.didiproject.queueserviceapi.entities.Fila;
 import br.tec.didiproject.queueserviceapi.services.DepartamentoService;

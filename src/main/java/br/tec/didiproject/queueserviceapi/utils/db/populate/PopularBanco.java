@@ -1,4 +1,4 @@
-package br.tec.didiproject.queueserviceapi.utils.populate;
+package br.tec.didiproject.queueserviceapi.utils.db.populate;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;

@@ -113,7 +113,8 @@ public class OpenApiSchemes {
     public static final String SCHEMA_ATENDENTE_USUARIO_ID_EXAMPLE = SCHEMA_AUTH_REFRESH_TOKEN_EXAMPLE;
 
     /**
-     * Constants for @Schema annotation in RequisicaoAtendenteDTO and RespostaAtendenteDTO
+     * Constants for @Schema annotation in RequisicaoUsuarioDTO, RequisicaoUsuarioAtualizarSenhaDTO,
+     * RequisicaoUsuarioNovoNomeUsuarioDTO, RequisicaoUsuarioPerfilDTO and RespostaUsuarioDTO
      */
     public static final String SCHEMA_USUARIO = " do usuário";
     public static final String SCHEMA_USUARIO_ID_TITLE = SCHEMA_EMPRESA_ID_TITLE;
@@ -134,6 +135,23 @@ public class OpenApiSchemes {
     public static final String SCHEMA_USUARIO_ATIVO_TITLE = "Status";
     public static final String SCHEMA_USUARIO_ATIVO_DESCRIPTION = SCHEMA_USUARIO_ATIVO_TITLE + SCHEMA_USUARIO;
     public static final String SCHEMA_USUARIO_ATIVO_EXAMPLE = "true";
+
+    /**
+     * Constants for @Schema annotation in RequisicaoTipoAtendimentoDTO and RespostaTipoAtendimentoDTO
+     */
+    public static final String SCHEMA_TIPO_ATENDIMENTO = " do tipo de atendimento";
+    public static final String SCHEMA_TIPO_ATENDIMENTO_ID_TITLE = SCHEMA_EMPRESA_ID_TITLE;
+    public static final String SCHEMA_TIPO_ATENDIMENTO_ID_EXAMPLE = SCHEMA_AUTH_REFRESH_TOKEN_EXAMPLE;
+    public static final String SCHEMA_TIPO_ATENDIMENTO_ID_DESCRIPTION = SCHEMA_TIPO_ATENDIMENTO_ID_TITLE + SCHEMA_TIPO_ATENDIMENTO;
+    public static final String SCHEMA_TIPO_ATENDIMENTO_NOME_TITLE = SCHEMA_EMPRESA_NOME_TITLE;
+    public static final String SCHEMA_TIPO_ATENDIMENTO_NOME_DESCRIPTION = SCHEMA_TIPO_ATENDIMENTO_NOME_TITLE + SCHEMA_TIPO_ATENDIMENTO;
+    public static final String SCHEMA_TIPO_ATENDIMENTO_NOME_EXAMPLE = "Normal";
+    public static final String SCHEMA_TIPO_ATENDIMENTO_SIGLA_TITLE = "Sigla";
+    public static final String SCHEMA_TIPO_ATENDIMENTO_SIGLA_DESCRIPTION = SCHEMA_TIPO_ATENDIMENTO_SIGLA_TITLE + SCHEMA_TIPO_ATENDIMENTO;
+    public static final String SCHEMA_TIPO_ATENDIMENTO_SIGLA_EXAMPLE = "N";
+    public static final String SCHEMA_TIPO_ATENDIMENTO_PRIORIDADE_TITLE = "Prioridade";
+    public static final String SCHEMA_TIPO_ATENDIMENTO_PRIORIDADE_DESCRIPTION = SCHEMA_TIPO_ATENDIMENTO_PRIORIDADE_TITLE + SCHEMA_TIPO_ATENDIMENTO;
+    public static final String SCHEMA_TIPO_ATENDIMENTO_PRIORIDADE_EXAMPLE = "10";
 
     private OpenApiSchemes() {
         throw new IllegalAccessError("Utility Class");
