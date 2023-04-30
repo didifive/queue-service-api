@@ -5,6 +5,7 @@ import br.tec.didiproject.queueserviceapi.entities.Senha;
 import br.tec.didiproject.queueserviceapi.entities.TipoAtendimento;
 import br.tec.didiproject.queueserviceapi.exceptions.DataIntegrityViolationException;
 import br.tec.didiproject.queueserviceapi.exceptions.EntityNotFoundException;
+import br.tec.didiproject.queueserviceapi.exceptions.QueueServiceApiException;
 import br.tec.didiproject.queueserviceapi.repositories.FilaRepository;
 import br.tec.didiproject.queueserviceapi.repositories.SenhaRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,10 +17,12 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import static br.tec.didiproject.queueserviceapi.exceptions.BaseErrorMessage.QUEUE_NOT_FOUND;
-import static br.tec.didiproject.queueserviceapi.exceptions.BaseErrorMessage.QUEUE_WITH_ASSOCIATED_SERVICE;
+import static br.tec.didiproject.queueserviceapi.exceptions.BaseErrorMessage.*;
+import static br.tec.didiproject.queueserviceapi.exceptions.BaseErrorMessage.GENERIC_EXCEPTION;
 
 @RequiredArgsConstructor
 @Service
@@ -52,6 +55,17 @@ public class FilaService {
         return filaRepository.findAll(pageable);
     }
 
+    /**
+     * CRUD: Read
+     * Find queues and list with pageable content
+     *
+     * @param departamentoId    UUID with the department id
+     * @param pageable          Pageable object with page options
+     */
+    public Page<Fila> findAllByDepartamentoId(UUID departamentoId, Pageable pageable) {
+        return filaRepository.findAllByDepartamentoId(departamentoId, pageable);
+    }
+
 
     /**
      * CRUD: Create
@@ -60,7 +74,25 @@ public class FilaService {
      * @param novaFila Fila object with the new queue data
      */
     public Fila create(Fila novaFila) {
-        return filaRepository.save(novaFila);
+        return this.trySaveQueue(novaFila);
+    }
+
+    private Fila trySaveQueue(Fila novaFila) {
+        try {
+            novaFila = filaRepository.save(novaFila);
+        } catch (org.springframework.dao.DataIntegrityViolationException e) {
+            Pattern pattern = Pattern.compile(novaFila.getSigla(), Pattern.CASE_INSENSITIVE);
+            Matcher matcher = pattern.matcher(e.getCause().getCause().getMessage());
+            if (matcher.find())
+                throw new DataIntegrityViolationException(
+                        QUEUE_WITH_DUPLICATE_ABBREVIATION
+                                .params(novaFila.getSigla())
+                                .getMessage());
+            throw new QueueServiceApiException(GENERIC_EXCEPTION.getMessage());
+        } catch (Exception e) {
+            throw new QueueServiceApiException(GENERIC_EXCEPTION.getMessage());
+        }
+        return novaFila;
     }
 
     /**
@@ -73,7 +105,9 @@ public class FilaService {
     public Fila atualizarFila(UUID filaId, Fila filaAtualizada) {
         this.findById(filaId);
 
-        return filaRepository.save(filaAtualizada);
+        filaAtualizada.setId(filaId);
+
+        return this.trySaveQueue(filaAtualizada);
     }
 
     /**

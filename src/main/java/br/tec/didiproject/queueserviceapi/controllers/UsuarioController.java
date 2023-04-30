@@ -103,7 +103,7 @@ public class UsuarioController implements UsuarioControllerDocs {
         return ResponseEntity.noContent().build();
     }
 
-    @PatchMapping("/{id}/adicionar-perfil")
+    @PatchMapping("/{id}/perfil/adicionar")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<RespostaUsuarioDTO> adicionarPerfil(
             @PathVariable String id
@@ -117,7 +117,7 @@ public class UsuarioController implements UsuarioControllerDocs {
                         , requisicaoUsuarioPerfilDTO.getPerfil().name())));
     }
 
-    @PatchMapping("/{id}/remover-perfil")
+    @PatchMapping("/{id}/perfil/remover")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<RespostaUsuarioDTO> removerPerfil(
             @PathVariable String id

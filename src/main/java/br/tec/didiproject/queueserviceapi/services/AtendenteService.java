@@ -67,6 +67,21 @@ public class AtendenteService {
      */
     public Atendente create(Atendente novoAtendente) {
 
+        novoAtendente = this.trySaveAttendant(novoAtendente);
+
+        Usuario novoUsuario = Usuario
+                .builder()
+                .nomeUsuario(novoAtendente.getEmail())
+                .senha("Pw5@QueueService")
+                .atendente(novoAtendente)
+                .perfis(new HashSet<>())
+                .build();
+        this.criarUsuario(novoUsuario);
+
+        return novoAtendente;
+    }
+
+    private Atendente trySaveAttendant(Atendente novoAtendente) {
         try {
             novoAtendente = atendenteRepository.save(novoAtendente);
         } catch (org.springframework.dao.DataIntegrityViolationException e) {
@@ -81,16 +96,6 @@ public class AtendenteService {
         } catch (Exception e) {
             throw new QueueServiceApiException(GENERIC_EXCEPTION.getMessage());
         }
-
-        Usuario novoUsuario = Usuario
-                .builder()
-                .nomeUsuario(novoAtendente.getEmail())
-                .senha("Pw5@QueueService")
-                .atendente(novoAtendente)
-                .perfis(new HashSet<>())
-                .build();
-        this.criarUsuario(novoUsuario);
-
         return novoAtendente;
     }
 
@@ -128,7 +133,7 @@ public class AtendenteService {
         Usuario usuarioVinculado = usuarioService.findByAttendantId(atendenteId);
         usuarioService.atualizarNomeUsuario(usuarioVinculado.getId(), novoAtendente.getEmail());
 
-        return atendenteRepository.save(novoAtendente);
+        return this.trySaveAttendant(novoAtendente);
     }
 
     /**

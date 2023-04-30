@@ -522,13 +522,14 @@
 									}
 								},
 								"url": {
-									"raw": "{{localhost}}{{usuario}}/a919047b-cdd9-48f7-bafc-d28377e72bd1/adicionar-perfil",
+									"raw": "{{localhost}}{{usuario}}/a919047b-cdd9-48f7-bafc-d28377e72bd1/perfil/adicionar",
 									"host": [
 										"{{localhost}}{{usuario}}"
 									],
 									"path": [
 										"a919047b-cdd9-48f7-bafc-d28377e72bd1",
-										"adicionar-perfil"
+										"perfil",
+										"adicionar"
 									]
 								}
 							},
@@ -549,13 +550,14 @@
 									}
 								},
 								"url": {
-									"raw": "{{localhost}}{{usuario}}/a919047b-cdd9-48f7-bafc-d28377e72bd1/remover-perfil",
+									"raw": "{{localhost}}{{usuario}}/a919047b-cdd9-48f7-bafc-d28377e72bd1/perfil/remover",
 									"host": [
 										"{{localhost}}{{usuario}}"
 									],
 									"path": [
 										"a919047b-cdd9-48f7-bafc-d28377e72bd1",
-										"remover-perfil"
+										"perfil",
+										"remover"
 									]
 								}
 							},
@@ -691,6 +693,166 @@
 									"raw": "{{localhost}}{{tipo-atendimento}}/4cd44f84-b045-4d95-b3ac-ce8104a10c7f",
 									"host": [
 										"{{localhost}}{{tipo-atendimento}}"
+									],
+									"path": [
+										"4cd44f84-b045-4d95-b3ac-ce8104a10c7f"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Fila",
+					"item": [
+						{
+							"name": "Cadastrar Fila",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Caixa\",\r\n    \"sigla\": \"CX\",\r\n    \"departamentoId\": \"d23d9743-0783-4154-bd84-544c73c3e062\",\r\n    \"tiposAtendimentoId\": [\r\n        \"e2620622-c56a-4b34-a724-ef891fa8a4eb\",\r\n        \"6194b92c-1ee0-4c35-855d-65b1c8eb3f83\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}{{fila}}",
+									"host": [
+										"{{localhost}}{{fila}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar Filas",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{fila}}",
+									"host": [
+										"{{localhost}}{{fila}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar Filas por Departamento",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{fila}}/departamento/d23d9743-0783-4154-bd84-544c73c3e062",
+									"host": [
+										"{{localhost}}{{fila}}"
+									],
+									"path": [
+										"departamento",
+										"d23d9743-0783-4154-bd84-544c73c3e062"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obter Fila",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{fila}}/b4fb70eb-a34f-425b-a3e1-7eef693993b0",
+									"host": [
+										"{{localhost}}{{fila}}"
+									],
+									"path": [
+										"b4fb70eb-a34f-425b-a3e1-7eef693993b0"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Atualizar Fila",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"CaixaAtualizado\",\r\n    \"sigla\": \"CX\",\r\n    \"departamentoId\": \"d23d9743-0783-4154-bd84-544c73c3e062\",\r\n    \"tiposAtendimentoId\": [\r\n        \"e2620622-c56a-4b34-a724-ef891fa8a4eb\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}{{fila}}/b4fb70eb-a34f-425b-a3e1-7eef693993b0",
+									"host": [
+										"{{localhost}}{{fila}}"
+									],
+									"path": [
+										"b4fb70eb-a34f-425b-a3e1-7eef693993b0"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Adicionar Tipo de Atendimento",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{fila}}/b4fb70eb-a34f-425b-a3e1-7eef693993b0/tipo-atendimento/6194b92c-1ee0-4c35-855d-65b1c8eb3f83/adicionar",
+									"host": [
+										"{{localhost}}{{fila}}"
+									],
+									"path": [
+										"b4fb70eb-a34f-425b-a3e1-7eef693993b0",
+										"tipo-atendimento",
+										"6194b92c-1ee0-4c35-855d-65b1c8eb3f83",
+										"adicionar"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remover Tipo de Atendimento",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{fila}}/b4fb70eb-a34f-425b-a3e1-7eef693993b0/tipo-atendimento/6194b92c-1ee0-4c35-855d-65b1c8eb3f83/adicionar",
+									"host": [
+										"{{localhost}}{{fila}}"
+									],
+									"path": [
+										"b4fb70eb-a34f-425b-a3e1-7eef693993b0",
+										"tipo-atendimento",
+										"6194b92c-1ee0-4c35-855d-65b1c8eb3f83",
+										"adicionar"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Apagar Fila",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{fila}}/4cd44f84-b045-4d95-b3ac-ce8104a10c7f",
+									"host": [
+										"{{localhost}}{{fila}}"
 									],
 									"path": [
 										"4cd44f84-b045-4d95-b3ac-ce8104a10c7f"

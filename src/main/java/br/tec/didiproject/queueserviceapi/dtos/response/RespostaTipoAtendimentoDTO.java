@@ -35,7 +35,6 @@ public class RespostaTipoAtendimentoDTO implements Serializable {
             , maxLength = 255)
     @JsonProperty("nome")
     String nome;
-
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_TIPO_ATENDIMENTO_SIGLA_TITLE
             , description = SCHEMA_TIPO_ATENDIMENTO_SIGLA_DESCRIPTION
@@ -44,7 +43,6 @@ public class RespostaTipoAtendimentoDTO implements Serializable {
             , maxLength = 3)
     @JsonProperty("sigla")
     String sigla;
-
     @Schema(type = SCHEMA_TYPE_INTEGER
             , title = SCHEMA_TIPO_ATENDIMENTO_PRIORIDADE_TITLE
             , description = SCHEMA_TIPO_ATENDIMENTO_PRIORIDADE_DESCRIPTION

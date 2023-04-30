@@ -177,6 +177,44 @@ public final class ControllerAnnotationsV1 {
     public static final String TIPO_ATENDIMENTO_CONTROLLER_DELETE_BY_ID_PARAMETER_ID_EXAMPLE = TIPO_ATENDIMENTO_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE;
     public static final String TIPO_ATENDIMENTO_CONTROLLER_DELETE_BY_ID_204_DESCRIPTION = "Tipo de atendimento excluído com sucesso";
 
+    public static final String FILA_CONTROLER_TAG = "7. Fila";
+    public static final String FILA_CONTROLLER_CREATE_OPERATION_SUMMARY = "Cadastrar fila";
+    public static final String FILA_CONTROLLER_CREATE_OPERATION_DESCRIPTION = "Operação para cadastrar nova fila";
+    public static final String FILA_CONTROLLER_CREATE_201_DESCRIPTION = "Nova fila cadastrada com sucesso";
+    public static final String FILA_CONTROLLER_FIND_ALL_OPERATION_SUMMARY = "Listar Filas";
+    public static final String FILA_CONTROLLER_FIND_ALL_OPERATION_DESCRIPTION = "Listar todas as Filas cadastradas";
+    public static final String FILA_CONTROLLER_FIND_ALL_200_DESCRIPTION = "Retorna lista paginada de filas cadastradas";
+    public static final String FILA_CONTROLLER_FIND_ALL_BY_DEPARTMENT_ID_OPERATION_SUMMARY = "Listar Filas por Departamento";
+    public static final String FILA_CONTROLLER_FIND_ALL_BY_DEPARTMENT_ID_OPERATION_DESCRIPTION = "Listar todas as Filas cadastradas por departamento";
+    public static final String FILA_CONTROLLER_FIND_ALL_BY_DEPARTMENT_ID_200_DESCRIPTION = "Retorna lista paginada de filas cadastradas por departamento";
+    public static final String FILA_CONTROLLER_FIND_BY_ID_OPERATION_SUMMARY = "Detalhar Fila";
+    public static final String FILA_CONTROLLER_FIND_BY_ID_OPERATION_DESCRIPTION = "Detalhar fila conforme id informado";
+    public static final String FILA_CONTROLLER_FIND_BY_ID_PARAMETER_ID_DESCRIPTION = "Id da fila";
+    public static final String FILA_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE = EMPRESA_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE;
+    public static final String FILA_CONTROLLER_FIND_BY_ID_200_DESCRIPTION = "Retorna detalhe da fila buscada";
+    public static final String FILA_CONTROLLER_UPDATE_OPERATION_SUMMARY = "Atualizar Fila";
+    public static final String FILA_CONTROLLER_UPDATE_OPERATION_DESCRIPTION = "Realizar atualização da fila";
+    public static final String FILA_CONTROLLER_UPDATE_PARAMETER_ID_DESCRIPTION = FILA_CONTROLLER_FIND_BY_ID_PARAMETER_ID_DESCRIPTION;
+    public static final String FILA_CONTROLLER_UPDATE_PARAMETER_ID_EXAMPLE = FILA_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE;
+    public static final String FILA_CONTROLLER_UPDATE_200_DESCRIPTION = "Fila atualizada com sucesso";
+    public static final String FILA_CONTROLLER_ADICIONAR_TIPO_ATENDIMENTO_OPERATION_SUMMARY = "Adicionar tipo de atendimento";
+    public static final String FILA_CONTROLLER_ADICIONAR_TIPO_ATENDIMENTO_OPERATION_DESCRIPTION = "Adicionar tipo de atendimento à fila";
+    public static final String FILA_CONTROLLER_ADICIONAR_TIPO_ATENDIMENTO_PARAMETER_ID_DESCRIPTION = FILA_CONTROLLER_FIND_BY_ID_PARAMETER_ID_DESCRIPTION;
+    public static final String FILA_CONTROLLER_ADICIONAR_TIPO_ATENDIMENTO_PARAMETER_ID_EXAMPLE = FILA_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE;
+    public static final String FILA_CONTROLLER_ADICIONAR_TIPO_ATENDIMENTO_200_DESCRIPTION = "Retorna detalhe da fila com tipo de atendimento adicionado";
+    public static final String FILA_CONTROLLER_REMOVER_TIPO_ATENDIMENTO_OPERATION_SUMMARY = "Remover tipo de atendimento";
+    public static final String FILA_CONTROLLER_REMOVER_TIPO_ATENDIMENTO_OPERATION_DESCRIPTION = "Remover tipo de atendimento da fila";
+    public static final String FILA_CONTROLLER_REMOVER_TIPO_ATENDIMENTO_PARAMETER_ID_DESCRIPTION = USUARIO_CONTROLLER_FIND_BY_ID_PARAMETER_ID_DESCRIPTION;
+    public static final String FILA_CONTROLLER_REMOVER_TIPO_ATENDIMENTO_PARAMETER_ID_EXAMPLE = USUARIO_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE;
+    public static final String FILA_CONTROLLER_REMOVER_TIPO_ATENDIMENTO_PARAMETER_TIPO_ATENDIMENTO_ID_DESCRIPTION = TIPO_ATENDIMENTO_CONTROLLER_FIND_BY_ID_PARAMETER_ID_DESCRIPTION;
+    public static final String FILA_CONTROLLER_REMOVER_TIPO_ATENDIMENTO_PARAMETER_TIPO_ATENDIMENTO_ID_EXAMPLE = TIPO_ATENDIMENTO_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE;
+    public static final String FILA_CONTROLLER_REMOVER_TIPO_ATENDIMENTO_200_DESCRIPTION = "Retorna detalhe da fila com tipo de atendimento removido";
+    public static final String FILA_CONTROLLER_DELETE_BY_ID_OPERATION_SUMMARY = "Excluir Fila";
+    public static final String FILA_CONTROLLER_DELETE_BY_ID_OPERATION_DESCRIPTION = "Realizar exclusão da fila";
+    public static final String FILA_CONTROLLER_DELETE_BY_ID_PARAMETER_ID_DESCRIPTION = FILA_CONTROLLER_FIND_BY_ID_PARAMETER_ID_DESCRIPTION;
+    public static final String FILA_CONTROLLER_DELETE_BY_ID_PARAMETER_ID_EXAMPLE = FILA_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE;
+    public static final String FILA_CONTROLLER_DELETE_BY_ID_204_DESCRIPTION = "Fila excluída com sucesso";
+
 
     private ControllerAnnotationsV1() {
         throw new IllegalAccessError("Utility Class");

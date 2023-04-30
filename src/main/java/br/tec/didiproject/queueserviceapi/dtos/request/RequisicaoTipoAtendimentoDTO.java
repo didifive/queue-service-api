@@ -18,7 +18,6 @@ import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SC
 @AllArgsConstructor
 @NoArgsConstructor
 public class RequisicaoTipoAtendimentoDTO implements Serializable {
-
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_TIPO_ATENDIMENTO_NOME_TITLE
             , description = SCHEMA_TIPO_ATENDIMENTO_NOME_DESCRIPTION
@@ -29,7 +28,6 @@ public class RequisicaoTipoAtendimentoDTO implements Serializable {
     @Size(min = 3, max = 255, message = "O nome do tipo de atendimento deve ter entre 3 e 255 caracteres")
     @JsonProperty("nome")
     String nome;
-
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_TIPO_ATENDIMENTO_SIGLA_TITLE
             , description = SCHEMA_TIPO_ATENDIMENTO_SIGLA_DESCRIPTION
@@ -41,7 +39,6 @@ public class RequisicaoTipoAtendimentoDTO implements Serializable {
     @Size(min = 1, max = 3, message = "A sigla do tipo de atendimento deve ter entre 1 e 3 caracteres")
     @JsonProperty("sigla")
     String sigla;
-
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_TIPO_ATENDIMENTO_PRIORIDADE_TITLE
             , description = SCHEMA_TIPO_ATENDIMENTO_PRIORIDADE_DESCRIPTION

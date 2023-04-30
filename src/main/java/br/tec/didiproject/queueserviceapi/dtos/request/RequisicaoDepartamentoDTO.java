@@ -32,7 +32,6 @@ public class RequisicaoDepartamentoDTO implements Serializable {
     @Size(min = 3, max = 255, message = "O nome do departamento deve ter entre 3 e 255 caracteres")
     @JsonProperty("nome")
     String nome;
-
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_DEPARTAMENTO_EMPRESA_ID_TITLE
             , description = SCHEMA_DEPARTAMENTO_EMPRESA_ID_DESCRIPTION
