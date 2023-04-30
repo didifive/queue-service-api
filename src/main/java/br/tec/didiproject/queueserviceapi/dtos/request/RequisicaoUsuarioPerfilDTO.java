@@ -30,7 +30,7 @@ public class RequisicaoUsuarioPerfilDTO implements Serializable {
             , description = SCHEMA_USUARIO_PERFIL_DESCRIPTION
             , example = SCHEMA_USUARIO_PERFIL_EXAMPLE)
     @JsonProperty("perfil")
-    @NotBlank
+    @NotBlank(message = "Informe no mínimo um perfil")
     @Valid
     Perfil perfil;
 }

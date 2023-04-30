@@ -28,8 +28,8 @@ public class RequisicaoDepartamentoDTO implements Serializable {
             , example = SCHEMA_DEPARTAMENTO_NOME_EXAMPLE
             , minLength = 3
             , maxLength = 255)
-    @NotBlank
-    @Size(min = 3, max = 255)
+    @NotBlank(message = "Informe um nome para o departamento")
+    @Size(min = 3, max = 255, message = "O nome do departamento deve ter entre 3 e 255 caracteres")
     @JsonProperty("nome")
     String nome;
 
@@ -37,7 +37,7 @@ public class RequisicaoDepartamentoDTO implements Serializable {
             , title = SCHEMA_DEPARTAMENTO_EMPRESA_ID_TITLE
             , description = SCHEMA_DEPARTAMENTO_EMPRESA_ID_DESCRIPTION
             , example = SCHEMA_DEPARTAMENTO_EMPRESA_ID_EXAMPLE)
-    @NotBlank
-    @UUID
+    @NotBlank(message = "Informe um id de empresa da qual o departamento está relacionado")
+    @UUID(message = "O Id informado para a empresa está inválido")
     String empresaId;
 }

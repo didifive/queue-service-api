@@ -29,8 +29,8 @@ public class RequisicaoAtendenteDTO implements Serializable {
             , example = SCHEMA_ATENDENTE_NOME_EXAMPLE
             , minLength = 3
             , maxLength = 255)
-    @NotBlank
-    @Size(min = 3, max = 255)
+    @NotBlank(message = "Informe um nome para o atendente")
+    @Size(min = 3, max = 255, message = "O nome do atendente deve ter entre 3 e 255 caracteres")
     @JsonProperty("nome")
     String nome;
     @Schema(type = SCHEMA_TYPE_STRING
@@ -39,9 +39,9 @@ public class RequisicaoAtendenteDTO implements Serializable {
             , example = SCHEMA_ATENDENTE_EMAIL_EXAMPLE
             , minLength = 3
             , maxLength = 255)
-    @NotBlank
-    @Email
-    @Size(min = 3, max = 255)
+    @NotBlank(message = "Informe um email para o atendente")
+    @Email(message = "Informe um e-mail válido para o atendente")
+    @Size(min = 3, max = 255, message = "O e-mail do atendente deve ter entre 3 e 255 caracteres")
     @JsonProperty("email")
     String email;
     @ArraySchema(schema =
@@ -51,6 +51,6 @@ public class RequisicaoAtendenteDTO implements Serializable {
             , example = SCHEMA_ATENDENTE_LISTA_DEPARTAMENTO_ID_EXAMPLE)
             , uniqueItems = true)
     @JsonProperty("departamentosId")
-    @UUID
+    @UUID(message = "O(s) Id(s) informado(s) para o(s) departamento(s) está(ão) inválido(s)")
     List<String> departamentosId;
 }

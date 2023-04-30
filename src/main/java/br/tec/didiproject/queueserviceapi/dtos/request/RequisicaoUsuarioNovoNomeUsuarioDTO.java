@@ -31,8 +31,8 @@ public class RequisicaoUsuarioNovoNomeUsuarioDTO implements Serializable {
             , example = SCHEMA_USUARIO_NOME_EXAMPLE
             , minLength = 3
             , maxLength = 255)
-    @NotBlank
-    @Size(min = 3, max = 255)
+    @NotBlank(message = "Informe um nome de usuário")
+    @Size(min = 3, max = 255, message = "O nome do usuário deve ter entre 3 e 255 caracteres")
     @JsonProperty("nomeUsuario")
     String nomeUsuario;
 }

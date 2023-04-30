@@ -31,8 +31,8 @@ public class RequisicaoUsuarioAtualizarSenhaDTO implements Serializable {
             , example = SCHEMA_USUARIO_SENHA_EXAMPLE
             , minLength = 6
             , maxLength = 60)
-    @NotBlank
-    @Size(min = 6, max = 60)
+    @NotBlank(message = "Informe a senha atual")
+    @Size(min = 6, max = 60, message = "A senha atual deve ter entre 6 e 60 caracteres")
     @JsonProperty("senhaAtual")
     String senhaAtual;
     @Schema(type = SCHEMA_TYPE_STRING
@@ -41,8 +41,8 @@ public class RequisicaoUsuarioAtualizarSenhaDTO implements Serializable {
             , example = SCHEMA_USUARIO_SENHA_EXAMPLE
             , minLength = 6
             , maxLength = 60)
-    @NotBlank
-    @Size(min = 6, max = 60)
+    @NotBlank(message = "Informe a nova senha")
+    @Size(min = 6, max = 60, message = "A nova senha deve ter entre 6 e 60 caracteres")
     @JsonProperty("novaSenha")
     String novaSenha;
 

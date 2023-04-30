@@ -31,8 +31,8 @@ public class RequisicaoUsuarioDTO implements Serializable {
             , example = SCHEMA_USUARIO_NOME_EXAMPLE
             , minLength = 3
             , maxLength = 255)
-    @NotBlank
-    @Size(min = 3, max = 255)
+    @NotBlank(message = "Informe um nome de usuário")
+    @Size(min = 3, max = 255, message = "O nome de usuário deve ter entre 3 e 255 caracteres")
     @JsonProperty("nomeUsuario")
     String nomeUsuario;
     @Schema(type = SCHEMA_TYPE_STRING
@@ -41,8 +41,8 @@ public class RequisicaoUsuarioDTO implements Serializable {
             , example = SCHEMA_USUARIO_SENHA_EXAMPLE
             , minLength = 6
             , maxLength = 60)
-    @NotBlank
-    @Size(min = 6, max = 60)
+    @NotBlank(message = "Informe uma senha para o usuário")
+    @Size(min = 6, max = 60, message = "A senha deve ter entre 6 e 60 caracteres")
     @JsonProperty("senha")
     String senha;
     @ArraySchema(schema =
@@ -58,7 +58,7 @@ public class RequisicaoUsuarioDTO implements Serializable {
             , title = SCHEMA_USUARIO_ATENDENTE_ID_TITLE
             , description = SCHEMA_USUARIO_ATENDENTE_ID_DESCRIPTION
             , example = SCHEMA_USUARIO_ATENDENTE_ID_EXAMPLE)
-    @UUID
+    @UUID(message = "O Id informado para o atendente está inválido")
     @JsonProperty("atendenteId")
     String atendenteId;
     @Schema(type = SCHEMA_TYPE_BOOLEAN
