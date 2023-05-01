@@ -24,7 +24,6 @@ import java.util.List;
 import java.util.UUID;
 
 import static br.tec.didiproject.queueserviceapi.enums.constants.v1.MappingRoutesV1.PATH_DEPARTAMENTO;
-import static br.tec.didiproject.queueserviceapi.enums.constants.v1.MappingRoutesV1.PATH_EMPRESA;
 import static br.tec.didiproject.queueserviceapi.utils.BindingError.checkBindingResultError;
 import static br.tec.didiproject.queueserviceapi.utils.UUIDValidator.validateUUIDPattern;
 

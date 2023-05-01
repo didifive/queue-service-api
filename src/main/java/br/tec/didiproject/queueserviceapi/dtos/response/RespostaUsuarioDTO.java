@@ -47,7 +47,7 @@ public class RespostaUsuarioDTO implements Serializable {
             , uniqueItems = true)
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty(PERFIS)
-    List<Perfil> perfis;
+    transient List<Perfil> perfis;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_USUARIO_ATENDENTE_ID_TITLE
             , description = SCHEMA_USUARIO_ATENDENTE_ID_DESCRIPTION

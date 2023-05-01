@@ -6,6 +6,8 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -21,7 +23,9 @@ import java.util.UUID;
 @Table(name = "atendente"
         , schema = "public"
 )
-public class Atendente {
+public class Atendente implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 19052122047L;
 
     @Id
     @GeneratedValue(generator = "UUID")

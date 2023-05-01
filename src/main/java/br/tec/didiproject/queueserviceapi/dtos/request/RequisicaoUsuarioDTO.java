@@ -55,7 +55,7 @@ public class RequisicaoUsuarioDTO implements Serializable {
         , uniqueItems = true)
     @JsonProperty(PERFIS)
     @Valid
-    List<Perfil> perfis;
+    transient List<Perfil> perfis;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_USUARIO_ATENDENTE_ID_TITLE
             , description = SCHEMA_USUARIO_ATENDENTE_ID_DESCRIPTION

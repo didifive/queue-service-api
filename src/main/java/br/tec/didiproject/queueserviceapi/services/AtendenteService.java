@@ -8,21 +8,15 @@ import br.tec.didiproject.queueserviceapi.exceptions.EntityNotFoundException;
 import br.tec.didiproject.queueserviceapi.exceptions.QueueServiceApiException;
 import br.tec.didiproject.queueserviceapi.repositories.AtendenteRepository;
 import br.tec.didiproject.queueserviceapi.repositories.SenhaRepository;
-import jakarta.validation.ConstraintViolationException;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Random;
 import java.util.UUID;
-import java.util.random.RandomGenerator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -107,8 +101,8 @@ public class AtendenteService {
             String ultimoCaractereNomeUsuario = nomeUsuarioSplit[0].substring(nomeUsuarioSplit[0].length() - 1);
             if (NumberUtils.isDigits(ultimoCaractereNomeUsuario)
                     && Integer.parseInt(ultimoCaractereNomeUsuario) != 9)
-                nomeUsuarioSplit[0] = nomeUsuarioSplit[0].substring(0,nomeUsuarioSplit[0].length() - 1)
-                                    + (Integer.parseInt(ultimoCaractereNomeUsuario) + 1);
+                nomeUsuarioSplit[0] = nomeUsuarioSplit[0].substring(0, nomeUsuarioSplit[0].length() - 1)
+                        + (Integer.parseInt(ultimoCaractereNomeUsuario) + 1);
             else
                 nomeUsuarioSplit[0] = nomeUsuarioSplit[0] + "1";
             String novoNomeUsuario = String.join("@", nomeUsuarioSplit);

@@ -1,6 +1,5 @@
 package br.tec.didiproject.queueserviceapi.dtos.response;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -13,7 +12,6 @@ import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SCHEMA_TYPE_INTEGER;
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SCHEMA_TYPE_STRING;
 import static br.tec.didiproject.queueserviceapi.enums.constants.v1.JsonPropertyDTOs.*;
-import static com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @Data
 @Builder

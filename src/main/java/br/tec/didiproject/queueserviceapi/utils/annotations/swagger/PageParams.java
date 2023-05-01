@@ -1,7 +1,6 @@
 package br.tec.didiproject.queueserviceapi.utils.annotations.swagger;
 
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.Schema;
 
@@ -13,9 +12,8 @@ import java.lang.annotation.Target;
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SCHEMA_TYPE_INTEGER;
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SCHEMA_TYPE_STRING;
 import static br.tec.didiproject.queueserviceapi.enums.constants.v1.ControllerAnnotationsV1.*;
-import static br.tec.didiproject.queueserviceapi.enums.constants.v1.ControllerAnnotationsV1.CONTROLLER_FIND_ALL_PARAMETER_SORT_EXAMPLE;
 
-@Target({ ElementType.METHOD, ElementType.ANNOTATION_TYPE, ElementType.TYPE })
+@Target({ElementType.METHOD, ElementType.ANNOTATION_TYPE, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Parameter(in = ParameterIn.QUERY
         , schema = @Schema(type = SCHEMA_TYPE_INTEGER)

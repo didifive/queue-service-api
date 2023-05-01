@@ -1,6 +1,6 @@
 package br.tec.didiproject.queueserviceapi.enums.constants.v1;
 
-public class JsonPropertyDTOs {
+public final class JsonPropertyDTOs {
     public static final String ATENDENTE_ID = "atendenteId";
     public static final String ATIVO = "ativo";
     public static final String CPF_CNPJ = "cpfCnpj";
@@ -26,4 +26,8 @@ public class JsonPropertyDTOs {
     public static final String TOKEN = "token";
     public static final String USERNAME = "username";
     public static final String USUARIO_ID = "usuarioId";
+
+    private JsonPropertyDTOs() {
+        throw new IllegalAccessError("Utility Class");
+    }
 }

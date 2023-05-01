@@ -61,5 +61,5 @@ public class RequisicaoFilaDTO implements Serializable {
             , example = SCHEMA_FILA_LISTA_TIPO_ATENDIMENTO_ID_EXAMPLE)
             , uniqueItems = true)
     @JsonProperty(TIPOS_ATENDIMENTO_ID)
-    List<@UUID(message = FILA_TIPOS_ATENDIMENTO_UUID) String> tiposAtendimentoId;
+    transient List<@UUID(message = FILA_TIPOS_ATENDIMENTO_UUID) String> tiposAtendimentoId;
 }

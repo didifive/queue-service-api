@@ -12,8 +12,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
-import java.util.HashSet;
-
 @RequiredArgsConstructor
 @Component
 public class PopularSenhas {
@@ -29,8 +27,8 @@ public class PopularSenhas {
 
         if (senhas.getContent().isEmpty()) {
             Fila fila = filaService.findAll(pageable).getContent().get(0);
-            TipoAtendimento tipoAtendimento1 =  tipoAtendimentoService.findAll(pageable).getContent().get(0);
-            TipoAtendimento tipoAtendimento2 =  tipoAtendimentoService.findAll(pageable).getContent().get(0);
+            TipoAtendimento tipoAtendimento1 = tipoAtendimentoService.findAll(pageable).getContent().get(0);
+            TipoAtendimento tipoAtendimento2 = tipoAtendimentoService.findAll(pageable).getContent().get(0);
 
             senhaService.create(fila.getId(), tipoAtendimento1.getId());
             senhaService.create(fila.getId(), tipoAtendimento1.getId());

@@ -1,6 +1,6 @@
 package br.tec.didiproject.queueserviceapi.enums.constants;
 
-public class OpenApiTypes {
+public final class OpenApiTypes {
 
     /**
      * Constants for @Schema annotation types

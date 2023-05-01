@@ -1,9 +1,7 @@
 package br.tec.didiproject.queueserviceapi.dtos.mapper;
 
 import br.tec.didiproject.queueserviceapi.dtos.request.RequisicaoAtendenteDTO;
-import br.tec.didiproject.queueserviceapi.dtos.request.RequisicaoDepartamentoDTO;
 import br.tec.didiproject.queueserviceapi.dtos.response.RespostaAtendenteDTO;
-import br.tec.didiproject.queueserviceapi.dtos.response.RespostaDepartamentoDTO;
 import br.tec.didiproject.queueserviceapi.entities.Atendente;
 import br.tec.didiproject.queueserviceapi.entities.Departamento;
 import br.tec.didiproject.queueserviceapi.entities.Usuario;
@@ -15,6 +13,22 @@ import java.util.*;
 
 @Mapper(componentModel = "spring")
 public interface AtendenteMapper {
+
+    @Named("idsToDepartamentos")
+    static Set<Departamento> idsToDepartamentos(List<String> departamentosId) {
+        Set<Departamento> departamentos = new HashSet<>();
+        for (String idDepartamento : departamentosId)
+            departamentos.add(new Departamento(UUID.fromString(idDepartamento), null, null));
+        return departamentos;
+    }
+
+    @Named("departamentosToIds")
+    static List<String> departamentosToIds(Set<Departamento> departamentos) {
+        List<String> departamentosString = new ArrayList<>();
+        for (Departamento departamento : departamentos)
+            departamentosString.add(departamento.getId().toString());
+        return departamentosString;
+    }
 
     @Mapping(target = "id", ignore = true)
     @Mapping(source = "departamentosId"
@@ -34,20 +48,4 @@ public interface AtendenteMapper {
             , target = "departamentosId"
             , qualifiedByName = "departamentosToIds")
     List<RespostaAtendenteDTO> toResponseDTOList(List<Atendente> atendentes);
-
-    @Named("idsToDepartamentos")
-    public static Set<Departamento> idsToDepartamentos(List<String> departamentosId) {
-        Set<Departamento> departamentos = new HashSet<>();
-        for (String idDepartamento : departamentosId)
-            departamentos.add(new Departamento(UUID.fromString(idDepartamento),null,null));
-        return departamentos;
-    }
-
-    @Named("departamentosToIds")
-    public static List<String> departamentosToIds(Set<Departamento> departamentos) {
-        List<String> departamentosString = new ArrayList<>();
-        for (Departamento departamento : departamentos)
-            departamentosString.add(departamento.getId().toString());
-        return departamentosString;
-    }
 }

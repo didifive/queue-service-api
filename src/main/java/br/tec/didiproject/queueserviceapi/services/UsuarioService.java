@@ -103,10 +103,7 @@ public class UsuarioService implements UserDetailsService {
     }
 
     private String validarCriptografarSenha(String senha) {
-        String regex = "^(?=.*[0-9])"
-                + "(?=.*[a-z])(?=.*[A-Z])"
-                + "(?=.*[!@#$%^&*+=])"
-                + "(?=\\S+$).{6,60}$";
+        String regex = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*+=])(?=\\S+$).{6,60}$";
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(senha);
         if (!m.matches())

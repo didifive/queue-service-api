@@ -53,5 +53,5 @@ public class RequisicaoAtendenteDTO implements Serializable {
             , example = SCHEMA_ATENDENTE_LISTA_DEPARTAMENTO_ID_EXAMPLE)
             , uniqueItems = true)
     @JsonProperty(DEPARTAMENTOS_ID)
-    List<@UUID(message = ATENDENTE_DEPARTAMENTO_ID_UUID) String> departamentosId;
+    transient List<@UUID(message = ATENDENTE_DEPARTAMENTO_ID_UUID) String> departamentosId;
 }

@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.UUID;
 
 @Builder
@@ -17,7 +19,9 @@ import java.util.UUID;
 @Table(name = "empresa"
         , schema = "public"
 )
-public class Empresa {
+public class Empresa implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 19122041950251207L;
 
     @Id
     @GeneratedValue(generator = "UUID")

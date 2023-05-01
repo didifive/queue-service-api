@@ -52,7 +52,7 @@ public class RespostaAtendenteDTO implements Serializable {
             , uniqueItems = true)
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty(DEPARTAMENTOS_ID)
-    List<String> departamentosId;
+    transient List<String> departamentosId;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_ATENDENTE_USUARIO_ID_TITLE
             , description = SCHEMA_ATENDENTE_USUARIO_ID_DESCRIPTION

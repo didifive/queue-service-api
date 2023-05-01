@@ -1,11 +1,9 @@
 package br.tec.didiproject.queueserviceapi.utils.db.populate;
 
 import br.tec.didiproject.queueserviceapi.entities.Departamento;
-import br.tec.didiproject.queueserviceapi.entities.Empresa;
 import br.tec.didiproject.queueserviceapi.services.DepartamentoService;
 import br.tec.didiproject.queueserviceapi.services.EmpresaService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;

@@ -58,5 +58,5 @@ public class RespostaFilaDTO implements Serializable {
             , uniqueItems = true)
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty(TIPOS_ATENDIMENTO_ID)
-    List<String> tiposAtendimentoId;
+    transient List<String> tiposAtendimentoId;
 }

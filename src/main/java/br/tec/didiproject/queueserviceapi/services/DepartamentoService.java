@@ -2,7 +2,6 @@ package br.tec.didiproject.queueserviceapi.services;
 
 import br.tec.didiproject.queueserviceapi.entities.Atendente;
 import br.tec.didiproject.queueserviceapi.entities.Departamento;
-import br.tec.didiproject.queueserviceapi.entities.Empresa;
 import br.tec.didiproject.queueserviceapi.entities.Fila;
 import br.tec.didiproject.queueserviceapi.exceptions.DataIntegrityViolationException;
 import br.tec.didiproject.queueserviceapi.exceptions.EntityNotFoundException;

@@ -1,8 +1,6 @@
 package br.tec.didiproject.queueserviceapi.utils.db.populate;
 
-import br.tec.didiproject.queueserviceapi.entities.Departamento;
 import br.tec.didiproject.queueserviceapi.entities.TipoAtendimento;
-import br.tec.didiproject.queueserviceapi.services.EmpresaService;
 import br.tec.didiproject.queueserviceapi.services.TipoAtendimentoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Lazy;

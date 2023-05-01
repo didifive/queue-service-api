@@ -3,7 +3,7 @@ package br.tec.didiproject.queueserviceapi.enums.constants;
 import static br.tec.didiproject.queueserviceapi.enums.constants.v1.MappingRoutesV1.PATH_AUTH;
 import static br.tec.didiproject.queueserviceapi.enums.constants.v1.MappingRoutesV1.PATH_ROOT;
 
-public class OpenApiSchemes {
+public final class OpenApiSchemes {
     /**
      * Constants for @SecurityScheme annotation in QueueServiceApiApplication
      */

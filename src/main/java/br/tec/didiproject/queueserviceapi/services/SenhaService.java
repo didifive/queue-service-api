@@ -165,7 +165,7 @@ public class SenhaService {
            );
         }
 
-        senha.setFinalizadaEm(this.getNow());
+        senha.setFinalizadaEm(getNow());
         senha.setMotivoFinalizada(motivo);
 
         return senhaRepository.saveAndFlush(senha);

@@ -1,16 +1,10 @@
 package br.tec.didiproject.queueserviceapi.dtos.mapper;
 
 import br.tec.didiproject.queueserviceapi.dtos.request.RequisicaoDepartamentoDTO;
-import br.tec.didiproject.queueserviceapi.dtos.request.RequisicaoEmpresaDTO;
 import br.tec.didiproject.queueserviceapi.dtos.response.RespostaDepartamentoDTO;
-import br.tec.didiproject.queueserviceapi.dtos.response.RespostaEmpresaDTO;
 import br.tec.didiproject.queueserviceapi.entities.Departamento;
-import br.tec.didiproject.queueserviceapi.entities.Empresa;
-import br.tec.didiproject.queueserviceapi.services.EmpresaService;
-import lombok.RequiredArgsConstructor;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 

@@ -109,16 +109,6 @@
 						{
 							"name": "Listar Empresas",
 							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwYzhlOGU0ZC1kZDhmLTQwNzUtYTdmMi0xNzI4MTZhOTQ4OTEiLCJpc3MiOiJRdWV1ZVNlcnZpY2VBUEkiLCJleHAiOjE2Nzg4NTA5MTV9.FCfwNgtEUzQcvovfuzYFlgetuMb_gU8DAXu4mkcCgdE",
-											"type": "string"
-										}
-									]
-								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -830,7 +820,7 @@
 								"method": "PATCH",
 								"header": [],
 								"url": {
-									"raw": "{{localhost}}{{fila}}/b4fb70eb-a34f-425b-a3e1-7eef693993b0/tipo-atendimento/6194b92c-1ee0-4c35-855d-65b1c8eb3f83/adicionar",
+									"raw": "{{localhost}}{{fila}}/b4fb70eb-a34f-425b-a3e1-7eef693993b0/tipo-atendimento/6194b92c-1ee0-4c35-855d-65b1c8eb3f83/remover",
 									"host": [
 										"{{localhost}}{{fila}}"
 									],
@@ -838,7 +828,7 @@
 										"b4fb70eb-a34f-425b-a3e1-7eef693993b0",
 										"tipo-atendimento",
 										"6194b92c-1ee0-4c35-855d-65b1c8eb3f83",
-										"adicionar"
+										"remover"
 									]
 								}
 							},
@@ -850,12 +840,12 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{localhost}}{{fila}}/4cd44f84-b045-4d95-b3ac-ce8104a10c7f",
+									"raw": "{{localhost}}{{fila}}/b4fb70eb-a34f-425b-a3e1-7eef693993b0",
 									"host": [
 										"{{localhost}}{{fila}}"
 									],
 									"path": [
-										"4cd44f84-b045-4d95-b3ac-ce8104a10c7f"
+										"b4fb70eb-a34f-425b-a3e1-7eef693993b0"
 									]
 								}
 							},
@@ -871,7 +861,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwYzhlOGU0ZC1kZDhmLTQwNzUtYTdmMi0xNzI4MTZhOTQ4OTEiLCJpc3MiOiJRdWV1ZVNlcnZpY2VBUEkiLCJleHAiOjE2ODMyNTA1NDl9.2iD8nK5NW_Gajjv2o_RPvPGB3pLBE4u87Ema5j4NRbo",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwYzhlOGU0ZC1kZDhmLTQwNzUtYTdmMi0xNzI4MTZhOTQ4OTEiLCJpc3MiOiJRdWV1ZVNlcnZpY2VBUEkiLCJleHAiOjE2ODM3NjU1MDN9.X5TyVwW-uPN4g8NphKLxRxO5CcteN51LLmiYjgKtV2U",
 				"type": "string"
 			}
 		]
