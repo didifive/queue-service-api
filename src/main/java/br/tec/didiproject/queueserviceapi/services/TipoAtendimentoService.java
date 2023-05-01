@@ -59,6 +59,10 @@ public class TipoAtendimentoService {
      * @param tipoAtendimento TipoAtendimento object with the new attendance type  data
      */
     public TipoAtendimento create(TipoAtendimento tipoAtendimento) {
+        return this.trySaveAttendanceType(tipoAtendimento);
+    }
+
+    private TipoAtendimento trySaveAttendanceType(TipoAtendimento tipoAtendimento) {
         try {
             tipoAtendimento = tipoAtendimentoRepository.save(tipoAtendimento);
         } catch (org.springframework.dao.DataIntegrityViolationException e) {
@@ -85,11 +89,11 @@ public class TipoAtendimentoService {
      * @param novoTipoAtendimento TipoAtendimento object with a new attendance type data
      */
     public TipoAtendimento atualizarTipoAtendimento(UUID tipoAtendimentoId, TipoAtendimento novoTipoAtendimento) {
-        TipoAtendimento tipoAtendimentoExistente = this.findById(tipoAtendimentoId);
+        this.findById(tipoAtendimentoId);
 
-        novoTipoAtendimento.setId(tipoAtendimentoExistente.getId());
+        novoTipoAtendimento.setId(tipoAtendimentoId);
 
-        return tipoAtendimentoRepository.save(novoTipoAtendimento);
+        return this.trySaveAttendanceType(novoTipoAtendimento);
     }
 
     /**

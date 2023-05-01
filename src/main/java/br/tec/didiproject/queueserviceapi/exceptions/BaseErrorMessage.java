@@ -39,6 +39,7 @@ public class BaseErrorMessage {
     public static final BaseErrorMessage QUEUE_NOT_FOUND = new BaseErrorMessage("queue.notFound");
     public static final BaseErrorMessage QUEUE_WITH_ASSOCIATED_SERVICE = new BaseErrorMessage("queue.withAssociatedService");
     public static final BaseErrorMessage QUEUE_WITH_DUPLICATE_ABBREVIATION = new BaseErrorMessage("queue.withDuplicateAbbreviation");
+    public static final BaseErrorMessage QUEUE_WITHOUT_ATTENDANCE_TYPE = new BaseErrorMessage("queue.withoutAttendanceType");
     public static final BaseErrorMessage SERVICE_NUMBER_NOT_FOUND = new BaseErrorMessage("serviceNumber.notFound");
     public static final BaseErrorMessage SERVICE_NUMBER_ALREADY_CALLED = new BaseErrorMessage("serviceNumber.alreadyCalled");
     public static final BaseErrorMessage SERVICE_NUMBER_ALREADY_ANSWERED = new BaseErrorMessage("serviceNumber.alreadyAnswered");

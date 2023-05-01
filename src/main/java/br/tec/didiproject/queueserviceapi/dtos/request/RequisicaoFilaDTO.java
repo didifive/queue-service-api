@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -60,6 +61,7 @@ public class RequisicaoFilaDTO implements Serializable {
             , description = SCHEMA_FILA_LISTA_TIPO_ATENDIMENTO_ID_DESCRIPTION
             , example = SCHEMA_FILA_LISTA_TIPO_ATENDIMENTO_ID_EXAMPLE)
             , uniqueItems = true)
+    @NotEmpty(message = FILA_TIPOS_ATENDIMENTO_NOT_EMPTY)
     @JsonProperty(TIPOS_ATENDIMENTO_ID)
     private List<@UUID(message = FILA_TIPOS_ATENDIMENTO_UUID) String> tiposAtendimentoId;
 }

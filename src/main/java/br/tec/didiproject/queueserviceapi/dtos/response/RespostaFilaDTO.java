@@ -55,7 +55,6 @@ public class RespostaFilaDTO implements Serializable {
             , description = SCHEMA_FILA_LISTA_TIPO_ATENDIMENTO_ID_DESCRIPTION
             , example = SCHEMA_FILA_LISTA_TIPO_ATENDIMENTO_ID_EXAMPLE)
             , uniqueItems = true)
-    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty(TIPOS_ATENDIMENTO_ID)
     private List<String> tiposAtendimentoId;
 }

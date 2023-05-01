@@ -3,6 +3,7 @@ package br.tec.didiproject.queueserviceapi.services;
 import br.tec.didiproject.queueserviceapi.entities.Fila;
 import br.tec.didiproject.queueserviceapi.entities.Senha;
 import br.tec.didiproject.queueserviceapi.entities.TipoAtendimento;
+import br.tec.didiproject.queueserviceapi.exceptions.BadRequestBodyException;
 import br.tec.didiproject.queueserviceapi.exceptions.DataIntegrityViolationException;
 import br.tec.didiproject.queueserviceapi.exceptions.EntityNotFoundException;
 import br.tec.didiproject.queueserviceapi.exceptions.QueueServiceApiException;
@@ -77,6 +78,9 @@ public class FilaService {
     }
 
     private Fila trySaveQueue(Fila novaFila) {
+
+        this.hasAttendanceType(novaFila);
+
         try {
             novaFila = filaRepository.save(novaFila);
         } catch (org.springframework.dao.DataIntegrityViolationException e) {
@@ -92,6 +96,14 @@ public class FilaService {
             throw new QueueServiceApiException(GENERIC_EXCEPTION.getMessage());
         }
         return novaFila;
+    }
+
+    private void hasAttendanceType(Fila fila) {
+        if (fila.getTiposAtendimento().isEmpty())
+            throw new BadRequestBodyException(
+                    QUEUE_WITHOUT_ATTENDANCE_TYPE
+                            .params(fila.getId().toString())
+                            .getMessage());
     }
 
     /**
