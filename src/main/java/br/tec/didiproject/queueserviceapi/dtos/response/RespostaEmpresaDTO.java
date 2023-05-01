@@ -11,6 +11,7 @@ import java.io.Serializable;
 
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.*;
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SCHEMA_TYPE_STRING;
+import static br.tec.didiproject.queueserviceapi.enums.constants.v1.JsonPropertyDTOs.*;
 import static com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @Data
@@ -24,7 +25,7 @@ public class RespostaEmpresaDTO implements Serializable {
             , example = SCHEMA_EMPRESA_ID_EXAMPLE
             , minLength = 36
             , maxLength = 36)
-    @JsonProperty("id")
+    @JsonProperty(ID)
     String id;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_EMPRESA_NOME_TITLE
@@ -32,7 +33,7 @@ public class RespostaEmpresaDTO implements Serializable {
             , example = SCHEMA_EMPRESA_NOME_EXAMPLE
             , minLength = 3
             , maxLength = 255)
-    @JsonProperty("nome")
+    @JsonProperty(NOME)
     String nome;
 
     @Schema(type = SCHEMA_TYPE_STRING
@@ -43,7 +44,7 @@ public class RespostaEmpresaDTO implements Serializable {
             , maxLength = 18
             , nullable = true)
     @JsonInclude(value = Include.NON_NULL)
-    @JsonProperty("cpfCnpj")
+    @JsonProperty(CPF_CNPJ)
     String cpfCnpj;
 
     @Schema(type = SCHEMA_TYPE_STRING
@@ -54,6 +55,6 @@ public class RespostaEmpresaDTO implements Serializable {
             , maxLength = 255
             , nullable = true)
     @JsonInclude(value = Include.NON_NULL)
-    @JsonProperty("endereco")
+    @JsonProperty(ENDERECO)
     String endereco;
 }

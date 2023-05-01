@@ -16,6 +16,7 @@ import java.util.List;
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.*;
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SCHEMA_TYPE_BOOLEAN;
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SCHEMA_TYPE_STRING;
+import static br.tec.didiproject.queueserviceapi.enums.constants.v1.JsonPropertyDTOs.*;
 
 @Data
 @Builder
@@ -28,7 +29,7 @@ public class RespostaUsuarioDTO implements Serializable {
             , example = SCHEMA_USUARIO_ID_EXAMPLE
             , minLength = 36
             , maxLength = 36)
-    @JsonProperty("id")
+    @JsonProperty(ID)
     String id;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_USUARIO_NOME_TITLE
@@ -36,7 +37,7 @@ public class RespostaUsuarioDTO implements Serializable {
             , example = SCHEMA_USUARIO_NOME_EXAMPLE
             , minLength = 3
             , maxLength = 255)
-    @JsonProperty("nomeUsuario")
+    @JsonProperty(NOME_USUARIO)
     String nomeUsuario;
     @ArraySchema(schema =
     @Schema(implementation = Perfil.class
@@ -45,7 +46,7 @@ public class RespostaUsuarioDTO implements Serializable {
             , example = SCHEMA_USUARIO_PERFIL_EXAMPLE)
             , uniqueItems = true)
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    @JsonProperty("perfis")
+    @JsonProperty(PERFIS)
     List<Perfil> perfis;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_USUARIO_ATENDENTE_ID_TITLE
@@ -54,13 +55,13 @@ public class RespostaUsuarioDTO implements Serializable {
             , nullable = true)
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @UUID
-    @JsonProperty("atendenteId")
+    @JsonProperty(ATENDENTE_ID)
     String atendenteId;
     @Schema(type = SCHEMA_TYPE_BOOLEAN
             , title = SCHEMA_USUARIO_ATIVO_TITLE
             , description = SCHEMA_USUARIO_ATIVO_DESCRIPTION
             , example = SCHEMA_USUARIO_ATIVO_EXAMPLE
             , defaultValue = "true")
-    @JsonProperty("ativo")
+    @JsonProperty(ATIVO)
     Boolean ativo;
 }

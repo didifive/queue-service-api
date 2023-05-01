@@ -13,8 +13,10 @@ import org.hibernate.validator.constraints.UUID;
 import java.io.Serializable;
 
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.*;
-import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.SCHEMA_DEPARTAMENTO_NOME_DESCRIPTION;
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SCHEMA_TYPE_STRING;
+import static br.tec.didiproject.queueserviceapi.enums.constants.v1.JsonPropertyDTOs.EMPRESA_ID;
+import static br.tec.didiproject.queueserviceapi.enums.constants.v1.JsonPropertyDTOs.NOME;
+import static br.tec.didiproject.queueserviceapi.enums.constants.v1.ValidationMessagesV1.*;
 
 @Data
 @Builder
@@ -28,15 +30,16 @@ public class RequisicaoDepartamentoDTO implements Serializable {
             , example = SCHEMA_DEPARTAMENTO_NOME_EXAMPLE
             , minLength = 3
             , maxLength = 255)
-    @NotBlank(message = "Informe um nome para o departamento")
-    @Size(min = 3, max = 255, message = "O nome do departamento deve ter entre 3 e 255 caracteres")
-    @JsonProperty("nome")
+    @NotBlank(message = DEPARTAMENTO_NOME_NOT_BLANK)
+    @Size(min = 3, max = 255, message = DEPARTAMENTO_NOME_SIZE)
+    @JsonProperty(NOME)
     String nome;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_DEPARTAMENTO_EMPRESA_ID_TITLE
             , description = SCHEMA_DEPARTAMENTO_EMPRESA_ID_DESCRIPTION
             , example = SCHEMA_DEPARTAMENTO_EMPRESA_ID_EXAMPLE)
-    @NotBlank(message = "Informe um id de empresa da qual o departamento está relacionado")
-    @UUID(message = "O Id informado para a empresa está inválido")
+    @NotBlank(message = DEPARTAMENTO_EMPRESA_ID_NOT_BLANK)
+    @UUID(message = DEPARTAMENTO_EMPRESA_ID_UUID)
+    @JsonProperty(EMPRESA_ID)
     String empresaId;
 }

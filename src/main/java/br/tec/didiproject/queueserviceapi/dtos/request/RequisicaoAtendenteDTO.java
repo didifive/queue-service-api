@@ -17,6 +17,8 @@ import java.util.List;
 
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.*;
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SCHEMA_TYPE_STRING;
+import static br.tec.didiproject.queueserviceapi.enums.constants.v1.JsonPropertyDTOs.*;
+import static br.tec.didiproject.queueserviceapi.enums.constants.v1.ValidationMessagesV1.*;
 
 @Data
 @Builder
@@ -29,9 +31,9 @@ public class RequisicaoAtendenteDTO implements Serializable {
             , example = SCHEMA_ATENDENTE_NOME_EXAMPLE
             , minLength = 3
             , maxLength = 255)
-    @NotBlank(message = "Informe um nome para o atendente")
-    @Size(min = 3, max = 255, message = "O nome do atendente deve ter entre 3 e 255 caracteres")
-    @JsonProperty("nome")
+    @NotBlank(message = ATENDENTE_NOME_NOT_BLANK)
+    @Size(min = 3, max = 255, message = ATENDENTE_NOME_SIZE)
+    @JsonProperty(NOME)
     String nome;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_ATENDENTE_EMAIL_TITLE
@@ -39,10 +41,10 @@ public class RequisicaoAtendenteDTO implements Serializable {
             , example = SCHEMA_ATENDENTE_EMAIL_EXAMPLE
             , minLength = 3
             , maxLength = 255)
-    @NotBlank(message = "Informe um email para o atendente")
-    @Email(message = "Informe um e-mail válido para o atendente")
-    @Size(min = 3, max = 255, message = "O e-mail do atendente deve ter entre 3 e 255 caracteres")
-    @JsonProperty("email")
+    @NotBlank(message = ATENDENTE_EMAIL_NOT_BLANK)
+    @Email(message = ATENDENTE_EMAIL_EMAIL)
+    @Size(min = 3, max = 255, message = ATENDENTE_EMAIL_SIZE)
+    @JsonProperty(EMAIL)
     String email;
     @ArraySchema(schema =
     @Schema(type = SCHEMA_TYPE_STRING
@@ -50,6 +52,6 @@ public class RequisicaoAtendenteDTO implements Serializable {
             , description = SCHEMA_ATENDENTE_LISTA_DEPARTAMENTO_ID_DESCRIPTION
             , example = SCHEMA_ATENDENTE_LISTA_DEPARTAMENTO_ID_EXAMPLE)
             , uniqueItems = true)
-    @JsonProperty("departamentosId")
-    List<@UUID(message = "O(s) Id(s) informado(s) para o(s) departamento(s) está(ão) inválido(s)") String> departamentosId;
+    @JsonProperty(DEPARTAMENTOS_ID)
+    List<@UUID(message = ATENDENTE_DEPARTAMENTO_ID_UUID) String> departamentosId;
 }

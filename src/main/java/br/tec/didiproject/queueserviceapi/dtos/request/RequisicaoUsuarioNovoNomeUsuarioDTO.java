@@ -19,6 +19,9 @@ import java.util.List;
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.*;
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SCHEMA_TYPE_BOOLEAN;
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SCHEMA_TYPE_STRING;
+import static br.tec.didiproject.queueserviceapi.enums.constants.v1.JsonPropertyDTOs.NOME_USUARIO;
+import static br.tec.didiproject.queueserviceapi.enums.constants.v1.ValidationMessagesV1.USUARIO_NOME_USUARIO_NOT_BLANK;
+import static br.tec.didiproject.queueserviceapi.enums.constants.v1.ValidationMessagesV1.USUARIO_NOME_USUARIO_SIZE;
 
 @Data
 @Builder
@@ -31,8 +34,8 @@ public class RequisicaoUsuarioNovoNomeUsuarioDTO implements Serializable {
             , example = SCHEMA_USUARIO_NOME_EXAMPLE
             , minLength = 3
             , maxLength = 255)
-    @NotBlank(message = "Informe um nome de usuário")
-    @Size(min = 3, max = 255, message = "O nome do usuário deve ter entre 3 e 255 caracteres")
-    @JsonProperty("nomeUsuario")
+    @NotBlank(message = USUARIO_NOME_USUARIO_NOT_BLANK)
+    @Size(min = 3, max = 255, message = USUARIO_NOME_USUARIO_SIZE)
+    @JsonProperty(NOME_USUARIO)
     String nomeUsuario;
 }

@@ -165,7 +165,7 @@ public class SenhaService {
            );
         }
 
-        senha.setFinalizadaEm(getNow());
+        senha.setFinalizadaEm(this.getNow());
         senha.setMotivoFinalizada(motivo);
 
         return senhaRepository.saveAndFlush(senha);
@@ -189,7 +189,7 @@ public class SenhaService {
             );
         }
 
-        senha = finalizaSenha(senha.getId()
+        senha = this.finalizaSenha(senha.getId()
                 , String.format(MOTIVO_SENHA_ATENDIDA,atendente.getNome(),atendente.getId().toString()));
 
         senha.setAtendidaEm(senha.getFinalizadaEm());

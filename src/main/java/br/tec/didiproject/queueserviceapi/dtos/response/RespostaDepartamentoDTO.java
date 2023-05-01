@@ -10,6 +10,7 @@ import java.io.Serializable;
 
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.*;
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SCHEMA_TYPE_STRING;
+import static br.tec.didiproject.queueserviceapi.enums.constants.v1.JsonPropertyDTOs.*;
 
 @Data
 @Builder
@@ -22,7 +23,7 @@ public class RespostaDepartamentoDTO implements Serializable {
             , example = SCHEMA_DEPARTAMENTO_ID_EXAMPLE
             , minLength = 36
             , maxLength = 36)
-    @JsonProperty("id")
+    @JsonProperty(ID)
     String id;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_DEPARTAMENTO_NOME_TITLE
@@ -30,13 +31,13 @@ public class RespostaDepartamentoDTO implements Serializable {
             , example = SCHEMA_DEPARTAMENTO_NOME_EXAMPLE
             , minLength = 3
             , maxLength = 255)
-    @JsonProperty("nome")
+    @JsonProperty(NOME)
     String nome;
 
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_DEPARTAMENTO_EMPRESA_ID_TITLE
             , description = SCHEMA_DEPARTAMENTO_EMPRESA_ID_DESCRIPTION
             , example = SCHEMA_DEPARTAMENTO_EMPRESA_ID_EXAMPLE)
-    @JsonProperty("empresaId")
+    @JsonProperty(EMPRESA_ID)
     String empresaId;
 }

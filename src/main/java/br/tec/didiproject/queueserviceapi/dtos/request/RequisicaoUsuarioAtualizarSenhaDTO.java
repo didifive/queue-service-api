@@ -19,6 +19,9 @@ import java.util.List;
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.*;
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SCHEMA_TYPE_BOOLEAN;
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SCHEMA_TYPE_STRING;
+import static br.tec.didiproject.queueserviceapi.enums.constants.v1.JsonPropertyDTOs.NOVA_SENHA;
+import static br.tec.didiproject.queueserviceapi.enums.constants.v1.JsonPropertyDTOs.SENHA_ATUAL;
+import static br.tec.didiproject.queueserviceapi.enums.constants.v1.ValidationMessagesV1.*;
 
 @Data
 @Builder
@@ -31,9 +34,9 @@ public class RequisicaoUsuarioAtualizarSenhaDTO implements Serializable {
             , example = SCHEMA_USUARIO_SENHA_EXAMPLE
             , minLength = 6
             , maxLength = 60)
-    @NotBlank(message = "Informe a senha atual")
-    @Size(min = 6, max = 60, message = "A senha atual deve ter entre 6 e 60 caracteres")
-    @JsonProperty("senhaAtual")
+    @NotBlank(message = USUARIO_ATUALIZAR_SENHA_SENHA_ATUAL_NOT_BLANK)
+    @Size(min = 6, max = 60, message = USUARIO_ATUALIZAR_SENHA_SENHA_ATUAL_SIZE)
+    @JsonProperty(SENHA_ATUAL)
     String senhaAtual;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_USUARIO_SENHA_TITLE
@@ -41,9 +44,9 @@ public class RequisicaoUsuarioAtualizarSenhaDTO implements Serializable {
             , example = SCHEMA_USUARIO_SENHA_EXAMPLE
             , minLength = 6
             , maxLength = 60)
-    @NotBlank(message = "Informe a nova senha")
-    @Size(min = 6, max = 60, message = "A nova senha deve ter entre 6 e 60 caracteres")
-    @JsonProperty("novaSenha")
+    @NotBlank(message = USUARIO_ATUALIZAR_SENHA_NOVA_SENHA_NOT_BLANK)
+    @Size(min = 6, max = 60, message = USUARIO_ATUALIZAR_SENHA_NOVA_SENHA_SIZE)
+    @JsonProperty(NOVA_SENHA)
     String novaSenha;
 
 }

@@ -7,6 +7,7 @@ import lombok.Data;
 
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.*;
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SCHEMA_TYPE_STRING;
+import static br.tec.didiproject.queueserviceapi.enums.constants.v1.JsonPropertyDTOs.*;
 
 @Data
 @AllArgsConstructor
@@ -16,27 +17,27 @@ public class TokenResponseDTO {
             , title = SCHEMA_AUTH_TOKEN_TITLE
             , description = SCHEMA_AUTH_TOKEN_DESCRIPTION
             , example = SCHEMA_AUTH_TOKEN_EXAMPLE)
-    @JsonProperty("token")
+    @JsonProperty(TOKEN)
     private String token;
 
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_AUTH_REFRESH_TOKEN_TITLE
             , description = SCHEMA_AUTH_REFRESH_TOKEN_DESCRIPTION
             , example = SCHEMA_AUTH_REFRESH_TOKEN_EXAMPLE)
-    @JsonProperty("refreshToken")
+    @JsonProperty(REFRESH_TOKEN)
     private String refreshToken;
 
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_AUTH_USER_ID_TITLE
             , description = SCHEMA_AUTH_USER_ID_DESCRIPTION
             , example = SCHEMA_AUTH_USER_ID_EXAMPLE)
-    @JsonProperty("usuarioId")
+    @JsonProperty(USUARIO_ID)
     private String usuarioId;
 
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_AUTH_USERNAME_TITLE
             , description = SCHEMA_AUTH_USERNAME_DESCRIPTION
             , example = SCHEMA_AUTH_USERNAME_EXAMPLE)
-    @JsonProperty("nomeUsuario")
+    @JsonProperty(NOME_USUARIO)
     private String nomeUsuario;
 }

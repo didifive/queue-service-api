@@ -12,6 +12,8 @@ import java.io.Serializable;
 
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.*;
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SCHEMA_TYPE_STRING;
+import static br.tec.didiproject.queueserviceapi.enums.constants.v1.JsonPropertyDTOs.*;
+import static br.tec.didiproject.queueserviceapi.enums.constants.v1.ValidationMessagesV1.*;
 
 @Data
 @Builder
@@ -24,9 +26,9 @@ public class RequisicaoTipoAtendimentoDTO implements Serializable {
             , example = SCHEMA_TIPO_ATENDIMENTO_NOME_EXAMPLE
             , minLength = 3
             , maxLength = 255)
-    @NotBlank(message = "Informe um nome para o tipo de atendimento")
-    @Size(min = 3, max = 255, message = "O nome do tipo de atendimento deve ter entre 3 e 255 caracteres")
-    @JsonProperty("nome")
+    @NotBlank(message = TIPO_ATENDIMENTO_NOME_NOT_BLANK)
+    @Size(min = 3, max = 255, message = TIPO_ATENDIMENTO_NOME_SIZE)
+    @JsonProperty(NOME)
     String nome;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_TIPO_ATENDIMENTO_SIGLA_TITLE
@@ -34,10 +36,10 @@ public class RequisicaoTipoAtendimentoDTO implements Serializable {
             , example = SCHEMA_TIPO_ATENDIMENTO_SIGLA_EXAMPLE
             , minLength = 1
             , maxLength = 3)
-    @NotBlank(message = "Informe uma sigla para o tipo de atendimento")
-    @Pattern(regexp = "^[a-zA-Z ]*$", message = "A sigla aceita somente caractere de texto de A até Z")
-    @Size(min = 1, max = 3, message = "A sigla do tipo de atendimento deve ter entre 1 e 3 caracteres")
-    @JsonProperty("sigla")
+    @NotBlank(message = TIPO_ATENDIMENTO_SIGLA_NOT_BLANK)
+    @Pattern(regexp = SIGLA_PATTERN, message = TIPO_ATENDIMENTO_SIGLA_PATTERN)
+    @Size(min = 1, max = 3, message = TIPO_ATENDIMENTO_SIGLA_SIZE)
+    @JsonProperty(SIGLA)
     String sigla;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_TIPO_ATENDIMENTO_PRIORIDADE_TITLE
@@ -45,9 +47,9 @@ public class RequisicaoTipoAtendimentoDTO implements Serializable {
             , example = SCHEMA_TIPO_ATENDIMENTO_PRIORIDADE_EXAMPLE
             , minimum = "1"
             , maximum = "32767")
-    @NotNull(message = "Informe uma prioridade para o tipo de atendimento")
-    @Min(value = 1, message = "O valor mínimo aceito para prioridade é [1]")
-    @Max(value = 32767, message = "O valor máximo aceito para prioridade é [32767]")
-    @JsonProperty("prioridade")
+    @NotNull(message = TIPO_ATENDIMENTO_PRIORIDADE_NOT_NULL)
+    @Min(value = 1, message = TIPO_ATENDIMENTO_PRIORIDADE_MIN)
+    @Max(value = 32767, message = TIPO_ATENDIMENTO_PRIORIDADE_MAX)
+    @JsonProperty(PRIORIDADE)
     Short prioridade;
 }

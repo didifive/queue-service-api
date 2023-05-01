@@ -19,6 +19,8 @@ import java.util.List;
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.*;
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SCHEMA_TYPE_BOOLEAN;
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SCHEMA_TYPE_STRING;
+import static br.tec.didiproject.queueserviceapi.enums.constants.v1.JsonPropertyDTOs.PERFIL;
+import static br.tec.didiproject.queueserviceapi.enums.constants.v1.ValidationMessagesV1.USUARIO_PERFIL_PERFIL_NOT_BLANK;
 
 @Data
 @Builder
@@ -29,8 +31,8 @@ public class RequisicaoUsuarioPerfilDTO implements Serializable {
             , title = SCHEMA_USUARIO_PERFIL_TITLE
             , description = SCHEMA_USUARIO_PERFIL_DESCRIPTION
             , example = SCHEMA_USUARIO_PERFIL_EXAMPLE)
-    @JsonProperty("perfil")
-    @NotBlank(message = "Informe no mínimo um perfil")
+    @JsonProperty(PERFIL)
+    @NotBlank(message = USUARIO_PERFIL_PERFIL_NOT_BLANK)
     @Valid
     Perfil perfil;
 }

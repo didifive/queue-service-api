@@ -12,6 +12,7 @@ import java.io.Serializable;
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.*;
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SCHEMA_TYPE_INTEGER;
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SCHEMA_TYPE_STRING;
+import static br.tec.didiproject.queueserviceapi.enums.constants.v1.JsonPropertyDTOs.*;
 import static com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @Data
@@ -25,7 +26,7 @@ public class RespostaTipoAtendimentoDTO implements Serializable {
             , example = SCHEMA_TIPO_ATENDIMENTO_ID_EXAMPLE
             , minLength = 36
             , maxLength = 36)
-    @JsonProperty("id")
+    @JsonProperty(ID)
     String id;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_TIPO_ATENDIMENTO_NOME_TITLE
@@ -33,7 +34,7 @@ public class RespostaTipoAtendimentoDTO implements Serializable {
             , example = SCHEMA_TIPO_ATENDIMENTO_NOME_EXAMPLE
             , minLength = 3
             , maxLength = 255)
-    @JsonProperty("nome")
+    @JsonProperty(NOME)
     String nome;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_TIPO_ATENDIMENTO_SIGLA_TITLE
@@ -41,7 +42,7 @@ public class RespostaTipoAtendimentoDTO implements Serializable {
             , example = SCHEMA_TIPO_ATENDIMENTO_SIGLA_EXAMPLE
             , minLength = 1
             , maxLength = 3)
-    @JsonProperty("sigla")
+    @JsonProperty(SIGLA)
     String sigla;
     @Schema(type = SCHEMA_TYPE_INTEGER
             , title = SCHEMA_TIPO_ATENDIMENTO_PRIORIDADE_TITLE
@@ -49,6 +50,6 @@ public class RespostaTipoAtendimentoDTO implements Serializable {
             , example = SCHEMA_TIPO_ATENDIMENTO_PRIORIDADE_EXAMPLE
             , minimum = "1"
             , maximum = "32767")
-    @JsonProperty("prioridade")
+    @JsonProperty(PRIORIDADE)
     Short prioridade;
 }

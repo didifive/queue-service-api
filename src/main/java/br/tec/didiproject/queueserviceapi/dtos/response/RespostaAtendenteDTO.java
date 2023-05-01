@@ -13,6 +13,7 @@ import java.util.List;
 
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.*;
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SCHEMA_TYPE_STRING;
+import static br.tec.didiproject.queueserviceapi.enums.constants.v1.JsonPropertyDTOs.*;
 
 @Data
 @Builder
@@ -25,7 +26,7 @@ public class RespostaAtendenteDTO implements Serializable {
             , example = SCHEMA_ATENDENTE_ID_EXAMPLE
             , minLength = 36
             , maxLength = 36)
-    @JsonProperty("id")
+    @JsonProperty(ID)
     String id;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_ATENDENTE_NOME_TITLE
@@ -33,7 +34,7 @@ public class RespostaAtendenteDTO implements Serializable {
             , example = SCHEMA_ATENDENTE_NOME_EXAMPLE
             , minLength = 3
             , maxLength = 255)
-    @JsonProperty("nome")
+    @JsonProperty(NOME)
     String nome;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_ATENDENTE_EMAIL_TITLE
@@ -41,7 +42,7 @@ public class RespostaAtendenteDTO implements Serializable {
             , example = SCHEMA_ATENDENTE_EMAIL_EXAMPLE
             , minLength = 3
             , maxLength = 255)
-    @JsonProperty("email")
+    @JsonProperty(EMAIL)
     String email;
     @ArraySchema(schema =
     @Schema(implementation = String.class
@@ -50,7 +51,7 @@ public class RespostaAtendenteDTO implements Serializable {
             , example = SCHEMA_ATENDENTE_LISTA_DEPARTAMENTO_ID_EXAMPLE)
             , uniqueItems = true)
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    @JsonProperty("departamentosId")
+    @JsonProperty(DEPARTAMENTOS_ID)
     List<String> departamentosId;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_ATENDENTE_USUARIO_ID_TITLE
@@ -58,6 +59,6 @@ public class RespostaAtendenteDTO implements Serializable {
             , example = SCHEMA_ATENDENTE_USUARIO_ID_EXAMPLE
             , nullable = true)
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("usuarioId")
+    @JsonProperty(USUARIO_ID)
     String usuarioId;
 }
