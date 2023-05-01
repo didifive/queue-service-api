@@ -28,5 +28,5 @@ public class RequisicaoUsuarioPerfilDTO implements Serializable {
     @JsonProperty(PERFIL)
     @NotBlank(message = USUARIO_PERFIL_PERFIL_NOT_BLANK)
     @Valid
-    Perfil perfil;
+    private Perfil perfil;
 }

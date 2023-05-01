@@ -13,7 +13,6 @@ import static br.tec.didiproject.queueserviceapi.enums.constants.v1.JsonProperty
 @Data
 @AllArgsConstructor
 public class RefreshTokenResponseDTO {
-
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_AUTH_TOKEN_TITLE
             , description = SCHEMA_AUTH_TOKEN_DESCRIPTION

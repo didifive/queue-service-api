@@ -36,7 +36,7 @@ public class RequisicaoUsuarioDTO implements Serializable {
     @NotBlank(message = USUARIO_NOME_USUARIO_NOT_BLANK)
     @Size(min = 3, max = 255, message = USUARIO_NOME_USUARIO_SIZE)
     @JsonProperty(NOME_USUARIO)
-    String nomeUsuario;
+    private String nomeUsuario;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_USUARIO_SENHA_TITLE
             , description = SCHEMA_USUARIO_SENHA_DESCRIPTION
@@ -46,7 +46,7 @@ public class RequisicaoUsuarioDTO implements Serializable {
     @NotBlank(message = USUARIO_SENHA_NOT_BLANK)
     @Size(min = 6, max = 60, message = USUARIO_SENHA_SIZE)
     @JsonProperty(SENHA)
-    String senha;
+    private String senha;
     @ArraySchema(schema =
     @Schema(implementation = Perfil.class
             , title = SCHEMA_USUARIO_PERFIL_TITLE
@@ -55,20 +55,19 @@ public class RequisicaoUsuarioDTO implements Serializable {
         , uniqueItems = true)
     @JsonProperty(PERFIS)
     @Valid
-    transient List<Perfil> perfis;
+    private List<Perfil> perfis;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_USUARIO_ATENDENTE_ID_TITLE
             , description = SCHEMA_USUARIO_ATENDENTE_ID_DESCRIPTION
             , example = SCHEMA_USUARIO_ATENDENTE_ID_EXAMPLE)
     @UUID(message = USUARIO_ATENDENTE_ID_UUID)
     @JsonProperty(ATENDENTE_ID)
-    String atendenteId;
+    private String atendenteId;
     @Schema(type = SCHEMA_TYPE_BOOLEAN
             , title = SCHEMA_USUARIO_ATIVO_TITLE
             , description = SCHEMA_USUARIO_ATIVO_DESCRIPTION
             , example = SCHEMA_USUARIO_ATIVO_EXAMPLE
             , defaultValue = "true")
     @JsonProperty(ATIVO)
-    Boolean ativo;
-
+    private Boolean ativo;
 }

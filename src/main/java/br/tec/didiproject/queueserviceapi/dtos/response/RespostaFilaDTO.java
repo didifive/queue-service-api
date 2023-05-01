@@ -19,7 +19,6 @@ import static br.tec.didiproject.queueserviceapi.enums.constants.v1.JsonProperty
 @Builder
 @AllArgsConstructor
 public class RespostaFilaDTO implements Serializable {
-
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_FILA_ID_TITLE
             , description = SCHEMA_FILA_ID_DESCRIPTION
@@ -27,7 +26,7 @@ public class RespostaFilaDTO implements Serializable {
             , minLength = 36
             , maxLength = 36)
     @JsonProperty(ID)
-    String id;
+    private String id;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_FILA_NOME_TITLE
             , description = SCHEMA_FILA_NOME_DESCRIPTION
@@ -35,7 +34,7 @@ public class RespostaFilaDTO implements Serializable {
             , minLength = 3
             , maxLength = 255)
     @JsonProperty(NOME)
-    String nome;
+    private String nome;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_FILA_SIGLA_TITLE
             , description = SCHEMA_FILA_SIGLA_DESCRIPTION
@@ -43,13 +42,13 @@ public class RespostaFilaDTO implements Serializable {
             , minLength = 1
             , maxLength = 3)
     @JsonProperty(SIGLA)
-    String sigla;
+    private String sigla;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_FILA_DEPARTAMENTO_ID_TITLE
             , description = SCHEMA_FILA_DEPARTAMENTO_ID_DESCRIPTION
             , example = SCHEMA_FILA_DEPARTAMENTO_ID_EXAMPLE)
     @JsonProperty(DEPARTAMENTO_ID)
-    String departamentoId;
+    private String departamentoId;
     @ArraySchema(schema =
     @Schema(implementation = String.class
             , title = SCHEMA_FILA_LISTA_TIPO_ATENDIMENTO_ID_TITLE
@@ -58,5 +57,5 @@ public class RespostaFilaDTO implements Serializable {
             , uniqueItems = true)
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty(TIPOS_ATENDIMENTO_ID)
-    transient List<String> tiposAtendimentoId;
+    private List<String> tiposAtendimentoId;
 }

@@ -34,7 +34,7 @@ public class RequisicaoAtendenteDTO implements Serializable {
     @NotBlank(message = ATENDENTE_NOME_NOT_BLANK)
     @Size(min = 3, max = 255, message = ATENDENTE_NOME_SIZE)
     @JsonProperty(NOME)
-    String nome;
+    private String nome;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_ATENDENTE_EMAIL_TITLE
             , description = SCHEMA_ATENDENTE_EMAIL_DESCRIPTION
@@ -45,7 +45,7 @@ public class RequisicaoAtendenteDTO implements Serializable {
     @Email(message = ATENDENTE_EMAIL_EMAIL)
     @Size(min = 3, max = 255, message = ATENDENTE_EMAIL_SIZE)
     @JsonProperty(EMAIL)
-    String email;
+    private String email;
     @ArraySchema(schema =
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_ATENDENTE_LISTA_DEPARTAMENTO_ID_TITLE
@@ -53,5 +53,5 @@ public class RequisicaoAtendenteDTO implements Serializable {
             , example = SCHEMA_ATENDENTE_LISTA_DEPARTAMENTO_ID_EXAMPLE)
             , uniqueItems = true)
     @JsonProperty(DEPARTAMENTOS_ID)
-    transient List<@UUID(message = ATENDENTE_DEPARTAMENTO_ID_UUID) String> departamentosId;
+    private List<@UUID(message = ATENDENTE_DEPARTAMENTO_ID_UUID) String> departamentosId;
 }

@@ -18,7 +18,6 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include;
 @Builder
 @AllArgsConstructor
 public class RespostaEmpresaDTO implements Serializable {
-
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_EMPRESA_ID_TITLE
             , description = SCHEMA_EMPRESA_ID_DESCRIPTION
@@ -26,7 +25,7 @@ public class RespostaEmpresaDTO implements Serializable {
             , minLength = 36
             , maxLength = 36)
     @JsonProperty(ID)
-    String id;
+    private String id;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_EMPRESA_NOME_TITLE
             , description = SCHEMA_EMPRESA_NOME_DESCRIPTION
@@ -34,7 +33,7 @@ public class RespostaEmpresaDTO implements Serializable {
             , minLength = 3
             , maxLength = 255)
     @JsonProperty(NOME)
-    String nome;
+    private String nome;
 
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_EMPRESA_CPF_CNPJ_TITLE
@@ -45,7 +44,7 @@ public class RespostaEmpresaDTO implements Serializable {
             , nullable = true)
     @JsonInclude(value = Include.NON_NULL)
     @JsonProperty(CPF_CNPJ)
-    String cpfCnpj;
+    private String cpfCnpj;
 
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_EMPRESA_ENDERECO_TITLE
@@ -56,5 +55,5 @@ public class RespostaEmpresaDTO implements Serializable {
             , nullable = true)
     @JsonInclude(value = Include.NON_NULL)
     @JsonProperty(ENDERECO)
-    String endereco;
+    private String endereco;
 }

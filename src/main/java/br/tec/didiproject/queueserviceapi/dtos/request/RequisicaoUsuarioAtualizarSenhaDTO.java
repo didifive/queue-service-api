@@ -31,7 +31,7 @@ public class RequisicaoUsuarioAtualizarSenhaDTO implements Serializable {
     @NotBlank(message = USUARIO_ATUALIZAR_SENHA_SENHA_ATUAL_NOT_BLANK)
     @Size(min = 6, max = 60, message = USUARIO_ATUALIZAR_SENHA_SENHA_ATUAL_SIZE)
     @JsonProperty(SENHA_ATUAL)
-    String senhaAtual;
+    private String senhaAtual;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_USUARIO_SENHA_TITLE
             , description = SCHEMA_USUARIO_SENHA_DESCRIPTION
@@ -41,6 +41,5 @@ public class RequisicaoUsuarioAtualizarSenhaDTO implements Serializable {
     @NotBlank(message = USUARIO_ATUALIZAR_SENHA_NOVA_SENHA_NOT_BLANK)
     @Size(min = 6, max = 60, message = USUARIO_ATUALIZAR_SENHA_NOVA_SENHA_SIZE)
     @JsonProperty(NOVA_SENHA)
-    String novaSenha;
-
+    private String novaSenha;
 }

@@ -23,7 +23,6 @@ import static br.tec.didiproject.queueserviceapi.enums.constants.v1.ValidationMe
 @AllArgsConstructor
 @NoArgsConstructor
 public class RequisicaoDepartamentoDTO implements Serializable {
-
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_DEPARTAMENTO_NOME_TITLE
             , description = SCHEMA_DEPARTAMENTO_NOME_DESCRIPTION
@@ -33,7 +32,7 @@ public class RequisicaoDepartamentoDTO implements Serializable {
     @NotBlank(message = DEPARTAMENTO_NOME_NOT_BLANK)
     @Size(min = 3, max = 255, message = DEPARTAMENTO_NOME_SIZE)
     @JsonProperty(NOME)
-    String nome;
+    private String nome;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_DEPARTAMENTO_EMPRESA_ID_TITLE
             , description = SCHEMA_DEPARTAMENTO_EMPRESA_ID_DESCRIPTION
@@ -41,5 +40,5 @@ public class RequisicaoDepartamentoDTO implements Serializable {
     @NotBlank(message = DEPARTAMENTO_EMPRESA_ID_NOT_BLANK)
     @UUID(message = DEPARTAMENTO_EMPRESA_ID_UUID)
     @JsonProperty(EMPRESA_ID)
-    String empresaId;
+    private String empresaId;
 }

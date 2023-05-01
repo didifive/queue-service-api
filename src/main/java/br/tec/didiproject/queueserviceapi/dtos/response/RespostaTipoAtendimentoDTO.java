@@ -17,7 +17,6 @@ import static br.tec.didiproject.queueserviceapi.enums.constants.v1.JsonProperty
 @Builder
 @AllArgsConstructor
 public class RespostaTipoAtendimentoDTO implements Serializable {
-
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_TIPO_ATENDIMENTO_ID_TITLE
             , description = SCHEMA_TIPO_ATENDIMENTO_ID_DESCRIPTION
@@ -25,7 +24,7 @@ public class RespostaTipoAtendimentoDTO implements Serializable {
             , minLength = 36
             , maxLength = 36)
     @JsonProperty(ID)
-    String id;
+    private String id;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_TIPO_ATENDIMENTO_NOME_TITLE
             , description = SCHEMA_TIPO_ATENDIMENTO_NOME_DESCRIPTION
@@ -33,7 +32,7 @@ public class RespostaTipoAtendimentoDTO implements Serializable {
             , minLength = 3
             , maxLength = 255)
     @JsonProperty(NOME)
-    String nome;
+    private String nome;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_TIPO_ATENDIMENTO_SIGLA_TITLE
             , description = SCHEMA_TIPO_ATENDIMENTO_SIGLA_DESCRIPTION
@@ -41,7 +40,7 @@ public class RespostaTipoAtendimentoDTO implements Serializable {
             , minLength = 1
             , maxLength = 3)
     @JsonProperty(SIGLA)
-    String sigla;
+    private String sigla;
     @Schema(type = SCHEMA_TYPE_INTEGER
             , title = SCHEMA_TIPO_ATENDIMENTO_PRIORIDADE_TITLE
             , description = SCHEMA_TIPO_ATENDIMENTO_PRIORIDADE_DESCRIPTION
@@ -49,5 +48,5 @@ public class RespostaTipoAtendimentoDTO implements Serializable {
             , minimum = "1"
             , maximum = "32767")
     @JsonProperty(PRIORIDADE)
-    Short prioridade;
+    private Short prioridade;
 }

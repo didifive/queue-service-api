@@ -21,7 +21,6 @@ import static br.tec.didiproject.queueserviceapi.enums.constants.v1.ValidationMe
 @AllArgsConstructor
 @NoArgsConstructor
 public class RequisicaoEmpresaDTO implements Serializable {
-
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_EMPRESA_NOME_TITLE
             , description = SCHEMA_EMPRESA_NOME_DESCRIPTION
@@ -31,8 +30,7 @@ public class RequisicaoEmpresaDTO implements Serializable {
     @NotBlank(message = EMPRESA_NOME_NOT_BLANK)
     @Size(min = 3, max = 255, message = EMPRESA_NOME_SIZE)
     @JsonProperty(NOME)
-    String nome;
-
+    private String nome;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_EMPRESA_CPF_CNPJ_TITLE
             , description = SCHEMA_EMPRESA_CPF_CNPJ_DESCRIPTION
@@ -41,8 +39,7 @@ public class RequisicaoEmpresaDTO implements Serializable {
             , maxLength = 18)
     @Size(min = 11, max = 18, message = EMPRESA_CPF_CNPJ_SIZE)
     @JsonProperty(CPF_CNPJ)
-    String cpfCnpj;
-
+    private String cpfCnpj;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_EMPRESA_ENDERECO_TITLE
             , description = SCHEMA_EMPRESA_ENDERECO_DESCRIPTION
@@ -51,5 +48,5 @@ public class RequisicaoEmpresaDTO implements Serializable {
             , maxLength = 255)
     @Size(min = 3, max = 255, message = EMPRESA_ENDERECO_SIZE)
     @JsonProperty(ENDERECO)
-    String endereco;
+    private String endereco;
 }

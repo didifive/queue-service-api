@@ -16,7 +16,6 @@ import static br.tec.didiproject.queueserviceapi.enums.constants.v1.JsonProperty
 @Builder
 @AllArgsConstructor
 public class RespostaDepartamentoDTO implements Serializable {
-
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_DEPARTAMENTO_ID_TITLE
             , description = SCHEMA_DEPARTAMENTO_ID_DESCRIPTION
@@ -24,7 +23,7 @@ public class RespostaDepartamentoDTO implements Serializable {
             , minLength = 36
             , maxLength = 36)
     @JsonProperty(ID)
-    String id;
+    private String id;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_DEPARTAMENTO_NOME_TITLE
             , description = SCHEMA_DEPARTAMENTO_NOME_DESCRIPTION
@@ -32,12 +31,12 @@ public class RespostaDepartamentoDTO implements Serializable {
             , minLength = 3
             , maxLength = 255)
     @JsonProperty(NOME)
-    String nome;
+    private String nome;
 
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_DEPARTAMENTO_EMPRESA_ID_TITLE
             , description = SCHEMA_DEPARTAMENTO_EMPRESA_ID_DESCRIPTION
             , example = SCHEMA_DEPARTAMENTO_EMPRESA_ID_EXAMPLE)
     @JsonProperty(EMPRESA_ID)
-    String empresaId;
+    private String empresaId;
 }

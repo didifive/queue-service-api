@@ -29,7 +29,7 @@ public class RequisicaoTipoAtendimentoDTO implements Serializable {
     @NotBlank(message = TIPO_ATENDIMENTO_NOME_NOT_BLANK)
     @Size(min = 3, max = 255, message = TIPO_ATENDIMENTO_NOME_SIZE)
     @JsonProperty(NOME)
-    String nome;
+    private String nome;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_TIPO_ATENDIMENTO_SIGLA_TITLE
             , description = SCHEMA_TIPO_ATENDIMENTO_SIGLA_DESCRIPTION
@@ -40,7 +40,7 @@ public class RequisicaoTipoAtendimentoDTO implements Serializable {
     @Pattern(regexp = SIGLA_PATTERN, message = TIPO_ATENDIMENTO_SIGLA_PATTERN)
     @Size(min = 1, max = 3, message = TIPO_ATENDIMENTO_SIGLA_SIZE)
     @JsonProperty(SIGLA)
-    String sigla;
+    private String sigla;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_TIPO_ATENDIMENTO_PRIORIDADE_TITLE
             , description = SCHEMA_TIPO_ATENDIMENTO_PRIORIDADE_DESCRIPTION
@@ -51,5 +51,5 @@ public class RequisicaoTipoAtendimentoDTO implements Serializable {
     @Min(value = 1, message = TIPO_ATENDIMENTO_PRIORIDADE_MIN)
     @Max(value = 32767, message = TIPO_ATENDIMENTO_PRIORIDADE_MAX)
     @JsonProperty(PRIORIDADE)
-    Short prioridade;
+    private Short prioridade;
 }

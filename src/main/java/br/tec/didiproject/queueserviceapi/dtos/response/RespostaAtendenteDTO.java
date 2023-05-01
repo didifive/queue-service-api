@@ -19,7 +19,6 @@ import static br.tec.didiproject.queueserviceapi.enums.constants.v1.JsonProperty
 @Builder
 @AllArgsConstructor
 public class RespostaAtendenteDTO implements Serializable {
-
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_ATENDENTE_ID_TITLE
             , description = SCHEMA_ATENDENTE_ID_DESCRIPTION
@@ -27,7 +26,7 @@ public class RespostaAtendenteDTO implements Serializable {
             , minLength = 36
             , maxLength = 36)
     @JsonProperty(ID)
-    String id;
+    private String id;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_ATENDENTE_NOME_TITLE
             , description = SCHEMA_ATENDENTE_NOME_DESCRIPTION
@@ -35,7 +34,7 @@ public class RespostaAtendenteDTO implements Serializable {
             , minLength = 3
             , maxLength = 255)
     @JsonProperty(NOME)
-    String nome;
+    private String nome;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_ATENDENTE_EMAIL_TITLE
             , description = SCHEMA_ATENDENTE_EMAIL_DESCRIPTION
@@ -43,7 +42,7 @@ public class RespostaAtendenteDTO implements Serializable {
             , minLength = 3
             , maxLength = 255)
     @JsonProperty(EMAIL)
-    String email;
+    private String email;
     @ArraySchema(schema =
     @Schema(implementation = String.class
             , title = SCHEMA_ATENDENTE_LISTA_DEPARTAMENTO_ID_TITLE
@@ -52,7 +51,7 @@ public class RespostaAtendenteDTO implements Serializable {
             , uniqueItems = true)
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty(DEPARTAMENTOS_ID)
-    transient List<String> departamentosId;
+    private  List<String> departamentosId;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_ATENDENTE_USUARIO_ID_TITLE
             , description = SCHEMA_ATENDENTE_USUARIO_ID_DESCRIPTION
@@ -60,5 +59,5 @@ public class RespostaAtendenteDTO implements Serializable {
             , nullable = true)
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty(USUARIO_ID)
-    String usuarioId;
+    private String usuarioId;
 }

@@ -34,7 +34,7 @@ public class RequisicaoFilaDTO implements Serializable {
     @NotBlank(message = FILA_NOME_NOT_BLANK)
     @Size(min = 3, max = 255, message = FILA_NOME_SIZE)
     @JsonProperty(NOME)
-    String nome;
+    private String nome;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_FILA_SIGLA_TITLE
             , description = SCHEMA_FILA_SIGLA_DESCRIPTION
@@ -45,7 +45,7 @@ public class RequisicaoFilaDTO implements Serializable {
     @Pattern(regexp = SIGLA_PATTERN, message = FILA_SIGLA_PATTERN)
     @Size(min = 1, max = 3, message = FILA_SIGLA_SIZE)
     @JsonProperty(SIGLA)
-    String sigla;
+    private String sigla;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_FILA_DEPARTAMENTO_ID_TITLE
             , description = SCHEMA_FILA_DEPARTAMENTO_ID_DESCRIPTION
@@ -53,7 +53,7 @@ public class RequisicaoFilaDTO implements Serializable {
     @NotBlank(message = FILA_DEPARTAMENTO_ID_NOT_BLANK)
     @UUID(message = FILA_DEPARTAMENTO_ID_UUID)
     @JsonProperty(DEPARTAMENTO_ID)
-    String departamentoId;
+    private String departamentoId;
     @ArraySchema(schema =
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_FILA_LISTA_TIPO_ATENDIMENTO_ID_TITLE
@@ -61,5 +61,5 @@ public class RequisicaoFilaDTO implements Serializable {
             , example = SCHEMA_FILA_LISTA_TIPO_ATENDIMENTO_ID_EXAMPLE)
             , uniqueItems = true)
     @JsonProperty(TIPOS_ATENDIMENTO_ID)
-    transient List<@UUID(message = FILA_TIPOS_ATENDIMENTO_UUID) String> tiposAtendimentoId;
+    private List<@UUID(message = FILA_TIPOS_ATENDIMENTO_UUID) String> tiposAtendimentoId;
 }

@@ -31,5 +31,5 @@ public class RequisicaoUsuarioNovoNomeUsuarioDTO implements Serializable {
     @NotBlank(message = USUARIO_NOME_USUARIO_NOT_BLANK)
     @Size(min = 3, max = 255, message = USUARIO_NOME_USUARIO_SIZE)
     @JsonProperty(NOME_USUARIO)
-    String nomeUsuario;
+    private String nomeUsuario;
 }

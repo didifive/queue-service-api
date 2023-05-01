@@ -22,7 +22,6 @@ import static br.tec.didiproject.queueserviceapi.enums.constants.v1.JsonProperty
 @Builder
 @AllArgsConstructor
 public class RespostaUsuarioDTO implements Serializable {
-
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_USUARIO_ID_TITLE
             , description = SCHEMA_USUARIO_ID_DESCRIPTION
@@ -30,7 +29,7 @@ public class RespostaUsuarioDTO implements Serializable {
             , minLength = 36
             , maxLength = 36)
     @JsonProperty(ID)
-    String id;
+    private String id;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_USUARIO_NOME_TITLE
             , description = SCHEMA_USUARIO_NOME_DESCRIPTION
@@ -38,7 +37,7 @@ public class RespostaUsuarioDTO implements Serializable {
             , minLength = 3
             , maxLength = 255)
     @JsonProperty(NOME_USUARIO)
-    String nomeUsuario;
+    private String nomeUsuario;
     @ArraySchema(schema =
     @Schema(implementation = Perfil.class
             , title = SCHEMA_USUARIO_PERFIL_TITLE
@@ -47,7 +46,7 @@ public class RespostaUsuarioDTO implements Serializable {
             , uniqueItems = true)
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty(PERFIS)
-    transient List<Perfil> perfis;
+    private List<Perfil> perfis;
     @Schema(type = SCHEMA_TYPE_STRING
             , title = SCHEMA_USUARIO_ATENDENTE_ID_TITLE
             , description = SCHEMA_USUARIO_ATENDENTE_ID_DESCRIPTION
@@ -56,12 +55,12 @@ public class RespostaUsuarioDTO implements Serializable {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @UUID
     @JsonProperty(ATENDENTE_ID)
-    String atendenteId;
+    private String atendenteId;
     @Schema(type = SCHEMA_TYPE_BOOLEAN
             , title = SCHEMA_USUARIO_ATIVO_TITLE
             , description = SCHEMA_USUARIO_ATIVO_DESCRIPTION
             , example = SCHEMA_USUARIO_ATIVO_EXAMPLE
             , defaultValue = "true")
     @JsonProperty(ATIVO)
-    Boolean ativo;
+    private Boolean ativo;
 }
