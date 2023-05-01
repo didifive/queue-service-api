@@ -57,7 +57,7 @@ public class AtendenteController implements AtendenteControllerDocs {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Page<RespostaAtendenteDTO>> listarAtendentes(
-            @PageableDefault(size = 10, sort = "nome", direction = Sort.Direction.ASC) Pageable pageable
+            @PageableDefault(sort = "nome", direction = Sort.Direction.ASC) Pageable pageable
     ) {
         Page<Atendente> pageAtendentes = atendenteService.findAll(pageable);
 

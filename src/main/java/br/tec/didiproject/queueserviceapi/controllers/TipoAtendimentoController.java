@@ -52,7 +52,7 @@ public class TipoAtendimentoController implements TipoAtendimentoControllerDocs 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Page<RespostaTipoAtendimentoDTO>> listarTiposAtendimento(
-            @PageableDefault(size = 10, sort = "nome", direction = Sort.Direction.ASC) Pageable pageable
+            @PageableDefault(sort = "nome", direction = Sort.Direction.ASC) Pageable pageable
     ) {
         Page<TipoAtendimento> pageTipoAtendimentos = tipoAtendimentoService.findAll(pageable);
 

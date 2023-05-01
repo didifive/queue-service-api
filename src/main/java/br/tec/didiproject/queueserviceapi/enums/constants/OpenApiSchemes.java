@@ -154,7 +154,7 @@ public final class OpenApiSchemes {
     public static final String SCHEMA_TIPO_ATENDIMENTO_PRIORIDADE_EXAMPLE = "10";
 
     /**
-     * Constants for @Schema annotation in RequisicaoAtendenteDTO and RespostaAtendenteDTO
+     * Constants for @Schema annotation in RequisicaoFilaDTO and RespostaFilaDTO
      */
     public static final String SCHEMA_FILA = " da fila";
     public static final String SCHEMA_FILA_ID_TITLE = SCHEMA_EMPRESA_ID_TITLE;
@@ -172,6 +172,29 @@ public final class OpenApiSchemes {
     public static final String SCHEMA_FILA_DEPARTAMENTO_ID_TITLE = SCHEMA_DEPARTAMENTO_ID_TITLE;
     public static final String SCHEMA_FILA_DEPARTAMENTO_ID_DESCRIPTION = "Id de departamento vinculado à fila";
     public static final String SCHEMA_FILA_DEPARTAMENTO_ID_EXAMPLE = SCHEMA_AUTH_REFRESH_TOKEN_EXAMPLE;
+
+    /**
+     * Constants for @Schema annotation in RequisicaoSenhaFinalizaSenhaDTO, RequisicaoSenhaNovaSenhaDTO and RespostaSenhaDTO
+     */
+    public static final String SCHEMA_SENHA = " da senha";
+    public static final String SCHEMA_SENHA_ID_TITLE = SCHEMA_EMPRESA_ID_TITLE;
+    public static final String SCHEMA_SENHA_ID_EXAMPLE = SCHEMA_AUTH_REFRESH_TOKEN_EXAMPLE;
+    public static final String SCHEMA_SENHA_ID_DESCRIPTION = SCHEMA_SENHA_ID_TITLE + SCHEMA_SENHA;
+    public static final String SCHEMA_SENHA_NUMERO_TITLE = "Número";
+    public static final String SCHEMA_SENHA_NUMERO_DESCRIPTION = SCHEMA_SENHA_NUMERO_TITLE + SCHEMA_SENHA;
+    public static final String SCHEMA_SENHA_NUMERO_EXAMPLE = "500";
+    public static final String SCHEMA_SENHA_FILA_ID_TITLE = SCHEMA_FILA_ID_TITLE;
+    public static final String SCHEMA_SENHA_FILA_ID_DESCRIPTION = "Id da fila vinculada à senha";
+    public static final String SCHEMA_SENHA_FILA_ID_EXAMPLE = SCHEMA_FILA_ID_EXAMPLE;
+    public static final String SCHEMA_SENHA_TIPO_ATENDIMENTO_ID_TITLE = SCHEMA_TIPO_ATENDIMENTO_ID_TITLE;
+    public static final String SCHEMA_SENHA_TIPO_ATENDIMENTO_ID_DESCRIPTION = "Id de tipo de atendimento vinculado à senha";
+    public static final String SCHEMA_SENHA_TIPO_ATENDIMENTO_ID_EXAMPLE = SCHEMA_TIPO_ATENDIMENTO_ID_EXAMPLE;
+    public static final String SCHEMA_SENHA_ATENDENTE_ID_TITLE = SCHEMA_ATENDENTE_ID_TITLE;
+    public static final String SCHEMA_SENHA_ATENDENTE_ID_DESCRIPTION = "Id de atendente vinculado à senha";
+    public static final String SCHEMA_SENHA_ATENDENTE_ID_EXAMPLE = SCHEMA_TIPO_ATENDIMENTO_ID_EXAMPLE;
+    public static final String SCHEMA_SENHA_MOTIVO_FINALIZADA_TITLE = "Motivo para finalizar senha";
+    public static final String SCHEMA_SENHA_MOTIVO_FINALIZADA_DESCRIPTION = "Motivo para finalização/encerramento da senha";
+    public static final String SCHEMA_SENHA_MOTIVO_FINALIZADA_EXAMPLE = "Senha finalizada sem atendimento, pois foi gerada para teste";
 
     private OpenApiSchemes() {
         throw new IllegalAccessError("Utility Class");

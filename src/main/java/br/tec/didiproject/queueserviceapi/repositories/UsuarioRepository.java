@@ -18,6 +18,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, UUID>, JpaSpec
 
     Optional<Usuario> findByAtendenteId(UUID atendenteId);
 
+    @SuppressWarnings("NullableProblems")
     Page<Usuario> findAll(Pageable pageable);
 
 }

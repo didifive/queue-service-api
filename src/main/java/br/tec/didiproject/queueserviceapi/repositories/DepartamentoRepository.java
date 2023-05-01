@@ -14,6 +14,7 @@ public interface DepartamentoRepository extends JpaRepository<Departamento, UUID
 
     Set<Departamento> findAllByEmpresaId(UUID empresaId);
 
+    @SuppressWarnings("NullableProblems")
     Page<Departamento> findAll(Pageable pageable);
 
 }

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
 
@@ -30,6 +31,7 @@ import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SC
 @Setter
 @NoArgsConstructor
 public class ApiErrorDTO implements Serializable {
+    @Serial
     private static final long serialVersionUID = -8591558767758850114L;
 
     @Schema(type = SCHEMA_TYPE_STRING

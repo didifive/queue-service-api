@@ -65,6 +65,16 @@ public final class ValidationMessagesV1 {
     public static final String FILA_DEPARTAMENTO_ID_UUID = "O Id informado para a empresa está inválido";
     public static final String FILA_TIPOS_ATENDIMENTO_UUID = "O(s) Id(s) informado(s) para o(s) tipo(s) de atendimento está(ão) inválido(s)";
 
+    /**
+     * Constants for RequisicaoSenhaFinalizaSenhaDTO and RequisicaoSenhaNovaSenhaDTO
+     */
+    public static final String SENHA_FINALIZA_SENHA_MOTIVO_FINALIZADA_NOT_BLANK = "Informe um motivo para finalizar a senha";
+    public static final String SENHA_FINALIZA_SENHA_MOTIVO_FINALIZADA_SIZE = "O motivo para finalizar senha deve ter entre 3 e 255 caracteres";
+    public static final String SENHA_NOVA_SENHA_FILA_ID_NOT_BLANK = "Informe um id de Fila para associnar na senha";
+    public static final String SENHA_NOVA_SENHA_FILA_ID_UUID = "O Id informado para a Fila está inválido";
+    public static final String SENHA_NOVA_SENHA_TIPO_ATENDIMENTO_ID_NOT_BLANK = "Informe um id de Tipo de Atendimento para associnar na senha";
+    public static final String SENHA_NOVA_SENHA_TIPO_ATENDIMENTO_ID_UUID = "O Id informado para o Tipo de Atendimento está inválido";
+
     private ValidationMessagesV1() {
         throw new IllegalAccessError("Utility Class");
     }

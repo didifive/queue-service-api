@@ -16,9 +16,9 @@ import java.util.UUID;
 
 public class FilterAuthentication extends OncePerRequestFilter {
 
-    private AuthService authService;
+    private final AuthService authService;
 
-    private UsuarioService usuarioService;
+    private final UsuarioService usuarioService;
 
     public FilterAuthentication(AuthService authService, UsuarioService usuarioService) {
         this.authService = authService;
@@ -26,7 +26,7 @@ public class FilterAuthentication extends OncePerRequestFilter {
     }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+    protected void doFilterInternal(HttpServletRequest request, @SuppressWarnings("NullableProblems") HttpServletResponse response, @SuppressWarnings("NullableProblems") FilterChain filterChain)
             throws ServletException, IOException {
 
         String header = request.getHeader("Authorization");

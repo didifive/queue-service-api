@@ -230,10 +230,10 @@ public class UsuarioService implements UserDetailsService {
      *
      * @param usuarioId UUID with the user Id
      */
-    public Usuario desligarAtendente(UUID usuarioId) {
+    public void desligarAtendente(UUID usuarioId) {
         Usuario usuario = this.findById(usuarioId);
         usuario.setAtendente(null);
-        return usuarioRepository.save(usuario);
+        usuarioRepository.save(usuario);
     }
 
     /**

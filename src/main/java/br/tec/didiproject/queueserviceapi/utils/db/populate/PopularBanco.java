@@ -16,7 +16,7 @@ public class PopularBanco implements CommandLineRunner {
     private final PopularSenhas popularSenhas;
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         popularEmpresa.popularEmpresa();
         popularDepartamento.popularDepartamento();
         popularAtendente.popularAtendente();

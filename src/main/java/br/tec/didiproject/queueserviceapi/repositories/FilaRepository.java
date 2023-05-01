@@ -15,5 +15,6 @@ public interface FilaRepository extends JpaRepository<Fila, UUID> {
 
     Page<Fila> findAllByDepartamentoId(UUID departamentoId, Pageable pageRequest);
 
+    @SuppressWarnings("NullableProblems")
     Page<Fila> findAll(Pageable pageable);
 }

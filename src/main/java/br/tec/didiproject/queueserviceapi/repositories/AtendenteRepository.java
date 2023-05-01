@@ -14,6 +14,7 @@ public interface AtendenteRepository extends JpaRepository<Atendente, UUID> {
 
     Page<Atendente> findAllByDepartamentosContains(Departamento departamento, Pageable pageable);
 
+    @SuppressWarnings("NullableProblems")
     Page<Atendente> findAll(Pageable pageable);
 
 }

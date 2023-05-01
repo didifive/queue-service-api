@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
+@SuppressWarnings("ALL")
 @Repository
 public interface TipoAtendimentoRepository extends JpaRepository<TipoAtendimento, UUID>, JpaSpecificationExecutor<Senha> {
 

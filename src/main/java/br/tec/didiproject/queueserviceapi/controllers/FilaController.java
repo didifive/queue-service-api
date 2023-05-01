@@ -53,7 +53,7 @@ public class FilaController implements FilaControllerDocs {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Page<RespostaFilaDTO>> listarFilas(
-            @PageableDefault(size = 10, sort = "nome", direction = Sort.Direction.ASC) Pageable pageable
+            @PageableDefault(sort = "nome", direction = Sort.Direction.ASC) Pageable pageable
     ) {
         Page<Fila> pageFilas = filaService.findAll(pageable);
 
@@ -67,7 +67,7 @@ public class FilaController implements FilaControllerDocs {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Page<RespostaFilaDTO>> listarFilasPorDepartamento(
             @PathVariable String departamentoId,
-            @PageableDefault(size = 10, sort = "nome", direction = Sort.Direction.ASC) Pageable pageable
+            @PageableDefault(sort = "nome", direction = Sort.Direction.ASC) Pageable pageable
     ) {
         validateUUIDPattern(departamentoId);
 

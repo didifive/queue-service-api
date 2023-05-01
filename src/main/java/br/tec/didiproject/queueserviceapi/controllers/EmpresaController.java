@@ -52,7 +52,7 @@ public class EmpresaController implements EmpresaControllerDocs {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Page<RespostaEmpresaDTO>> listarEmpresas(
-            @PageableDefault(size = 10, sort = "nome", direction = Sort.Direction.ASC) Pageable pageable
+            @PageableDefault(sort = "nome", direction = Sort.Direction.ASC) Pageable pageable
     ) {
         Page<Empresa> pageEmpresas = empresaService.findAll(pageable);
 

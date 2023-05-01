@@ -38,8 +38,8 @@ public class Senha {
     @LazyCollection(LazyCollectionOption.FALSE)
     private Fila fila;
 
-    @JoinColumn(name = "tipoAtendimentoId", nullable = false)
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "tipoAtendimentoId")
+    @ManyToOne
     @LazyCollection(LazyCollectionOption.FALSE)
     private TipoAtendimento tipoAtendimento;
 
@@ -47,7 +47,6 @@ public class Senha {
     @Column(name = "geradaEm", nullable = false)
     private Timestamp geradaEm;
 
-    @CreationTimestamp
     @Column(name = "chamadaEm")
     private Timestamp chamadaEm;
 
@@ -82,6 +81,4 @@ public class Senha {
             return Boolean.TRUE;
         return Boolean.FALSE;
     }
-
-
 }

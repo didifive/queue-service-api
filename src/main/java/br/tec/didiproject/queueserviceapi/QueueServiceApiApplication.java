@@ -12,6 +12,7 @@ import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.SECURITY_SCHEME_BEARER_FORMAT;
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.SECURITY_SCHEME_DESCRIPTION;
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.SECURITY_SCHEME_NAME;
+import static br.tec.didiproject.queueserviceapi.enums.constants.v1.MappingRoutesV1.URI_BASE;
 
 @SpringBootApplication
 @SecurityScheme(name = SECURITY_SCHEME_NAME
@@ -20,7 +21,7 @@ import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.
 		, bearerFormat = SECURITY_SCHEME_BEARER_FORMAT
 		, type = SecuritySchemeType.HTTP
 		, in = SecuritySchemeIn.HEADER)
-@OpenAPIDefinition(servers = {@Server(url = "http://localhost:8080", description = "Localhost")})
+@OpenAPIDefinition(servers = {@Server(url = URI_BASE, description = "Localhost")})
 public class QueueServiceApiApplication {
 
 	public static void main(String[] args) {

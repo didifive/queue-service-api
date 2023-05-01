@@ -22,7 +22,6 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static br.tec.didiproject.queueserviceapi.exceptions.BaseErrorMessage.*;
-import static br.tec.didiproject.queueserviceapi.exceptions.BaseErrorMessage.GENERIC_EXCEPTION;
 
 @RequiredArgsConstructor
 @Service

@@ -56,7 +56,7 @@ public class UsuarioController implements UsuarioControllerDocs {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Page<RespostaUsuarioDTO>> listarUsuarios(
-            @PageableDefault(size = 10, sort = "nomeUsuario", direction = Sort.Direction.ASC) Pageable pageable
+            @PageableDefault(sort = "nomeUsuario", direction = Sort.Direction.ASC) Pageable pageable
     ) {
         Page<Usuario> pageUsuarios = usuarioService.findAll(pageable);
 

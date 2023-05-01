@@ -7,7 +7,7 @@ public final class ControllerAnnotationsV1 {
     public static final String CONTROLLER_FIND_ALL_PARAMETER_PAGE = "O número da página que quer retornar";
     public static final String CONTROLLER_FIND_ALL_PARAMETER_PAGE_SIZE = "0";
     public static final String CONTROLLER_FIND_ALL_PARAMETER_SORT_DESCRIPTION = "Nome do campo que deseja ordenar. "
-            + "Seguido da direção de ordenação desejada \',asc|desc\' (ascendente/descendente). "
+            + "Seguido da direção de ordenação desejada ',asc|desc' (ascendente/descendente). "
             + "A direção de ordenação padrão é ascendent. "
             + "Aceita ordenação múltipla. ";
     public static final String CONTROLLER_FIND_ALL_PARAMETER_SORT_EXAMPLE = "id,desc";

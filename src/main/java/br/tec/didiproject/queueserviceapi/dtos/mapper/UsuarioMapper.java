@@ -12,6 +12,8 @@ import java.util.List;
 public interface UsuarioMapper {
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "atendente"
+            , expression = "java(new Atendente(java.util.UUID.fromString(requisicaoUsuarioDTO.getAtendenteId()),null,null,new java.util.HashSet<>()))")
     Usuario toEntity(RequisicaoUsuarioDTO requisicaoUsuarioDTO);
 
     @Mapping(target = "id", expression = "java(usuario.getId().toString())")
