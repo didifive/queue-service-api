@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.*;
+import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SCHEMA_TYPE_INTEGER;
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SCHEMA_TYPE_STRING;
 import static br.tec.didiproject.queueserviceapi.enums.constants.v1.JsonPropertyDTOs.*;
 import static br.tec.didiproject.queueserviceapi.enums.constants.v1.ValidationMessagesV1.*;
@@ -41,7 +42,7 @@ public class RequisicaoTipoAtendimentoDTO implements Serializable {
     @Size(min = 1, max = 3, message = TIPO_ATENDIMENTO_SIGLA_SIZE)
     @JsonProperty(SIGLA)
     private String sigla;
-    @Schema(type = SCHEMA_TYPE_STRING
+    @Schema(type = SCHEMA_TYPE_INTEGER
             , title = SCHEMA_TIPO_ATENDIMENTO_PRIORIDADE_TITLE
             , description = SCHEMA_TIPO_ATENDIMENTO_PRIORIDADE_DESCRIPTION
             , example = SCHEMA_TIPO_ATENDIMENTO_PRIORIDADE_EXAMPLE

@@ -8,6 +8,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import java.sql.Timestamp;
+import java.util.Objects;
 import java.util.UUID;
 
 @Builder
@@ -20,7 +21,7 @@ import java.util.UUID;
 @Table(name = "senha"
         , schema = "public"
 )
-public class Senha {
+public class Senha implements Comparable<Senha> {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
@@ -77,8 +78,33 @@ public class Senha {
     }
 
     public boolean foiFinalizada() {
-        if (this.getFinalizadaEm() != null || !this.getMotivoFinalizada().isBlank())
+        if (this.getFinalizadaEm() != null || this.getMotivoFinalizada() != null)
             return Boolean.TRUE;
         return Boolean.FALSE;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Senha senha = (Senha) o;
+        return numero.equals(senha.numero) && fila.equals(senha.fila) && tipoAtendimento.equals(senha.tipoAtendimento) && geradaEm.equals(senha.geradaEm);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numero, fila, tipoAtendimento, geradaEm);
+    }
+
+    @Override
+    public int compareTo(Senha senha) {
+        if (this.getTipoAtendimento().getPrioridade() > senha.getTipoAtendimento().getPrioridade())
+            return 1;
+        if (this.getGeradaEm().before(senha.getGeradaEm()))
+            return -1;
+        else if (this.getGeradaEm().equals(senha.getGeradaEm()))
+            return 0;
+        else
+            return 1;
     }
 }

@@ -189,6 +189,9 @@ public final class OpenApiSchemes {
     public static final String SCHEMA_SENHA_TIPO_ATENDIMENTO_ID_TITLE = SCHEMA_TIPO_ATENDIMENTO_ID_TITLE;
     public static final String SCHEMA_SENHA_TIPO_ATENDIMENTO_ID_DESCRIPTION = "Id de tipo de atendimento vinculado à senha";
     public static final String SCHEMA_SENHA_TIPO_ATENDIMENTO_ID_EXAMPLE = SCHEMA_TIPO_ATENDIMENTO_ID_EXAMPLE;
+    public static final String SCHEMA_SENHA_RESET_TITLE = "Número para reiniciar";
+    public static final String SCHEMA_SENHA_RESET_DESCRIPTION = "Número para reiniciar a sequência número da senha";
+    public static final String SCHEMA_SENHA_RESET_EXAMPLE = "1";
     public static final String SCHEMA_SENHA_ATENDENTE_ID_TITLE = SCHEMA_ATENDENTE_ID_TITLE;
     public static final String SCHEMA_SENHA_ATENDENTE_ID_DESCRIPTION = "Id de atendente vinculado à senha";
     public static final String SCHEMA_SENHA_ATENDENTE_ID_EXAMPLE = SCHEMA_TIPO_ATENDIMENTO_ID_EXAMPLE;

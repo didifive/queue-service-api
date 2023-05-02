@@ -14,30 +14,35 @@ import java.util.UUID;
 @Repository
 public interface SenhaRepository extends JpaRepository<Senha, UUID>, JpaSpecificationExecutor<Senha> {
 
-    Page<Senha> findAllByAtendenteId(UUID atendenteId, Pageable pageable);
-
-    Page<Senha> findAllByTipoAtendimentoId(UUID tipoAtendimentoId, Pageable pageable);
-
-    Page<Senha> findAllByFilaId(UUID filaId, Pageable pageable);
-
-    Page<Senha> findAllByFinalizadaEmIsNull(Pageable pageable);
-
-    Page<Senha> findAllByFilaIdAndTipoAtendimentoIdAndChamadaEmIsNullOrderByGeradaEmAsc(
+    Optional<Senha> findFirstByFilaIdAndTipoAtendimentoIdAndChamadaEmIsNullAndFinalizadaEmIsNullOrderByGeradaEmAsc(
             UUID filaId
             , UUID tipoAtendimentoId
-            , Pageable pageable
     );
-
-    Page<Senha> findAllByFilaIdAndTipoAtendimentoIdAndFinalizadaEmIsNullAndChamadaEmIsNotNullOrderByGeradaEmDesc(
+    Optional<Senha> findFirstByFilaIdOrderByGeradaEmDesc(
             UUID filaId
-            , UUID tipoAtendimentoId
-            , Pageable pageable
     );
 
     Page<Senha> findAll(Pageable pageable);
 
-    Optional<Senha> findFirstByFilaIdAndTipoAtendimentoIdOrderByNumeroDesc(
-            UUID filaId, UUID tipoAtendimentoId
+    Page<Senha> findAllByAtendenteId(UUID atendenteId, Pageable pageable);
+    Page<Senha> findAllByTipoAtendimentoId(UUID tipoAtendimentoId, Pageable pageable);
+    Page<Senha> findAllByFilaId(UUID filaId, Pageable pageable);
+    Page<Senha> findAllByFilaIdAndTipoAtendimentoIdAndFinalizadaEmIsNullAndMotivoFinalizadaIsNull(UUID filaId, UUID tipoAtendimentoId, Pageable pageable);
+
+    Page<Senha> findAllByFinalizadaEmIsNull(Pageable pageable);
+
+    Page<Senha> findAllByFilaIdAndTipoAtendimentoIdAndChamadaEmIsNullAndFinalizadaEmIsNullOrderByGeradaEmAsc(
+            UUID filaId
+            , UUID tipoAtendimentoId
+            , Pageable pageable
     );
+
+    Page<Senha> findAllByFilaIdAndTipoAtendimentoIdAndChamadaEmIsNotNullAndFinalizadaEmIsNullOrderByGeradaEmDesc(
+            UUID filaId
+            , UUID tipoAtendimentoId
+            , Pageable pageable
+    );
+
+
 
 }

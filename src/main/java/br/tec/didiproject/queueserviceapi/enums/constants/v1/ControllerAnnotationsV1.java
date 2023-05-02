@@ -215,6 +215,32 @@ public final class ControllerAnnotationsV1 {
     public static final String FILA_CONTROLLER_DELETE_BY_ID_PARAMETER_ID_EXAMPLE = FILA_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE;
     public static final String FILA_CONTROLLER_DELETE_BY_ID_204_DESCRIPTION = "Fila excluída com sucesso";
 
+    public static final String SENHA_CONTROLER_TAG = "8. Senha";
+    public static final String SENHA_CONTROLLER_CREATE_OPERATION_SUMMARY = "Gerar nova senha";
+    public static final String SENHA_CONTROLLER_CREATE_OPERATION_DESCRIPTION = "Operação para gerar nova senha para uma Fila e Tipo de Atendimento";
+    public static final String SENHA_CONTROLLER_CREATE_201_DESCRIPTION = "Nova senha cadastrada com sucesso";
+    public static final String SENHA_CONTROLLER_CHAMAR_SENHA_OPERATION_SUMMARY = "Chamar Senha";
+    public static final String SENHA_CONTROLLER_CHAMAR_SENHA_OPERATION_DESCRIPTION = "Operação para chamar uma nova senha";
+    public static final String SENHA_CONTROLLER_CHAMAR_SENHA_PARAMETER_FILA_ID_DESCRIPTION = FILA_CONTROLLER_FIND_BY_ID_PARAMETER_ID_DESCRIPTION;
+    public static final String SENHA_CONTROLLER_CHAMAR_SENHA_PARAMETER_FILA_ID_EXAMPLE = FILA_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE;
+    public static final String SENHA_CONTROLLER_CHAMAR_SENHA_PARAMETER_RECHAMADA_DESCRIPTION = "Indica que está chamando uma senha já chamada";
+    public static final String SENHA_CONTROLLER_CHAMAR_SENHA_PARAMETER_RECHAMADA_EXAMPLE = "true";
+    public static final String SENHA_CONTROLLER_CHAMAR_SENHA_200_DESCRIPTION = "Senha chamada com sucesso";
+    public static final String SENHA_CONTROLLER_CHAMAR_PROXIMA_SENHA_OPERATION_SUMMARY = "Chamar próxima Senha";
+    public static final String SENHA_CONTROLLER_CHAMAR_PROXIMA_SENHA_OPERATION_DESCRIPTION = "Chamar próxima Senha da Fila";
+    public static final String SENHA_CONTROLLER_CHAMAR_PROXIMA_SENHA_200_DESCRIPTION = SENHA_CONTROLLER_CHAMAR_SENHA_200_DESCRIPTION;
+    public static final String SENHA_CONTROLLER_FINALIZAR_SENHA_OPERATION_SUMMARY = "Finalizar Senha";
+    public static final String SENHA_CONTROLLER_FINALIZAR_SENHA_OPERATION_DESCRIPTION = "Operação para finalizar/encerrar senha";
+    public static final String SENHA_CONTROLLER_FINALIZAR_SENHA_200_DESCRIPTION = "Senha finalizada com sucesso";
+    public static final String SENHA_CONTROLLER_FINALIZAR_SENHA_POR_FILA_E_TIPO_ATENDIMENTO_OPERATION_SUMMARY = "Finalizar senhas por Fila e Tipo de Atendimento";
+    public static final String SENHA_CONTROLLER_FINALIZAR_SENHA_POR_FILA_E_TIPO_ATENDIMENTO_OPERATION_DESCRIPTION = "Operação para finalizar/encerrar senhas por Fila e Tipo de Atendimento";
+    public static final String SENHA_CONTROLLER_FINALIZAR_SENHA_POR_FILA_E_TIPO_ATENDIMENTO_204_DESCRIPTION = "Senhas da Fila e Tipo de Atendimento foram finalizadas com sucesso";
+    public static final String SENHA_CONTROLLER_ATENDER_SENHA_OPERATION_SUMMARY = "Atender Senha";
+    public static final String SENHA_CONTROLLER_ATENDER_SENHA_OPERATION_DESCRIPTION = "Operação para registrar atendimento da senha";
+    public static final String SENHA_CONTROLLER_ATENDER_SENHA_200_DESCRIPTION = "Senha atendida com sucesso";
+    public static final String SENHA_CONTROLLER_RESETAR_STATUS_SENHA_OPERATION_SUMMARY = "Resetar status da senha";
+    public static final String SENHA_CONTROLLER_RESETAR_STATUS_SENHA_OPERATION_DESCRIPTION = "Resetar status da senha: chamada, atendida e finalizada";
+    public static final String SENHA_CONTROLLER_RESETAR_STATUS_SENHA_200_DESCRIPTION = "Status da senha resetados com sucesso";
 
     private ControllerAnnotationsV1() {
         throw new IllegalAccessError("Utility Class");

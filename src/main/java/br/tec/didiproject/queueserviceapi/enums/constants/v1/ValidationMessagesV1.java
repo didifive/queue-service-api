@@ -75,6 +75,9 @@ public final class ValidationMessagesV1 {
     public static final String SENHA_NOVA_SENHA_FILA_ID_UUID = "O Id informado para a Fila está inválido";
     public static final String SENHA_NOVA_SENHA_TIPO_ATENDIMENTO_ID_NOT_BLANK = "Informe um id de Tipo de Atendimento para associnar na senha";
     public static final String SENHA_NOVA_SENHA_TIPO_ATENDIMENTO_ID_UUID = "O Id informado para o Tipo de Atendimento está inválido";
+    public static final String SENHA_RESET_MIN = "O valor mínimo aceito para reiniciar as senhas é 1";
+    public static final String SENHA_RESET_MAX = "O valor máximo aceito para reiniciar as senhas é 32766";
+
 
     private ValidationMessagesV1() {
         throw new IllegalAccessError("Utility Class");

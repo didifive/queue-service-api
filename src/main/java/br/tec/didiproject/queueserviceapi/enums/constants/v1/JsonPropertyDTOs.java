@@ -28,6 +28,7 @@ public final class JsonPropertyDTOs {
     public static final String PERFIS = "perfis";
     public static final String PRIORIDADE = "prioridade";
     public static final String REFRESH_TOKEN = "refreshToken";
+    public static final String RESET = "reset";
     public static final String SENHA = "senha";
     public static final String SENHA_ATUAL = "senhaAtual";
     public static final String SIGLA = "sigla";

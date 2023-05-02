@@ -152,6 +152,8 @@ public class FilaService {
         tiposAtendimento.remove(tipoAtendimentoService.findById(tipoAtendimentoId));
         fila.setTiposAtendimento(tiposAtendimento);
 
+        this.hasAttendanceType(fila);
+
         return filaRepository.save(fila);
     }
 
