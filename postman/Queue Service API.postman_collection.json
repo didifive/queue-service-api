@@ -852,6 +852,215 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Senha",
+					"item": [
+						{
+							"name": "Nova Senha",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"filaId\": \"cfc7b71e-12f1-4d7a-a7ce-1f4b8496295b\",\r\n    \"tipoAtendimentoId\": \"e2620622-c56a-4b34-a724-ef891fa8a4eb\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}{{senha}}",
+									"host": [
+										"{{localhost}}{{senha}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Nova Senha com Reinicio",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"filaId\": \"cfc7b71e-12f1-4d7a-a7ce-1f4b8496295b\",\r\n    \"tipoAtendimentoId\": \"e2620622-c56a-4b34-a724-ef891fa8a4eb\",\r\n    \"reset\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}{{senha}}",
+									"host": [
+										"{{localhost}}{{senha}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Chamar Senha",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{senha}}/bde6ff4d-2034-4609-8833-80bfc245f212/chamar-senha",
+									"host": [
+										"{{localhost}}{{senha}}"
+									],
+									"path": [
+										"bde6ff4d-2034-4609-8833-80bfc245f212",
+										"chamar-senha"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Chamar Senha com Rechamada",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"filaId\": \"cfc7b71e-12f1-4d7a-a7ce-1f4b8496295b\",\r\n    \"tipoAtendimentoId\": \"e2620622-c56a-4b34-a724-ef891fa8a4eb\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}{{senha}}/bde6ff4d-2034-4609-8833-80bfc245f212/chamar-senha?rechamada=true",
+									"host": [
+										"{{localhost}}{{senha}}"
+									],
+									"path": [
+										"bde6ff4d-2034-4609-8833-80bfc245f212",
+										"chamar-senha"
+									],
+									"query": [
+										{
+											"key": "rechamada",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Chamar Próxima Senha da Fila",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{senha}}/bde6ff4d-2034-4609-8833-80bfc245f212/chamar-senha",
+									"host": [
+										"{{localhost}}{{senha}}"
+									],
+									"path": [
+										"bde6ff4d-2034-4609-8833-80bfc245f212",
+										"chamar-senha"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Finalizar Senha",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"motivoFinalizada\": \"TESTE - Finalizada sem atendimento para teste\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}{{senha}}/6efd50f0-59dc-42ca-bf64-3b542f3a5ad4/finalizar-senha",
+									"host": [
+										"{{localhost}}{{senha}}"
+									],
+									"path": [
+										"6efd50f0-59dc-42ca-bf64-3b542f3a5ad4",
+										"finalizar-senha"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Finalizar Senhas por Fila e Tipo de Atendimento",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"filaId\": \"cfc7b71e-12f1-4d7a-a7ce-1f4b8496295b\",\r\n    \"tipoAtendimentoId\": \"6194b92c-1ee0-4c35-855d-65b1c8eb3f83\",\r\n    \"motivoFinalizada\": \"TESTE - Finalizar em massa\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localhost}}{{senha}}/finalizar-senhas",
+									"host": [
+										"{{localhost}}{{senha}}"
+									],
+									"path": [
+										"finalizar-senhas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Atender Senha",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{senha}}/bde6ff4d-2034-4609-8833-80bfc245f212/atender-senha",
+									"host": [
+										"{{localhost}}{{senha}}"
+									],
+									"path": [
+										"bde6ff4d-2034-4609-8833-80bfc245f212",
+										"atender-senha"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Resetar Status da Senha",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{localhost}}{{senha}}/bde6ff4d-2034-4609-8833-80bfc245f212/resetar-status",
+									"host": [
+										"{{localhost}}{{senha}}"
+									],
+									"path": [
+										"bde6ff4d-2034-4609-8833-80bfc245f212",
+										"resetar-status"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}
