@@ -81,7 +81,7 @@ public class Usuario implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return ativo && Objects.nonNull(atendente);
+        return ativo;
     }
 
     @Override

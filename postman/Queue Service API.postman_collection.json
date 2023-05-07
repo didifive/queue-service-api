@@ -429,12 +429,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{queue-domain}}{{usuario}}/0c8e8e4d-dd8f-4075-a7f2-172816a94891",
+							"raw": "{{queue-domain}}{{usuario}}/{{usuarioId_USUARIO}}",
 							"host": [
 								"{{queue-domain}}{{usuario}}"
 							],
 							"path": [
-								"0c8e8e4d-dd8f-4075-a7f2-172816a94891"
+								"{{usuarioId_USUARIO}}"
 							]
 						}
 					},
@@ -1023,6 +1023,32 @@
 					"response": []
 				},
 				{
+					"name": "Finalizar Senhas Todas as Senhas Não Finalizadas",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"motivoFinalizada\": \"Finalizar Tudo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{queue-domain}}{{senha}}/finalizar-todas-senhas",
+							"host": [
+								"{{queue-domain}}{{senha}}"
+							],
+							"path": [
+								"finalizar-todas-senhas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Atender Senha",
 					"request": {
 						"method": "PATCH",
@@ -1189,7 +1215,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwYzhlOGU0ZC1kZDhmLTQwNzUtYTdmMi0xNzI4MTZhOTQ4OTEiLCJpc3MiOiJRdWV1ZVNlcnZpY2VBUEkiLCJleHAiOjE2ODM3NjU1MDN9.X5TyVwW-uPN4g8NphKLxRxO5CcteN51LLmiYjgKtV2U",
+				"value": "{{token_USUARIO}}",
 				"type": "string"
 			}
 		]
@@ -1253,6 +1279,66 @@
 		{
 			"key": "senha",
 			"value": "/api/v1/senha",
+			"type": "string"
+		},
+		{
+			"key": "token_ADMIN",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwYzhlOGU0ZC1kZDhmLTQwNzUtYTdmMi0xNzI4MTZhOTQ4OTEiLCJpc3MiOiJRdWV1ZVNlcnZpY2VBUEkiLCJleHAiOjE2ODQzNTc3OTZ9.wNLTefmE0wYIch1o8WUecJBLlNuN3CG0YJJ5wWrPTOc",
+			"type": "string"
+		},
+		{
+			"key": "token_USUARIO",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlYjBmYWFkMy03NzRmLTQ5OGItODNmZS0xNTYxZWQ0MTQ2NjEiLCJpc3MiOiJRdWV1ZVNlcnZpY2VBUEkiLCJleHAiOjE2ODQzNTg1MDd9.QpdWQ85n432pBNm8lllk0kbz6bSzzLBD1GJc6yxvSu8",
+			"type": "string"
+		},
+		{
+			"key": "token_ATENDENTE",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjMjNlZmE3Ny0zMWY4LTRiNDEtYTU3Yy04OGRmMzQ2MzE4MDUiLCJpc3MiOiJRdWV1ZVNlcnZpY2VBUEkiLCJleHAiOjE2ODQzNTc3NDF9.ILywWHsqMsFQTmrdvWoI7NrNnx5sxTSmtagqdLORyjM",
+			"type": "string"
+		},
+		{
+			"key": "usuarioId_ADMIN",
+			"value": "0c8e8e4d-dd8f-4075-a7f2-172816a94891",
+			"type": "string"
+		},
+		{
+			"key": "usuarioId_USUARIO",
+			"value": "eb0faad3-774f-498b-83fe-1561ed414661",
+			"type": "string"
+		},
+		{
+			"key": "usuarioId_ATENDENTE",
+			"value": "c23efa77-31f8-4b41-a57c-88df34631805",
+			"type": "string"
+		},
+		{
+			"key": "nomeUsuario_ADMIN",
+			"value": "joao@email.com",
+			"type": "string"
+		},
+		{
+			"key": "senhaUsuario_ADMIN",
+			"value": "joao@email.com",
+			"type": "string"
+		},
+		{
+			"key": "nomeUsuario_USUARIO",
+			"value": "UsuarioTeste",
+			"type": "string"
+		},
+		{
+			"key": "senhaUsuario_USUARIO",
+			"value": "Usuario1234@",
+			"type": "string"
+		},
+		{
+			"key": "nomeUsuario_ATENDENTE",
+			"value": "mariasilvasouza@email.com",
+			"type": "string"
+		},
+		{
+			"key": "senhaUsuario_ATENDENTE",
+			"value": "Pw5@QueueService",
 			"type": "string"
 		}
 	]

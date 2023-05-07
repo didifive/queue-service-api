@@ -27,6 +27,7 @@ import static br.tec.didiproject.queueserviceapi.exceptions.BaseErrorMessage.*;
 @Service
 public class AtendenteService {
 
+    public static final String SENHA_PADRAO_PARA_USUARIO = "Pw5@QueueService";
     private final AtendenteRepository atendenteRepository;
     private final SenhaRepository senhaRepository;
     private final UsuarioService usuarioService;
@@ -66,7 +67,7 @@ public class AtendenteService {
         Usuario novoUsuario = Usuario
                 .builder()
                 .nomeUsuario(novoAtendente.getEmail())
-                .senha("Pw5@QueueService")
+                .senha(SENHA_PADRAO_PARA_USUARIO)
                 .atendente(novoAtendente)
                 .perfis(new HashSet<>())
                 .build();

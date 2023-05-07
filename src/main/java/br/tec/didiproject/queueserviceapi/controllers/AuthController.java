@@ -9,11 +9,13 @@ import br.tec.didiproject.queueserviceapi.services.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
+import static br.tec.didiproject.queueserviceapi.enums.constants.SecurityAuthority.HAS_AUTHORITY_ADMIN_OR_OWN_USER;
 import static br.tec.didiproject.queueserviceapi.enums.constants.v1.MappingRoutesV1.PATH_AUTH;
 import static br.tec.didiproject.queueserviceapi.exceptions.BaseErrorMessage.INVALID_USERNAME_PASSWORD;
 import static br.tec.didiproject.queueserviceapi.utils.UUIDValidator.validateUUIDPattern;
@@ -53,6 +55,7 @@ public class AuthController implements AuthControllerDocs {
         );
     }
 
+    @PreAuthorize(HAS_AUTHORITY_ADMIN_OR_OWN_USER)
     @DeleteMapping("/invalidate-refresh/{usuarioId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Void> invalidaRefreshToken(

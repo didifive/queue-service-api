@@ -117,7 +117,7 @@ Abaixo segue uma lista geral dos endpoints com resumo de suas funcionalidades:
 |--------|-------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
 | POST   | /api/v1/auth                                    | Realizar autenticação do Usuário informando nome de usuário e senha e se estiver ok retorna token de acesso.         |
 | POST   | /api/v1/auth/refresh/{usuarioId}/{refreshToken} | Informar o Id de Usuário (usuarioID) e o Refresh Token que possui (refreshToken) para gerar um novo token de acesso. |
-| POST   | /api/v1/auth/invalidate-refresh/{usuarioId}     | Invalida refresh token do usuário, normalmente utilizado ao usuário sair do sistema.                                 |
+| DELETE | /api/v1/auth/invalidate-refresh/{usuarioId}     | Invalida refresh token do usuário, normalmente utilizado ao usuário sair do sistema.                                 |
 
 ### 🏢 Empresa: Endpoints com CRUD para cadastro de empresa(s)
 

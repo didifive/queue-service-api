@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -23,6 +24,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
+import static br.tec.didiproject.queueserviceapi.enums.constants.SecurityAuthority.HAS_AUTHORITY_ADMIN;
+import static br.tec.didiproject.queueserviceapi.enums.constants.SecurityAuthority.HAS_AUTHORITY_ADMIN_OR_USUARIO;
 import static br.tec.didiproject.queueserviceapi.enums.constants.v1.MappingRoutesV1.PATH_FILA;
 import static br.tec.didiproject.queueserviceapi.utils.BindingError.checkBindingResultError;
 import static br.tec.didiproject.queueserviceapi.utils.UUIDValidator.validateUUIDPattern;
@@ -35,6 +38,7 @@ public class FilaController implements FilaControllerDocs {
     private final FilaService filaService;
     private final FilaMapper filaMapper;
 
+    @PreAuthorize(HAS_AUTHORITY_ADMIN_OR_USUARIO)
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<RespostaFilaDTO> novaFila(
@@ -50,6 +54,7 @@ public class FilaController implements FilaControllerDocs {
         return ResponseEntity.created(uri).body(filaMapper.toResponseDTO(novoFila));
     }
 
+    @PreAuthorize(HAS_AUTHORITY_ADMIN_OR_USUARIO)
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Page<RespostaFilaDTO>> listarFilas(
@@ -63,6 +68,7 @@ public class FilaController implements FilaControllerDocs {
         return ResponseEntity.ok().body(pageRespostaDTOs);
     }
 
+    @PreAuthorize(HAS_AUTHORITY_ADMIN_OR_USUARIO)
     @GetMapping("/departamento/{departamentoId}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Page<RespostaFilaDTO>> listarFilasPorDepartamento(
@@ -71,7 +77,7 @@ public class FilaController implements FilaControllerDocs {
     ) {
         validateUUIDPattern(departamentoId);
 
-        Page<Fila> pageFilas = filaService.findAllByDepartamentoId(UUID.fromString(departamentoId),pageable);
+        Page<Fila> pageFilas = filaService.findAllByDepartamentoId(UUID.fromString(departamentoId), pageable);
 
         List<RespostaFilaDTO> respostaDTOs = filaMapper.toResponseDTOList(pageFilas.getContent());
         Page<RespostaFilaDTO> pageRespostaDTOs = new PageImpl<>(respostaDTOs, pageable, pageFilas.getTotalElements());
@@ -79,6 +85,7 @@ public class FilaController implements FilaControllerDocs {
         return ResponseEntity.ok().body(pageRespostaDTOs);
     }
 
+    @PreAuthorize(HAS_AUTHORITY_ADMIN_OR_USUARIO)
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<RespostaFilaDTO> findById(@PathVariable String id) {
@@ -87,6 +94,7 @@ public class FilaController implements FilaControllerDocs {
                 .body(filaMapper.toResponseDTO(filaService.findById(UUID.fromString(id))));
     }
 
+    @PreAuthorize(HAS_AUTHORITY_ADMIN_OR_USUARIO)
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<RespostaFilaDTO> atualizaFila(
@@ -103,6 +111,7 @@ public class FilaController implements FilaControllerDocs {
                         , filaMapper.toEntity(requisicaoFilaDTO))));
     }
 
+    @PreAuthorize(HAS_AUTHORITY_ADMIN_OR_USUARIO)
     @PatchMapping("/{id}/tipo-atendimento/{tipoAtendimentoId}/adicionar")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<RespostaFilaDTO> adicionarTipoAtendimento(
@@ -118,6 +127,7 @@ public class FilaController implements FilaControllerDocs {
                         , UUID.fromString(tipoAtendimentoId))));
     }
 
+    @PreAuthorize(HAS_AUTHORITY_ADMIN_OR_USUARIO)
     @PatchMapping("/{id}/tipo-atendimento/{tipoAtendimentoId}/remover")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<RespostaFilaDTO> removerTipoAtendimento(
@@ -133,6 +143,7 @@ public class FilaController implements FilaControllerDocs {
                         , UUID.fromString(tipoAtendimentoId))));
     }
 
+    @PreAuthorize(HAS_AUTHORITY_ADMIN)
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Void> deletarFila(@PathVariable String id) {

@@ -18,6 +18,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
+import static br.tec.didiproject.queueserviceapi.enums.constants.SecurityAuthority.*;
 import static br.tec.didiproject.queueserviceapi.enums.constants.v1.MappingRoutesV1.PATH_SENHA;
 import static br.tec.didiproject.queueserviceapi.utils.BindingError.checkBindingResultError;
 import static br.tec.didiproject.queueserviceapi.utils.UUIDValidator.validateUUIDPattern;
@@ -58,6 +60,7 @@ public class SenhaController implements SenhaControllerDocs {
         return ResponseEntity.created(uri).body(senhaMapper.toResponseDTO(novaSenha));
     }
 
+    @PreAuthorize(HAS_AUTHORITY_ADMIN_OR_ATENDENTE)
     @PatchMapping("/{id}/chamar-senha")
     @ResponseStatus(HttpStatus.OK)
     @Override
@@ -75,6 +78,7 @@ public class SenhaController implements SenhaControllerDocs {
         ));
     }
 
+    @PreAuthorize(HAS_AUTHORITY_ADMIN_OR_ATENDENTE)
     @PatchMapping("/fila/{filaId}/chamar-senha")
     @ResponseStatus(HttpStatus.OK)
     @Override
@@ -88,6 +92,7 @@ public class SenhaController implements SenhaControllerDocs {
         ));
     }
 
+    @PreAuthorize(HAS_AUTHORITY_ADMIN_OR_ATENDENTE)
     @PatchMapping("/{id}/finalizar-senha")
     @ResponseStatus(HttpStatus.OK)
     @Override
@@ -106,6 +111,7 @@ public class SenhaController implements SenhaControllerDocs {
         ));
     }
 
+    @PreAuthorize(HAS_AUTHORITY_ADMIN_OR_ATENDENTE)
     @PatchMapping("/finalizar-senhas")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Override
@@ -124,6 +130,7 @@ public class SenhaController implements SenhaControllerDocs {
         return ResponseEntity.noContent().build();
     }
 
+    @PreAuthorize(HAS_AUTHORITY_ADMIN_OR_ATENDENTE)
     @PatchMapping("/finalizar-todas-senhas")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Override
@@ -144,6 +151,7 @@ public class SenhaController implements SenhaControllerDocs {
         return ResponseEntity.noContent().build();
     }
 
+    @PreAuthorize(HAS_AUTHORITY_ADMIN_OR_ATENDENTE)
     @PatchMapping("/{id}/atender-senha")
     @ResponseStatus(HttpStatus.OK)
     @Override
@@ -161,6 +169,7 @@ public class SenhaController implements SenhaControllerDocs {
         ));
     }
 
+    @PreAuthorize(HAS_AUTHORITY_ADMIN)
     @PatchMapping("/{id}/resetar-status")
     @ResponseStatus(HttpStatus.OK)
     @Override
@@ -174,6 +183,7 @@ public class SenhaController implements SenhaControllerDocs {
         ));
     }
 
+    @PreAuthorize(HAS_AUTHORITY_ADMIN_OR_ATENDENTE)
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Override
@@ -185,6 +195,7 @@ public class SenhaController implements SenhaControllerDocs {
         ));
     }
 
+    @PreAuthorize(HAS_AUTHORITY_ADMIN_OR_ATENDENTE)
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
     @Override
@@ -202,6 +213,7 @@ public class SenhaController implements SenhaControllerDocs {
         return ResponseEntity.ok().body(pageRespostaDTOs);
     }
 
+    @PreAuthorize(HAS_AUTHORITY_ADMIN_OR_ATENDENTE)
     @GetMapping("/nao-finalizadas")
     @ResponseStatus(HttpStatus.OK)
     @Override
@@ -219,6 +231,7 @@ public class SenhaController implements SenhaControllerDocs {
         return ResponseEntity.ok().body(pageRespostaDTOs);
     }
 
+    @PreAuthorize(HAS_AUTHORITY_ADMIN_OR_USUARIO)
     @GetMapping("/{dataInicio}/{dataFim}")
     @ResponseStatus(HttpStatus.OK)
     @Override
@@ -234,6 +247,7 @@ public class SenhaController implements SenhaControllerDocs {
         return ResponseEntity.ok().body(pageRespostaDTOs);
     }
 
+    @PreAuthorize(HAS_AUTHORITY_ADMIN_OR_USUARIO)
     @GetMapping("/chamadas/{dataInicio}/{dataFim}")
     @ResponseStatus(HttpStatus.OK)
     @Override
@@ -249,6 +263,7 @@ public class SenhaController implements SenhaControllerDocs {
         return ResponseEntity.ok().body(pageRespostaDTOs);
     }
 
+    @PreAuthorize(HAS_AUTHORITY_ADMIN_OR_USUARIO)
     @GetMapping("/finalizadas/{dataInicio}/{dataFim}")
     @ResponseStatus(HttpStatus.OK)
     @Override
@@ -265,6 +280,7 @@ public class SenhaController implements SenhaControllerDocs {
     }
 
 
+    @PreAuthorize(HAS_AUTHORITY_ADMIN_OR_USUARIO)
     @GetMapping("/atendidas/{dataInicio}/{dataFim}")
     @ResponseStatus(HttpStatus.OK)
     @Override

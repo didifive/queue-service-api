@@ -29,6 +29,7 @@ import static br.tec.didiproject.queueserviceapi.exceptions.BaseErrorMessage.*;
 @Service
 public class UsuarioService implements UserDetailsService {
 
+    public static final String REGEX_VALIDA_SENHA = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*+=])(?=\\S+$).{6,60}$";
     private final UsuarioRepository usuarioRepository;
     private final AtendenteRepository atendenteRepository;
 
@@ -103,7 +104,7 @@ public class UsuarioService implements UserDetailsService {
     }
 
     private String validarCriptografarSenha(String senha) {
-        String regex = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*+=])(?=\\S+$).{6,60}$";
+        String regex = REGEX_VALIDA_SENHA;
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(senha);
         if (!m.matches())
