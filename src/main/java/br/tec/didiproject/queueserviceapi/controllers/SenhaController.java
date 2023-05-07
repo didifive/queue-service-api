@@ -129,12 +129,16 @@ public class SenhaController implements SenhaControllerDocs {
     @Override
     public ResponseEntity<Void> finalizarTodasSenhasNaoFinalizadas(
             @RequestBody @Valid RequisicaoSenhaFinalizaSenhaDTO requisicaoSenhaFinalizaSenhaDTO
-            , BindingResult bindingResult) {
+            , BindingResult bindingResult
+            , Authentication authentication) {
 
         checkBindingResultError(bindingResult);
 
-        senhaService.finalizarSenhasNaoFinalizadas(
+        Usuario usuario = (Usuario) authentication.getPrincipal();
+
+        senhaService.finalizarTodasSenhasNaoFinalizadas(
                 requisicaoSenhaFinalizaSenhaDTO.getMotivoFinalizada()
+                , usuario
         );
 
         return ResponseEntity.noContent().build();
@@ -185,8 +189,12 @@ public class SenhaController implements SenhaControllerDocs {
     @ResponseStatus(HttpStatus.OK)
     @Override
     public ResponseEntity<Page<RespostaSenhaDTO>> listarSenhas(
-            @PageableDefault(size = 100, sort = "geradaEm", direction = Sort.Direction.DESC) Pageable pageable) {
-        Page<Senha> pageSenhas = senhaService.findAll(pageable);
+            @PageableDefault(size = 100, sort = "geradaEm", direction = Sort.Direction.DESC) Pageable pageable
+            , Authentication authentication) {
+
+        Usuario usuario = (Usuario) authentication.getPrincipal();
+
+        Page<Senha> pageSenhas = senhaService.findAll(pageable, usuario);
 
         List<RespostaSenhaDTO> respostaDTOs = senhaMapper.toResponseDTOList(pageSenhas.getContent());
         Page<RespostaSenhaDTO> pageRespostaDTOs = new PageImpl<>(respostaDTOs, pageable, pageSenhas.getTotalElements());
@@ -199,8 +207,11 @@ public class SenhaController implements SenhaControllerDocs {
     @Override
     public ResponseEntity<Page<RespostaSenhaDTO>> listarSenhasNaoFinalizadas(
             @PageableDefault(size = 50, sort = "geradaEm", direction = Sort.Direction.DESC) Pageable pageable
+            , Authentication authentication
     ) {
-        Page<Senha> pageSenhas = senhaService.senhasNaoFinalizadas(pageable);
+        Usuario usuario = (Usuario) authentication.getPrincipal();
+
+        Page<Senha> pageSenhas = senhaService.senhasNaoFinalizadas(pageable, usuario);
 
         List<RespostaSenhaDTO> respostaDTOs = senhaMapper.toResponseDTOList(pageSenhas.getContent());
         Page<RespostaSenhaDTO> pageRespostaDTOs = new PageImpl<>(respostaDTOs, pageable, pageSenhas.getTotalElements());

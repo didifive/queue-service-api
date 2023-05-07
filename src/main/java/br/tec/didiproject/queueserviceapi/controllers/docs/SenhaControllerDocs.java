@@ -32,6 +32,7 @@ public interface SenhaControllerDocs {
     @Tag(name = TAG_POST)
     @Operation(summary = SENHA_CONTROLLER_CREATE_OPERATION_SUMMARY
             , description = SENHA_CONTROLLER_CREATE_OPERATION_DESCRIPTION)
+    @Parameter(name = "bindingResult", hidden = true)
     @ApiResponse(responseCode = "201"
             , description = SENHA_CONTROLLER_CREATE_201_DESCRIPTION)
     @ApiResponse400
@@ -83,6 +84,7 @@ public interface SenhaControllerDocs {
     @Operation(summary = SENHA_CONTROLLER_FINALIZAR_SENHA_OPERATION_SUMMARY
             , description = SENHA_CONTROLLER_FINALIZAR_SENHA_OPERATION_DESCRIPTION)
     @ParameterSenhaId
+    @Parameter(name = "bindingResult", hidden = true)
     @ApiResponse(responseCode = "200"
             , description = SENHA_CONTROLLER_FINALIZAR_SENHA_200_DESCRIPTION)
     @ApiResponse400
@@ -98,6 +100,7 @@ public interface SenhaControllerDocs {
     @Tag(name = TAG_PATCH)
     @Operation(summary = SENHA_CONTROLLER_FINALIZAR_SENHA_POR_FILA_E_TIPO_ATENDIMENTO_OPERATION_SUMMARY
             , description = SENHA_CONTROLLER_FINALIZAR_SENHA_POR_FILA_E_TIPO_ATENDIMENTO_OPERATION_DESCRIPTION)
+    @Parameter(name = "bindingResult", hidden = true)
     @ApiResponse(responseCode = "204"
             , description = SENHA_CONTROLLER_FINALIZAR_SENHA_POR_FILA_E_TIPO_ATENDIMENTO_204_DESCRIPTION
             , content = @Content(schema = @Schema(hidden = true)))
@@ -113,6 +116,8 @@ public interface SenhaControllerDocs {
     @Tag(name = TAG_PATCH)
     @Operation(summary = SENHA_CONTROLLER_FINALIZAR_TODAS_SENHAS_NAO_FINALIZADAS_OPERATION_SUMMARY
             , description = SENHA_CONTROLLER_FINALIZAR_TODAS_SENHAS_NAO_FINALIZADAS_OPERATION_DESCRIPTION)
+    @Parameter(name = "bindingResult", hidden = true)
+    @Parameter(name = "authentication", hidden = true)
     @ApiResponse(responseCode = "204"
             , description = SENHA_CONTROLLER_FINALIZAR_TODAS_SENHAS_NAO_FINALIZADAS_204_DESCRIPTION
             , content = @Content(schema = @Schema(hidden = true)))
@@ -121,6 +126,7 @@ public interface SenhaControllerDocs {
     ResponseEntity<Void> finalizarTodasSenhasNaoFinalizadas(
             RequisicaoSenhaFinalizaSenhaDTO requisicaoSenhaFinalizaSenhaDTO
             , BindingResult bindingResult
+            , Authentication authentication
     );
 
     @Tag(name = TAG_PATCH)
@@ -143,8 +149,6 @@ public interface SenhaControllerDocs {
     @Operation(summary = SENHA_CONTROLLER_RESETAR_STATUS_SENHA_OPERATION_SUMMARY
             , description = SENHA_CONTROLLER_RESETAR_STATUS_SENHA_OPERATION_DESCRIPTION)
     @ParameterSenhaId
-    @Parameter(name = "authentication"
-            , hidden = true)
     @ApiResponse(responseCode = "200"
             , description = SENHA_CONTROLLER_RESETAR_STATUS_SENHA_200_DESCRIPTION)
     @ApiResponse403
@@ -167,22 +171,26 @@ public interface SenhaControllerDocs {
     @Operation(summary = SENHA_CONTROLLER_FIND_ALL_OPERATION_SUMMARY
             , description = SENHA_CONTROLLER_FIND_ALL_OPERATION_DESCRIPTION)
     @PageParams
+    @Parameter(name = "authentication", hidden = true)
     @ApiResponse(responseCode = "200"
             , description = SENHA_CONTROLLER_FIND_ALL_200_DESCRIPTION)
     @ApiResponse403
     ResponseEntity<Page<RespostaSenhaDTO>> listarSenhas(
             Pageable pageable
+            , Authentication authentication
     );
 
     @Tag(name = TAG_GET)
     @Operation(summary = SENHA_CONTROLLER_SENHAS_NAO_FINALIZADAS_OPERATION_SUMMARY
             , description = SENHA_CONTROLLER_SENHAS_NAO_FINALIZADAS_OPERATION_DESCRIPTION)
     @PageParams
+    @Parameter(name = "authentication", hidden = true)
     @ApiResponse(responseCode = "200"
             , description = SENHA_CONTROLLER_SENHAS_NAO_FINALIZADAS_200_DESCRIPTION)
     @ApiResponse403
     ResponseEntity<Page<RespostaSenhaDTO>> listarSenhasNaoFinalizadas(
             Pageable pageable
+            , Authentication authentication
     );
 
     @Tag(name = TAG_GET)

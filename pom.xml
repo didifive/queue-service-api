@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.tec.didiproject</groupId>
 	<artifactId>queue-service-api</artifactId>
-	<version>0.1.1-SNAPSHOT</version>
+	<version>0.2.0-RELEASE</version>
 	<name>queue-service-api</name>
 	<description>Filas - Controle de senhas para atendimento</description>
 

@@ -12,7 +12,7 @@ public class OpenApiConfig {
 
     private static final String API_TITLE = "Filas";
     private static final String API_DESCRIPTION = "Controle de senhas para atendimento";
-    private static final String API_VERSION = "0.1.1";
+    private static final String API_VERSION = "0.2.0-RELEASE";
     private static final String API_LICENSE = "MIT License";
     private static final String API_LICENSE_URL = "https://mit-license.org/";
     private static final String CONTACT_NAME = "Luis Zancanela";

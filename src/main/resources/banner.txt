@@ -8,7 +8,7 @@ ${AnsiColor.BRIGHT_GREEN}
                                |__/
 
  =================================================
- Queue Service API - FILAS                  v1.0.0
+ Queue Service API - FILAS          v0.2.0-RELEASE
  =================================================
 
                 ####      ####    MM####

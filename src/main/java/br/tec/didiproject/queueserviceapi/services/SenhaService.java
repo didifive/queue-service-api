@@ -2,10 +2,14 @@ package br.tec.didiproject.queueserviceapi.services;
 
 import br.tec.didiproject.queueserviceapi.entities.*;
 import br.tec.didiproject.queueserviceapi.enums.AdjustTimeTo;
-import br.tec.didiproject.queueserviceapi.exceptions.*;
+import br.tec.didiproject.queueserviceapi.exceptions.BadRequestBodyException;
+import br.tec.didiproject.queueserviceapi.exceptions.DataIntegrityViolationException;
+import br.tec.didiproject.queueserviceapi.exceptions.EntityNotFoundException;
+import br.tec.didiproject.queueserviceapi.exceptions.QueueServiceApiException;
 import br.tec.didiproject.queueserviceapi.repositories.SenhaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -21,6 +25,7 @@ import java.util.*;
 
 import static br.tec.didiproject.queueserviceapi.enums.AdjustTimeTo.END;
 import static br.tec.didiproject.queueserviceapi.enums.AdjustTimeTo.START;
+import static br.tec.didiproject.queueserviceapi.enums.Perfil.*;
 import static br.tec.didiproject.queueserviceapi.exceptions.BaseErrorMessage.*;
 import static java.time.LocalTime.of;
 
@@ -59,8 +64,34 @@ public class SenhaService {
      *
      * @param pageable Pageable object with page options
      */
-    public Page<Senha> findAll(Pageable pageable) {
-        return senhaRepository.findAll(pageable);
+    public Page<Senha> findAll(Pageable pageable, Usuario usuario) {
+        if (usuario.getPerfis().contains(ADMIN) || usuario.getPerfis().contains(USUARIO))
+            return senhaRepository.findAll(pageable);
+
+        List<Senha> senhas = new ArrayList<>();
+        usuario.getAtendente().getDepartamentos().forEach(
+                departamento -> senhas.addAll(senhaRepository.findAllByFilaDepartamento(departamento))
+        );
+
+        return new PageImpl<>(senhas, pageable, senhas.size());
+    }
+
+    /**
+     * CRUD: Read
+     * Find unfinished service numbers and list with pageable content
+     *
+     * @param pageable Pageable object with page options
+     */
+    public Page<Senha> senhasNaoFinalizadas(Pageable pageable, Usuario usuario) {
+        if (usuario.getPerfis().contains(ADMIN) || usuario.getPerfis().contains(USUARIO))
+            return senhaRepository.findAllByFinalizadaEmIsNull(pageable);
+
+        List<Senha> senhas = new ArrayList<>();
+        usuario.getAtendente().getDepartamentos().forEach(
+                departamento -> senhas.addAll(senhaRepository.findAllByFinalizadaEmIsNullAndFilaDepartamento(departamento))
+        );
+
+        return new PageImpl<>(senhas, pageable, senhas.size());
     }
 
     /**
@@ -172,16 +203,6 @@ public class SenhaService {
                         .toLocalDate()
                 , hora);
         return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
-    }
-
-    /**
-     * CRUD: Read
-     * Find unfinished service numbers and list with pageable content
-     *
-     * @param pageable Pageable object with page options
-     */
-    public Page<Senha> senhasNaoFinalizadas(Pageable pageable) {
-        return senhaRepository.findAllByFinalizadaEmIsNull(pageable);
     }
 
     /**
@@ -359,18 +380,18 @@ public class SenhaService {
 
     /**
      * CRUD: Update
-     * Finish the service numbers who is not finished
+     * Finish all the service numbers who is not finished
      *
      * @param motivo String with a reason for finish the service number
      */
-    public void finalizarSenhasNaoFinalizadas(String motivo) {
+    public void finalizarTodasSenhasNaoFinalizadas(String motivo, Usuario usuario) {
         Pageable pageRequest = PageRequest.of(0, PAGE_SIZE);
 
-        Page<Senha> senhas = this.senhasNaoFinalizadas(pageRequest);
+        Page<Senha> senhas = this.senhasNaoFinalizadas(pageRequest, usuario);
 
         for (int i = 0; i <= senhas.getTotalPages(); i++) {
             pageRequest = PageRequest.of(i, PAGE_SIZE);
-            Page<Senha> pageSenhasParaFinalizar = this.senhasNaoFinalizadas(pageRequest);
+            Page<Senha> pageSenhasParaFinalizar = this.senhasNaoFinalizadas(pageRequest, usuario);
             pageSenhasParaFinalizar.getContent().forEach(senha -> this.finalizarSenha(senha.getId(), motivo));
         }
     }

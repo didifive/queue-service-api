@@ -15,7 +15,7 @@
  </a>
 </p>
 
-# 🚶🚶🚶 Queue Service API - Filas 
+# 🚶🚶🚶 Queue Service API - Filas
 
 ## 💾 Controle de senhas para atendimento
 
@@ -36,7 +36,7 @@ O sistema, considerando back e front-end deve atender os seguintes requisitos:
   para Tipo de Atendimento Normal;
 - As senhas devem possuir data e hora de geração e de finalização, se foi atendida, deve possuir quem foi o atendente;
 - O Administrador tem acesso total ao sistema, podendo inclusive alterar ou desativar outros usuários;
-- O Atendente apenas chama e finaliza as senhas que ele chamou marcando como atendida ou não atendida;
+- O Atendente apenas chama e finaliza as senhas marcando como atendida ou não atendida;
 - O Atendente pode ver apenas senhas das filas em que foi autorizado;
 - O Usuário pode fazer a configuração do sistema, como criar filas, zerar número da fila, vincular (ou desvincular)
   atendente de uma fila e editar dados da empresa que o Usuário faz parte;
@@ -47,6 +47,7 @@ O sistema, considerando back e front-end deve atender os seguintes requisitos:
 ## 📜 Queue Service API - Back-End
 
 Este projeto aborda somente a API em Back-End.  
+A aplicação possui populador de dados, caso tabela esteja vazia o sistema irá tentar popular com dados básicos para se poder experimentar a aplicação de forma mais imediata.
 Foi criado para fins de estudos, prática e testes. Aproveite para fazer melhorias ou personalização.  
 Apesar de este projeto ser público e não ter finalidade comercial, ainda assim foi pensado para resolver problema real,
 portanto é possível utilizar esta base para um projeto comercial.  
@@ -92,6 +93,7 @@ existirem, basta configurar as variáveis citadas acima na sua IDE, então é s�
 ## 🔧 Tecnologias
 
 - Java 17
+- Maven Wrapper 3.8.4
 - Springboot v.3.0.2
 - Spring Security
 - Lombok v.1.18.26
@@ -138,7 +140,8 @@ Abaixo segue uma lista geral dos endpoints com resumo de suas funcionalidades:
 | DELETE | /api/v1/departamento/{id} | Apagar departamento                       |
 
 ### 👤 Atendente: Endpoints com CRUD para cadastro de atendente(s)
-Quando um atendente é criado, um usuário será automaticamente criado.
+Quando um atendente é criado, um usuário será automaticamente criado com o nome de usuário sendo igual ao e-mail do atendente e a senha padrão "Pw5@QueueService".
+Observação: Mesm em caso de já existir um e-mail de atendente igual à um nome de usuário existe o sistema irá tentar um nome diferente até conseguir criar um usuário novo sem conflito com nome de usuário. 
 
 | Método | Endpoint                | Descrição                              |
 |--------|-------------------------|----------------------------------------|
@@ -188,7 +191,8 @@ Uma fila depende de ao menos um tipo de atendimento vinculado.
 | DELETE | /api/v1/fila/{id}                                                | Apagar fila                         |
 
 ### 🔔 Senha: Endpoints com CRUD para gerar e operar senha(s)
-Cada senha é vinculada à uma fila e um tipo de serviço que define a sua prioridade na fila. Possui endpoints para chamar próxima senha de uma fila, chamar/rechamar senha específica, operar para marcar uma senha como chamada, finalizada e atendida e também conseguir ver detalhe de senha e listar senhas conforme intervalo de dia(s)/data(s) e status.
+Cada senha é vinculada a uma fila e um tipo de serviço que define a sua prioridade na fila. Possui endpoints para chamar próxima senha de uma fila, chamar/rechamar senha específica, operar para marcar uma senha como chamada, finalizada e atendida e também conseguir ver detalhe de senha e listar senhas conforme intervalo de dia(s)/data(s) e status.  
+Nas lista de "todas as senhas geradas" e de "todas as senhas geradas e não finalizadas", se o utilizador possui perfil somente de ATENDENTE, então retorna somente as senhas de filas vinculadas ao(s) departamento(s) que o atendente pertence/atende.
 
 | Método | Endpoint                                         | Descrição                                                                                                                 |
 |--------|--------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|

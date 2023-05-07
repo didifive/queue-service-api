@@ -1,5 +1,6 @@
 package br.tec.didiproject.queueserviceapi.repositories;
 
+import br.tec.didiproject.queueserviceapi.entities.Departamento;
 import br.tec.didiproject.queueserviceapi.entities.Senha;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -8,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -26,6 +28,18 @@ public interface SenhaRepository extends JpaRepository<Senha, UUID>, JpaSpecific
 
     Page<Senha> findAll(
             Pageable pageable
+    );
+
+    List<Senha> findAllByFilaDepartamento(
+            Departamento departamento
+    );
+
+    Page<Senha> findAllByFinalizadaEmIsNull(
+            Pageable pageable
+    );
+
+    List<Senha> findAllByFinalizadaEmIsNullAndFilaDepartamento(
+            Departamento departamento
     );
 
     Page<Senha> findAllByAtendenteId(
@@ -47,10 +61,6 @@ public interface SenhaRepository extends JpaRepository<Senha, UUID>, JpaSpecific
             UUID filaId
             , UUID tipoAtendimentoId
             , Pageable pageable
-    );
-
-    Page<Senha> findAllByFinalizadaEmIsNull(
-            Pageable pageable
     );
 
     Page<Senha> findAllByGeradaEmBetween(
