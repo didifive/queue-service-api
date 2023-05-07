@@ -37,7 +37,7 @@ public class AuthController implements AuthControllerDocs {
         }
     }
 
-    @PostMapping("refresh/{usuarioId}/{refreshToken}")
+    @PostMapping("/refresh/{usuarioId}/{refreshToken}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<RefreshTokenResponseDTO> refreshToken(
             @PathVariable String usuarioId
@@ -53,7 +53,7 @@ public class AuthController implements AuthControllerDocs {
         );
     }
 
-    @DeleteMapping("invalidate-refresh/{usuarioId}")
+    @DeleteMapping("/invalidate-refresh/{usuarioId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Void> invalidaRefreshToken(
             @PathVariable String usuarioId) {

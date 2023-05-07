@@ -15,7 +15,7 @@ import java.util.UUID;
 @Repository
 public interface SenhaRepository extends JpaRepository<Senha, UUID>, JpaSpecificationExecutor<Senha> {
 
-    Optional<Senha> findFirstByFilaIdAndTipoAtendimentoIdAndChamadaEmIsNullAndFinalizadaEmIsNullOrderByGeradaEmAsc(
+    Optional<Senha> findFirstByFilaIdAndTipoAtendimentoIdAndChamadaEmIsNullAndFinalizadaEmIsNull(
             UUID filaId
             , UUID tipoAtendimentoId
     );

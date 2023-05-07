@@ -2,10 +2,7 @@ package br.tec.didiproject.queueserviceapi.services;
 
 import br.tec.didiproject.queueserviceapi.entities.*;
 import br.tec.didiproject.queueserviceapi.enums.AdjustTimeTo;
-import br.tec.didiproject.queueserviceapi.exceptions.BadRequestBodyException;
-import br.tec.didiproject.queueserviceapi.exceptions.DataIntegrityViolationException;
-import br.tec.didiproject.queueserviceapi.exceptions.EntityNotFoundException;
-import br.tec.didiproject.queueserviceapi.exceptions.QueueServiceApiException;
+import br.tec.didiproject.queueserviceapi.exceptions.*;
 import br.tec.didiproject.queueserviceapi.repositories.SenhaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -250,8 +247,10 @@ public class SenhaService {
     public Senha chamarSenha(UUID senhaId, Boolean rechamada) {
         Senha senha = this.findById(senhaId);
 
-        if (senha.foiChamada()
-                && (Objects.isNull(rechamada) || !rechamada)) {
+        this.checkSenhaFinalizada(senha);
+        boolean naoRechamada = Objects.isNull(rechamada) || !rechamada;
+        boolean senhaChamada = senha.foiChamada() && naoRechamada;
+        if (senhaChamada) {
             throw new BadRequestBodyException(
                     SERVICE_NUMBER_ALREADY_CALLED
                             .params(senhaId.toString()).getMessage()
@@ -272,17 +271,36 @@ public class SenhaService {
     public Senha chamarProximaSenha(UUID filaId) {
         Fila fila = filaService.findById(filaId);
 
+        return this.chamarSenha(this.getPrimeiraSenha(fila).getId(), false);
+    }
+
+    /**
+     * Check first service numbers for each attendance types of a queue
+     *
+     * @param fila Fila object
+     * @return Return a Senha object if exists a service number to call in the queue
+     * @apiNote The "senhas" variable is a "TreeSet" object so that the service number, when exists and included in the "Set",
+     * is organized according to the priority defined in the "compareTo" method of the "Senha" object
+     */
+    private Senha getPrimeiraSenha(Fila fila) {
         Set<Senha> senhas = new TreeSet<>();
         fila.getTiposAtendimento().forEach(tipoAtendimento -> {
             Optional<Senha> senha = senhaRepository
-                    .findFirstByFilaIdAndTipoAtendimentoIdAndChamadaEmIsNullAndFinalizadaEmIsNullOrderByGeradaEmAsc(
-                            filaId
+                    .findFirstByFilaIdAndTipoAtendimentoIdAndChamadaEmIsNullAndFinalizadaEmIsNull(
+                            fila.getId()
                             , tipoAtendimento.getId()
                     );
             senha.ifPresent(senhas::add);
         });
 
-        return this.chamarSenha(senhas.iterator().next().getId(), false);
+        if (senhas.isEmpty())
+            throw new BadRequestBodyException(
+                    QUEUE_NOT_CONTAINS_SERVICE_NUMBER_TO_CALL
+                            .params(fila.getId().toString())
+                            .getMessage()
+            );
+
+        return senhas.iterator().next();
     }
 
     /**
@@ -295,17 +313,21 @@ public class SenhaService {
     public Senha finalizarSenha(UUID senhaId, String motivo) {
         Senha senha = this.findById(senhaId);
 
-        if (senha.foiFinalizada()) {
-            throw new DataIntegrityViolationException(
-                    SERVICE_NUMBER_ALREADY_FINISHED
-                            .params(senhaId.toString()).getMessage()
-            );
-        }
+        this.checkSenhaFinalizada(senha);
 
         senha.setFinalizadaEm(getNow());
         senha.setMotivoFinalizada(motivo);
 
         return senhaRepository.saveAndFlush(senha);
+    }
+
+    private void checkSenhaFinalizada(Senha senha) {
+        if (senha.foiFinalizada()) {
+            throw new BadRequestBodyException(
+                    SERVICE_NUMBER_ALREADY_FINISHED
+                            .params(senha.getId().toString()).getMessage()
+            );
+        }
     }
 
     /**

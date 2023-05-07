@@ -173,7 +173,8 @@ public class SenhaController implements SenhaControllerDocs {
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Override
-    public ResponseEntity<RespostaSenhaDTO> findById(String id) {
+    public ResponseEntity<RespostaSenhaDTO> findById(
+            @PathVariable String id) {
         validateUUIDPattern(id);
         return ResponseEntity.ok().body(senhaMapper.toResponseDTO(
                 senhaService.findById(UUID.fromString(id))

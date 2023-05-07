@@ -7,1060 +7,1179 @@
 	},
 	"item": [
 		{
-			"name": "Localhost",
+			"name": "Auth",
 			"item": [
 				{
-					"name": "Auth",
-					"item": [
-						{
-							"name": "Authentication",
-							"request": {
-								"auth": {
-									"type": "noauth"
-								},
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"joao@email.com\",\r\n    \"password\": \"joao@email.com\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{localhost}}{{auth}}",
-									"host": [
-										"{{localhost}}{{auth}}"
-									]
-								}
-							},
-							"response": []
+					"name": "Authentication",
+					"request": {
+						"auth": {
+							"type": "noauth"
 						},
-						{
-							"name": "RefreshToken",
-							"request": {
-								"auth": {
-									"type": "noauth"
-								},
-								"method": "POST",
-								"header": [],
-								"url": {
-									"raw": "{{localhost}}{{auth}}/refresh/0c8e8e4d-dd8f-4075-a7f2-172816a94891/15d84c29-0bd1-4a27-a009-62f3722878d9",
-									"host": [
-										"{{localhost}}{{auth}}"
-									],
-									"path": [
-										"refresh",
-										"0c8e8e4d-dd8f-4075-a7f2-172816a94891",
-										"15d84c29-0bd1-4a27-a009-62f3722878d9"
-									]
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"joao@email.com\",\r\n    \"password\": \"joao@email.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
-							},
-							"response": []
+							}
 						},
-						{
-							"name": "InvalidateRefreshToken",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "{{localhost}}{{auth}}/invalidate-refresh/0c8e8e4d-dd8f-4075-a7f2-172816a94891",
-									"host": [
-										"{{localhost}}{{auth}}"
-									],
-									"path": [
-										"invalidate-refresh",
-										"0c8e8e4d-dd8f-4075-a7f2-172816a94891"
-									]
-								}
-							},
-							"response": []
+						"url": {
+							"raw": "{{queue-domain}}{{auth}}",
+							"host": [
+								"{{queue-domain}}{{auth}}"
+							]
 						}
-					]
+					},
+					"response": []
 				},
 				{
-					"name": "Empresa",
-					"item": [
-						{
-							"name": "Cadastrar Empresa",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"Super Atendimento Novo\",\r\n    \"cpfCnpj\": \"98.765.432/0001-32\",\r\n    \"endereco\": \"Rua Quinze de Novembro, 555, Jd Botânico, São Paulo-SP\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{localhost}}{{empresa}}",
-									"host": [
-										"{{localhost}}{{empresa}}"
-									]
-								}
-							},
-							"response": []
+					"name": "RefreshToken",
+					"request": {
+						"auth": {
+							"type": "noauth"
 						},
-						{
-							"name": "Listar Empresas",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{localhost}}{{empresa}}",
-									"host": [
-										"{{localhost}}{{empresa}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Obter Empresa",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{localhost}}{{empresa}}/e989f363-31fc-49b0-9a91-6765d5d91df4",
-									"host": [
-										"{{localhost}}{{empresa}}"
-									],
-									"path": [
-										"e989f363-31fc-49b0-9a91-6765d5d91df4"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Atualizar Empresa",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"Super Atendimento Atual\",\r\n    \"endereco\": \"Rua Quinze de Novembro, 555, Jd Botânico, São Paulo-SP\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{localhost}}{{empresa}}/e989f363-31fc-49b0-9a91-6765d5d91df4",
-									"host": [
-										"{{localhost}}{{empresa}}"
-									],
-									"path": [
-										"e989f363-31fc-49b0-9a91-6765d5d91df4"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Apagar Empresa",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "{{localhost}}{{empresa}}/0c044204-b014-48ce-9368-79bb45616e09",
-									"host": [
-										"{{localhost}}{{empresa}}"
-									],
-									"path": [
-										"0c044204-b014-48ce-9368-79bb45616e09"
-									]
-								}
-							},
-							"response": []
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{auth}}/refresh/0c8e8e4d-dd8f-4075-a7f2-172816a94891/15d84c29-0bd1-4a27-a009-62f3722878d9",
+							"host": [
+								"{{queue-domain}}{{auth}}"
+							],
+							"path": [
+								"refresh",
+								"0c8e8e4d-dd8f-4075-a7f2-172816a94891",
+								"15d84c29-0bd1-4a27-a009-62f3722878d9"
+							]
 						}
-					]
+					},
+					"response": []
 				},
 				{
-					"name": "Departamento",
-					"item": [
-						{
-							"name": "Cadastrar Departamento",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"Caixa\",\r\n    \"empresaId\": \"e989f363-31fc-49b0-9a91-6765d5d91df4\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{localhost}}{{departamento}}",
-									"host": [
-										"{{localhost}}{{departamento}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Listar Departamentos",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{localhost}}{{departamento}}",
-									"host": [
-										"{{localhost}}{{departamento}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Obter Departamento",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{localhost}}{{departamento}}/a92041d3-91bf-4ea5-8109-124b5c6a2e4c",
-									"host": [
-										"{{localhost}}{{departamento}}"
-									],
-									"path": [
-										"a92041d3-91bf-4ea5-8109-124b5c6a2e4c"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Atualizar Departamento",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"Caixa Atualizado\",\r\n    \"empresaId\": \"e989f363-31fc-49b0-9a91-6765d5d91df4\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{localhost}}{{departamento}}/a92041d3-91bf-4ea5-8109-124b5c6a2e4c",
-									"host": [
-										"{{localhost}}{{departamento}}"
-									],
-									"path": [
-										"a92041d3-91bf-4ea5-8109-124b5c6a2e4c"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Apagar Departamento",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "{{localhost}}{{departamento}}/ec884445-b02d-4bfa-a7e3-3d7b76845181",
-									"host": [
-										"{{localhost}}{{departamento}}"
-									],
-									"path": [
-										"ec884445-b02d-4bfa-a7e3-3d7b76845181"
-									]
-								}
-							},
-							"response": []
+					"name": "InvalidateRefreshToken",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{auth}}/invalidate-refresh/0c8e8e4d-dd8f-4075-a7f2-172816a94891",
+							"host": [
+								"{{queue-domain}}{{auth}}"
+							],
+							"path": [
+								"invalidate-refresh",
+								"0c8e8e4d-dd8f-4075-a7f2-172816a94891"
+							]
 						}
-					]
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Empresa",
+			"item": [
+				{
+					"name": "Cadastrar Empresa",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Super Atendimento Novo\",\r\n    \"cpfCnpj\": \"98.765.432/0001-32\",\r\n    \"endereco\": \"Rua Quinze de Novembro, 555, Jd Botânico, São Paulo-SP\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{queue-domain}}{{empresa}}",
+							"host": [
+								"{{queue-domain}}{{empresa}}"
+							]
+						}
+					},
+					"response": []
 				},
 				{
-					"name": "Atendente",
-					"item": [
-						{
-							"name": "Cadastrar Atendente",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"Maria da Silva\",\r\n    \"email\": \"mariasilva@email.com\",\r\n    \"departamentosId\": [\r\n    ]\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{localhost}}{{atendente}}",
-									"host": [
-										"{{localhost}}{{atendente}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Listar Atendentes",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{localhost}}{{atendente}}",
-									"host": [
-										"{{localhost}}{{atendente}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Obter Atendente",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{localhost}}{{atendente}}/b9f31473-f05b-40c1-9123-b7e40981cf55",
-									"host": [
-										"{{localhost}}{{atendente}}"
-									],
-									"path": [
-										"b9f31473-f05b-40c1-9123-b7e40981cf55"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Atualizar Atendente",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"Maria Souza\",\r\n    \"email\": \"mariasouza@email.com\",\r\n    \"departamentosId\": [\r\n        \"d23d9743-0783-4154-bd84-544c73c3e062\"\r\n    ]\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{localhost}}{{atendente}}/37bf402d-f42f-4cad-aa51-2e31697b861a",
-									"host": [
-										"{{localhost}}{{atendente}}"
-									],
-									"path": [
-										"37bf402d-f42f-4cad-aa51-2e31697b861a"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Apagar Atendente",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "{{localhost}}{{atendente}}/37bf402d-f42f-4cad-aa51-2e31697b861a",
-									"host": [
-										"{{localhost}}{{atendente}}"
-									],
-									"path": [
-										"37bf402d-f42f-4cad-aa51-2e31697b861a"
-									]
-								}
-							},
-							"response": []
+					"name": "Listar Empresas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{empresa}}",
+							"host": [
+								"{{queue-domain}}{{empresa}}"
+							]
 						}
-					]
+					},
+					"response": []
 				},
 				{
-					"name": "Usuário",
-					"item": [
-						{
-							"name": "Cadastrar Usuário",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"nomeUsuario\": \"Usuario Teste\",\r\n    \"senha\": \"Usuario1234@\",\r\n    \"perfis\": [\r\n        \"USUARIO\"\r\n    ]\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{localhost}}{{usuario}}",
-									"host": [
-										"{{localhost}}{{usuario}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Listar Usuários",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{localhost}}{{usuario}}",
-									"host": [
-										"{{localhost}}{{usuario}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Obter Usuario",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{localhost}}{{usuario}}/0c8e8e4d-dd8f-4075-a7f2-172816a94891",
-									"host": [
-										"{{localhost}}{{usuario}}"
-									],
-									"path": [
-										"0c8e8e4d-dd8f-4075-a7f2-172816a94891"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Novo Nome Usuário",
-							"request": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"nomeUsuario\": \"novo-usuario@email.com\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{localhost}}{{usuario}}/a919047b-cdd9-48f7-bafc-d28377e72bd1/novo-nome-usuario",
-									"host": [
-										"{{localhost}}{{usuario}}"
-									],
-									"path": [
-										"a919047b-cdd9-48f7-bafc-d28377e72bd1",
-										"novo-nome-usuario"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Atualizar Senha",
-							"request": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"senhaAtual\": \"Usuario1234@\",\r\n    \"novaSenha\": \"Pw5@QueueService\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{localhost}}{{usuario}}/a919047b-cdd9-48f7-bafc-d28377e72bd1/atualizar-senha",
-									"host": [
-										"{{localhost}}{{usuario}}"
-									],
-									"path": [
-										"a919047b-cdd9-48f7-bafc-d28377e72bd1",
-										"atualizar-senha"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Adicionar Perfil",
-							"request": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"perfil\": \"ADMIN\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{localhost}}{{usuario}}/a919047b-cdd9-48f7-bafc-d28377e72bd1/perfil/adicionar",
-									"host": [
-										"{{localhost}}{{usuario}}"
-									],
-									"path": [
-										"a919047b-cdd9-48f7-bafc-d28377e72bd1",
-										"perfil",
-										"adicionar"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Remover Perfil",
-							"request": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"perfil\": \"ADMIN\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{localhost}}{{usuario}}/a919047b-cdd9-48f7-bafc-d28377e72bd1/perfil/remover",
-									"host": [
-										"{{localhost}}{{usuario}}"
-									],
-									"path": [
-										"a919047b-cdd9-48f7-bafc-d28377e72bd1",
-										"perfil",
-										"remover"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Desativar Usuário",
-							"request": {
-								"method": "PATCH",
-								"header": [],
-								"url": {
-									"raw": "{{localhost}}{{usuario}}/a919047b-cdd9-48f7-bafc-d28377e72bd1/desativar",
-									"host": [
-										"{{localhost}}{{usuario}}"
-									],
-									"path": [
-										"a919047b-cdd9-48f7-bafc-d28377e72bd1",
-										"desativar"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Ativar Usuário",
-							"request": {
-								"method": "PATCH",
-								"header": [],
-								"url": {
-									"raw": "{{localhost}}{{usuario}}/a919047b-cdd9-48f7-bafc-d28377e72bd1/ativar",
-									"host": [
-										"{{localhost}}{{usuario}}"
-									],
-									"path": [
-										"a919047b-cdd9-48f7-bafc-d28377e72bd1",
-										"ativar"
-									]
-								}
-							},
-							"response": []
+					"name": "Obter Empresa",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{empresa}}/e989f363-31fc-49b0-9a91-6765d5d91df4",
+							"host": [
+								"{{queue-domain}}{{empresa}}"
+							],
+							"path": [
+								"e989f363-31fc-49b0-9a91-6765d5d91df4"
+							]
 						}
-					]
+					},
+					"response": []
 				},
 				{
-					"name": "Tipo de Atendimento",
-					"item": [
-						{
-							"name": "Cadastrar Tipo de Atendimento",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"Prioritário 80+\",\r\n    \"sigla\": \"PI\",\r\n    \"prioridade\": 1\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{localhost}}{{tipo-atendimento}}",
-									"host": [
-										"{{localhost}}{{tipo-atendimento}}"
-									]
+					"name": "Atualizar Empresa",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Super Atendimento Atual\",\r\n    \"endereco\": \"Rua Quinze de Novembro, 555, Jd Botânico, São Paulo-SP\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
-							},
-							"response": []
+							}
 						},
-						{
-							"name": "Listar Tipos de Atendimento",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{localhost}}{{tipo-atendimento}}",
-									"host": [
-										"{{localhost}}{{tipo-atendimento}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Obter Tipo de Atendimento",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{localhost}}{{tipo-atendimento}}/e2620622-c56a-4b34-a724-ef891fa8a4eb",
-									"host": [
-										"{{localhost}}{{tipo-atendimento}}"
-									],
-									"path": [
-										"e2620622-c56a-4b34-a724-ef891fa8a4eb"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Atualizar Tipo de Atendimento",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"Prioritário Idoso 80+\",\r\n    \"sigla\": \"PI\",\r\n    \"prioridade\": 1\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{localhost}}{{tipo-atendimento}}/4cd44f84-b045-4d95-b3ac-ce8104a10c7f",
-									"host": [
-										"{{localhost}}{{tipo-atendimento}}"
-									],
-									"path": [
-										"4cd44f84-b045-4d95-b3ac-ce8104a10c7f"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Apagar Tipo de Atendimento",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "{{localhost}}{{tipo-atendimento}}/4cd44f84-b045-4d95-b3ac-ce8104a10c7f",
-									"host": [
-										"{{localhost}}{{tipo-atendimento}}"
-									],
-									"path": [
-										"4cd44f84-b045-4d95-b3ac-ce8104a10c7f"
-									]
-								}
-							},
-							"response": []
+						"url": {
+							"raw": "{{queue-domain}}{{empresa}}/e989f363-31fc-49b0-9a91-6765d5d91df4",
+							"host": [
+								"{{queue-domain}}{{empresa}}"
+							],
+							"path": [
+								"e989f363-31fc-49b0-9a91-6765d5d91df4"
+							]
 						}
-					]
+					},
+					"response": []
 				},
 				{
-					"name": "Fila",
-					"item": [
-						{
-							"name": "Cadastrar Fila",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"Caixa\",\r\n    \"sigla\": \"CX\",\r\n    \"departamentoId\": \"d23d9743-0783-4154-bd84-544c73c3e062\",\r\n    \"tiposAtendimentoId\": [\r\n        \"e2620622-c56a-4b34-a724-ef891fa8a4eb\",\r\n        \"6194b92c-1ee0-4c35-855d-65b1c8eb3f83\"\r\n    ]\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{localhost}}{{fila}}",
-									"host": [
-										"{{localhost}}{{fila}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Listar Filas",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{localhost}}{{fila}}",
-									"host": [
-										"{{localhost}}{{fila}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Listar Filas por Departamento",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{localhost}}{{fila}}/departamento/d23d9743-0783-4154-bd84-544c73c3e062",
-									"host": [
-										"{{localhost}}{{fila}}"
-									],
-									"path": [
-										"departamento",
-										"d23d9743-0783-4154-bd84-544c73c3e062"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Obter Fila",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{localhost}}{{fila}}/b4fb70eb-a34f-425b-a3e1-7eef693993b0",
-									"host": [
-										"{{localhost}}{{fila}}"
-									],
-									"path": [
-										"b4fb70eb-a34f-425b-a3e1-7eef693993b0"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Atualizar Fila",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"nome\": \"CaixaAtualizado\",\r\n    \"sigla\": \"CX\",\r\n    \"departamentoId\": \"d23d9743-0783-4154-bd84-544c73c3e062\",\r\n    \"tiposAtendimentoId\": [\r\n        \"e2620622-c56a-4b34-a724-ef891fa8a4eb\"\r\n    ]\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{localhost}}{{fila}}/b4fb70eb-a34f-425b-a3e1-7eef693993b0",
-									"host": [
-										"{{localhost}}{{fila}}"
-									],
-									"path": [
-										"b4fb70eb-a34f-425b-a3e1-7eef693993b0"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Adicionar Tipo de Atendimento",
-							"request": {
-								"method": "PATCH",
-								"header": [],
-								"url": {
-									"raw": "{{localhost}}{{fila}}/b4fb70eb-a34f-425b-a3e1-7eef693993b0/tipo-atendimento/6194b92c-1ee0-4c35-855d-65b1c8eb3f83/adicionar",
-									"host": [
-										"{{localhost}}{{fila}}"
-									],
-									"path": [
-										"b4fb70eb-a34f-425b-a3e1-7eef693993b0",
-										"tipo-atendimento",
-										"6194b92c-1ee0-4c35-855d-65b1c8eb3f83",
-										"adicionar"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Remover Tipo de Atendimento",
-							"request": {
-								"method": "PATCH",
-								"header": [],
-								"url": {
-									"raw": "{{localhost}}{{fila}}/b4fb70eb-a34f-425b-a3e1-7eef693993b0/tipo-atendimento/6194b92c-1ee0-4c35-855d-65b1c8eb3f83/remover",
-									"host": [
-										"{{localhost}}{{fila}}"
-									],
-									"path": [
-										"b4fb70eb-a34f-425b-a3e1-7eef693993b0",
-										"tipo-atendimento",
-										"6194b92c-1ee0-4c35-855d-65b1c8eb3f83",
-										"remover"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Apagar Fila",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "{{localhost}}{{fila}}/b4fb70eb-a34f-425b-a3e1-7eef693993b0",
-									"host": [
-										"{{localhost}}{{fila}}"
-									],
-									"path": [
-										"b4fb70eb-a34f-425b-a3e1-7eef693993b0"
-									]
-								}
-							},
-							"response": []
+					"name": "Apagar Empresa",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{empresa}}/0c044204-b014-48ce-9368-79bb45616e09",
+							"host": [
+								"{{queue-domain}}{{empresa}}"
+							],
+							"path": [
+								"0c044204-b014-48ce-9368-79bb45616e09"
+							]
 						}
-					]
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Departamento",
+			"item": [
+				{
+					"name": "Cadastrar Departamento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Caixa\",\r\n    \"empresaId\": \"e989f363-31fc-49b0-9a91-6765d5d91df4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{queue-domain}}{{departamento}}",
+							"host": [
+								"{{queue-domain}}{{departamento}}"
+							]
+						}
+					},
+					"response": []
 				},
 				{
-					"name": "Senha",
-					"item": [
-						{
-							"name": "Nova Senha",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"filaId\": \"cfc7b71e-12f1-4d7a-a7ce-1f4b8496295b\",\r\n    \"tipoAtendimentoId\": \"e2620622-c56a-4b34-a724-ef891fa8a4eb\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{localhost}}{{senha}}",
-									"host": [
-										"{{localhost}}{{senha}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Nova Senha com Reinicio",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"filaId\": \"cfc7b71e-12f1-4d7a-a7ce-1f4b8496295b\",\r\n    \"tipoAtendimentoId\": \"e2620622-c56a-4b34-a724-ef891fa8a4eb\",\r\n    \"reset\": 1\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{localhost}}{{senha}}",
-									"host": [
-										"{{localhost}}{{senha}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Chamar Senha",
-							"request": {
-								"method": "PATCH",
-								"header": [],
-								"url": {
-									"raw": "{{localhost}}{{senha}}/bde6ff4d-2034-4609-8833-80bfc245f212/chamar-senha",
-									"host": [
-										"{{localhost}}{{senha}}"
-									],
-									"path": [
-										"bde6ff4d-2034-4609-8833-80bfc245f212",
-										"chamar-senha"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Chamar Senha com Rechamada",
-							"request": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"filaId\": \"cfc7b71e-12f1-4d7a-a7ce-1f4b8496295b\",\r\n    \"tipoAtendimentoId\": \"e2620622-c56a-4b34-a724-ef891fa8a4eb\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{localhost}}{{senha}}/bde6ff4d-2034-4609-8833-80bfc245f212/chamar-senha?rechamada=true",
-									"host": [
-										"{{localhost}}{{senha}}"
-									],
-									"path": [
-										"bde6ff4d-2034-4609-8833-80bfc245f212",
-										"chamar-senha"
-									],
-									"query": [
-										{
-											"key": "rechamada",
-											"value": "true"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Chamar Próxima Senha da Fila",
-							"request": {
-								"method": "PATCH",
-								"header": [],
-								"url": {
-									"raw": "{{localhost}}{{senha}}/bde6ff4d-2034-4609-8833-80bfc245f212/chamar-senha",
-									"host": [
-										"{{localhost}}{{senha}}"
-									],
-									"path": [
-										"bde6ff4d-2034-4609-8833-80bfc245f212",
-										"chamar-senha"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Finalizar Senha",
-							"request": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"motivoFinalizada\": \"TESTE - Finalizada sem atendimento para teste\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{localhost}}{{senha}}/6efd50f0-59dc-42ca-bf64-3b542f3a5ad4/finalizar-senha",
-									"host": [
-										"{{localhost}}{{senha}}"
-									],
-									"path": [
-										"6efd50f0-59dc-42ca-bf64-3b542f3a5ad4",
-										"finalizar-senha"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Finalizar Senhas por Fila e Tipo de Atendimento",
-							"request": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"filaId\": \"cfc7b71e-12f1-4d7a-a7ce-1f4b8496295b\",\r\n    \"tipoAtendimentoId\": \"6194b92c-1ee0-4c35-855d-65b1c8eb3f83\",\r\n    \"motivoFinalizada\": \"TESTE - Finalizar em massa\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{localhost}}{{senha}}/finalizar-senhas",
-									"host": [
-										"{{localhost}}{{senha}}"
-									],
-									"path": [
-										"finalizar-senhas"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Atender Senha",
-							"request": {
-								"method": "PATCH",
-								"header": [],
-								"url": {
-									"raw": "{{localhost}}{{senha}}/bde6ff4d-2034-4609-8833-80bfc245f212/atender-senha",
-									"host": [
-										"{{localhost}}{{senha}}"
-									],
-									"path": [
-										"bde6ff4d-2034-4609-8833-80bfc245f212",
-										"atender-senha"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Resetar Status da Senha",
-							"request": {
-								"method": "PATCH",
-								"header": [],
-								"url": {
-									"raw": "{{localhost}}{{senha}}/bde6ff4d-2034-4609-8833-80bfc245f212/resetar-status",
-									"host": [
-										"{{localhost}}{{senha}}"
-									],
-									"path": [
-										"bde6ff4d-2034-4609-8833-80bfc245f212",
-										"resetar-status"
-									]
-								}
-							},
-							"response": []
+					"name": "Listar Departamentos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{departamento}}",
+							"host": [
+								"{{queue-domain}}{{departamento}}"
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Departamento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{departamento}}/a92041d3-91bf-4ea5-8109-124b5c6a2e4c",
+							"host": [
+								"{{queue-domain}}{{departamento}}"
+							],
+							"path": [
+								"a92041d3-91bf-4ea5-8109-124b5c6a2e4c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Departamento",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Caixa Atualizado\",\r\n    \"empresaId\": \"e989f363-31fc-49b0-9a91-6765d5d91df4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{queue-domain}}{{departamento}}/a92041d3-91bf-4ea5-8109-124b5c6a2e4c",
+							"host": [
+								"{{queue-domain}}{{departamento}}"
+							],
+							"path": [
+								"a92041d3-91bf-4ea5-8109-124b5c6a2e4c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Apagar Departamento",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{departamento}}/ec884445-b02d-4bfa-a7e3-3d7b76845181",
+							"host": [
+								"{{queue-domain}}{{departamento}}"
+							],
+							"path": [
+								"ec884445-b02d-4bfa-a7e3-3d7b76845181"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Atendente",
+			"item": [
+				{
+					"name": "Cadastrar Atendente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Maria da Silva\",\r\n    \"email\": \"mariasilva@email.com\",\r\n    \"departamentosId\": [\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{queue-domain}}{{atendente}}",
+							"host": [
+								"{{queue-domain}}{{atendente}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Atendentes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{atendente}}",
+							"host": [
+								"{{queue-domain}}{{atendente}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Atendente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{atendente}}/b9f31473-f05b-40c1-9123-b7e40981cf55",
+							"host": [
+								"{{queue-domain}}{{atendente}}"
+							],
+							"path": [
+								"b9f31473-f05b-40c1-9123-b7e40981cf55"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Atendente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Maria Souza\",\r\n    \"email\": \"mariasouza@email.com\",\r\n    \"departamentosId\": [\r\n        \"d23d9743-0783-4154-bd84-544c73c3e062\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{queue-domain}}{{atendente}}/37bf402d-f42f-4cad-aa51-2e31697b861a",
+							"host": [
+								"{{queue-domain}}{{atendente}}"
+							],
+							"path": [
+								"37bf402d-f42f-4cad-aa51-2e31697b861a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Apagar Atendente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{atendente}}/37bf402d-f42f-4cad-aa51-2e31697b861a",
+							"host": [
+								"{{queue-domain}}{{atendente}}"
+							],
+							"path": [
+								"37bf402d-f42f-4cad-aa51-2e31697b861a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuário",
+			"item": [
+				{
+					"name": "Cadastrar Usuário",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeUsuario\": \"Usuario Teste\",\r\n    \"senha\": \"Usuario1234@\",\r\n    \"perfis\": [\r\n        \"USUARIO\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{queue-domain}}{{usuario}}",
+							"host": [
+								"{{queue-domain}}{{usuario}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Usuários",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{usuario}}",
+							"host": [
+								"{{queue-domain}}{{usuario}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{usuario}}/0c8e8e4d-dd8f-4075-a7f2-172816a94891",
+							"host": [
+								"{{queue-domain}}{{usuario}}"
+							],
+							"path": [
+								"0c8e8e4d-dd8f-4075-a7f2-172816a94891"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Novo Nome Usuário",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeUsuario\": \"novo-usuario@email.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{queue-domain}}{{usuario}}/a919047b-cdd9-48f7-bafc-d28377e72bd1/novo-nome-usuario",
+							"host": [
+								"{{queue-domain}}{{usuario}}"
+							],
+							"path": [
+								"a919047b-cdd9-48f7-bafc-d28377e72bd1",
+								"novo-nome-usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Senha",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"senhaAtual\": \"Usuario1234@\",\r\n    \"novaSenha\": \"Pw5@QueueService\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{queue-domain}}{{usuario}}/a919047b-cdd9-48f7-bafc-d28377e72bd1/atualizar-senha",
+							"host": [
+								"{{queue-domain}}{{usuario}}"
+							],
+							"path": [
+								"a919047b-cdd9-48f7-bafc-d28377e72bd1",
+								"atualizar-senha"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Perfil",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"perfil\": \"ADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{queue-domain}}{{usuario}}/a919047b-cdd9-48f7-bafc-d28377e72bd1/perfil/adicionar",
+							"host": [
+								"{{queue-domain}}{{usuario}}"
+							],
+							"path": [
+								"a919047b-cdd9-48f7-bafc-d28377e72bd1",
+								"perfil",
+								"adicionar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remover Perfil",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"perfil\": \"ADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{queue-domain}}{{usuario}}/a919047b-cdd9-48f7-bafc-d28377e72bd1/perfil/remover",
+							"host": [
+								"{{queue-domain}}{{usuario}}"
+							],
+							"path": [
+								"a919047b-cdd9-48f7-bafc-d28377e72bd1",
+								"perfil",
+								"remover"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Desativar Usuário",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{usuario}}/a919047b-cdd9-48f7-bafc-d28377e72bd1/desativar",
+							"host": [
+								"{{queue-domain}}{{usuario}}"
+							],
+							"path": [
+								"a919047b-cdd9-48f7-bafc-d28377e72bd1",
+								"desativar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ativar Usuário",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{usuario}}/a919047b-cdd9-48f7-bafc-d28377e72bd1/ativar",
+							"host": [
+								"{{queue-domain}}{{usuario}}"
+							],
+							"path": [
+								"a919047b-cdd9-48f7-bafc-d28377e72bd1",
+								"ativar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tipo de Atendimento",
+			"item": [
+				{
+					"name": "Cadastrar Tipo de Atendimento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Prioritário 80+\",\r\n    \"sigla\": \"PI\",\r\n    \"prioridade\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{queue-domain}}{{tipo-atendimento}}",
+							"host": [
+								"{{queue-domain}}{{tipo-atendimento}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Tipos de Atendimento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{tipo-atendimento}}",
+							"host": [
+								"{{queue-domain}}{{tipo-atendimento}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Tipo de Atendimento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{tipo-atendimento}}/e2620622-c56a-4b34-a724-ef891fa8a4eb",
+							"host": [
+								"{{queue-domain}}{{tipo-atendimento}}"
+							],
+							"path": [
+								"e2620622-c56a-4b34-a724-ef891fa8a4eb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Tipo de Atendimento",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Prioritário Idoso 80+\",\r\n    \"sigla\": \"PI\",\r\n    \"prioridade\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{queue-domain}}{{tipo-atendimento}}/4cd44f84-b045-4d95-b3ac-ce8104a10c7f",
+							"host": [
+								"{{queue-domain}}{{tipo-atendimento}}"
+							],
+							"path": [
+								"4cd44f84-b045-4d95-b3ac-ce8104a10c7f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Apagar Tipo de Atendimento",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{tipo-atendimento}}/4cd44f84-b045-4d95-b3ac-ce8104a10c7f",
+							"host": [
+								"{{queue-domain}}{{tipo-atendimento}}"
+							],
+							"path": [
+								"4cd44f84-b045-4d95-b3ac-ce8104a10c7f"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Fila",
+			"item": [
+				{
+					"name": "Cadastrar Fila",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Caixa\",\r\n    \"sigla\": \"CX\",\r\n    \"departamentoId\": \"d23d9743-0783-4154-bd84-544c73c3e062\",\r\n    \"tiposAtendimentoId\": [\r\n        \"e2620622-c56a-4b34-a724-ef891fa8a4eb\",\r\n        \"6194b92c-1ee0-4c35-855d-65b1c8eb3f83\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{queue-domain}}{{fila}}",
+							"host": [
+								"{{queue-domain}}{{fila}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Filas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{fila}}",
+							"host": [
+								"{{queue-domain}}{{fila}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Filas por Departamento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{fila}}/departamento/d23d9743-0783-4154-bd84-544c73c3e062",
+							"host": [
+								"{{queue-domain}}{{fila}}"
+							],
+							"path": [
+								"departamento",
+								"d23d9743-0783-4154-bd84-544c73c3e062"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Fila",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{fila}}/b4fb70eb-a34f-425b-a3e1-7eef693993b0",
+							"host": [
+								"{{queue-domain}}{{fila}}"
+							],
+							"path": [
+								"b4fb70eb-a34f-425b-a3e1-7eef693993b0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Fila",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"CaixaAtualizado\",\r\n    \"sigla\": \"CX\",\r\n    \"departamentoId\": \"d23d9743-0783-4154-bd84-544c73c3e062\",\r\n    \"tiposAtendimentoId\": [\r\n        \"e2620622-c56a-4b34-a724-ef891fa8a4eb\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{queue-domain}}{{fila}}/b4fb70eb-a34f-425b-a3e1-7eef693993b0",
+							"host": [
+								"{{queue-domain}}{{fila}}"
+							],
+							"path": [
+								"b4fb70eb-a34f-425b-a3e1-7eef693993b0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Tipo de Atendimento",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{fila}}/b4fb70eb-a34f-425b-a3e1-7eef693993b0/tipo-atendimento/6194b92c-1ee0-4c35-855d-65b1c8eb3f83/adicionar",
+							"host": [
+								"{{queue-domain}}{{fila}}"
+							],
+							"path": [
+								"b4fb70eb-a34f-425b-a3e1-7eef693993b0",
+								"tipo-atendimento",
+								"6194b92c-1ee0-4c35-855d-65b1c8eb3f83",
+								"adicionar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remover Tipo de Atendimento",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{fila}}/b4fb70eb-a34f-425b-a3e1-7eef693993b0/tipo-atendimento/6194b92c-1ee0-4c35-855d-65b1c8eb3f83/remover",
+							"host": [
+								"{{queue-domain}}{{fila}}"
+							],
+							"path": [
+								"b4fb70eb-a34f-425b-a3e1-7eef693993b0",
+								"tipo-atendimento",
+								"6194b92c-1ee0-4c35-855d-65b1c8eb3f83",
+								"remover"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Apagar Fila",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{fila}}/b4fb70eb-a34f-425b-a3e1-7eef693993b0",
+							"host": [
+								"{{queue-domain}}{{fila}}"
+							],
+							"path": [
+								"b4fb70eb-a34f-425b-a3e1-7eef693993b0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Senha",
+			"item": [
+				{
+					"name": "Nova Senha",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"filaId\": \"cfc7b71e-12f1-4d7a-a7ce-1f4b8496295b\",\r\n    \"tipoAtendimentoId\": \"6194b92c-1ee0-4c35-855d-65b1c8eb3f83\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{queue-domain}}{{senha}}",
+							"host": [
+								"{{queue-domain}}{{senha}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Nova Senha com Reinicio",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"filaId\": \"cfc7b71e-12f1-4d7a-a7ce-1f4b8496295b\",\r\n    \"tipoAtendimentoId\": \"e2620622-c56a-4b34-a724-ef891fa8a4eb\",\r\n    \"reset\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{queue-domain}}{{senha}}",
+							"host": [
+								"{{queue-domain}}{{senha}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Chamar Senha",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{senha}}/bde6ff4d-2034-4609-8833-80bfc245f212/chamar-senha",
+							"host": [
+								"{{queue-domain}}{{senha}}"
+							],
+							"path": [
+								"bde6ff4d-2034-4609-8833-80bfc245f212",
+								"chamar-senha"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Chamar Senha com Rechamada",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"filaId\": \"cfc7b71e-12f1-4d7a-a7ce-1f4b8496295b\",\r\n    \"tipoAtendimentoId\": \"e2620622-c56a-4b34-a724-ef891fa8a4eb\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{queue-domain}}{{senha}}/bde6ff4d-2034-4609-8833-80bfc245f212/chamar-senha?rechamada=true",
+							"host": [
+								"{{queue-domain}}{{senha}}"
+							],
+							"path": [
+								"bde6ff4d-2034-4609-8833-80bfc245f212",
+								"chamar-senha"
+							],
+							"query": [
+								{
+									"key": "rechamada",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Chamar Próxima Senha da Fila",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{senha}}/fila/cfc7b71e-12f1-4d7a-a7ce-1f4b8496295b/chamar-senha",
+							"host": [
+								"{{queue-domain}}{{senha}}"
+							],
+							"path": [
+								"fila",
+								"cfc7b71e-12f1-4d7a-a7ce-1f4b8496295b",
+								"chamar-senha"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Finalizar Senha",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"motivoFinalizada\": \"TESTE - Finalizada sem atendimento para teste\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{queue-domain}}{{senha}}/6efd50f0-59dc-42ca-bf64-3b542f3a5ad4/finalizar-senha",
+							"host": [
+								"{{queue-domain}}{{senha}}"
+							],
+							"path": [
+								"6efd50f0-59dc-42ca-bf64-3b542f3a5ad4",
+								"finalizar-senha"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Finalizar Senhas por Fila e Tipo de Atendimento",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"filaId\": \"cfc7b71e-12f1-4d7a-a7ce-1f4b8496295b\",\r\n    \"tipoAtendimentoId\": \"e2620622-c56a-4b34-a724-ef891fa8a4eb\",\r\n    \"motivoFinalizada\": \"TESTE - Finalizar em massa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{queue-domain}}{{senha}}/finalizar-senhas",
+							"host": [
+								"{{queue-domain}}{{senha}}"
+							],
+							"path": [
+								"finalizar-senhas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atender Senha",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{senha}}/bde6ff4d-2034-4609-8833-80bfc245f212/atender-senha",
+							"host": [
+								"{{queue-domain}}{{senha}}"
+							],
+							"path": [
+								"bde6ff4d-2034-4609-8833-80bfc245f212",
+								"atender-senha"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resetar Status da Senha",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{senha}}/bde6ff4d-2034-4609-8833-80bfc245f212/resetar-status",
+							"host": [
+								"{{queue-domain}}{{senha}}"
+							],
+							"path": [
+								"bde6ff4d-2034-4609-8833-80bfc245f212",
+								"resetar-status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detalhar Senha",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{senha}}/bde6ff4d-2034-4609-8833-80bfc245f212",
+							"host": [
+								"{{queue-domain}}{{senha}}"
+							],
+							"path": [
+								"bde6ff4d-2034-4609-8833-80bfc245f212"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Senhas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{senha}}",
+							"host": [
+								"{{queue-domain}}{{senha}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Senhas Não Finalizadas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{senha}}/nao-finalizadas",
+							"host": [
+								"{{queue-domain}}{{senha}}"
+							],
+							"path": [
+								"nao-finalizadas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Senhas Por Intervalo de Data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{senha}}/07-05-2023/07-05-2023",
+							"host": [
+								"{{queue-domain}}{{senha}}"
+							],
+							"path": [
+								"07-05-2023",
+								"07-05-2023"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Senhas Chamadas Por Intervalo de Data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{senha}}/chamadas/07-05-2023/07-05-2023",
+							"host": [
+								"{{queue-domain}}{{senha}}"
+							],
+							"path": [
+								"chamadas",
+								"07-05-2023",
+								"07-05-2023"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Senhas Finalizadas Por Intervalo de Data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{senha}}/finalizadas/01-05-2023/01-05-2023",
+							"host": [
+								"{{queue-domain}}{{senha}}"
+							],
+							"path": [
+								"finalizadas",
+								"01-05-2023",
+								"01-05-2023"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Senhas Atendidas Por Intervalo de Data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{queue-domain}}{{senha}}/atendidas/01-05-2023/01-05-2023",
+							"host": [
+								"{{queue-domain}}{{senha}}"
+							],
+							"path": [
+								"atendidas",
+								"01-05-2023",
+								"01-05-2023"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
@@ -1096,11 +1215,6 @@
 		}
 	],
 	"variable": [
-		{
-			"key": "localhost",
-			"value": "http://localhost:8080",
-			"type": "string"
-		},
 		{
 			"key": "auth",
 			"value": "/api/v1/auth",
