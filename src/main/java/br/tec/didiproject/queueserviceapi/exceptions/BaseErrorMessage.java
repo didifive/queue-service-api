@@ -13,6 +13,7 @@ public class BaseErrorMessage {
     public static final BaseErrorMessage GENERIC_BAD_REQUEST = new BaseErrorMessage("generic.badRequest");
     public static final BaseErrorMessage GENERIC_DATA_INTEGRITY_VIOLATION = new BaseErrorMessage("generic.dataIntegrityViolation");
     public static final BaseErrorMessage GENERIC_FORBIDDEN = new BaseErrorMessage("generic.forbidden");
+    public static final BaseErrorMessage GENERIC_DATE_STRING_IS_NOT_VALID = new BaseErrorMessage("generic.dateStringIsNotValid");
     public static final BaseErrorMessage INVALID_USERNAME_PASSWORD = new BaseErrorMessage("invalid.usernamePassword");
     public static final BaseErrorMessage UUID_BAD_REQUEST = new BaseErrorMessage("UUID.badRequest");
     public static final BaseErrorMessage REFRESH_TOKEN_NOT_FOUND = new BaseErrorMessage("refreshToken.notFound");

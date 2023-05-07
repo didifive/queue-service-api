@@ -11,6 +11,11 @@ import br.tec.didiproject.queueserviceapi.entities.Usuario;
 import br.tec.didiproject.queueserviceapi.services.SenhaService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -19,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -36,6 +42,7 @@ public class SenhaController implements SenhaControllerDocs {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
+    @Override
     public ResponseEntity<RespostaSenhaDTO> novaSenha(
             @RequestBody @Valid RequisicaoSenhaNovaSenhaDTO novaSenhaDTO
             , BindingResult bindingResult) {
@@ -53,6 +60,7 @@ public class SenhaController implements SenhaControllerDocs {
 
     @PatchMapping("/{id}/chamar-senha")
     @ResponseStatus(HttpStatus.OK)
+    @Override
     public ResponseEntity<RespostaSenhaDTO> chamarSenha(
             @PathVariable String id
             , @RequestParam(required = false) Boolean rechamada) {
@@ -63,12 +71,13 @@ public class SenhaController implements SenhaControllerDocs {
             rechamada = Boolean.FALSE;
 
         return ResponseEntity.ok().body(senhaMapper.toResponseDTO(
-                senhaService.chamaSenha(UUID.fromString(id),rechamada)
+                senhaService.chamarSenha(UUID.fromString(id), rechamada)
         ));
     }
 
     @PatchMapping("/fila/{filaId}/chamar-senha")
     @ResponseStatus(HttpStatus.OK)
+    @Override
     public ResponseEntity<RespostaSenhaDTO> chamarProximaSenha(
             @PathVariable String filaId) {
 
@@ -81,6 +90,7 @@ public class SenhaController implements SenhaControllerDocs {
 
     @PatchMapping("/{id}/finalizar-senha")
     @ResponseStatus(HttpStatus.OK)
+    @Override
     public ResponseEntity<RespostaSenhaDTO> finalizarSenha(
             @PathVariable String id
             , @RequestBody @Valid RequisicaoSenhaFinalizaSenhaDTO requisicaoSenhaFinalizaSenhaDTO
@@ -98,6 +108,7 @@ public class SenhaController implements SenhaControllerDocs {
 
     @PatchMapping("/finalizar-senhas")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Override
     public ResponseEntity<Void> finalizarSenhaPorFilaETipoAtendimento(
             @RequestBody @Valid RequisicaoSenhaFinalizaPorFilaETipoAtendimentoDTO requisicaoSenhaFinalizaPorFilaETipoAtendimentoDTO
             , BindingResult bindingResult) {
@@ -113,9 +124,25 @@ public class SenhaController implements SenhaControllerDocs {
         return ResponseEntity.noContent().build();
     }
 
+    @PatchMapping("/finalizar-todas-senhas")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Override
+    public ResponseEntity<Void> finalizarTodasSenhasNaoFinalizadas(
+            @RequestBody @Valid RequisicaoSenhaFinalizaSenhaDTO requisicaoSenhaFinalizaSenhaDTO
+            , BindingResult bindingResult) {
+
+        checkBindingResultError(bindingResult);
+
+        senhaService.finalizarSenhasNaoFinalizadas(
+                requisicaoSenhaFinalizaSenhaDTO.getMotivoFinalizada()
+        );
+
+        return ResponseEntity.noContent().build();
+    }
 
     @PatchMapping("/{id}/atender-senha")
     @ResponseStatus(HttpStatus.OK)
+    @Override
     public ResponseEntity<RespostaSenhaDTO> atenderSenha(
             @PathVariable String id
             , Authentication authentication) {
@@ -132,6 +159,7 @@ public class SenhaController implements SenhaControllerDocs {
 
     @PatchMapping("/{id}/resetar-status")
     @ResponseStatus(HttpStatus.OK)
+    @Override
     public ResponseEntity<RespostaSenhaDTO> resetarStatusSenha(
             @PathVariable String id) {
 
@@ -140,5 +168,103 @@ public class SenhaController implements SenhaControllerDocs {
         return ResponseEntity.ok().body(senhaMapper.toResponseDTO(
                 senhaService.resetarStatusSenha(UUID.fromString(id))
         ));
+    }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    @Override
+    public ResponseEntity<RespostaSenhaDTO> findById(String id) {
+        validateUUIDPattern(id);
+        return ResponseEntity.ok().body(senhaMapper.toResponseDTO(
+                senhaService.findById(UUID.fromString(id))
+        ));
+    }
+
+    @GetMapping()
+    @ResponseStatus(HttpStatus.OK)
+    @Override
+    public ResponseEntity<Page<RespostaSenhaDTO>> listarSenhas(
+            @PageableDefault(size = 100, sort = "geradaEm", direction = Sort.Direction.DESC) Pageable pageable) {
+        Page<Senha> pageSenhas = senhaService.findAll(pageable);
+
+        List<RespostaSenhaDTO> respostaDTOs = senhaMapper.toResponseDTOList(pageSenhas.getContent());
+        Page<RespostaSenhaDTO> pageRespostaDTOs = new PageImpl<>(respostaDTOs, pageable, pageSenhas.getTotalElements());
+
+        return ResponseEntity.ok().body(pageRespostaDTOs);
+    }
+
+    @GetMapping("/nao-finalizadas")
+    @ResponseStatus(HttpStatus.OK)
+    @Override
+    public ResponseEntity<Page<RespostaSenhaDTO>> listarSenhasNaoFinalizadas(
+            @PageableDefault(size = 50, sort = "geradaEm", direction = Sort.Direction.DESC) Pageable pageable
+    ) {
+        Page<Senha> pageSenhas = senhaService.senhasNaoFinalizadas(pageable);
+
+        List<RespostaSenhaDTO> respostaDTOs = senhaMapper.toResponseDTOList(pageSenhas.getContent());
+        Page<RespostaSenhaDTO> pageRespostaDTOs = new PageImpl<>(respostaDTOs, pageable, pageSenhas.getTotalElements());
+
+        return ResponseEntity.ok().body(pageRespostaDTOs);
+    }
+
+    @GetMapping("/{dataInicio}/{dataFim}")
+    @ResponseStatus(HttpStatus.OK)
+    @Override
+    public ResponseEntity<Page<RespostaSenhaDTO>> listarSenhasPorIntervaloDias(
+            @PathVariable String dataInicio
+            , @PathVariable String dataFim
+            , @PageableDefault(size = 20, sort = "geradaEm", direction = Sort.Direction.DESC) Pageable pageable) {
+        Page<Senha> pageSenhas = senhaService.senhasPorIntervaloDataDeGeracao(dataInicio, dataFim, pageable);
+
+        List<RespostaSenhaDTO> respostaDTOs = senhaMapper.toResponseDTOList(pageSenhas.getContent());
+        Page<RespostaSenhaDTO> pageRespostaDTOs = new PageImpl<>(respostaDTOs, pageable, pageSenhas.getTotalElements());
+
+        return ResponseEntity.ok().body(pageRespostaDTOs);
+    }
+
+    @GetMapping("/chamadas/{dataInicio}/{dataFim}")
+    @ResponseStatus(HttpStatus.OK)
+    @Override
+    public ResponseEntity<Page<RespostaSenhaDTO>> listarSenhasChamadasPorIntervaloDias(
+            @PathVariable String dataInicio
+            , @PathVariable String dataFim
+            , @PageableDefault(size = 20, sort = "geradaEm", direction = Sort.Direction.DESC) Pageable pageable) {
+        Page<Senha> pageSenhas = senhaService.senhasChamadasPorIntervaloData(dataInicio, dataFim, pageable);
+
+        List<RespostaSenhaDTO> respostaDTOs = senhaMapper.toResponseDTOList(pageSenhas.getContent());
+        Page<RespostaSenhaDTO> pageRespostaDTOs = new PageImpl<>(respostaDTOs, pageable, pageSenhas.getTotalElements());
+
+        return ResponseEntity.ok().body(pageRespostaDTOs);
+    }
+
+    @GetMapping("/finalizadas/{dataInicio}/{dataFim}")
+    @ResponseStatus(HttpStatus.OK)
+    @Override
+    public ResponseEntity<Page<RespostaSenhaDTO>> listarSenhasFinalizadasPorIntervaloDias(
+            @PathVariable String dataInicio
+            , @PathVariable String dataFim
+            , @PageableDefault(size = 20, sort = "geradaEm", direction = Sort.Direction.DESC) Pageable pageable) {
+        Page<Senha> pageSenhas = senhaService.senhasFinalizadasPorIntervaloData(dataInicio, dataFim, pageable);
+
+        List<RespostaSenhaDTO> respostaDTOs = senhaMapper.toResponseDTOList(pageSenhas.getContent());
+        Page<RespostaSenhaDTO> pageRespostaDTOs = new PageImpl<>(respostaDTOs, pageable, pageSenhas.getTotalElements());
+
+        return ResponseEntity.ok().body(pageRespostaDTOs);
+    }
+
+
+    @GetMapping("/atendidas/{dataInicio}/{dataFim}")
+    @ResponseStatus(HttpStatus.OK)
+    @Override
+    public ResponseEntity<Page<RespostaSenhaDTO>> listarSenhasAtendidasPorIntervaloDias(
+            @PathVariable String dataInicio
+            , @PathVariable String dataFim
+            , @PageableDefault(size = 20, sort = "geradaEm", direction = Sort.Direction.DESC) Pageable pageable) {
+        Page<Senha> pageSenhas = senhaService.senhasAtendidasPorIntervaloData(dataInicio, dataFim, pageable);
+
+        List<RespostaSenhaDTO> respostaDTOs = senhaMapper.toResponseDTOList(pageSenhas.getContent());
+        Page<RespostaSenhaDTO> pageRespostaDTOs = new PageImpl<>(respostaDTOs, pageable, pageSenhas.getTotalElements());
+
+        return ResponseEntity.ok().body(pageRespostaDTOs);
     }
 }

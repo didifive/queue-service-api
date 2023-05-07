@@ -16,7 +16,6 @@ import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiSchemes.
 import static br.tec.didiproject.queueserviceapi.enums.constants.OpenApiTypes.SCHEMA_TYPE_STRING;
 import static br.tec.didiproject.queueserviceapi.enums.constants.v1.JsonPropertyDTOs.*;
 import static br.tec.didiproject.queueserviceapi.enums.constants.v1.ValidationMessagesV1.*;
-import static br.tec.didiproject.queueserviceapi.enums.constants.v1.ValidationMessagesV1.SENHA_NOVA_SENHA_TIPO_ATENDIMENTO_ID_UUID;
 
 @Data
 @Builder

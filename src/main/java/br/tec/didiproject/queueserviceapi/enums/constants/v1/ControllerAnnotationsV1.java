@@ -216,6 +216,13 @@ public final class ControllerAnnotationsV1 {
     public static final String FILA_CONTROLLER_DELETE_BY_ID_204_DESCRIPTION = "Fila excluída com sucesso";
 
     public static final String SENHA_CONTROLER_TAG = "8. Senha";
+    public static final String SENHA_CONTROLLER_PARAMETER_ID_DESCRIPTION = "Id da senha";
+    public static final String SENHA_CONTROLLER_PARAMETER_ID_EXAMPLE = FILA_CONTROLLER_FIND_BY_ID_PARAMETER_ID_EXAMPLE;
+    public static final String SENHA_CONTROLLER_PARAMETER_DATA_INICIO_DESCRIPTION = "Data inicial para o intervalo no padrão" +
+            " dd-MM-aaaa, onde \"dd\" representa o dia, \"MM\" representa o mês e \"aaaa\" representa o ano com 4 dígitos";
+    public static final String SENHA_CONTROLLER_PARAMETER_DATA_FIM_DESCRIPTION = "Data inicial para o intervalo no padrão" +
+            " dd-MM-aaaa, onde \"dd\" representa o dia, \"MM\" representa o mês e \"aaaa\" representa o ano com 4 dígitos";
+    public static final String SENHA_CONTROLLER_PARAMETER_DATA_EXAMPLE = "15-05-2023";
     public static final String SENHA_CONTROLLER_CREATE_OPERATION_SUMMARY = "Gerar nova senha";
     public static final String SENHA_CONTROLLER_CREATE_OPERATION_DESCRIPTION = "Operação para gerar nova senha para uma Fila e Tipo de Atendimento";
     public static final String SENHA_CONTROLLER_CREATE_201_DESCRIPTION = "Nova senha cadastrada com sucesso";
@@ -235,12 +242,36 @@ public final class ControllerAnnotationsV1 {
     public static final String SENHA_CONTROLLER_FINALIZAR_SENHA_POR_FILA_E_TIPO_ATENDIMENTO_OPERATION_SUMMARY = "Finalizar senhas por Fila e Tipo de Atendimento";
     public static final String SENHA_CONTROLLER_FINALIZAR_SENHA_POR_FILA_E_TIPO_ATENDIMENTO_OPERATION_DESCRIPTION = "Operação para finalizar/encerrar senhas por Fila e Tipo de Atendimento";
     public static final String SENHA_CONTROLLER_FINALIZAR_SENHA_POR_FILA_E_TIPO_ATENDIMENTO_204_DESCRIPTION = "Senhas da Fila e Tipo de Atendimento foram finalizadas com sucesso";
+    public static final String SENHA_CONTROLLER_FINALIZAR_TODAS_SENHAS_NAO_FINALIZADAS_OPERATION_SUMMARY = "Finalizar todas as senhas";
+    public static final String SENHA_CONTROLLER_FINALIZAR_TODAS_SENHAS_NAO_FINALIZADAS_OPERATION_DESCRIPTION = "Operação para finalizar/encerrar todas as senhas";
+    public static final String SENHA_CONTROLLER_FINALIZAR_TODAS_SENHAS_NAO_FINALIZADAS_204_DESCRIPTION = "Todas as senhas foram finalizadas com sucesso";
     public static final String SENHA_CONTROLLER_ATENDER_SENHA_OPERATION_SUMMARY = "Atender Senha";
     public static final String SENHA_CONTROLLER_ATENDER_SENHA_OPERATION_DESCRIPTION = "Operação para registrar atendimento da senha";
     public static final String SENHA_CONTROLLER_ATENDER_SENHA_200_DESCRIPTION = "Senha atendida com sucesso";
     public static final String SENHA_CONTROLLER_RESETAR_STATUS_SENHA_OPERATION_SUMMARY = "Resetar status da senha";
     public static final String SENHA_CONTROLLER_RESETAR_STATUS_SENHA_OPERATION_DESCRIPTION = "Resetar status da senha: chamada, atendida e finalizada";
     public static final String SENHA_CONTROLLER_RESETAR_STATUS_SENHA_200_DESCRIPTION = "Status da senha resetados com sucesso";
+    public static final String SENHA_CONTROLLER_FIND_BY_ID_OPERATION_SUMMARY = "Pesquisar Senha";
+    public static final String SENHA_CONTROLLER_FIND_BY_ID_OPERATION_DESCRIPTION = "Pesquisar senha por Id";
+    public static final String SENHA_CONTROLLER_FIND_BY_ID_200_DESCRIPTION = "Retorna detalhe da senha buscada";
+    public static final String SENHA_CONTROLLER_FIND_ALL_OPERATION_SUMMARY = "Listar senhas";
+    public static final String SENHA_CONTROLLER_FIND_ALL_OPERATION_DESCRIPTION = "Listar todas as senhas cadastradas";
+    public static final String SENHA_CONTROLLER_FIND_ALL_200_DESCRIPTION = "Retorna lista paginada das senhas existentes";
+    public static final String SENHA_CONTROLLER_SENHAS_NAO_FINALIZADAS_OPERATION_SUMMARY = "Listar senhas não Finalizadas";
+    public static final String SENHA_CONTROLLER_SENHAS_NAO_FINALIZADAS_OPERATION_DESCRIPTION = "Listar todas as senhas não finalizadas no sistema";
+    public static final String SENHA_CONTROLLER_SENHAS_NAO_FINALIZADAS_200_DESCRIPTION = "Retorna lista paginada das senhas não finalizadas";
+    public static final String SENHA_CONTROLLER_SENHAS_POR_INTERVALO_DIAS_OPERATION_SUMMARY = "Listar senhas por intervado de dias";
+    public static final String SENHA_CONTROLLER_SENHAS_POR_INTERVALO_DIAS_OPERATION_DESCRIPTION = "Listar todas as senhas filtradas por intervalo de dias";
+    public static final String SENHA_CONTROLLER_SENHAS_POR_INTERVALO_DIAS_200_DESCRIPTION = "Retorna lista paginada das senhas filtradas por intervalo de dias";
+    public static final String SENHA_CONTROLLER_SENHAS_CHAMADAS_POR_INTERVALO_DIAS_OPERATION_SUMMARY = "Listar senhas chamadas por intervado de dias";
+    public static final String SENHA_CONTROLLER_SENHAS_CHAMADAS_POR_INTERVALO_DIAS_OPERATION_DESCRIPTION = "Listar todas as senhas chamadas filtradas por intervalo de dias";
+    public static final String SENHA_CONTROLLER_SENHAS_CHAMADAS_POR_INTERVALO_DIAS_200_DESCRIPTION = "Retorna lista paginada das senhas chamadas filtradas por intervalo de dias";
+    public static final String SENHA_CONTROLLER_SENHAS_FINALIZADAS_POR_INTERVALO_DIAS_OPERATION_SUMMARY = "Listar senhas finalizadas por intervado de dias";
+    public static final String SENHA_CONTROLLER_SENHAS_FINALIZADAS_POR_INTERVALO_DIAS_OPERATION_DESCRIPTION = "Listar todas as senhas finalizadas filtradas por intervalo de dias";
+    public static final String SENHA_CONTROLLER_SENHAS_FINALIZADAS_POR_INTERVALO_DIAS_200_DESCRIPTION = "Retorna lista paginada das senhas finalizadas filtradas por intervalo de dias";
+    public static final String SENHA_CONTROLLER_SENHAS_ATENDIDAS_POR_INTERVALO_DIAS_OPERATION_SUMMARY = "Listar senhas atendidas por intervado de dias";
+    public static final String SENHA_CONTROLLER_SENHAS_ATENDIDAS_POR_INTERVALO_DIAS_OPERATION_DESCRIPTION = "Listar todas as senhas atendidas filtradas por intervalo de dias";
+    public static final String SENHA_CONTROLLER_SENHAS_ATENDIDAS_POR_INTERVALO_DIAS_200_DESCRIPTION = "Retorna lista paginada das senhas atendidas filtradas por intervalo de dias";
 
     private ControllerAnnotationsV1() {
         throw new IllegalAccessError("Utility Class");

@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -18,31 +19,61 @@ public interface SenhaRepository extends JpaRepository<Senha, UUID>, JpaSpecific
             UUID filaId
             , UUID tipoAtendimentoId
     );
+
     Optional<Senha> findFirstByFilaIdOrderByGeradaEmDesc(
             UUID filaId
     );
 
-    Page<Senha> findAll(Pageable pageable);
+    Page<Senha> findAll(
+            Pageable pageable
+    );
 
-    Page<Senha> findAllByAtendenteId(UUID atendenteId, Pageable pageable);
-    Page<Senha> findAllByTipoAtendimentoId(UUID tipoAtendimentoId, Pageable pageable);
-    Page<Senha> findAllByFilaId(UUID filaId, Pageable pageable);
-    Page<Senha> findAllByFilaIdAndTipoAtendimentoIdAndFinalizadaEmIsNullAndMotivoFinalizadaIsNull(UUID filaId, UUID tipoAtendimentoId, Pageable pageable);
+    Page<Senha> findAllByAtendenteId(
+            UUID atendenteId
+            , Pageable pageable
+    );
 
-    Page<Senha> findAllByFinalizadaEmIsNull(Pageable pageable);
+    Page<Senha> findAllByTipoAtendimentoId(
+            UUID tipoAtendimentoId
+            , Pageable pageable
+    );
 
-    Page<Senha> findAllByFilaIdAndTipoAtendimentoIdAndChamadaEmIsNullAndFinalizadaEmIsNullOrderByGeradaEmAsc(
+    Page<Senha> findAllByFilaId(
+            UUID filaId
+            , Pageable pageable
+    );
+
+    Page<Senha> findAllByFilaIdAndTipoAtendimentoIdAndFinalizadaEmIsNullAndMotivoFinalizadaIsNull(
             UUID filaId
             , UUID tipoAtendimentoId
             , Pageable pageable
     );
 
-    Page<Senha> findAllByFilaIdAndTipoAtendimentoIdAndChamadaEmIsNotNullAndFinalizadaEmIsNullOrderByGeradaEmDesc(
-            UUID filaId
-            , UUID tipoAtendimentoId
+    Page<Senha> findAllByFinalizadaEmIsNull(
+            Pageable pageable
+    );
+
+    Page<Senha> findAllByGeradaEmBetween(
+            Date dateTimeStart
+            , Date dateTimeEnd
             , Pageable pageable
     );
 
+    Page<Senha> findAllByChamadaEmBetween(
+            Date dateTimeStart
+            , Date dateTimeEnd
+            , Pageable pageable
+    );
 
+    Page<Senha> findAllByFinalizadaEmBetween(
+            Date dateTimeStart
+            , Date dateTimeEnd
+            , Pageable pageable
+    );
 
+    Page<Senha> findAllByAtendidaEmBetween(
+            Date dateTimeStart
+            , Date dateTimeEnd
+            , Pageable pageable
+    );
 }

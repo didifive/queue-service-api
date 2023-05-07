@@ -1,9 +1,11 @@
 package br.tec.didiproject.queueserviceapi.services;
 
 import br.tec.didiproject.queueserviceapi.entities.*;
+import br.tec.didiproject.queueserviceapi.enums.AdjustTimeTo;
 import br.tec.didiproject.queueserviceapi.exceptions.BadRequestBodyException;
 import br.tec.didiproject.queueserviceapi.exceptions.DataIntegrityViolationException;
 import br.tec.didiproject.queueserviceapi.exceptions.EntityNotFoundException;
+import br.tec.didiproject.queueserviceapi.exceptions.QueueServiceApiException;
 import br.tec.didiproject.queueserviceapi.repositories.SenhaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -12,21 +14,35 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.*;
-import java.util.stream.Collectors;
 
+import static br.tec.didiproject.queueserviceapi.enums.AdjustTimeTo.END;
+import static br.tec.didiproject.queueserviceapi.enums.AdjustTimeTo.START;
 import static br.tec.didiproject.queueserviceapi.exceptions.BaseErrorMessage.*;
+import static java.time.LocalTime.of;
 
 @RequiredArgsConstructor
 @Service
 public class SenhaService {
 
     public static final String MOTIVO_SENHA_ATENDIDA = "Senha atendida pelo Usuário/Atendente Id [%s] - Nome [%s]";
+    public static final String DATE_PATTERN = "dd-MM-yyyy";
     private static final Integer PAGE_SIZE = 10;
     private final SenhaRepository senhaRepository;
     private final FilaService filaService;
     private final TipoAtendimentoService tipoAtendimentoService;
     private final AtendenteService atendenteService;
+
+    private static Timestamp getNow() {
+        Date hoje = new Date();
+        return new Timestamp(hoje.getTime());
+    }
 
     /**
      * CRUD: Read
@@ -52,6 +68,117 @@ public class SenhaService {
 
     /**
      * CRUD: Read
+     * Find service numbers by Creation date interval
+     *
+     * @param dataInicio String with the start day for filtering
+     * @param dataFim    String with the last day for filtering
+     * @param pageable   Pageable object with page options
+     */
+    public Page<Senha> senhasPorIntervaloDataDeGeracao(String dataInicio, String dataFim, Pageable pageable) {
+        List<Date> datas = this.transformaDatas(dataInicio, dataFim);
+
+        return senhaRepository.findAllByGeradaEmBetween(
+                this.ajustarTempo(datas.get(0), START)
+                , this.ajustarTempo(datas.get(1), END)
+                , pageable);
+    }
+
+    /**
+     * CRUD: Read
+     * Find service numbers by call date interval
+     *
+     * @param dataInicio String with the start day for filtering
+     * @param dataFim    String with the last day for filtering
+     * @param pageable   Pageable object with page options
+     */
+    public Page<Senha> senhasChamadasPorIntervaloData(String dataInicio, String dataFim, Pageable pageable) {
+        List<Date> datas = this.transformaDatas(dataInicio, dataFim);
+
+        return senhaRepository.findAllByChamadaEmBetween(
+                this.ajustarTempo(datas.get(0), START)
+                , this.ajustarTempo(datas.get(1), END)
+                , pageable);
+    }
+
+    /**
+     * CRUD: Read
+     * Find service numbers by finalized date interval
+     *
+     * @param dataInicio String with the start day for filtering
+     * @param dataFim    String with the last day for filtering
+     * @param pageable   Pageable object with page options
+     */
+    public Page<Senha> senhasFinalizadasPorIntervaloData(String dataInicio, String dataFim, Pageable pageable) {
+
+        List<Date> datas = this.transformaDatas(dataInicio, dataFim);
+
+        return senhaRepository.findAllByFinalizadaEmBetween(
+                this.ajustarTempo(datas.get(0), START)
+                , this.ajustarTempo(datas.get(1), END)
+                , pageable);
+    }
+
+    /**
+     * CRUD: Read
+     * Find service numbers by attendance date interval
+     *
+     * @param dataInicio String with the start day for filtering
+     * @param dataFim    String with the last day for filtering
+     * @param pageable   Pageable object with page options
+     */
+    public Page<Senha> senhasAtendidasPorIntervaloData(String dataInicio, String dataFim, Pageable pageable) {
+        List<Date> datas = this.transformaDatas(dataInicio, dataFim);
+
+        return senhaRepository.findAllByAtendidaEmBetween(
+                this.ajustarTempo(datas.get(0), START)
+                , this.ajustarTempo(datas.get(1), END)
+                , pageable);
+    }
+
+    private List<Date> transformaDatas(String dataInicio, String dataFim) {
+        Date dataTempoInicio = this.convertDate(dataInicio);
+        Date dataTempoFim = this.convertDate(dataFim);
+
+        List<Date> datas = new ArrayList<>();
+        datas.add(dataTempoInicio);
+        datas.add(dataTempoFim);
+        Collections.sort(datas);
+
+        return datas;
+    }
+
+    private Date convertDate(String dataString) {
+        DateTimeFormatter datePattern = DateTimeFormatter.ofPattern(DATE_PATTERN);
+        var data = LocalDate.now();
+        try {
+            data = LocalDate.parse(dataString, datePattern);
+        } catch (DateTimeParseException e) {
+            throw new BadRequestBodyException(
+                    GENERIC_DATE_STRING_IS_NOT_VALID
+                            .params(dataString)
+                            .getMessage()
+            );
+        } catch (Exception e) {
+            throw new QueueServiceApiException(GENERIC_EXCEPTION.getMessage());
+        }
+        return Date.from(data.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+    }
+
+    private Date ajustarTempo(Date data, AdjustTimeTo adjustTimeTo) {
+        var hora = of(0, 0, 0, 0);
+        if (adjustTimeTo == END) {
+            hora = of(23, 59, 59, 999999999);
+        }
+        LocalDateTime localDateTime = LocalDateTime.of(
+                Instant.ofEpochMilli(data.getTime())
+                        .atZone(ZoneId.systemDefault())
+                        .toLocalDate()
+                , hora);
+        return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+    }
+
+    /**
+     * CRUD: Read
      * Find unfinished service numbers and list with pageable content
      *
      * @param pageable Pageable object with page options
@@ -61,43 +188,12 @@ public class SenhaService {
     }
 
     /**
-     * CRUD: Read
-     * Find service numbers not called by queue and attendance type and list with pageable content
-     *
-     * @param filaId Pageable object with page options
-     * @param tipoAtendimento Pageable object with page options
-     * @param pageable Pageable object with page options
-     */
-//    public Page<Senha> senhasNaoChamadasPorFilaEPorTipoAtendimento(UUID filaId, UUID tipoAtendimento, Pageable pageable) {
-//        return senhaRepository.findAllByFilaIdAndTipoAtendimentoIdAndChamadaEmIsNullOrderByGeradaEmAsc(
-//                filaId
-//                , tipoAtendimento
-//                , pageable);
-//    }
-
-    /**
-     * CRUD: Read
-     * Find service numbers called and not finished by queue and attendance type and list with pageable content
-     *
-     * @param filaId Pageable object with page options
-     * @param tipoAtendimento Pageable object with page options
-     * @param pageable Pageable object with page options
-     */
-//    public Page<Senha> senhasChamadasENaoFinalizadasPorFilaEPorTipoAtendimento(UUID filaId, UUID tipoAtendimento, Pageable pageable) {
-//        return senhaRepository.findAllByFilaIdAndTipoAtendimentoIdAndFinalizadaEmIsNullAndChamadaEmIsNotNullOrderByGeradaEmDesc(
-//                filaId
-//                , tipoAtendimento
-//                , pageable);
-//    }
-
-
-    /**
      * CRUD: Create
      * Create a new service number
      *
-     * @param filaId  UUID with a queue id
+     * @param filaId            UUID with a queue id
      * @param tipoAtendimentoId UUID with a attendance type id
-     * @param reset Short with a number for reset sequence number for service
+     * @param reset             Short with a number for reset sequence number for service
      */
     public Senha create(UUID filaId, UUID tipoAtendimentoId, Short reset) {
         Fila fila = filaService.findById(filaId);
@@ -118,8 +214,9 @@ public class SenhaService {
 
         return senhaRepository.save(novaSenha);
     }
-    public Senha create(UUID filaId, UUID tipoAtendimentoId) {
-        return this.create(filaId,tipoAtendimentoId,null);
+
+    public void create(UUID filaId, UUID tipoAtendimentoId) {
+        this.create(filaId, tipoAtendimentoId, null);
     }
 
     private Short newNumber(UUID filaId) {
@@ -143,23 +240,18 @@ public class SenhaService {
             );
     }
 
-    private static Timestamp getNow() {
-        Date hoje = new Date();
-        return new Timestamp(hoje.getTime());
-    }
-
     /**
      * CRUD: Update
      * Call the service number
      *
-     * @param senhaId UUID with the id of the existing service number
+     * @param senhaId   UUID with the id of the existing service number
      * @param rechamada boolean to verify if the service number is to be called again
      */
-    public Senha chamaSenha(UUID senhaId, Boolean rechamada) {
+    public Senha chamarSenha(UUID senhaId, Boolean rechamada) {
         Senha senha = this.findById(senhaId);
 
         if (senha.foiChamada()
-                && (Objects.isNull(rechamada) || !rechamada)){
+                && (Objects.isNull(rechamada) || !rechamada)) {
             throw new BadRequestBodyException(
                     SERVICE_NUMBER_ALREADY_CALLED
                             .params(senhaId.toString()).getMessage()
@@ -190,7 +282,7 @@ public class SenhaService {
             senha.ifPresent(senhas::add);
         });
 
-        return this.chamaSenha(senhas.iterator().next().getId(), false);
+        return this.chamarSenha(senhas.iterator().next().getId(), false);
     }
 
     /**
@@ -198,16 +290,16 @@ public class SenhaService {
      * Finish answering the service number
      *
      * @param senhaId UUID with the id of the existing service number
-     * @param motivo String with a reason for finish the service number
+     * @param motivo  String with a reason for finish the service number
      */
     public Senha finalizarSenha(UUID senhaId, String motivo) {
         Senha senha = this.findById(senhaId);
 
         if (senha.foiFinalizada()) {
-           throw new DataIntegrityViolationException(
-                   SERVICE_NUMBER_ALREADY_FINISHED
-                           .params(senhaId.toString()).getMessage()
-           );
+            throw new DataIntegrityViolationException(
+                    SERVICE_NUMBER_ALREADY_FINISHED
+                            .params(senhaId.toString()).getMessage()
+            );
         }
 
         senha.setFinalizadaEm(getNow());
@@ -220,9 +312,9 @@ public class SenhaService {
      * CRUD: Update
      * Finish answering the service number for queue and attendance type
      *
-     * @param filaId UUID with the id of the existing queue
+     * @param filaId            UUID with the id of the existing queue
      * @param tipoAtendimentoId UUID with the id of the existing attendance type
-     * @param motivo String with a reason for finish the service number
+     * @param motivo            String with a reason for finish the service number
      */
     public void finalizarSenhaPorFilaETipoAtendimento(UUID filaId, UUID tipoAtendimentoId, String motivo) {
         Pageable pageRequest = PageRequest.of(0, PAGE_SIZE);
@@ -232,14 +324,32 @@ public class SenhaService {
                 , tipoAtendimentoId
                 , pageRequest);
 
-        for (int i = 0; i <= senhas.getTotalPages(); i++){
+        for (int i = 0; i <= senhas.getTotalPages(); i++) {
             pageRequest = PageRequest.of(i, PAGE_SIZE);
             Page<Senha> pageSenhasParaFinalizar = senhaRepository
                     .findAllByFilaIdAndTipoAtendimentoIdAndFinalizadaEmIsNullAndMotivoFinalizadaIsNull(
                             filaId
                             , tipoAtendimentoId
                             , pageRequest);
-            pageSenhasParaFinalizar.getContent().forEach(senha -> this.finalizarSenha(senha.getId(),motivo));
+            pageSenhasParaFinalizar.getContent().forEach(senha -> this.finalizarSenha(senha.getId(), motivo));
+        }
+    }
+
+    /**
+     * CRUD: Update
+     * Finish the service numbers who is not finished
+     *
+     * @param motivo String with a reason for finish the service number
+     */
+    public void finalizarSenhasNaoFinalizadas(String motivo) {
+        Pageable pageRequest = PageRequest.of(0, PAGE_SIZE);
+
+        Page<Senha> senhas = this.senhasNaoFinalizadas(pageRequest);
+
+        for (int i = 0; i <= senhas.getTotalPages(); i++) {
+            pageRequest = PageRequest.of(i, PAGE_SIZE);
+            Page<Senha> pageSenhasParaFinalizar = this.senhasNaoFinalizadas(pageRequest);
+            pageSenhasParaFinalizar.getContent().forEach(senha -> this.finalizarSenha(senha.getId(), motivo));
         }
     }
 
@@ -262,7 +372,7 @@ public class SenhaService {
         }
 
         senha = this.finalizarSenha(senha.getId()
-                , String.format(MOTIVO_SENHA_ATENDIDA,atendente.getId().toString(),atendente.getNome()));
+                , String.format(MOTIVO_SENHA_ATENDIDA, atendente.getId().toString(), atendente.getNome()));
 
         senha.setAtendidaEm(senha.getFinalizadaEm());
         senha.setAtendente(atendente);
