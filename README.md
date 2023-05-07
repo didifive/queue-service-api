@@ -140,73 +140,73 @@ Abaixo segue uma lista geral dos endpoints com resumo de suas funcionalidades:
 ### 👤 Atendente: Endpoints com CRUD para cadastro de atendente(s)
 Quando um atendente é criado, um usuário será automaticamente criado.
 
-| Entidade/Domínio | Método | Endpoint                | Descrição                              |
-|------------------|--------|-------------------------|----------------------------------------|
-| Atendente        | POST   | /api/v1/atendente       | Cadastrar novo atendente               |
-| Atendente        | GET    | /api/v1/atendente       | Listar todos os atendentes cadastrados |
-| Atendente        | GET    | /api/v1/atendente/{id}  | Detalhar atendente                     |
-| Atendente        | PUT    | /api/v1/atendente/{id}  | Atualizar atendente                    |
-| Atendente        | DELETE | /api/v1/atendente/{id}  | Apagar atendente                       |
+| Método | Endpoint                | Descrição                              |
+|--------|-------------------------|----------------------------------------|
+| POST   | /api/v1/atendente       | Cadastrar novo atendente               |
+| GET    | /api/v1/atendente       | Listar todos os atendentes cadastrados |
+| GET    | /api/v1/atendente/{id}  | Detalhar atendente                     |
+| PUT    | /api/v1/atendente/{id}  | Atualizar atendente                    |
+| DELETE | /api/v1/atendente/{id}  | Apagar atendente                       |
 
 ### 🔑 Usuário: Endpoints com CRUD para cadastro de usuário(s)
 Os usuários são diretamente vinculados aos atendentes, nas operações é checado o atendente vinculado ao usuário.
 
-| Entidade/Domínio | Método | Endpoint                                 | Descrição                                  |
-|------------------|--------|------------------------------------------|--------------------------------------------|
-| Usuário          | POST   | /api/v1/usuario                          | Cadastrar novo usuário                     |
-| Usuário          | GET    | /api/v1/usuario                          | Listar todos os usuários cadastrados       |
-| Usuário          | GET    | /api/v1/usuario/{id}                     | Detalhar usuário                           |
-| Usuário          | PATCH  | /api/v1/atendente/{id}/novo-nome-usuario | Atualizar usuário com novo nome de usuário |
-| Usuário          | PATCH  | /api/v1/atendente/{id}/atualizar-senha   | Atualizar senha de acesso do usuário       |
-| Usuário          | PATCH  | /api/v1/atendente/{id}/perfil/adicionar  | Adicionar perfil ao usuário                |
-| Usuário          | PATCH  | /api/v1/atendente/{id}/perfil/remover    | Remover perfil do usuário                  |
-| Usuário          | PATCH  | /api/v1/atendente/{id}/ativar            | Ativar usuário no sistema                  |
-| Usuário          | PATCH  | /api/v1/atendente/{id}/desativar         | Desativar usuário no sistema               |
+| Método | Endpoint                                 | Descrição                                  |
+|--------|------------------------------------------|--------------------------------------------|
+| POST   | /api/v1/usuario                          | Cadastrar novo usuário                     |
+| GET    | /api/v1/usuario                          | Listar todos os usuários cadastrados       |
+| GET    | /api/v1/usuario/{id}                     | Detalhar usuário                           |
+| PATCH  | /api/v1/atendente/{id}/novo-nome-usuario | Atualizar usuário com novo nome de usuário |
+| PATCH  | /api/v1/atendente/{id}/atualizar-senha   | Atualizar senha de acesso do usuário       |
+| PATCH  | /api/v1/atendente/{id}/perfil/adicionar  | Adicionar perfil ao usuário                |
+| PATCH  | /api/v1/atendente/{id}/perfil/remover    | Remover perfil do usuário                  |
+| PATCH  | /api/v1/atendente/{id}/ativar            | Ativar usuário no sistema                  |
+| PATCH  | /api/v1/atendente/{id}/desativar         | Desativar usuário no sistema               |
 
 ### ♿ Tipo de Atendimento: Endpoints com CRUD para cadastro de tipo(s) de atendimento
 O Tipo de Atendimento foi um recurso criado para que se possa incluir priorizações personalizadas às filas.
 
-| Entidade/Domínio     | Método | Endpoint                      | Descrição                                        |
-|----------------------|--------|-------------------------------|--------------------------------------------------|
-| Tipo de Atendimento  | POST   | /api/v1/tipo-atendimento      | Cadastrar novo tipo de atendimento               |
-| Tipo de Atendimento  | GET    | /api/v1/tipo-atendimento      | Listar todos os tipos de atendimento cadastrados |
-| Tipo de Atendimento  | GET    | /api/v1/tipo-atendimento/{id} | Detalhar tipo de atendimento                     |
-| Tipo de Atendimento  | PUT    | /api/v1/tipo-atendimento/{id} | Atualizar tipo de atendimento                    |
-| Tipo de Atendimento  | DELETE | /api/v1/tipo-atendimento/{id} | Apagar tipo de atendimento                       |
+| Método | Endpoint                      | Descrição                                        |
+|--------|-------------------------------|--------------------------------------------------|
+| POST   | /api/v1/tipo-atendimento      | Cadastrar novo tipo de atendimento               |
+| GET    | /api/v1/tipo-atendimento      | Listar todos os tipos de atendimento cadastrados |
+| GET    | /api/v1/tipo-atendimento/{id} | Detalhar tipo de atendimento                     |
+| PUT    | /api/v1/tipo-atendimento/{id} | Atualizar tipo de atendimento                    |
+| DELETE | /api/v1/tipo-atendimento/{id} | Apagar tipo de atendimento                       |
 
 ### 🔜 Fila: Endpoints com CRUD para cadastro de fila(s)
 Uma fila depende de ao menos um tipo de atendimento vinculado.
 
-| Entidade/Domínio | Método | Endpoint                                                         | Descrição                           |
-|------------------|--------|------------------------------------------------------------------|-------------------------------------|
-| Fila             | POST   | /api/v1/fila                                                     | Cadastrar nova fila                 |
-| Fila             | GET    | /api/v1/fila                                                     | Listar todas as filas cadastradas   |
-| Fila             | GET    | /api/v1/fila/{id}                                                | Detalhar fila                       |
-| Fila             | PUT    | /api/v1/fila/{id}                                                | Atualizar fila                      |
-| Fila             | PATCH  | /api/v1/fila/{id}/tipo-atendimento/{tipoAtendimentoId}/adicionar | Adiciona tipo de atendimento à fila |
-| Fila             | PATCH  | /api/v1/fila/{id}/tipo-atendimento/{tipoAtendimentoId}/remover   | Remove tipo de atendimento da fila  |
-| Fila             | DELETE | /api/v1/fila/{id}                                                | Apagar fila                         |
+| Método | Endpoint                                                         | Descrição                           |
+|--------|------------------------------------------------------------------|-------------------------------------|
+| POST   | /api/v1/fila                                                     | Cadastrar nova fila                 |
+| GET    | /api/v1/fila                                                     | Listar todas as filas cadastradas   |
+| GET    | /api/v1/fila/{id}                                                | Detalhar fila                       |
+| PUT    | /api/v1/fila/{id}                                                | Atualizar fila                      |
+| PATCH  | /api/v1/fila/{id}/tipo-atendimento/{tipoAtendimentoId}/adicionar | Adiciona tipo de atendimento à fila |
+| PATCH  | /api/v1/fila/{id}/tipo-atendimento/{tipoAtendimentoId}/remover   | Remove tipo de atendimento da fila  |
+| DELETE | /api/v1/fila/{id}                                                | Apagar fila                         |
 
 ### 🔔 Senha: Endpoints com CRUD para gerar e operar senha(s)
 Cada senha é vinculada à uma fila e um tipo de serviço que define a sua prioridade na fila. Possui endpoints para chamar próxima senha de uma fila, chamar/rechamar senha específica, operar para marcar uma senha como chamada, finalizada e atendida e também conseguir ver detalhe de senha e listar senhas conforme intervalo de dia(s)/data(s) e status.
 
-| Entidade/Domínio | Método | Endpoint                                         | Descrição                                                                                                                 |
-|------------------|--------|--------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
-| Senha            | POST   | /api/v1/senha                                    | Gera uma nova senha para fila e tipo de atendimento                                                                       |
-| Senha            | GET    | /api/v1/senha                                    | Lista todas as senhas geradas                                                                                             |
-| Senha            | GET    | /api/v1/senha/nao-finalizadas                    | Lista todas as senhas geradas e não finalizadas                                                                           |
-| Senha            | GET    | /api/v1/senha/{id}                               | Detalha senha                                                                                                             |
-| Senha            | GET    | /api/v1/senha/{dataInicio}/{dataFim}             | Lista as senhas por intervalo de dias/datas                                                                               |
-| Senha            | GET    | /api/v1/senha/chamadas/{dataInicio}/{dataFim}    | Lista as senhas chamadas por intervalo de dias/datas                                                                      |
-| Senha            | GET    | /api/v1/senha/finalizadas/{dataInicio}/{dataFim} | Lista as senhas finalizadas por intervalo de dias/datas                                                                   |
-| Senha            | GET    | /api/v1/senha/atendidas/{dataInicio}/{dataFim}   | Lista as senhas atendidas por intervalo de dias/datas                                                                     |
-| Senha            | PATCH  | /api/v1/senha/{id}/chamar-senha                  | Chama senha especificada                                                                                                  |
-| Senha            | PATCH  | /api/v1/senha/fila/{filaId}/chamar-senha         | Chama próxima senha da fila especificada conforme definições de prioridade do(s) tipo(s) de atendimento                   |
-| Senha            | PATCH  | /api/v1/senha/{id}/finalizar-senha               | Marca a senha específicada como finalizada com respectivo motivo informado                                                |
-| Senha            | PATCH  | /api/v1/senha/finalizar-senhas                   | Marca as senhas como finalizadas conforme fila e tipo de atendimento especificados juntamente com devido motivo informado |
-| Senha            | PATCH  | /api/v1/senha/finalizar-todas-senhas             | Marca como finalizada todas as senhas que ainda não estavam finalizadas no sistema com motivo informado                   |
-| Senha            | PATCH  | /api/v1/senha/{id}/atender-senha                 | Marca a senha como atendida                                                                                               |
-| Senha            | PATCH  | /api/v1/senha/{id}/resetar-status                | Reseta status da senha, retira a marcação de que foi chamada, atendida e finalizada                                       |
+| Método | Endpoint                                         | Descrição                                                                                                                 |
+|--------|--------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| POST   | /api/v1/senha                                    | Gera uma nova senha para fila e tipo de atendimento                                                                       |
+| GET    | /api/v1/senha                                    | Lista todas as senhas geradas                                                                                             |
+| GET    | /api/v1/senha/nao-finalizadas                    | Lista todas as senhas geradas e não finalizadas                                                                           |
+| GET    | /api/v1/senha/{id}                               | Detalha senha                                                                                                             |
+| GET    | /api/v1/senha/{dataInicio}/{dataFim}             | Lista as senhas por intervalo de dias/datas                                                                               |
+| GET    | /api/v1/senha/chamadas/{dataInicio}/{dataFim}    | Lista as senhas chamadas por intervalo de dias/datas                                                                      |
+| GET    | /api/v1/senha/finalizadas/{dataInicio}/{dataFim} | Lista as senhas finalizadas por intervalo de dias/datas                                                                   |
+| GET    | /api/v1/senha/atendidas/{dataInicio}/{dataFim}   | Lista as senhas atendidas por intervalo de dias/datas                                                                     |
+| PATCH  | /api/v1/senha/{id}/chamar-senha                  | Chama senha especificada                                                                                                  |
+| PATCH  | /api/v1/senha/fila/{filaId}/chamar-senha         | Chama próxima senha da fila especificada conforme definições de prioridade do(s) tipo(s) de atendimento                   |
+| PATCH  | /api/v1/senha/{id}/finalizar-senha               | Marca a senha específicada como finalizada com respectivo motivo informado                                                |
+| PATCH  | /api/v1/senha/finalizar-senhas                   | Marca as senhas como finalizadas conforme fila e tipo de atendimento especificados juntamente com devido motivo informado |
+| PATCH  | /api/v1/senha/finalizar-todas-senhas             | Marca como finalizada todas as senhas que ainda não estavam finalizadas no sistema com motivo informado                   |
+| PATCH  | /api/v1/senha/{id}/atender-senha                 | Marca a senha como atendida                                                                                               |
+| PATCH  | /api/v1/senha/{id}/resetar-status                | Reseta status da senha, retira a marcação de que foi chamada, atendida e finalizada                                       |
 
 
 Para documentação mais completa dos Endpoints, basta acessar o Swagger que fica disponível em http://localhost:8080/swagger-ui.html
