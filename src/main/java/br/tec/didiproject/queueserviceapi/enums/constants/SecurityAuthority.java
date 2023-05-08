@@ -1,5 +1,7 @@
 package br.tec.didiproject.queueserviceapi.enums.constants;
 
+import static br.tec.didiproject.queueserviceapi.enums.constants.Constants.UTILITY_CLASS;
+
 public class SecurityAuthority {
     public static final String OWN_USER =
             "(principal.getId.toString == #id OR principal.getId.toString == #usuarioId)";
@@ -22,4 +24,8 @@ public class SecurityAuthority {
             HAS_AUTHORITY_ADMIN_OR_USUARIO
                     + " OR "
                     + OWN_USER_ATTENDANT;
+
+    private SecurityAuthority() {
+        throw new IllegalAccessError(UTILITY_CLASS);
+    }
 }

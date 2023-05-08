@@ -1,5 +1,7 @@
 package br.tec.didiproject.queueserviceapi.enums.constants.v1;
 
+import static br.tec.didiproject.queueserviceapi.enums.constants.Constants.UTILITY_CLASS;
+
 public final class ControllerAnnotationsV1 {
 
     public static final String CONTROLLER_FIND_ALL_PARAMETER_SIZE_DESCRIPTION = "Quantidade de objetos por página";
@@ -274,7 +276,7 @@ public final class ControllerAnnotationsV1 {
     public static final String SENHA_CONTROLLER_SENHAS_ATENDIDAS_POR_INTERVALO_DIAS_200_DESCRIPTION = "Retorna lista paginada das senhas atendidas filtradas por intervalo de dias";
 
     private ControllerAnnotationsV1() {
-        throw new IllegalAccessError("Utility Class");
+        throw new IllegalAccessError(UTILITY_CLASS);
     }
 
 }

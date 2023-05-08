@@ -1,5 +1,7 @@
 package br.tec.didiproject.queueserviceapi.enums.constants;
 
+import static br.tec.didiproject.queueserviceapi.enums.constants.Constants.UTILITY_CLASS;
+
 public final class OpenApiTypes {
 
     /**
@@ -11,7 +13,7 @@ public final class OpenApiTypes {
     public static final String SCHEMA_TYPE_BOOLEAN = "boolean";
 
     private OpenApiTypes() {
-        throw new IllegalAccessError("Utility Class");
+        throw new IllegalAccessError(UTILITY_CLASS);
     }
 
 }

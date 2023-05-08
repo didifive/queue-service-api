@@ -1,5 +1,7 @@
 package br.tec.didiproject.queueserviceapi.enums.constants.v1;
 
+import static br.tec.didiproject.queueserviceapi.enums.constants.Constants.UTILITY_CLASS;
+
 public final class ValidationMessagesV1 {
     /**
      * Constants for RequisicaoEmpresaDTO
@@ -80,6 +82,6 @@ public final class ValidationMessagesV1 {
 
 
     private ValidationMessagesV1() {
-        throw new IllegalAccessError("Utility Class");
+        throw new IllegalAccessError(UTILITY_CLASS);
     }
 }

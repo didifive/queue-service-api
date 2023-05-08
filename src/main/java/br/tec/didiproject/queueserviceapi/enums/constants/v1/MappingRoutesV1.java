@@ -1,5 +1,7 @@
 package br.tec.didiproject.queueserviceapi.enums.constants.v1;
 
+import static br.tec.didiproject.queueserviceapi.enums.constants.Constants.UTILITY_CLASS;
+
 public final class MappingRoutesV1 {
 
     public static final String URI_BASE = "http://localhost:8080";
@@ -14,7 +16,7 @@ public final class MappingRoutesV1 {
     public static final String PATH_SENHA = PATH_ROOT+"/senha";
 
     private MappingRoutesV1() {
-        throw new IllegalAccessError("Utility Class");
+        throw new IllegalAccessError(UTILITY_CLASS);
     }
 
 }

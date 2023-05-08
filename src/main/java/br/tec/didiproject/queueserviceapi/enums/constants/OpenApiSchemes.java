@@ -1,5 +1,6 @@
 package br.tec.didiproject.queueserviceapi.enums.constants;
 
+import static br.tec.didiproject.queueserviceapi.enums.constants.Constants.UTILITY_CLASS;
 import static br.tec.didiproject.queueserviceapi.enums.constants.v1.MappingRoutesV1.PATH_AUTH;
 import static br.tec.didiproject.queueserviceapi.enums.constants.v1.MappingRoutesV1.PATH_ROOT;
 
@@ -200,7 +201,7 @@ public final class OpenApiSchemes {
     public static final String SCHEMA_SENHA_MOTIVO_FINALIZADA_EXAMPLE = "Senha finalizada sem atendimento, pois foi gerada para teste";
 
     private OpenApiSchemes() {
-        throw new IllegalAccessError("Utility Class");
+        throw new IllegalAccessError(UTILITY_CLASS);
     }
 
 }

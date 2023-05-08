@@ -1,5 +1,7 @@
 package br.tec.didiproject.queueserviceapi.enums.constants.v1;
 
+import static br.tec.didiproject.queueserviceapi.enums.constants.Constants.UTILITY_CLASS;
+
 public final class JsonPropertyDTOs {
     public static final String ATENDIDA_EM = "atendidaEm";
     public static final String ATENDENTE_ID = "atendenteId";
@@ -40,6 +42,6 @@ public final class JsonPropertyDTOs {
     public static final String USUARIO_ID = "usuarioId";
 
     private JsonPropertyDTOs() {
-        throw new IllegalAccessError("Utility Class");
+        throw new IllegalAccessError(UTILITY_CLASS);
     }
 }

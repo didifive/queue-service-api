@@ -51,7 +51,31 @@ A aplicação possui populador de dados, caso tabela esteja vazia o sistema irá
 Foi criado para fins de estudos, prática e testes. Aproveite para fazer melhorias ou personalização.  
 Apesar de este projeto ser público e não ter finalidade comercial, ainda assim foi pensado para resolver problema real,
 portanto é possível utilizar esta base para um projeto comercial.  
-Licença: [MIT License](https://mit-license.org/).
+Licença: [MIT License](https://mit-license.org/).  
+
+### ⭐ Destaques:
+
+- Diagrama de classes que foi base para visualizar e refletir sobre atributos, métodos e relações
+- Resource Bundle para centralizar mensagens de aviso e erros para as Exceptions, com mensagens em idioma Português e Inglês
+- Constantes de Strings centralizadas no pacote `enums.constants`, proporcionando melhor reaproveitamento e manutenção de textos, inclusive para traduções
+- Abstração de anotações para o Swagger no pacote `utils.annotations.swagger` proporcionando diminuição e repetição de instrução
+- Utilização de Interface para centralizar anotações do Swagger para os Controllers (*ControllerDocs)
+- Filtro por data aplicado com JPA utilizando a consulta criada com o nome de métodos, exemplo: "findAllByGeradaEmBetween"
+- Filtro de autorização em cada Endpoint para controle de permissões por Perfil ou 
+- Serviço de popular banco para quando uma tabela/entidade está sem dados
+- Exception Handler para tratar excessões específicas da aplicação
+- Spring Banner personalizado
+- Regras de negócios centralizadas no pacote `services` e alinhadas para o escopo que o Back-End pode atender
+- Comentários para javadoc nos métodos dos Services
+- Utilização de variáveis de ambientes para que os valores de `DATABASE_URL` e `TOKEN_API_SECRET` não fiquem expostos em repositório
+- Configuração do arquivo `application-tests.properties` como base de propriedades para serem utilizadas em testes e que possui configurações que permitem que o carregamento e teste da classe principal execute normalmente
+
+#### 👉 _TO DO:_
+
+- Criar testes unitários
+- Implementar Log
+- Implementar Cache
+- Revisar DTOs de respostas para melhor aproveitamento do Front-End
 
 ### 📗 Configuração do Projeto
 
@@ -79,7 +103,7 @@ Bash ou PowerShell:
 
 ```bash
 ./mvnw clean package spring-boot:repackage
-java -jar target/queue-service-api-0.1.1-SNAPSHOT.jar
+java -jar target/queue-service-api-0.2.0-RELEASE.jar
 ```
 
 _OBS: para CMD, no primeiro comando, basta remover o "./" antes do mvnw_
@@ -92,7 +116,7 @@ existirem, basta configurar as variáveis citadas acima na sua IDE, então é s�
 
 ## 🔧 Tecnologias
 
-- Java 17
+- Java JDK 17
 - Maven Wrapper 3.8.4
 - Springboot v.3.0.2
 - Spring Security
@@ -140,6 +164,7 @@ Abaixo segue uma lista geral dos endpoints com resumo de suas funcionalidades:
 | DELETE | /api/v1/departamento/{id} | Apagar departamento                       |
 
 ### 👤 Atendente: Endpoints com CRUD para cadastro de atendente(s)
+
 Quando um atendente é criado, um usuário será automaticamente criado com o nome de usuário sendo igual ao e-mail do atendente e a senha padrão "Pw5@QueueService".
 Observação: Mesm em caso de já existir um e-mail de atendente igual à um nome de usuário existe o sistema irá tentar um nome diferente até conseguir criar um usuário novo sem conflito com nome de usuário. 
 
@@ -152,6 +177,7 @@ Observação: Mesm em caso de já existir um e-mail de atendente igual à um nom
 | DELETE | /api/v1/atendente/{id}  | Apagar atendente                       |
 
 ### 🔑 Usuário: Endpoints com CRUD para cadastro de usuário(s)
+
 Os usuários são diretamente vinculados aos atendentes, nas operações é checado o atendente vinculado ao usuário.
 
 | Método | Endpoint                                 | Descrição                                  |
@@ -167,6 +193,7 @@ Os usuários são diretamente vinculados aos atendentes, nas operações é chec
 | PATCH  | /api/v1/atendente/{id}/desativar         | Desativar usuário no sistema               |
 
 ### ♿ Tipo de Atendimento: Endpoints com CRUD para cadastro de tipo(s) de atendimento
+
 O Tipo de Atendimento foi um recurso criado para que se possa incluir priorizações personalizadas às filas.
 
 | Método | Endpoint                      | Descrição                                        |
@@ -178,6 +205,7 @@ O Tipo de Atendimento foi um recurso criado para que se possa incluir priorizaç
 | DELETE | /api/v1/tipo-atendimento/{id} | Apagar tipo de atendimento                       |
 
 ### 🔜 Fila: Endpoints com CRUD para cadastro de fila(s)
+
 Uma fila depende de ao menos um tipo de atendimento vinculado.
 
 | Método | Endpoint                                                         | Descrição                           |
@@ -191,6 +219,7 @@ Uma fila depende de ao menos um tipo de atendimento vinculado.
 | DELETE | /api/v1/fila/{id}                                                | Apagar fila                         |
 
 ### 🔔 Senha: Endpoints com CRUD para gerar e operar senha(s)
+
 Cada senha é vinculada a uma fila e um tipo de serviço que define a sua prioridade na fila. Possui endpoints para chamar próxima senha de uma fila, chamar/rechamar senha específica, operar para marcar uma senha como chamada, finalizada e atendida e também conseguir ver detalhe de senha e listar senhas conforme intervalo de dia(s)/data(s) e status.  
 Nas lista de "todas as senhas geradas" e de "todas as senhas geradas e não finalizadas", se o utilizador possui perfil somente de ATENDENTE, então retorna somente as senhas de filas vinculadas ao(s) departamento(s) que o atendente pertence/atende.
 
@@ -213,10 +242,10 @@ Nas lista de "todas as senhas geradas" e de "todas as senhas geradas e não fina
 | PATCH  | /api/v1/senha/{id}/resetar-status                | Reseta status da senha, retira a marcação de que foi chamada, atendida e finalizada                                       |
 
 
-Para documentação mais completa dos Endpoints, basta acessar o Swagger que fica disponível em http://localhost:8080/swagger-ui.html
+📇 Para documentação mais completa dos Endpoints, basta acessar o Swagger que fica disponível em http://localhost:8080/swagger-ui.html
 quando o projeto é executado.
 
-Para testar localmente os Endpoints, existe coleção do [Postman] que já possuí requisições HTTP configuradas. O
+💽 Para testar localmente os Endpoints, existe coleção do [Postman] que já possuí requisições HTTP configuradas. O
 arquivo `Queue Service API.postman_collection.json` e `Queue Service API - Enviroments.postman_collection` estão na
 pasta [postman](https://github.com/didifive/queue-service-api/tree/master/postman). Basta importar os dois arquivos no
 aplicativo do Postman e selecionar o ambiente (environment) Localhost. A vantagem de utilizar a configuração do domínio
@@ -232,8 +261,9 @@ Logotipo:
 UML - Diagrama de Classes:  
 ![UML - Diagrama de Classes](docs/uml-diagram.drawio.png?raw=true "UML - Diagrama de Classes")  
 OpenAPI - Swagger:  
-![Screenshot da tela de OpenAPI - Swagger](docs/swagger.png?raw=true "Screenshot da tela de OpenAPI - Swagger")
-
+![Screenshot da tela de OpenAPI - Swagger](docs/swagger.png?raw=true "Screenshot da tela de OpenAPI - Swagger")  
+Spring Banner Personalizado:  
+![Spring Banner Personalizado - Filas API](docs/spring-banner.png?raw=true "Spring Banner Personalizado - Filas API")
 ---
 
 ## ~~📱 Frontend em React para este projeto~~
@@ -243,7 +273,7 @@ OpenAPI - Swagger:
 ---
 
 📋 Qualquer dúvida, sugestão ou crítica é só entrar em contato ou abrir uma Issue (https://github.com/didifive).  
-💚 Feito com muita dedicação. #EnjoyThis
+💚 Feito com muita dedicação e aprendizado. #EnjoyThis
 
 ---
 
