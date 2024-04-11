@@ -1,0 +1,3 @@
+[submodule "queue-service-app"]
+	path = queue-service-app
+	url = git@github.com:didifive/queue-service-app
